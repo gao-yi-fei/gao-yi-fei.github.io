@@ -1,77 +1,183 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gao Yifei</title>
+  <title>SCP-MC Backup Downloads</title>
   <style>
-    :root { color-scheme: light; }
-    * { box-sizing: border-box; }
+    :root {
+      color-scheme: light;
+      --bg: #f6f7f9;
+      --panel: #ffffff;
+      --ink: #17202a;
+      --muted: #5f6b7a;
+      --line: #d9dee7;
+      --accent: #1f6feb;
+      --accent-ink: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: #17201b;
-      background: #f7faf8;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 32px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
     }
+
     main {
-      width: min(720px, 100%);
+      width: min(960px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 56px 0;
     }
-    .eyebrow {
-      margin: 0 0 12px;
-      color: #47715b;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+
+    header {
+      margin-bottom: 28px;
     }
+
     h1 {
-      margin: 0;
-      font-size: clamp(40px, 8vw, 76px);
-      line-height: 0.98;
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.05;
       letter-spacing: 0;
     }
-    p {
-      margin: 24px 0 0;
-      max-width: 620px;
-      color: #415248;
-      font-size: 19px;
-      line-height: 1.65;
+
+    .lead {
+      max-width: 760px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.08rem;
     }
-    .links {
+
+    .download {
+      display: grid;
+      gap: 20px;
+      padding: 24px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 12px 30px rgba(23, 32, 42, 0.06);
+    }
+
+    .download h2 {
+      margin: 0;
+      font-size: 1.35rem;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .meta li {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfcfe;
+    }
+
+    .meta span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 32px;
+      align-items: center;
     }
-    a {
-      color: #173f2a;
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: var(--accent-ink);
+      font-weight: 700;
       text-decoration: none;
     }
-    .button {
-      border: 1px solid #b6c8bd;
-      border-radius: 8px;
-      padding: 10px 14px;
-      background: #ffffff;
-      font-weight: 650;
+
+    code {
+      overflow-wrap: anywhere;
+      padding: 2px 5px;
+      border-radius: 5px;
+      background: #eef2f7;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 0.92em;
     }
-    .button:hover { border-color: #47715b; }
+
+    section {
+      margin-top: 24px;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    footer {
+      margin-top: 40px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
   </style>
 </head>
 <body>
   <main>
-    <p class="eyebrow">piglin.me</p>
-    <h1>Gao Yifei</h1>
-    <p>
-      Biomedical Engineering student at Peking University. This site is freshly connected to GitHub Pages and ready to become a portfolio, lab notes, or whatever comes next.
-    </p>
-    <div class="links">
-      <a class="button" href="https://github.com/gao-yi-fei">GitHub</a>
-      <a class="button" href="mailto:859635704@qq.com">Email</a>
-    </div>
+    <header>
+      <h1>SCP-MC 备份下载站</h1>
+      <p class="lead">这里投放 SCP基金会Minecraft分部 Wikidot 公开页面源码备份。当前包包含 Wikidot source、raw viewsource、manifest 和校验信息。</p>
+    </header>
+
+    <article class="download">
+      <div>
+        <h2>scp-wiki-mc-source-20260703-165715.zip</h2>
+        <p>抓取时间：2026-07-03。公开源码页面 1316 个，发现但未抓取 1 个管理页。</p>
+      </div>
+
+      <ul class="meta">
+        <li><span>文件大小</span>11.34 MiB</li>
+        <li><span>发现 URL</span>1317</li>
+        <li><span>源码文件</span>1316</li>
+        <li><span>Raw viewsource</span>1316</li>
+      </ul>
+
+      <div>
+        <h3>SHA-256</h3>
+        <code>b91dbcd3ffb1c75ba35ecf38eeb49929d9f437fb4dbc5cca2af1f06c6cc029d3</code>
+      </div>
+
+      <div class="actions">
+        <a class="button" href="/downloads/scp-wiki-mc-source-20260703-165715.zip" download>下载备份 zip</a>
+        <a href="https://scp-wiki-mc.wikidot.com/">原站</a>
+      </div>
+    </article>
+
+    <section>
+      <h3>包内内容</h3>
+      <p><code>manifest.csv</code> 和 <code>manifest.json</code> 记录每个页面的 URL、文件路径、大小与 SHA-256；<code>failed.jsonl</code> 记录未抓取项。</p>
+      <p>转载或再分发时，请保留原站署名与许可要求。</p>
+    </section>
+
+    <footer>
+      piglin.me · GitHub Pages backup mirror
+    </footer>
   </main>
 </body>
 </html>
