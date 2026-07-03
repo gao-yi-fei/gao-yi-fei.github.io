@@ -3,181 +3,472 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SCP-MC Backup Downloads</title>
+  <title>SCP-MC Index</title>
+  <link rel="icon" href="data:,">
   <style>
     :root {
-      color-scheme: light;
-      --bg: #f6f7f9;
-      --panel: #ffffff;
-      --ink: #17202a;
-      --muted: #5f6b7a;
-      --line: #d9dee7;
-      --accent: #1f6feb;
-      --accent-ink: #ffffff;
+      --bg: #f5f6f8;
+      --panel: #fff;
+      --ink: #151b23;
+      --muted: #667085;
+      --line: #d8dee8;
+      --accent: #0b5cad;
+      --accent-soft: #e7f0fb;
+      --bad: #b42318;
+      --good: #067647;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       background: var(--bg);
       color: var(--ink);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.55;
+      line-height: 1.5;
     }
 
-    main {
-      width: min(960px, calc(100% - 32px));
+    header, main {
+      width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 56px 0;
     }
 
     header {
-      margin-bottom: 28px;
+      padding: 34px 0 18px;
     }
 
     h1 {
-      margin: 0 0 10px;
-      font-size: clamp(2rem, 5vw, 3.4rem);
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 4vw, 3.3rem);
       line-height: 1.05;
       letter-spacing: 0;
     }
 
     .lead {
-      max-width: 760px;
+      max-width: 780px;
       margin: 0;
       color: var(--muted);
-      font-size: 1.08rem;
+      font-size: 1.04rem;
     }
 
-    .download {
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 2;
       display: grid;
-      gap: 20px;
-      padding: 24px;
-      background: var(--panel);
+      grid-template-columns: 1fr repeat(2, minmax(150px, 190px));
+      gap: 10px;
+      padding: 12px 0;
+      background: color-mix(in srgb, var(--bg) 92%, transparent);
+      backdrop-filter: blur(12px);
+    }
+
+    input, select, button {
+      min-height: 40px;
       border: 1px solid var(--line);
       border-radius: 8px;
-      box-shadow: 0 12px 30px rgba(23, 32, 42, 0.06);
+      background: var(--panel);
+      color: var(--ink);
+      font: inherit;
     }
 
-    .download h2 {
-      margin: 0;
-      font-size: 1.35rem;
+    input, select {
+      width: 100%;
+      padding: 0 12px;
     }
 
-    .meta {
+    .stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
-      margin: 0;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+      margin: 0 0 14px;
       padding: 0;
       list-style: none;
     }
 
-    .meta li {
+    .stats li {
       padding: 12px;
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: #fbfcfe;
+      background: var(--panel);
     }
 
-    .meta span {
+    .stats span {
       display: block;
       color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .list, .detail {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      overflow: hidden;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 80px minmax(0, 1fr) 92px;
+      gap: 12px;
+      width: 100%;
+      padding: 12px;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .row:hover, .row[aria-selected="true"] {
+      background: var(--accent-soft);
+    }
+
+    .rating {
+      font-weight: 800;
+      color: var(--muted);
+    }
+
+    .rating.positive { color: var(--good); }
+    .rating.negative { color: var(--bad); }
+
+    .title {
+      min-width: 0;
+      font-weight: 700;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .name, .small {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .tag {
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: #eef2f7;
+      color: #344054;
+      font-size: 0.76rem;
+    }
+
+    .detail {
+      position: sticky;
+      top: 80px;
+      max-height: calc(100vh - 94px);
+      overflow: auto;
+    }
+
+    .detail section {
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2, h3 {
+      margin: 0 0 8px;
+      line-height: 1.2;
+    }
+
+    h2 { font-size: 1.35rem; }
+    h3 { font-size: 1rem; }
+
+    a { color: var(--accent); }
+
+    code, pre {
+      font-family: "SFMono-Regular", Consolas, monospace;
       font-size: 0.86rem;
+    }
+
+    pre {
+      max-height: 360px;
+      margin: 0;
+      padding: 12px;
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #0f172a;
+      color: #e5e7eb;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
     }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
     }
 
-    .button {
+    .actions a, .actions button {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 0 18px;
+      min-height: 36px;
+      padding: 0 11px;
       border-radius: 8px;
-      background: var(--accent);
-      color: var(--accent-ink);
-      font-weight: 700;
+      border: 1px solid var(--line);
+      background: #fff;
       text-decoration: none;
     }
 
-    code {
-      overflow-wrap: anywhere;
-      padding: 2px 5px;
-      border-radius: 5px;
-      background: #eef2f7;
-      font-family: "SFMono-Regular", Consolas, monospace;
-      font-size: 0.92em;
-    }
-
-    section {
-      margin-top: 24px;
-    }
-
-    h3 {
-      margin: 0 0 8px;
-      font-size: 1.05rem;
-    }
-
-    p {
-      margin: 0 0 12px;
-    }
-
-    footer {
-      margin-top: 40px;
+    .empty {
+      padding: 30px;
       color: var(--muted);
-      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    .comment {
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .comment:first-child {
+      border-top: 0;
+    }
+
+    @media (max-width: 880px) {
+      .toolbar, .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .detail {
+        position: static;
+        max-height: none;
+      }
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>SCP-MC Index</h1>
+    <p class="lead">SCP基金会Minecraft分部公开页面索引。包含评分、标签、讨论帖摘要、作者线索与 Wikidot 源码备份。</p>
+  </header>
+
   <main>
-    <header>
-      <h1>SCP-MC 备份下载站</h1>
-      <p class="lead">这里投放 SCP基金会Minecraft分部 Wikidot 公开页面源码备份。当前包包含 Wikidot source、raw viewsource、manifest 和校验信息。</p>
-    </header>
+    <ul class="stats" id="stats"></ul>
+    <div class="toolbar">
+      <input id="query" type="search" placeholder="搜索标题、页面名、标签、作者线索">
+      <select id="sort">
+        <option value="rating">评分从高到低</option>
+        <option value="comments">评论数从高到低</option>
+        <option value="updated">最近编辑</option>
+        <option value="name">页面名</option>
+      </select>
+      <select id="filter">
+        <option value="all">全部页面</option>
+        <option value="rated">有评分</option>
+        <option value="discussion">有讨论帖</option>
+        <option value="source">有源码</option>
+      </select>
+    </div>
 
-    <article class="download">
-      <div>
-        <h2>scp-wiki-mc-source-20260703-165715.zip</h2>
-        <p>抓取时间：2026-07-03。公开源码页面 1316 个，发现但未抓取 1 个管理页。</p>
-      </div>
-
-      <ul class="meta">
-        <li><span>文件大小</span>11.34 MiB</li>
-        <li><span>发现 URL</span>1317</li>
-        <li><span>源码文件</span>1316</li>
-        <li><span>Raw viewsource</span>1316</li>
-      </ul>
-
-      <div>
-        <h3>SHA-256</h3>
-        <code>b91dbcd3ffb1c75ba35ecf38eeb49929d9f437fb4dbc5cca2af1f06c6cc029d3</code>
-      </div>
-
-      <div class="actions">
-        <a class="button" href="/downloads/scp-wiki-mc-source-20260703-165715.zip" download>下载备份 zip</a>
-        <a href="https://scp-wiki-mc.wikidot.com/">原站</a>
-      </div>
-    </article>
-
-    <section>
-      <h3>包内内容</h3>
-      <p><code>manifest.csv</code> 和 <code>manifest.json</code> 记录每个页面的 URL、文件路径、大小与 SHA-256；<code>failed.jsonl</code> 记录未抓取项。</p>
-      <p>转载或再分发时，请保留原站署名与许可要求。</p>
-    </section>
-
-    <footer>
-      piglin.me · GitHub Pages backup mirror
-    </footer>
+    <div class="layout">
+      <div class="list" id="list"><div class="empty">加载中...</div></div>
+      <aside class="detail" id="detail"><section><h2>选择一个页面</h2><p class="small">源码会按需从压缩数据包中读取。</p></section></aside>
+    </div>
   </main>
+
+  <script>
+    const state = {
+      pages: [],
+      stats: null,
+      selected: null,
+      sources: null,
+      sourceLoading: null,
+    };
+
+    const $ = (id) => document.getElementById(id);
+    const fmt = new Intl.NumberFormat("zh-CN");
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"
+      }[char]));
+    }
+
+    function ratingClass(value) {
+      if (value > 0) return "rating positive";
+      if (value < 0) return "rating negative";
+      return "rating";
+    }
+
+    function renderStats() {
+      const s = state.stats;
+      $("stats").innerHTML = [
+        ["页面", s.page_count],
+        ["有评分", s.rated_count],
+        ["讨论帖", s.discussion_count],
+        ["评论预览", s.comment_preview_count],
+        ["生成时间", s.generated_at],
+      ].map(([label, value]) => `<li><span>${label}</span>${typeof value === "number" ? fmt.format(value) : escapeHtml(value)}</li>`).join("");
+    }
+
+    function filteredPages() {
+      const q = $("query").value.trim().toLowerCase();
+      const filter = $("filter").value;
+      const sort = $("sort").value;
+      let rows = state.pages.filter((page) => {
+        if (filter === "rated" && page.rating == null) return false;
+        if (filter === "discussion" && !page.discussion) return false;
+        if (filter === "source" && !page.source_file) return false;
+        if (!q) return true;
+        const haystack = [
+          page.title,
+          page.page_name,
+          page.url,
+          ...(page.tags || []),
+          ...((page.author_hints && page.author_hints.users) || []),
+          ...((page.author_hints && page.author_hints.author_pages) || []),
+        ].join(" ").toLowerCase();
+        return haystack.includes(q);
+      });
+
+      rows.sort((a, b) => {
+        if (sort === "comments") return ((b.discussion?.comments_count) || 0) - ((a.discussion?.comments_count) || 0);
+        if (sort === "updated") return String(b.last_edited_at || "").localeCompare(String(a.last_edited_at || ""));
+        if (sort === "name") return a.page_name.localeCompare(b.page_name);
+        return ((b.rating ?? -999999) - (a.rating ?? -999999)) || a.page_name.localeCompare(b.page_name);
+      });
+      return rows;
+    }
+
+    function renderList() {
+      const rows = filteredPages();
+      if (!rows.length) {
+        state.selected = null;
+        $("list").innerHTML = `<div class="empty">没有匹配页面</div>`;
+        $("detail").innerHTML = `<section><h2>没有匹配页面</h2><p class="small">换个关键词或筛选条件再试。</p></section>`;
+        return;
+      }
+      if (!state.selected || !rows.some((page) => page.page_name === state.selected.page_name)) {
+        state.selected = rows[0];
+        renderDetail(state.selected, state.sources?.[state.selected.page_name] || state.selected.source_excerpt || "");
+        ensureSelectedSource();
+      }
+      $("list").innerHTML = rows.slice(0, 500).map((page) => {
+        const comments = page.discussion?.comments_count;
+        return `<button class="row" aria-selected="${state.selected?.page_name === page.page_name}" data-page="${escapeHtml(page.page_name)}">
+          <span class="${ratingClass(page.rating)}">${page.rating == null ? "n/a" : (page.rating > 0 ? "+" : "") + page.rating}</span>
+          <span>
+            <span class="title">${escapeHtml(page.title || page.page_name)}</span>
+            <span class="name">${escapeHtml(page.page_name)}</span>
+            <span class="tags">${(page.tags || []).slice(0, 5).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</span>
+          </span>
+          <span class="small">${comments == null ? "" : `${comments} 评论`}</span>
+        </button>`;
+      }).join("") + (rows.length > 500 ? `<div class="empty">已显示前 500 条，请继续搜索缩小范围。</div>` : "");
+    }
+
+    async function loadSources() {
+      if (state.sources) return state.sources;
+      if (state.sourceLoading) return state.sourceLoading;
+      state.sourceLoading = (async () => {
+        const res = await fetch("data/sources.json.gz");
+        const stream = res.body.pipeThrough(new DecompressionStream("gzip"));
+        const text = await new Response(stream).text();
+        state.sources = JSON.parse(text).sources;
+        return state.sources;
+      })();
+      return state.sourceLoading;
+    }
+
+    function renderDetail(page, sourceText) {
+      const users = page.author_hints?.users || [];
+      const authorPages = page.author_hints?.author_pages || [];
+      const comments = page.comments_preview?.posts || [];
+      $("detail").innerHTML = `
+        <section>
+          <h2>${escapeHtml(page.title || page.page_name)}</h2>
+          <div class="small">${escapeHtml(page.page_name)} · ${page.rating == null ? "无评分" : `评分 ${(page.rating > 0 ? "+" : "") + page.rating}`}</div>
+          <div class="actions">
+            <a href="${escapeHtml(page.url)}" target="_blank" rel="noreferrer">原页面</a>
+            ${page.discussion?.url ? `<a href="${escapeHtml(page.discussion.url)}" target="_blank" rel="noreferrer">讨论帖</a>` : ""}
+            <a href="/downloads/scp-wiki-mc-source-20260703-165715.zip">完整备份 zip</a>
+          </div>
+        </section>
+        <section>
+          <h3>元数据</h3>
+          <p class="small">Page ID: ${escapeHtml(page.page_id || "n/a")}<br>最后编辑: ${escapeHtml(page.last_edited_at || page.page_info || "n/a")}<br>评分者: ${escapeHtml(page.voters_status || "unknown")}</p>
+          <div class="tags">${(page.tags || []).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
+        </section>
+        <section>
+          <h3>作者线索</h3>
+          <p class="small">${users.length ? users.map(escapeHtml).join(", ") : "源码中未解析出明确用户链接。"}</p>
+          ${authorPages.length ? `<p class="small">作者页: ${authorPages.map(escapeHtml).join(", ")}</p>` : ""}
+        </section>
+        <section>
+          <h3>评论区预览</h3>
+          ${comments.length ? comments.map((comment) => `<div class="comment"><strong>${escapeHtml(comment.author || "unknown")}</strong> <span class="small">${escapeHtml(comment.created_text || "")}</span><p>${escapeHtml(comment.content || "")}</p></div>`).join("") : `<p class="small">没有公开评论预览，或该页无页面讨论帖。</p>`}
+        </section>
+        <section>
+          <h3>Wikidot 源代码</h3>
+          <pre>${escapeHtml(sourceText || page.source_excerpt || "源码未载入")}</pre>
+        </section>`;
+    }
+
+    async function selectPage(pageName) {
+      const page = state.pages.find((item) => item.page_name === pageName);
+      if (!page) return;
+      state.selected = page;
+      renderList();
+      $("detail").innerHTML = `<section><h2>${escapeHtml(page.title || page.page_name)}</h2><p class="small">载入源码...</p></section>`;
+      let sourceText = "";
+      try {
+        const sources = await loadSources();
+        sourceText = sources[page.page_name] || "";
+      } catch (err) {
+        sourceText = `源码压缩包读取失败：${err.message}`;
+      }
+      renderDetail(page, sourceText);
+    }
+
+    async function ensureSelectedSource() {
+      const page = state.selected;
+      if (!page || state.sources?.[page.page_name]) return;
+      try {
+        const sources = await loadSources();
+        if (state.selected?.page_name === page.page_name) {
+          renderDetail(page, sources[page.page_name] || "");
+        }
+      } catch (err) {
+        if (state.selected?.page_name === page.page_name) {
+          renderDetail(page, `源码压缩包读取失败：${err.message}`);
+        }
+      }
+    }
+
+    async function init() {
+      const res = await fetch("data/pages.json");
+      const payload = await res.json();
+      state.pages = payload.pages;
+      state.stats = payload.stats;
+      renderStats();
+      renderList();
+      $("query").addEventListener("input", renderList);
+      $("sort").addEventListener("change", renderList);
+      $("filter").addEventListener("change", renderList);
+      $("list").addEventListener("click", (event) => {
+        const row = event.target.closest(".row");
+        if (row) selectPage(row.dataset.page);
+      });
+      if (state.pages[0]) selectPage(state.pages[0].page_name);
+    }
+
+    init().catch((err) => {
+      $("list").innerHTML = `<div class="empty">加载失败：${escapeHtml(err.message)}</div>`;
+    });
+  </script>
 </body>
 </html>
