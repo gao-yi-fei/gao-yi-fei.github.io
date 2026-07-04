@@ -1,474 +1,119 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SCP-MC Index</title>
+  <title>SCPPER-MC</title>
   <link rel="icon" href="data:,">
-  <style>
-    :root {
-      --bg: #f5f6f8;
-      --panel: #fff;
-      --ink: #151b23;
-      --muted: #667085;
-      --line: #d8dee8;
-      --accent: #0b5cad;
-      --accent-soft: #e7f0fb;
-      --bad: #b42318;
-      --good: #067647;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.5;
-    }
-
-    header, main {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-    }
-
-    header {
-      padding: 34px 0 18px;
-    }
-
-    h1 {
-      margin: 0 0 8px;
-      font-size: clamp(2rem, 4vw, 3.3rem);
-      line-height: 1.05;
-      letter-spacing: 0;
-    }
-
-    .lead {
-      max-width: 780px;
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.04rem;
-    }
-
-    .toolbar {
-      position: sticky;
-      top: 0;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 1fr repeat(2, minmax(150px, 190px));
-      gap: 10px;
-      padding: 12px 0;
-      background: color-mix(in srgb, var(--bg) 92%, transparent);
-      backdrop-filter: blur(12px);
-    }
-
-    input, select, button {
-      min-height: 40px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-      color: var(--ink);
-      font: inherit;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 0 12px;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 10px;
-      margin: 0 0 14px;
-      padding: 0;
-      list-style: none;
-    }
-
-    .stats li {
-      padding: 12px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-    }
-
-    .stats span {
-      display: block;
-      color: var(--muted);
-      font-size: 0.84rem;
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
-      gap: 14px;
-      align-items: start;
-    }
-
-    .list, .detail {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-      overflow: hidden;
-    }
-
-    .row {
-      display: grid;
-      grid-template-columns: 80px minmax(0, 1fr) 92px;
-      gap: 12px;
-      width: 100%;
-      padding: 12px;
-      border: 0;
-      border-bottom: 1px solid var(--line);
-      text-align: left;
-      cursor: pointer;
-    }
-
-    .row:hover, .row[aria-selected="true"] {
-      background: var(--accent-soft);
-    }
-
-    .rating {
-      font-weight: 800;
-      color: var(--muted);
-    }
-
-    .rating.positive { color: var(--good); }
-    .rating.negative { color: var(--bad); }
-
-    .title {
-      min-width: 0;
-      font-weight: 700;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .name, .small {
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 6px;
-    }
-
-    .tag {
-      padding: 2px 7px;
-      border-radius: 999px;
-      background: #eef2f7;
-      color: #344054;
-      font-size: 0.76rem;
-    }
-
-    .detail {
-      position: sticky;
-      top: 80px;
-      max-height: calc(100vh - 94px);
-      overflow: auto;
-    }
-
-    .detail section {
-      padding: 14px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    h2, h3 {
-      margin: 0 0 8px;
-      line-height: 1.2;
-    }
-
-    h2 { font-size: 1.35rem; }
-    h3 { font-size: 1rem; }
-
-    a { color: var(--accent); }
-
-    code, pre {
-      font-family: "SFMono-Regular", Consolas, monospace;
-      font-size: 0.86rem;
-    }
-
-    pre {
-      max-height: 360px;
-      margin: 0;
-      padding: 12px;
-      overflow: auto;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #0f172a;
-      color: #e5e7eb;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .actions a, .actions button {
-      display: inline-flex;
-      align-items: center;
-      min-height: 36px;
-      padding: 0 11px;
-      border-radius: 8px;
-      border: 1px solid var(--line);
-      background: #fff;
-      text-decoration: none;
-    }
-
-    .empty {
-      padding: 30px;
-      color: var(--muted);
-      text-align: center;
-    }
-
-    .comment {
-      padding: 10px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .comment:first-child {
-      border-top: 0;
-    }
-
-    @media (max-width: 880px) {
-      .toolbar, .layout {
-        grid-template-columns: 1fr;
-      }
-
-      .detail {
-        position: static;
-        max-height: none;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/scpper.css">
 </head>
 <body>
   <header>
-    <h1>SCP-MC Index</h1>
-    <p class="lead">SCP基金会Minecraft分部公开页面索引。包含评分、标签、讨论帖摘要、作者线索与 Wikidot 源码备份。</p>
+    <div class="topline">
+      <div>
+        <h1>SCPPER-MC</h1>
+        <p class="lead">SCP基金会 Minecraft 分部备份检索站。这里是基本状态页，完整检索请进入分页。</p>
+        <div class="credit">created by piglin</div>
+      </div>
+      <div class="card" style="min-width:220px">
+        <span class="card-label">当前北京时间</span>
+        <span class="card-value" id="nowBeijing">--</span>
+      </div>
+    </div>
+    <nav class="nav" id="nav" aria-label="站点导航"></nav>
   </header>
-
   <main>
     <ul class="stats" id="stats"></ul>
-    <div class="toolbar">
-      <input id="query" type="search" placeholder="搜索标题、页面名、标签、作者线索">
-      <select id="sort">
-        <option value="rating">评分从高到低</option>
-        <option value="comments">评论数从高到低</option>
-        <option value="updated">最近编辑</option>
-        <option value="name">页面名</option>
-      </select>
-      <select id="filter">
-        <option value="all">全部页面</option>
-        <option value="rated">有评分</option>
-        <option value="discussion">有讨论帖</option>
-        <option value="source">有源码</option>
-      </select>
-    </div>
-
-    <div class="layout">
-      <div class="list" id="list"><div class="empty">加载中...</div></div>
-      <aside class="detail" id="detail"><section><h2>选择一个页面</h2><p class="small">源码会按需从压缩数据包中读取。</p></section></aside>
+    <section class="panel" style="margin-bottom:14px">
+      <div class="panel-head">
+        <h2>当前竞赛</h2>
+        <div class="small" id="contestHint">加载中...</div>
+      </div>
+      <div class="panel-section" id="contest"></div>
+    </section>
+    <section class="grid-3">
+      <div class="panel">
+        <div class="panel-head"><h2>最近发帖</h2><div class="small">只显示少量摘要</div></div>
+        <div class="panel-section" id="recentPosts"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2>最近页面</h2><div class="small">按创建时间</div></div>
+        <div class="panel-section" id="recentPages"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2>最近编辑</h2><div class="small">按编辑时间</div></div>
+        <div class="panel-section" id="recentEdits"></div>
+      </div>
+    </section>
+    <div class="actions" style="margin:14px 0 26px">
+      <a href="/pages.html">进入页面索引</a>
+      <a href="/users.html">进入用户索引</a>
+      <a href="/forum.html">进入讨论区</a>
+      <a href="/recent.html">查看完整最近动态</a>
     </div>
   </main>
-
+  <script src="/assets/common.js"></script>
   <script>
-    const state = {
-      pages: [],
-      stats: null,
-      selected: null,
-      sources: null,
-      sourceLoading: null,
-    };
-
+    const C = window.SCPPER;
     const $ = (id) => document.getElementById(id);
-    const fmt = new Intl.NumberFormat("zh-CN");
-
-    function escapeHtml(value) {
-      return String(value ?? "").replace(/[&<>"']/g, (char) => ({
-        "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"
-      }[char]));
+    function pageLink(item) {
+      const title = item.title || item.page_title || item.thread_title || item.page_name || item.thread_id || "unknown";
+      const href = item.url || item.page_url || item.thread_url || "#";
+      return href === "#" ? C.escapeHtml(title) : `<a href="${C.escapeHtml(href)}" target="_blank" rel="noreferrer">${C.escapeHtml(title)}</a>`;
     }
-
-    function ratingClass(value) {
-      if (value > 0) return "rating positive";
-      if (value < 0) return "rating negative";
-      return "rating";
-    }
-
-    function renderStats() {
-      const s = state.stats;
+    function renderStats(stats) {
+      const k = stats.page_kind_counts || {};
       $("stats").innerHTML = [
-        ["页面", s.page_count],
-        ["有评分", s.rated_count],
-        ["讨论帖", s.discussion_count],
-        ["评论预览", s.comment_preview_count],
-        ["生成时间", s.generated_at],
-      ].map(([label, value]) => `<li><span>${label}</span>${typeof value === "number" ? fmt.format(value) : escapeHtml(value)}</li>`).join("");
+        ["页面", stats.page_count], ["用户", stats.user_count], ["原创", k.original || 0], ["翻译", k.translation || 0],
+        ["段落", k.fragment || 0], ["讨论串", stats.forum_thread_count], ["帖子", stats.forum_post_count],
+        ["生成时间", stats.generated_at_beijing || C.formatBeijing(stats.generated_at)],
+      ].map(([label, value]) => `<li><span>${label}</span>${typeof value === "number" ? C.fmt.format(value) : C.escapeHtml(value)}</li>`).join("");
     }
-
-    function filteredPages() {
-      const q = $("query").value.trim().toLowerCase();
-      const filter = $("filter").value;
-      const sort = $("sort").value;
-      let rows = state.pages.filter((page) => {
-        if (filter === "rated" && page.rating == null) return false;
-        if (filter === "discussion" && !page.discussion) return false;
-        if (filter === "source" && !page.source_file) return false;
-        if (!q) return true;
-        const haystack = [
-          page.title,
-          page.page_name,
-          page.url,
-          ...(page.tags || []),
-          ...((page.author_hints && page.author_hints.users) || []),
-          ...((page.author_hints && page.author_hints.author_pages) || []),
-        ].join(" ").toLowerCase();
-        return haystack.includes(q);
-      });
-
-      rows.sort((a, b) => {
-        if (sort === "comments") return ((b.discussion?.comments_count) || 0) - ((a.discussion?.comments_count) || 0);
-        if (sort === "updated") return String(b.last_edited_at || "").localeCompare(String(a.last_edited_at || ""));
-        if (sort === "name") return a.page_name.localeCompare(b.page_name);
-        return ((b.rating ?? -999999) - (a.rating ?? -999999)) || a.page_name.localeCompare(b.page_name);
-      });
-      return rows;
-    }
-
-    function renderList() {
-      const rows = filteredPages();
-      if (!rows.length) {
-        state.selected = null;
-        $("list").innerHTML = `<div class="empty">没有匹配页面</div>`;
-        $("detail").innerHTML = `<section><h2>没有匹配页面</h2><p class="small">换个关键词或筛选条件再试。</p></section>`;
+    function renderContest(contest) {
+      if (!contest) {
+        $("contestHint").textContent = "未识别到当前竞赛";
+        $("contest").innerHTML = `<p class="small">没有找到带竞赛标签的中心页。</p>`;
         return;
       }
-      if (!state.selected || !rows.some((page) => page.page_name === state.selected.page_name)) {
-        state.selected = rows[0];
-        renderDetail(state.selected, state.sources?.[state.selected.page_name] || state.selected.source_excerpt || "");
-        ensureSelectedSource();
-      }
-      $("list").innerHTML = rows.slice(0, 500).map((page) => {
-        const comments = page.discussion?.comments_count;
-        return `<button class="row" aria-selected="${state.selected?.page_name === page.page_name}" data-page="${escapeHtml(page.page_name)}">
-          <span class="${ratingClass(page.rating)}">${page.rating == null ? "n/a" : (page.rating > 0 ? "+" : "") + page.rating}</span>
-          <span>
-            <span class="title">${escapeHtml(page.title || page.page_name)}</span>
-            <span class="name">${escapeHtml(page.page_name)}</span>
-            <span class="tags">${(page.tags || []).slice(0, 5).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</span>
-          </span>
-          <span class="small">${comments == null ? "" : `${comments} 评论`}</span>
-        </button>`;
-      }).join("") + (rows.length > 500 ? `<div class="empty">已显示前 500 条，请继续搜索缩小范围。</div>` : "");
+      const schedule = contest.schedule || {};
+      const scheduleItems = [
+        ["投稿开始", schedule.submission_start?.at_beijing],
+        ["投稿截止", schedule.submission_end?.at_beijing],
+        ["投票截止", schedule.voting_end?.at_beijing],
+      ].filter(([, value]) => value);
+      $("contestHint").textContent = `${contest.tag}${schedule.stage ? ` · ${schedule.stage}` : ""}${contest.entry_count != null ? ` · ${C.fmt.format(contest.entry_count)} 项` : ""}`;
+      const top = (contest.ranking || []).slice(0, 8);
+      $("contest").innerHTML = `
+        <h3>${pageLink(contest.hub)}</h3>
+        <p class="small">竞赛信息来自 SCP-MC 主页提示与竞赛中心页；排名按分数、upvote 比例、发布时间排序。</p>
+        ${scheduleItems.length ? `<div class="tags">${scheduleItems.map(([label, value]) => `<span class="tag">${label} ${C.escapeHtml(value)}</span>`).join("")}</div>` : ""}
+        ${top.length ? top.map((item, index) => `<div class="activity"><strong>#${index + 1} ${pageLink(item)}</strong><span class="small">评分 ${C.ratingLabel(item.rating)} · +${C.fmt.format(item.vote_up || 0)} / -${C.fmt.format(item.vote_down || 0)} · 发布 ${C.escapeHtml(C.formatBeijing(item.created_at, item.created_at_beijing) || "n/a")}</span></div>`).join("") : `<p class="small">暂未识别到参赛作品。</p>`}
+      `;
     }
-
-    async function loadSources() {
-      if (state.sources) return state.sources;
-      if (state.sourceLoading) return state.sourceLoading;
-      state.sourceLoading = (async () => {
-        const res = await fetch("data/sources.json.gz");
-        const stream = res.body.pipeThrough(new DecompressionStream("gzip"));
-        const text = await new Response(stream).text();
-        state.sources = JSON.parse(text).sources;
-        return state.sources;
-      })();
-      return state.sourceLoading;
+    function renderSmallList(id, items, timeKey, timeLabel) {
+      const rows = (items || []).slice(0, 5);
+      $(id).innerHTML = rows.length ? rows.map((item) => `
+        <div class="activity">
+          <strong>${pageLink(item)}</strong>
+          <span class="small">${timeLabel} ${C.escapeHtml(C.formatBeijing(item[timeKey], item[`${timeKey}_beijing`]) || item.created_at_beijing || item.updated_at_beijing || "")}</span>
+        </div>
+      `).join("") : `<p class="small">暂无数据。</p>`;
     }
-
-    function renderDetail(page, sourceText) {
-      const users = page.author_hints?.users || [];
-      const authorPages = page.author_hints?.author_pages || [];
-      const comments = page.comments_preview?.posts || [];
-      $("detail").innerHTML = `
-        <section>
-          <h2>${escapeHtml(page.title || page.page_name)}</h2>
-          <div class="small">${escapeHtml(page.page_name)} · ${page.rating == null ? "无评分" : `评分 ${(page.rating > 0 ? "+" : "") + page.rating}`}</div>
-          <div class="actions">
-            <a href="${escapeHtml(page.url)}" target="_blank" rel="noreferrer">原页面</a>
-            ${page.discussion?.url ? `<a href="${escapeHtml(page.discussion.url)}" target="_blank" rel="noreferrer">讨论帖</a>` : ""}
-            <a href="/downloads/scp-wiki-mc-source-20260703-165715.zip">完整备份 zip</a>
-          </div>
-        </section>
-        <section>
-          <h3>元数据</h3>
-          <p class="small">Page ID: ${escapeHtml(page.page_id || "n/a")}<br>最后编辑: ${escapeHtml(page.last_edited_at || page.page_info || "n/a")}<br>评分者: ${escapeHtml(page.voters_status || "unknown")}</p>
-          <div class="tags">${(page.tags || []).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
-        </section>
-        <section>
-          <h3>作者线索</h3>
-          <p class="small">${users.length ? users.map(escapeHtml).join(", ") : "源码中未解析出明确用户链接。"}</p>
-          ${authorPages.length ? `<p class="small">作者页: ${authorPages.map(escapeHtml).join(", ")}</p>` : ""}
-        </section>
-        <section>
-          <h3>评论区预览</h3>
-          ${comments.length ? comments.map((comment) => `<div class="comment"><strong>${escapeHtml(comment.author || "unknown")}</strong> <span class="small">${escapeHtml(comment.created_text || "")}</span><p>${escapeHtml(comment.content || "")}</p></div>`).join("") : `<p class="small">没有公开评论预览，或该页无页面讨论帖。</p>`}
-        </section>
-        <section>
-          <h3>Wikidot 源代码</h3>
-          <pre>${escapeHtml(sourceText || page.source_excerpt || "源码未载入")}</pre>
-        </section>`;
-    }
-
-    async function selectPage(pageName) {
-      const page = state.pages.find((item) => item.page_name === pageName);
-      if (!page) return;
-      state.selected = page;
-      renderList();
-      $("detail").innerHTML = `<section><h2>${escapeHtml(page.title || page.page_name)}</h2><p class="small">载入源码...</p></section>`;
-      let sourceText = "";
-      try {
-        const sources = await loadSources();
-        sourceText = sources[page.page_name] || "";
-      } catch (err) {
-        sourceText = `源码压缩包读取失败：${err.message}`;
-      }
-      renderDetail(page, sourceText);
-    }
-
-    async function ensureSelectedSource() {
-      const page = state.selected;
-      if (!page || state.sources?.[page.page_name]) return;
-      try {
-        const sources = await loadSources();
-        if (state.selected?.page_name === page.page_name) {
-          renderDetail(page, sources[page.page_name] || "");
-        }
-      } catch (err) {
-        if (state.selected?.page_name === page.page_name) {
-          renderDetail(page, `源码压缩包读取失败：${err.message}`);
-        }
-      }
-    }
-
     async function init() {
-      const res = await fetch("data/pages.json");
-      const payload = await res.json();
-      state.pages = payload.pages;
-      state.stats = payload.stats;
-      renderStats();
-      renderList();
-      $("query").addEventListener("input", renderList);
-      $("sort").addEventListener("change", renderList);
-      $("filter").addEventListener("change", renderList);
-      $("list").addEventListener("click", (event) => {
-        const row = event.target.closest(".row");
-        if (row) selectPage(row.dataset.page);
-      });
-      if (state.pages[0]) selectPage(state.pages[0].page_name);
+      $("nav").innerHTML = C.renderNav("home");
+      C.wireRefresh();
+      C.tickBeijing("nowBeijing");
+      const payload = await C.loadJson("data/home-index.json.gz");
+      renderStats(payload.stats || {});
+      renderContest(payload.current_contest);
+      renderSmallList("recentPosts", payload.recent_posts, "created_at", "发帖");
+      renderSmallList("recentPages", payload.recent_pages, "created_at", "发布");
+      renderSmallList("recentEdits", payload.recent_edits, "last_edited_at", "编辑");
     }
-
     init().catch((err) => {
-      $("list").innerHTML = `<div class="empty">加载失败：${escapeHtml(err.message)}</div>`;
+      $("contest").innerHTML = `<div class="empty">加载失败：${C.escapeHtml(err.message)}</div>`;
     });
   </script>
 </body>
 </html>
+

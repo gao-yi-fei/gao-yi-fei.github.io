@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SCPPER-MC · 用户索引</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/assets/scpper.css">
+</head>
+<body>
+  <header>
+    <h1>SCPPER-MC</h1>
+    <p class="lead">按用户汇总公开行为：作品、评分、页面评论和讨论区发言。活跃度 = 页面*10 + 评论*2 + 评分。</p>
+    <div class="credit">created by piglin</div>
+    <nav class="nav" id="nav" aria-label="站点导航"></nav>
+  </header>
+  <main>
+    <ul class="stats" id="stats"></ul>
+    <div class="toolbar">
+      <input id="query" type="search" placeholder="搜索用户名、作品、评分页面、评论">
+      <select id="sort">
+        <option value="activity">行为活跃度</option>
+        <option value="worksTotal">原创得分</option>
+        <option value="worksAverage">原创均分</option>
+        <option value="original">原创页面数</option>
+        <option value="published">作品数</option>
+        <option value="comments">评论数</option>
+        <option value="ratings">评分数</option>
+      </select>
+      <select id="filter">
+        <option value="all">全部用户</option>
+        <option value="published">发布过作品</option>
+        <option value="original">发布过原创</option>
+        <option value="commented">有评论</option>
+        <option value="rated">参与评分</option>
+      </select>
+      <select id="worksSort">
+        <option value="score">作品按评分</option>
+        <option value="edited">作品按最近编辑</option>
+        <option value="created">作品按创建时间</option>
+      </select>
+      <select id="pageSize" aria-label="每页数量">
+        <option value="20">每页 20</option>
+        <option value="50" selected>每页 50</option>
+        <option value="100">每页 100</option>
+        <option value="200">每页 200</option>
+      </select>
+    </div>
+    <div class="layout">
+      <div class="list" id="list"><div class="empty">加载中...</div></div>
+      <aside class="detail" id="detail"><section><h2>选择一个用户</h2><p class="small">行为详情会从对应分片读取。</p></section></aside>
+    </div>
+  </main>
+  <script src="/assets/common.js"></script>
+  <script>
+    const C = window.SCPPER;
+    const $ = (id) => document.getElementById(id);
+    const state = { users: [], userMap: new Map(), stats: null, selectedKey: null, listPage: 1, activeTab: "works", tabPages: { works: 1, comments: 1 }, commentPageSize: 50, detailCache: new Map(), detailErrors: new Map(), shardLoads: new Map() };
+    const pageSize = () => Number($("pageSize").value) || 50;
+    const commentsPageSize = () => state.commentPageSize || 50;
+    const averageLabel = (value) => value == null ? "n/a" : Number(value).toFixed(2);
+    const pageTitle = (item) => item.title || item.page_name || "unknown";
+    function pageMeta(item) {
+      const bits = [];
+      if (item.source === "forum") bits.push(`讨论区${item.category_name ? ` · ${item.category_name}` : ""}`);
+      else if (item.page_name) bits.push(item.page_name);
+      if (item.rating != null) bits.push(`页面评分 ${C.ratingLabel(item.rating)}`);
+      if (item.created_at) bits.push(`发布 ${C.formatBeijing(item.created_at, item.created_at_beijing)}`);
+      if (item.last_edited_at) bits.push(`编辑 ${C.formatBeijing(item.last_edited_at, item.last_edited_at_beijing)}`);
+      return bits.join(" · ");
+    }
+    function queryRank(user, query) {
+      if (!query) return 0;
+      const name = String(user.name || "").toLowerCase();
+      if (name === query) return 0;
+      if (name.includes(query)) return 1;
+      return 2;
+    }
+    function renderStats() {
+      const s = state.stats || {};
+      $("stats").innerHTML = [
+        ["用户", s.user_count], ["页面", s.page_count],
+        ["原创页面", s.page_kind_counts?.original || 0], ["翻译页面", s.page_kind_counts?.translation || 0],
+        ["段落页面", s.page_kind_counts?.fragment || 0], ["其他页面", s.page_kind_counts?.other || 0],
+        ["生成时间", s.generated_at_beijing || C.formatBeijing(s.generated_at)],
+      ].map(([label, value]) => `<li><span>${label}</span>${typeof value === "number" ? C.fmt.format(value) : C.escapeHtml(value)}</li>`).join("");
+    }
+    function filteredUsers() {
+      const q = $("query").value.trim().toLowerCase(), filter = $("filter").value, sort = $("sort").value;
+      const rows = state.users.filter((user) => {
+        if (filter === "published" && !user.published_count) return false;
+        if (filter === "original" && !user.original_published_count) return false;
+        if (filter === "commented" && !user.comment_count) return false;
+        if (filter === "rated" && !user.rating_count) return false;
+        return !q || user.search_text.includes(q);
+      });
+      rows.sort((a, b) => {
+        const rank = queryRank(a, q) - queryRank(b, q);
+        if (rank) return rank;
+        if (sort === "worksTotal") return ((b.works_total_score || 0) - (a.works_total_score || 0)) || a.name.localeCompare(b.name);
+        if (sort === "worksAverage") return ((b.works_average_score ?? -Infinity) - (a.works_average_score ?? -Infinity)) || a.name.localeCompare(b.name);
+        if (sort === "original") return ((b.original_published_count || 0) - (a.original_published_count || 0)) || a.name.localeCompare(b.name);
+        if (sort === "published") return (b.published_count - a.published_count) || a.name.localeCompare(b.name);
+        if (sort === "comments") return (b.comment_count - a.comment_count) || a.name.localeCompare(b.name);
+        if (sort === "ratings") return (b.rating_count - a.rating_count) || a.name.localeCompare(b.name);
+        return ((b.activity_score || 0) - (a.activity_score || 0)) || a.name.localeCompare(b.name);
+      });
+      return rows;
+    }
+    function renderList(rows = filteredUsers()) {
+      if (!rows.length) {
+        state.selectedKey = null;
+        $("list").innerHTML = `<div class="empty">没有匹配用户</div>`;
+        $("detail").innerHTML = `<section><h2>没有匹配用户</h2><p class="small">换个关键词或筛选条件再试。</p></section>`;
+        return;
+      }
+      const sliced = C.pageSlice(rows, state.listPage, pageSize());
+      state.listPage = sliced.page;
+      const offset = (sliced.page - 1) * sliced.size;
+      const body = sliced.items.map((user, index) => `<button class="row" aria-selected="${state.selectedKey === user.key}" data-user="${C.escapeHtml(user.key)}">
+        <span class="rank">#${C.fmt.format(offset + index + 1)}</span>
+        <span><span class="title">${C.escapeHtml(user.name)} <span class="small">活跃度 ${C.fmt.format(user.activity_score || 0)}</span></span><span class="tags">
+          <span class="tag">作品 ${C.fmt.format(user.published_count || 0)}</span>
+          <span class="tag">原创 ${C.fmt.format(user.original_published_count || 0)}</span>
+          <span class="tag">评论 ${C.fmt.format(user.comment_count || 0)}</span>
+          <span class="tag">评分 ${C.fmt.format(user.rating_count || 0)}</span>
+          <span class="tag">原创得分 ${C.fmt.format(user.works_total_score || 0)}</span>
+          <span class="tag">原创均分 ${C.escapeHtml(averageLabel(user.works_average_score))}</span>
+        </span></span>
+        <span class="small">给出 +${C.fmt.format(user.up_count || 0)}<br>给出 -${C.fmt.format(user.down_count || 0)}</span>
+      </button>`).join("");
+      $("list").innerHTML = C.pager("list", rows.length, state.listPage, sliced.size) + body + C.pager("list-bottom", rows.length, state.listPage, sliced.size);
+    }
+    function refresh({ resetPage = false } = {}) {
+      if (resetPage) { state.listPage = 1; state.tabPages = { works: 1, comments: 1 }; }
+      const rows = filteredUsers();
+      if (rows.length && !rows.some((user) => user.key === state.selectedKey)) { state.selectedKey = rows[0].key; state.activeTab = "works"; state.tabPages = { works: 1, comments: 1 }; }
+      renderList(rows);
+      renderSelected();
+      ensureDetailLoaded();
+    }
+    function applyPayload(payload, preferredKey = "") {
+      state.users = payload.users || [];
+      state.stats = payload.stats || {};
+      state.userMap = new Map();
+      state.users.forEach((user) => state.userMap.set(user.key, user));
+      if (preferredKey && state.userMap.has(preferredKey)) state.selectedKey = preferredKey;
+      else if (!state.selectedKey || !state.userMap.has(state.selectedKey)) state.selectedKey = state.users[0]?.key || null;
+      renderStats();
+      refresh();
+    }
+    function loadFullIndex() {
+      C.idle(async () => {
+        try {
+          const full = await C.loadJson("data/user-index.json.gz");
+          applyPayload(full, state.selectedKey);
+        } catch (err) {
+          console.warn("full user index failed", err);
+        }
+      });
+    }
+    async function ensureDetailLoaded(key = state.selectedKey) {
+      if (!key || state.detailCache.has(key) || state.detailErrors.has(key)) return;
+      const entry = state.userMap.get(key);
+      if (!entry) return;
+      try {
+        if (!state.shardLoads.has(entry.detail_shard)) {
+          state.shardLoads.set(entry.detail_shard, C.loadJson(`data/user-details/${entry.detail_shard}.json.gz`).then((payload) => {
+            Object.entries(payload.users || {}).forEach(([userKey, detail]) => state.detailCache.set(userKey, detail));
+          }));
+        }
+        await state.shardLoads.get(entry.detail_shard);
+      } catch (err) { state.detailErrors.set(key, err.message); }
+      renderSelected();
+    }
+    function renderPageLine(item, extra = "") {
+      const title = C.escapeHtml(pageTitle(item)), meta = C.escapeHtml(pageMeta(item));
+      const link = item.url ? `<a href="${C.escapeHtml(item.url)}" target="_blank" rel="noreferrer">${title}</a>` : title;
+      return `<div class="activity"><strong>${link}</strong><span class="small">${meta}${extra ? ` · ${C.escapeHtml(extra)}` : ""}</span></div>`;
+    }
+    function renderPaged(kind, items, emptyText, renderItem, size = pageSize()) {
+      if (!items.length) return `<p class="small">${C.escapeHtml(emptyText)}</p>`;
+      const sliced = C.pageSlice(items, state.tabPages[kind] || 1, size);
+      state.tabPages[kind] = sliced.page;
+      return C.pager(kind, items.length, sliced.page, sliced.size) + sliced.items.map(renderItem).join("") + C.pager(`${kind}-bottom`, items.length, sliced.page, sliced.size);
+    }
+    function sortedWorks(items) {
+      const rows = [...items], mode = $("worksSort").value;
+      rows.sort((a, b) => {
+        if (mode === "edited") return String(b.last_edited_at || "").localeCompare(String(a.last_edited_at || ""));
+        if (mode === "created") return String(b.created_at || "").localeCompare(String(a.created_at || ""));
+        return ((b.rating ?? -999999) - (a.rating ?? -999999)) || String(a.page_name || "").localeCompare(String(b.page_name || ""));
+      });
+      return rows;
+    }
+    function renderWorks(published) {
+      return renderPaged("works", sortedWorks(published), "未抓取到作品。", (item) => renderPageLine(item));
+    }
+    function renderComments(comments) {
+      const sizeOptions = [20, 50, 100, 200].map((value) => `<option value="${value}" ${commentsPageSize() === value ? "selected" : ""}>每页 ${value}</option>`).join("");
+      const controls = `<div class="detail-toolbar"><label>评论分页 <select id="commentPageSize" aria-label="评论每页数量">${sizeOptions}</select></label></div>`;
+      return controls + renderPaged("comments", comments, "未抓取到评论。", (item) => {
+        const title = C.escapeHtml(pageTitle(item)), href = item.post_url || item.url;
+        const link = href ? `<a href="${C.escapeHtml(href)}" target="_blank" rel="noreferrer">${title}</a>` : title;
+        return `<div class="activity"><strong>${link}</strong><span class="small">${C.escapeHtml(pageMeta(item))} · ${C.escapeHtml(C.formatBeijing(item.created_at, item.created_at_beijing) || "")}</span><p>${C.escapeHtml(item.content || "")}</p></div>`;
+      }, commentsPageSize());
+    }
+    function ratingLine(item) {
+      const sign = item.vote === -1 ? "-" : "+", tone = item.vote === -1 ? "bad" : "good";
+      const count = item.vote_count && item.vote_count > 1 ? C.fmt.format(item.vote_count) : "";
+      const title = C.escapeHtml(pageTitle(item)), link = item.url ? `<a href="${C.escapeHtml(item.url)}" target="_blank" rel="noreferrer">${title}</a>` : title;
+      return `<li><span class="${tone}" style="font-weight:800">${sign}${count}</span> ${link}${item.rating != null ? ` <span class="meta">页面评分 ${C.ratingLabel(item.rating)}</span>` : ""}</li>`;
+    }
+    function renderRatings(detail) {
+      const groups = detail?.rating_groups || (detail?.ratings || []).map((item) => ({ ...item, vote_count: 1 }));
+      const up = groups.filter((item) => item.vote === 1), down = groups.filter((item) => item.vote === -1);
+      const renderList = (items, emptyText) => items.length ? `<ul style="margin:0;padding-left:18px">${items.map(ratingLine).join("")}</ul>` : `<p class="small">${C.escapeHtml(emptyText)}</p>`;
+      return `<div class="grid-2"><div><h4>+ 评分</h4>${renderList(up, "没有给出 + 评分。")}</div><div><h4>- 评分</h4>${renderList(down, "没有给出 - 评分。")}</div></div>`;
+    }
+    function renderTab(entry, detail) {
+      if (!detail) return `<section><h3>详情</h3><p class="small">正在载入用户行为分片...</p></section>`;
+      const tabs = [["works", "作品", detail.published_pages?.length || 0], ["comments", "评论", detail.comments?.length || 0], ["ratings", "评分", detail.ratings?.length || 0]];
+      const content = state.activeTab === "comments" ? renderComments(detail.comments || []) : state.activeTab === "ratings" ? renderRatings(detail) : renderWorks(detail.published_pages || []);
+      return `<div class="tabs" role="tablist">${tabs.map(([id, label, count]) => `<button type="button" role="tab" aria-selected="${state.activeTab === id}" data-tab="${id}">${label} ${C.fmt.format(count)}</button>`).join("")}</div><section>${content}</section>`;
+    }
+    function renderSelected() {
+      const entry = state.selectedKey ? state.userMap.get(state.selectedKey) : null;
+      if (!entry) return;
+      const detail = state.detailCache.get(entry.key), error = state.detailErrors.get(entry.key), user = detail || entry;
+      const worksAverage = user.works_average_score ?? entry.works_average_score;
+      $("detail").innerHTML = `<section><h2>${C.escapeHtml(user.name)}</h2><div class="small">活跃度 ${C.fmt.format(user.activity_score ?? entry.activity_score ?? 0)}</div>${user.profile && !user.deleted ? `<div class="actions"><a href="${C.escapeHtml(user.profile)}" target="_blank" rel="noreferrer">Wikidot 用户页</a></div>` : ""}</section>
+        ${error ? `<section><h3>详情载入失败</h3><p class="small">${C.escapeHtml(error)}</p></section>` : ""}
+        <section><h3>个人信息</h3><div class="tags">
+          <span class="tag">作品 ${C.fmt.format(user.published_count ?? entry.published_count ?? 0)}</span>
+          <span class="tag">原创 ${C.fmt.format(user.original_published_count ?? entry.original_published_count ?? 0)}</span>
+          <span class="tag">评论 ${C.fmt.format(user.comment_count ?? entry.comment_count ?? 0)}</span>
+          <span class="tag">给出评分 ${C.fmt.format(user.rating_count ?? entry.rating_count ?? 0)}</span>
+          <span class="tag good">给出 +${C.fmt.format(user.up_count ?? entry.up_count ?? 0)}</span>
+          <span class="tag bad">给出 -${C.fmt.format(user.down_count ?? entry.down_count ?? 0)}</span>
+          <span class="tag">原创得分 ${C.fmt.format(user.works_total_score ?? entry.works_total_score ?? 0)}</span>
+          <span class="tag">原创均分 ${C.escapeHtml(averageLabel(worksAverage))}</span>
+          <span class="tag good">原创总 up ${C.fmt.format(user.works_up_count ?? entry.works_up_count ?? 0)}</span>
+          <span class="tag bad">原创总 down ${C.fmt.format(user.works_down_count ?? entry.works_down_count ?? 0)}</span>
+        </div></section>${renderTab(entry, detail)}`;
+    }
+    async function selectUser(key) {
+      if (!state.userMap.has(key)) return;
+      state.selectedKey = key;
+      state.activeTab = "works";
+      state.tabPages = { works: 1, comments: 1 };
+      renderList();
+      renderSelected();
+      C.scrollMobile("detail");
+      await ensureDetailLoaded(key);
+    }
+    function handlePagerClick(event) {
+      const action = C.pagerAction(event);
+      if (!action) return false;
+      if (action.kind === "list") { state.listPage = action.page; renderList(); }
+      else { state.tabPages[action.kind] = action.page; renderSelected(); }
+      return true;
+    }
+    async function init() {
+      $("nav").innerHTML = C.renderNav("users");
+      C.wireRefresh();
+      const payload = await C.loadJson("data/users-head.json", false);
+      applyPayload(payload);
+      if (payload.partial) loadFullIndex();
+      for (const id of ["query", "sort", "filter", "pageSize"]) {
+        $(id).addEventListener(id === "query" ? "input" : "change", () => refresh({ resetPage: true }));
+      }
+      $("worksSort").addEventListener("change", () => { state.tabPages.works = 1; renderSelected(); });
+      $("list").addEventListener("click", (event) => { if (handlePagerClick(event)) return; const row = event.target.closest(".row"); if (row) selectUser(row.dataset.user); });
+      $("list").addEventListener("keydown", handlePagerClick);
+      $("list").addEventListener("change", handlePagerClick);
+      $("detail").addEventListener("click", (event) => { if (handlePagerClick(event)) return; const tab = event.target.closest("[data-tab]"); if (tab) { state.activeTab = tab.dataset.tab; renderSelected(); } });
+      $("detail").addEventListener("keydown", handlePagerClick);
+      $("detail").addEventListener("change", (event) => {
+        if (event.target.id === "commentPageSize") {
+          state.commentPageSize = Number(event.target.value) || 50;
+          state.tabPages.comments = 1;
+          renderSelected();
+          return;
+        }
+        handlePagerClick(event);
+      });
+    }
+    init().catch((err) => { $("list").innerHTML = `<div class="empty">加载失败：${C.escapeHtml(err.message)}</div>`; });
+  </script>
+</body>
+</html>

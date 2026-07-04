@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SCPPER-MC · 讨论区</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/assets/scpper.css">
+</head>
+<body>
+  <header>
+    <h1>SCPPER-MC</h1>
+    <p class="lead">讨论区索引。包含普通讨论分类和页面下方的单页讨论；初始只显示分类。</p>
+    <div class="credit">created by piglin</div>
+    <nav class="nav" id="nav" aria-label="站点导航"></nav>
+  </header>
+  <main>
+    <ul class="stats" id="stats"></ul>
+    <div class="toolbar three">
+      <input id="query" type="search" placeholder="选择分类后搜索讨论串、作者、帖子正文">
+      <select id="sort">
+        <option value="latest">最近回复</option>
+        <option value="started">发表时间</option>
+        <option value="posts">帖子数</option>
+        <option value="title">标题</option>
+      </select>
+      <select id="pageSize" aria-label="每页数量">
+        <option value="20" selected>每页 20</option>
+        <option value="50">每页 50</option>
+        <option value="100">每页 100</option>
+        <option value="200">每页 200</option>
+      </select>
+    </div>
+    <div class="forum-grid">
+      <section class="panel">
+        <div class="panel-head"><h2>分类</h2><div class="small">点击分类后显示讨论串。</div></div>
+        <div class="scroll" id="categories"><div class="empty">加载中...</div></div>
+      </section>
+      <section class="panel">
+        <div class="panel-head"><h2>讨论串</h2><div class="small" id="threadHint">请选择一个分类。</div></div>
+        <div class="scroll" id="threads"><div class="empty">请选择左侧分类。</div></div>
+      </section>
+      <aside class="panel">
+        <div class="panel-head"><h2>帖子</h2><div class="small" id="postHint">请选择一个讨论串。</div></div>
+        <div class="scroll" id="posts"><div class="empty">帖子会在这里显示。</div></div>
+      </aside>
+    </div>
+  </main>
+  <script src="/assets/common.js"></script>
+  <script>
+    const C = window.SCPPER;
+    const $ = (id) => document.getElementById(id);
+    const params = new URLSearchParams(location.search);
+    const state = { categories: [], threads: [], stats: {}, selectedCategory: params.get("category"), selectedId: params.get("thread"), targetPostId: params.get("post"), listPage: 1, threadCache: new Map(), threadErrors: new Map(), loadingCategory: null };
+    const pageSize = () => Number($("pageSize").value) || 20;
+    const categoryThreadPath = (categoryId) => `data/forum-threads/${encodeURIComponent(categoryId)}.json.gz`;
+    function renderStats() {
+      const s = state.stats;
+      $("stats").innerHTML = [
+        ["分类", s.forum_category_count || state.categories.length],
+        ["讨论串", s.forum_thread_count || state.threads.length],
+        ["单页讨论", s.page_discussion_thread_count || 0],
+        ["独立讨论", s.forum_standalone_thread_count || 0],
+        ["帖子", s.forum_post_count || 0],
+        ["生成时间", s.generated_at_beijing || C.formatBeijing(s.generated_at)],
+      ].map(([label, value]) => `<li><span>${label}</span>${typeof value === "number" ? C.fmt.format(value) : C.escapeHtml(value)}</li>`).join("");
+    }
+    function renderCategories() {
+      const rows = state.categories;
+      $("categories").innerHTML = rows.length ? rows.map((cat) => `
+        <button class="category-row" type="button" data-category="${C.escapeHtml(cat.id)}" aria-selected="${String(state.selectedCategory) === String(cat.id)}">
+          <span class="title">${C.escapeHtml(cat.name)}</span>
+          <span class="small">${C.escapeHtml(cat.group_name || "")}${cat.description ? ` · ${C.escapeHtml(cat.description)}` : ""}</span><br>
+          <span class="small">${C.fmt.format(cat.threads_count || 0)} 串 · ${C.fmt.format(cat.posts_count || 0)} 帖${cat.last_created_at ? ` · 最近 ${C.escapeHtml(C.formatBeijing(cat.last_created_at, cat.last_created_at_beijing))}` : ""}</span>
+        </button>
+      `).join("") : `<div class="empty">没有分类数据</div>`;
+    }
+    function threadSearchText(thread) {
+      const posts = thread.comments_preview?.posts || [];
+      return C.normalize([
+        thread.title, thread.description, thread.category_name, thread.group_name,
+        thread.started_author?.name, thread.last_author?.name,
+        ...posts.map((post) => `${post.author || ""} ${post.title || ""} ${post.content || ""}`),
+      ].join(" "));
+    }
+    function filteredThreads() {
+      if (!state.selectedCategory) return [];
+      const q = C.normalize($("query").value.trim()), sort = $("sort").value;
+      const rows = state.threads.filter((thread) => {
+        if (String(thread.category_id) !== String(state.selectedCategory)) return false;
+        return !q || threadSearchText(thread).includes(q);
+      });
+      rows.sort((a, b) => {
+        if (sort === "posts") return (b.comments_count || 0) - (a.comments_count || 0);
+        if (sort === "started") return String(b.started_created_at || "").localeCompare(String(a.started_created_at || ""));
+        if (sort === "title") return String(a.title || "").localeCompare(String(b.title || ""));
+        return String(b.last_created_at || b.started_created_at || "").localeCompare(String(a.last_created_at || a.started_created_at || ""));
+      });
+      return rows;
+    }
+    function renderThreads(rows = filteredThreads()) {
+      const cat = state.categories.find((item) => String(item.id) === String(state.selectedCategory));
+      if (!cat) {
+        $("threadHint").textContent = "请选择一个分类。";
+        $("threads").innerHTML = `<div class="empty">请选择左侧分类。</div>`;
+        renderPosts();
+        return;
+      }
+      if (String(state.loadingCategory) === String(state.selectedCategory)) {
+        $("threadHint").textContent = `${cat.name} · 正在载入讨论串`;
+        $("threads").innerHTML = `<div class="empty">正在载入 ${C.escapeHtml(cat.name)}...</div>`;
+        renderPosts();
+        return;
+      }
+      const error = state.threadErrors.get(String(state.selectedCategory));
+      if (error) {
+        $("threadHint").textContent = `${cat.name} · 载入失败`;
+        $("threads").innerHTML = `<div class="empty">载入失败：${C.escapeHtml(error)}</div>`;
+        renderPosts();
+        return;
+      }
+      $("threadHint").textContent = `${cat.name} · ${C.fmt.format(rows.length)} 个讨论串`;
+      if (!rows.length) {
+        state.selectedId = null;
+        $("threads").innerHTML = `<div class="empty">没有匹配讨论串</div>`;
+        renderPosts();
+        return;
+      }
+      const sliced = C.pageSlice(rows, state.listPage, pageSize());
+      state.listPage = sliced.page;
+      const body = sliced.items.map((thread) => `
+        <button class="thread-row" type="button" aria-selected="${String(state.selectedId) === String(thread.thread_id)}" data-thread="${C.escapeHtml(thread.thread_id)}">
+          <span><span class="title">${C.escapeHtml(thread.title)}</span><span class="small">${C.escapeHtml(thread.category_name)}${thread.description ? ` · ${C.escapeHtml(thread.description)}` : ""}<br>${C.escapeHtml(thread.last_author?.name || thread.started_author?.name || "unknown")} · ${C.escapeHtml(C.formatBeijing(thread.last_created_at || thread.started_created_at, thread.last_created_at_beijing || thread.started_created_at_beijing) || "")}</span></span>
+          <span class="count">${C.fmt.format(thread.comments_count || 0)} 帖</span>
+        </button>
+      `).join("");
+      $("threads").innerHTML = C.pager("list", rows.length, state.listPage, sliced.size) + body + C.pager("list-bottom", rows.length, state.listPage, sliced.size);
+      renderPosts();
+    }
+    function renderPosts() {
+      const thread = state.threads.find((item) => String(item.thread_id) === String(state.selectedId));
+      if (!thread) {
+        $("postHint").textContent = "请选择一个讨论串。";
+        $("posts").innerHTML = `<div class="empty">帖子会在这里显示。</div>`;
+        return;
+      }
+      const posts = thread.comments_preview?.posts || [];
+      $("postHint").textContent = `${thread.category_name} · ${C.fmt.format(posts.length)} / ${C.fmt.format(thread.comments_count || posts.length)} 帖`;
+      $("posts").innerHTML = `
+        <section class="post">
+          <div class="post-head">
+            <div class="small">Forum › ${C.escapeHtml(thread.group_name || "")} › ${C.escapeHtml(thread.category_name || "")}</div>
+            <h3>${C.escapeHtml(thread.title)}</h3>
+            <div class="small">${C.escapeHtml(thread.description || "")}</div>
+            <div class="small">由 ${C.escapeHtml(thread.started_author?.name || "unknown")} 开始于 ${C.escapeHtml(C.formatBeijing(thread.started_created_at, thread.started_created_at_beijing) || "")} · <a href="${C.escapeHtml(thread.url)}" target="_blank" rel="noreferrer">打开原讨论串</a></div>
+          </div>
+        </section>
+        ${posts.length ? posts.map((post) => `
+          <article class="post ${String(post.id) === String(state.targetPostId) ? "target" : ""}" data-post="${C.escapeHtml(post.id || "")}">
+            <div class="post-head"><strong>${C.escapeHtml(post.title || "评论")}</strong><br><span class="small">由 ${C.escapeHtml(post.author || "unknown")} · ${C.escapeHtml(C.formatBeijing(post.created_at, post.created_at_beijing) || "")}${post.post_url ? ` · <a href="${C.escapeHtml(post.post_url)}" target="_blank" rel="noreferrer">原帖</a>` : ""}</span></div>
+            <div class="post-content">${C.escapeHtml(post.content || "")}</div>
+          </article>
+        `).join("") : `<div class="empty">没有抓取到帖子。</div>`}
+      `;
+      if (state.targetPostId) {
+        requestAnimationFrame(() => document.querySelector(`[data-post="${CSS.escape(String(state.targetPostId))}"]`)?.scrollIntoView({ block: "center", behavior: "smooth" }));
+      }
+    }
+    function refreshThreads({ resetPage = false } = {}) {
+      if (resetPage) state.listPage = 1;
+      renderCategories();
+      renderThreads(filteredThreads());
+    }
+    async function loadCategoryThreads(categoryId) {
+      const key = String(categoryId);
+      if (state.threadCache.has(key)) {
+        state.threads = state.threadCache.get(key);
+        refreshThreads();
+        applyThreadTarget();
+        return;
+      }
+      state.loadingCategory = key;
+      state.threadErrors.delete(key);
+      state.threads = [];
+      refreshThreads();
+      try {
+        const payload = await C.loadJson(categoryThreadPath(key));
+        const threads = payload.threads || [];
+        state.threadCache.set(key, threads);
+        if (String(state.selectedCategory) === key) state.threads = threads;
+      } catch (err) {
+        state.threadErrors.set(key, err.message || String(err));
+      } finally {
+        if (String(state.loadingCategory) === key) state.loadingCategory = null;
+        if (String(state.selectedCategory) === key) {
+          refreshThreads();
+          applyThreadTarget();
+        }
+      }
+    }
+    function applyThreadTarget() {
+      if (!state.selectedId && state.threads.length) return;
+      const rows = filteredThreads();
+      const index = rows.findIndex((thread) => String(thread.thread_id) === String(state.selectedId));
+      if (index >= 0) {
+        state.listPage = Math.floor(index / pageSize()) + 1;
+        renderThreads(rows);
+        C.scrollMobile("posts");
+      }
+    }
+    function handlePagerClick(event) {
+      const action = C.pagerAction(event);
+      if (!action) return false;
+      if (action.kind === "list") {
+        state.listPage = action.page;
+        renderThreads(filteredThreads());
+      }
+      return true;
+    }
+    async function init() {
+      $("nav").innerHTML = C.renderNav("forum");
+      C.wireRefresh();
+      const payload = await C.loadJson("data/forum-categories.json.gz");
+      state.categories = payload.categories || [];
+      state.stats = payload.stats || {};
+      renderStats();
+      renderCategories();
+      if (state.selectedCategory) {
+        state.threads = state.threadCache.get(String(state.selectedCategory)) || [];
+        refreshThreads({ resetPage: true });
+        loadCategoryThreads(state.selectedCategory);
+      }
+      $("query").addEventListener("input", () => refreshThreads({ resetPage: true }));
+      $("sort").addEventListener("change", () => refreshThreads({ resetPage: true }));
+      $("pageSize").addEventListener("change", () => refreshThreads({ resetPage: true }));
+      $("categories").addEventListener("click", (event) => {
+        const row = event.target.closest("[data-category]");
+        if (!row) return;
+        state.selectedCategory = row.dataset.category;
+        state.selectedId = null;
+        state.targetPostId = null;
+        history.replaceState(null, "", C.forumHref(state.selectedCategory));
+        state.threads = state.threadCache.get(String(state.selectedCategory)) || [];
+        refreshThreads({ resetPage: true });
+        loadCategoryThreads(state.selectedCategory);
+        C.scrollMobile("threads");
+      });
+      $("threads").addEventListener("click", (event) => {
+        if (handlePagerClick(event)) return;
+        const row = event.target.closest(".thread-row");
+        if (row) {
+          state.selectedId = row.dataset.thread;
+          state.targetPostId = null;
+          history.replaceState(null, "", C.forumHref(state.selectedCategory, state.selectedId));
+          renderThreads(filteredThreads());
+          C.scrollMobile("posts");
+        }
+      });
+      $("threads").addEventListener("keydown", handlePagerClick);
+      $("threads").addEventListener("change", handlePagerClick);
+    }
+    init().catch((err) => { $("categories").innerHTML = `<div class="empty">加载失败：${C.escapeHtml(err.message)}</div>`; });
+  </script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SCPPER-MC · 页面索引</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/assets/scpper.css">
+</head>
+<body>
+  <header>
+    <h1>SCPPER-MC</h1>
+    <p class="lead">SCP基金会 Minecraft 分部公开页面索引。评分、评分者、作者、评论和源代码按需载入。</p>
+    <div class="credit">created by piglin</div>
+    <nav class="nav" id="nav" aria-label="站点导航"></nav>
+  </header>
+  <main>
+    <ul class="stats" id="stats"></ul>
+    <div class="toolbar">
+      <input id="query" type="search" placeholder="输入关键词；标签模式支持 +原创 -翻译">
+      <select id="searchMode" aria-label="搜索方式">
+        <option value="title">标题搜索</option>
+        <option value="fuzzy">模糊搜索</option>
+        <option value="tag">标签搜索</option>
+        <option value="author">作者搜索</option>
+        <option value="all">全文搜索</option>
+      </select>
+      <select id="sort">
+        <option value="rating">评分从高到低</option>
+        <option value="created">发布时间</option>
+        <option value="updated">最近编辑</option>
+        <option value="comments">评论数从高到低</option>
+        <option value="name">页面名</option>
+      </select>
+      <select id="filter">
+        <option value="all">全部页面</option>
+        <option value="rated">有评分</option>
+        <option value="voters">有评分者</option>
+        <option value="author">已抓取作者</option>
+        <option value="discussion">有讨论帖</option>
+        <option value="source">有源码</option>
+      </select>
+      <select id="pageSize" aria-label="每页数量">
+        <option value="20">每页 20</option>
+        <option value="50" selected>每页 50</option>
+        <option value="100">每页 100</option>
+        <option value="200">每页 200</option>
+      </select>
+      <fieldset class="kind-filter" id="kindFilter" aria-label="页面类型">
+        <label class="kind-option original"><input type="checkbox" value="original" checked><span>原创</span></label>
+        <label class="kind-option translation"><input type="checkbox" value="translation" checked><span>翻译</span></label>
+        <label class="kind-option fragment"><input type="checkbox" value="fragment" checked><span>段落</span></label>
+        <label class="kind-option other"><input type="checkbox" value="other" checked><span>其他</span></label>
+      </fieldset>
+    </div>
+    <div class="layout">
+      <div class="list" id="list"><div class="empty">加载中...</div></div>
+      <aside class="detail" id="detail"><section><h2>选择一个页面</h2><p class="small">详情会从对应分片读取。</p></section></aside>
+    </div>
+  </main>
+  <script src="/assets/common.js"></script>
+  <script>
+    const C = window.SCPPER;
+    const state = {
+      pages: [], pageMap: new Map(), stats: null, selectedName: null,
+      listPage: 1, commentsPage: 1, detailCache: new Map(), detailErrors: new Map(),
+      detailShardLoads: new Map(), sourceCache: new Map(), sourceErrors: new Map(),
+      sourceShardLoads: new Map(), loadingSourceName: null
+    };
+    const $ = (id) => document.getElementById(id);
+    const typeTagLabels = new Set(["原创", "翻译", "段落"]);
+    const pageSize = () => Number($("pageSize").value) || 50;
+    const displayTags = (page) => (page.tags || []).filter((tag) => !typeTagLabels.has(String(tag || "").trim()));
+    function renderTagList(page) {
+      const tags = displayTags(page);
+      return tags.length ? `<span class="tag-list">${tags.map((tag) => `<span class="tag">${C.escapeHtml(tag)}</span>`).join("")}</span>` : `<span class="tag-list"><span class="small">无外部标签</span></span>`;
+    }
+    function renderKindAndTags(page) {
+      return `<span class="kind-line">${C.kindBadge(page.page_kind)}</span>${renderTagList(page)}`;
+    }
+    function selectedKinds() {
+      return new Set([...document.querySelectorAll("#kindFilter input:checked")].map((el) => el.value));
+    }
+    function fuzzyMatch(haystack, needle) {
+      const text = C.normalize(haystack), query = C.normalize(needle).replace(/\s+/g, "");
+      if (!query) return true;
+      let cursor = 0;
+      for (const char of query) {
+        cursor = text.indexOf(char, cursor);
+        if (cursor < 0) return false;
+        cursor += 1;
+      }
+      return true;
+    }
+    function parseTagQuery(query) {
+      return (query.match(/[+-]?"[^"]+"|[+-]?\S+/g) || []).map((raw) => {
+        const sign = raw.startsWith("-") ? "-" : raw.startsWith("+") ? "+" : "+";
+        const body = raw.replace(/^[+-]/, "").replace(/^"|"$/g, "").trim().toLowerCase();
+        return body ? { sign, body } : null;
+      }).filter(Boolean);
+    }
+    function matchesTagQuery(page, query) {
+      const tags = (page.tags || []).map((tag) => C.normalize(tag));
+      const tokens = parseTagQuery(query);
+      if (!tokens.length) return true;
+      return tokens.every(({ sign, body }) => {
+        const matched = tags.some((tag) => tag === body || tag.includes(body));
+        return sign === "-" ? !matched : matched;
+      });
+    }
+    function matchesPageQuery(page, query, mode) {
+      if (!query) return true;
+      if (mode === "title") return C.normalize(`${page.title || ""} ${page.page_name || ""}`).includes(C.normalize(query));
+      if (mode === "fuzzy") return fuzzyMatch(`${page.title || ""} ${page.page_name || ""} ${page.history_author_name || ""} ${(page.tags || []).join(" ")}`, query);
+      if (mode === "tag") return matchesTagQuery(page, query);
+      if (mode === "author") return C.normalize(page.history_author_name || "").includes(C.normalize(query));
+      return C.normalize(page.search_text || "").includes(C.normalize(query));
+    }
+    function voteCounts(page) {
+      const voters = page.voters || {};
+      return { up: page.vote_up ?? voters.up ?? 0, down: page.vote_down ?? voters.down ?? 0 };
+    }
+    function voteSummary(page) {
+      const votes = voteCounts(page);
+      return `+${C.fmt.format(votes.up)} / -${C.fmt.format(votes.down)}`;
+    }
+    function backupHref() {
+      const dir = state.stats?.backup_dir || "";
+      const leaf = dir.split(/[\\/]/).filter(Boolean).pop();
+      return leaf ? `/downloads/${leaf}.zip` : "/downloads/";
+    }
+    function renderStats() {
+      const s = state.stats || {}, k = s.page_kind_counts || {};
+      $("stats").innerHTML = [
+        ["页面", s.page_count], ["原创", k.original || 0], ["翻译", k.translation || 0], ["段落", k.fragment || 0],
+        ["其他", k.other || 0], ["页面讨论", s.page_discussion_thread_count ?? s.discussion_count],
+        ["生成时间", s.generated_at_beijing || C.formatBeijing(s.generated_at)],
+      ].map(([label, value]) => `<li><span>${label}</span>${typeof value === "number" ? C.fmt.format(value) : C.escapeHtml(value)}</li>`).join("");
+    }
+    function filteredPages() {
+      const q = $("query").value.trim(), mode = $("searchMode").value, filter = $("filter").value, sort = $("sort").value, kinds = selectedKinds();
+      const rows = state.pages.filter((page) => {
+        if (!kinds.has(page.page_kind || "other")) return false;
+        if (filter === "rated" && page.rating == null) return false;
+        if (filter === "voters" && !page.voter_count) return false;
+        if (filter === "author" && !page.history_author_name) return false;
+        if (filter === "discussion" && !page.discussion) return false;
+        if (filter === "source" && !page.source_file) return false;
+        return matchesPageQuery(page, q, mode);
+      });
+      rows.sort((a, b) => {
+        if (sort === "comments") return (((b.discussion || {}).comments_count) || 0) - (((a.discussion || {}).comments_count) || 0);
+        if (sort === "updated") return String(b.last_edited_at || "").localeCompare(String(a.last_edited_at || ""));
+        if (sort === "created") return String(b.created_at || "").localeCompare(String(a.created_at || ""));
+        if (sort === "name") return a.page_name.localeCompare(b.page_name);
+        return ((b.rating ?? -999999) - (a.rating ?? -999999)) || a.page_name.localeCompare(b.page_name);
+      });
+      return rows;
+    }
+    function renderList(rows = filteredPages()) {
+      if (!rows.length) {
+        state.selectedName = null;
+        $("list").innerHTML = `<div class="empty">没有匹配页面</div>`;
+        $("detail").innerHTML = `<section><h2>没有匹配页面</h2><p class="small">换个关键词或筛选条件再试。</p></section>`;
+        return;
+      }
+      const sliced = C.pageSlice(rows, state.listPage, pageSize());
+      state.listPage = sliced.page;
+      const offset = (sliced.page - 1) * sliced.size;
+      const body = sliced.items.map((page, index) => {
+        const comments = page.discussion?.comments_count;
+        return `<button class="row" aria-selected="${state.selectedName === page.page_name}" data-page-name="${C.escapeHtml(page.page_name)}">
+          <span><span class="${C.ratingClass(page.rating)}">${C.ratingLabel(page.rating)}</span><br><span class="small">#${C.fmt.format(offset + index + 1)}</span></span>
+          <span><span class="title">${C.escapeHtml(page.title || page.page_name)}</span>
+          <span class="name">${C.escapeHtml(page.page_name)} · ${C.escapeHtml(page.history_author_name || "作者未知")}</span>
+          ${renderKindAndTags(page)}</span>
+          <span class="small">${comments == null ? "" : `${comments} 评论`}<br>${voteSummary(page)}<br>${C.escapeHtml(C.formatBeijing(page.created_at, page.created_at_beijing))}</span>
+        </button>`;
+      }).join("");
+      $("list").innerHTML = C.pager("list", rows.length, state.listPage, sliced.size) + body + C.pager("list-bottom", rows.length, state.listPage, sliced.size);
+    }
+    function refresh({ resetPage = false } = {}) {
+      if (resetPage) { state.listPage = 1; state.commentsPage = 1; }
+      const rows = filteredPages();
+      if (rows.length && !rows.some((page) => page.page_name === state.selectedName)) {
+        state.selectedName = rows[0].page_name;
+        state.commentsPage = 1;
+      }
+      renderList(rows);
+      renderSelected();
+      ensureDetailLoaded();
+    }
+    function applyPayload(payload, preferredName = "") {
+      state.pages = payload.pages || [];
+      state.stats = payload.stats || {};
+      state.pageMap = new Map();
+      state.pages.forEach((page) => state.pageMap.set(page.page_name, page));
+      if (preferredName && state.pageMap.has(preferredName)) state.selectedName = preferredName;
+      else if (!state.selectedName || !state.pageMap.has(state.selectedName)) state.selectedName = state.pages[0]?.page_name || null;
+      renderStats();
+      refresh();
+    }
+    function loadFullIndex(preferredName = "") {
+      C.idle(async () => {
+        try {
+          const full = await C.loadJson("data/search-index.json.gz");
+          applyPayload(full, preferredName || state.selectedName);
+        } catch (err) {
+          console.warn("full page index failed", err);
+        }
+      });
+    }
+    async function loadDetailShard(shard) {
+      if (state.detailShardLoads.has(shard)) return state.detailShardLoads.get(shard);
+      const load = C.loadJson(`data/details/${shard}.json.gz`).then((payload) => {
+        Object.entries(payload.pages || {}).forEach(([name, page]) => state.detailCache.set(name, page));
+      });
+      state.detailShardLoads.set(shard, load);
+      return load;
+    }
+    async function ensureDetailLoaded(name = state.selectedName) {
+      if (!name || state.detailCache.has(name) || state.detailErrors.has(name)) return;
+      const entry = state.pageMap.get(name);
+      if (!entry) return;
+      try { await loadDetailShard(entry.detail_shard); }
+      catch (err) { state.detailErrors.set(name, err.message); }
+      renderSelected();
+    }
+    async function loadSource(name) {
+      const entry = state.pageMap.get(name);
+      if (!entry) return;
+      const shard = entry.source_shard || entry.detail_shard;
+      if (!state.sourceShardLoads.has(shard)) {
+        state.sourceShardLoads.set(shard, C.loadJson(`data/sources/${shard}.json.gz`).then((payload) => {
+          Object.entries(payload.sources || {}).forEach(([pageName, source]) => state.sourceCache.set(pageName, source));
+        }));
+      }
+      state.loadingSourceName = name;
+      renderSelected();
+      try { await state.sourceShardLoads.get(shard); }
+      catch (err) { state.sourceErrors.set(name, err.message); }
+      finally { state.loadingSourceName = null; renderSelected(); }
+    }
+    function renderPagedComments(comments) {
+      if (!comments.length) return `<p class="small">没有公开评论，或该页无页面讨论帖。</p>`;
+      const sliced = C.pageSlice(comments, state.commentsPage, pageSize());
+      state.commentsPage = sliced.page;
+      const body = sliced.items.map((item) => `<div class="comment"><strong>${C.escapeHtml(item.author || "unknown")}</strong> <span class="small">${C.escapeHtml(C.formatBeijing(item.created_at, item.created_at_beijing))}</span>${item.title || item.post_url ? `<p class="small">${item.post_url ? `<a href="${C.escapeHtml(item.post_url)}" target="_blank" rel="noreferrer">${C.escapeHtml(item.title || "评论")}</a>` : C.escapeHtml(item.title)}</p>` : ""}<p>${C.escapeHtml(item.content || "")}</p></div>`).join("");
+      return C.pager("comments", comments.length, state.commentsPage, sliced.size) + body + C.pager("comments-bottom", comments.length, state.commentsPage, sliced.size);
+    }
+    function voterGroups(page, voters) {
+      const grouped = page.voters || {};
+      return {
+        upUsers: grouped.up_users || voters.filter((user) => user.vote === 1 && !user.deleted),
+        downUsers: grouped.down_users || voters.filter((user) => user.vote === -1 && !user.deleted),
+        upDeleted: grouped.up_deleted ?? voters.filter((user) => user.vote === 1 && user.deleted).length,
+        downDeleted: grouped.down_deleted ?? voters.filter((user) => user.vote === -1 && user.deleted).length,
+      };
+    }
+    function formatUser(user) {
+      return C.escapeHtml(typeof user === "string" ? user : user?.name || "");
+    }
+    function renderVoteBox(title, prefix, users, deletedCount, tone) {
+      const deleted = deletedCount ? `<span class="tag ${tone}">${prefix}${C.fmt.format(deletedCount)} user deleted</span>` : "";
+      const regular = users.map((user) => `<span class="tag">${prefix} ${formatUser(user)}</span>`).join("");
+      return `<div class="panel-section"><h4>${C.escapeHtml(title)}</h4><div class="tags">${deleted}${regular || (!deleted ? `<span class="small">无</span>` : "")}</div></div>`;
+    }
+    function renderSelected() {
+      const name = state.selectedName, entry = name ? state.pageMap.get(name) : null;
+      if (!entry) return;
+      const detail = state.detailCache.get(name), error = state.detailErrors.get(name), page = detail || entry;
+      const voters = detail?.voters?.users || [], comments = detail?.comments_preview?.posts || [], source = state.sourceCache.get(name), sourceError = state.sourceErrors.get(name);
+      const historyAuthor = detail?.history_author?.author, groups = voterGroups(page, voters);
+      $("detail").innerHTML = `
+        <section><h2>${C.escapeHtml(page.title || page.page_name)}</h2><div class="small">${C.escapeHtml(page.page_name)} · ${C.kindBadge(page.page_kind)} · 评分 ${C.ratingLabel(page.rating)} · ${voteSummary(page)}</div>
+          <div class="actions"><a href="${C.escapeHtml(page.url)}" target="_blank" rel="noreferrer">原页面</a>${entry.discussion?.url ? `<a href="${C.escapeHtml(entry.discussion.url)}" target="_blank" rel="noreferrer">讨论帖</a>` : ""}<a href="${C.escapeHtml(backupHref())}">完整备份 zip</a></div></section>
+        ${error ? `<section><h3>详情载入失败</h3><p class="small">${C.escapeHtml(error)}</p></section>` : ""}
+        <section><h3>元数据</h3><p class="small">Page ID: ${C.escapeHtml(page.page_id || "n/a")}<br>发布：${C.escapeHtml(C.formatBeijing(page.created_at, page.created_at_beijing) || "n/a")}<br>最近编辑：${C.escapeHtml(C.formatBeijing(page.last_edited_at, page.last_edited_at_beijing) || "n/a")}<br>创建者：${historyAuthor ? formatUser(historyAuthor) : C.escapeHtml(page.history_author?.status || page.history_author_name || "unknown")}</p><div class="small">页面类型</div><div class="kind-line">${C.kindBadge(page.page_kind)}</div><div class="small" style="margin-top:10px">标签</div>${renderTagList(page)}</section>
+        <section><h3>评分者</h3><div class="grid-2">${renderVoteBox(`+ 用户 ${page.voters?.up ?? groups.upUsers.length + groups.upDeleted}`, "+", groups.upUsers, groups.upDeleted, "good")}${renderVoteBox(`- 用户 ${page.voters?.down ?? groups.downUsers.length + groups.downDeleted}`, "-", groups.downUsers, groups.downDeleted, "bad")}</div></section>
+        <section><h3>评论区</h3>${renderPagedComments(comments)}</section>
+        <section><h3>Wikidot 源代码</h3>${sourceError ? `<p class="small">${C.escapeHtml(sourceError)}</p>` : ""}${source == null ? `<p class="small">${state.loadingSourceName === name ? "正在载入完整源码..." : "完整源码尚未载入。"}</p><button type="button" id="loadSource">载入完整源码</button><pre>${C.escapeHtml(page.source_excerpt || "")}</pre>` : `<pre>${C.escapeHtml(source)}</pre>`}</section>`;
+    }
+    function handlePagerClick(event) {
+      const action = C.pagerAction(event);
+      if (!action) return false;
+      if (action.kind === "list") { state.listPage = action.page; renderList(); }
+      else if (action.kind === "comments") { state.commentsPage = action.page; renderSelected(); }
+      return true;
+    }
+    async function selectPage(name) {
+      if (!state.pageMap.has(name)) return;
+      state.selectedName = name;
+      state.commentsPage = 1;
+      history.replaceState(null, "", `${location.pathname}?page=${encodeURIComponent(name)}`);
+      renderList();
+      renderSelected();
+      C.scrollMobile("detail");
+      await ensureDetailLoaded(name);
+    }
+    async function init() {
+      $("nav").innerHTML = C.renderNav("pages");
+      C.wireRefresh();
+      const preferredName = new URLSearchParams(location.search).get("page") || "";
+      const payload = await C.loadJson("data/pages-head.json", false);
+      applyPayload(payload, preferredName);
+      if (payload.partial) loadFullIndex(preferredName);
+      for (const id of ["query", "searchMode", "sort", "filter", "pageSize"]) {
+        $(id).addEventListener(id === "query" ? "input" : "change", () => refresh({ resetPage: true }));
+      }
+      $("kindFilter").addEventListener("change", () => refresh({ resetPage: true }));
+      $("list").addEventListener("click", (event) => { if (handlePagerClick(event)) return; const row = event.target.closest(".row"); if (row) selectPage(row.dataset.pageName); });
+      $("list").addEventListener("keydown", handlePagerClick);
+      $("list").addEventListener("change", handlePagerClick);
+      $("detail").addEventListener("click", (event) => { if (handlePagerClick(event)) return; if (event.target.id === "loadSource") loadSource(state.selectedName); });
+      $("detail").addEventListener("keydown", handlePagerClick);
+      $("detail").addEventListener("change", handlePagerClick);
+    }
+    init().catch((err) => { $("list").innerHTML = `<div class="empty">加载失败：${C.escapeHtml(err.message)}</div>`; });
+  </script>
+</body>
+</html>

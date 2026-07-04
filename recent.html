@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SCPPER-MC · 最近</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/assets/scpper.css">
+</head>
+<body>
+  <header>
+    <h1>SCPPER-MC</h1>
+    <p class="lead">最近动态分页。这里完整展示最近发帖、最近页面、最近编辑和综合更新。</p>
+    <div class="credit">created by piglin</div>
+    <nav class="nav" id="nav" aria-label="站点导航"></nav>
+  </header>
+  <main>
+    <ul class="stats" id="stats"></ul>
+    <div class="toolbar two">
+      <input id="query" type="search" placeholder="搜索标题、页面、分类、作者或内容">
+      <select id="pageSize" aria-label="每页数量">
+        <option value="20">每页 20</option>
+        <option value="50" selected>每页 50</option>
+        <option value="100">每页 100</option>
+        <option value="200">每页 200</option>
+      </select>
+    </div>
+    <section class="panel">
+      <div class="tabs" id="tabs" role="tablist">
+        <button type="button" data-tab="posts" aria-selected="true">最近发帖</button>
+        <button type="button" data-tab="pages" aria-selected="false">最近页面</button>
+        <button type="button" data-tab="edits" aria-selected="false">最近编辑</button>
+        <button type="button" data-tab="updates" aria-selected="false">最近更新</button>
+      </div>
+      <div id="list"><div class="empty">加载中...</div></div>
+    </section>
+  </main>
+  <script src="/assets/common.js"></script>
+  <script>
+    const C = window.SCPPER;
+    const $ = (id) => document.getElementById(id);
+    const state = { payload: null, tab: "posts", page: 1 };
+    const pageSize = () => Number($("pageSize").value) || 50;
+    function localHref(item) {
+      if (state.tab === "posts") return C.forumHref(item.category_id, item.thread_id, item.id);
+      if (item.page_name) return C.pageHref(item.page_name);
+      if (item.category_id || item.thread_id) return C.forumHref(item.category_id, item.thread_id);
+      return item.url || item.page_url || item.thread_url || item.post_url || "#";
+    }
+    function pageLink(item) {
+      const title = item.title || item.page_title || item.thread_title || item.page_name || item.thread_id || "unknown";
+      const href = localHref(item);
+      if (href === "#") return C.escapeHtml(title);
+      const external = /^https?:/i.test(href);
+      return `<a href="${C.escapeHtml(href)}"${external ? ' target="_blank" rel="noreferrer"' : ""}>${C.escapeHtml(title)}</a>`;
+    }
+    function searchText(item) {
+      return C.normalize([
+        item.title, item.page_title, item.thread_title, item.page_name, item.thread_id,
+        item.category_name, item.group_name, item.author, item.author_user?.name, item.content
+      ].join(" "));
+    }
+    function tabItems() {
+      const payload = state.payload || {};
+      if (state.tab === "pages") return payload.recent_pages || [];
+      if (state.tab === "edits") return payload.recent_edits || [];
+      if (state.tab === "updates") return payload.recent_updates || [];
+      return payload.recent_posts || [];
+    }
+    function filteredItems() {
+      const q = C.normalize($("query").value);
+      return tabItems().filter((item) => !q || searchText(item).includes(q));
+    }
+    function renderStats(stats) {
+      $("stats").innerHTML = [
+        ["最近页面", state.payload.recent_pages?.length || 0],
+        ["最近编辑", state.payload.recent_edits?.length || 0],
+        ["最近发帖", state.payload.recent_posts?.length || 0],
+        ["综合更新", state.payload.recent_updates?.length || 0],
+        ["生成时间", stats.generated_at_beijing || C.formatBeijing(stats.generated_at)],
+      ].map(([label, value]) => `<li><span>${label}</span>${typeof value === "number" ? C.fmt.format(value) : C.escapeHtml(value)}</li>`).join("");
+    }
+    function itemTime(item) {
+      if (state.tab === "edits") return C.formatBeijing(item.last_edited_at, item.last_edited_at_beijing);
+      if (state.tab === "updates") return C.formatBeijing(item.updated_at, item.updated_at_beijing);
+      return C.formatBeijing(item.created_at, item.created_at_beijing);
+    }
+    function renderItem(item) {
+      if (state.tab === "posts") {
+        return `<div class="activity"><strong>${pageLink(item)}</strong><span class="small">${C.escapeHtml(item.category_name || "")} · ${C.escapeHtml(item.author || "unknown")} · ${C.escapeHtml(itemTime(item))}${item.post_url ? ` · <a href="${C.escapeHtml(item.post_url)}" target="_blank" rel="noreferrer">原帖</a>` : ""}</span><p>${C.escapeHtml(item.content || "")}</p></div>`;
+      }
+      if (state.tab === "updates" && item.type === "thread") {
+        return `<div class="activity"><strong>${pageLink(item)}</strong><span class="small">讨论更新 · ${C.escapeHtml(item.category_name || "")} · ${C.escapeHtml(itemTime(item))}</span></div>`;
+      }
+      const timeLabel = state.tab === "edits" ? "编辑" : state.tab === "updates" ? "更新" : "发布";
+      const actor = state.tab === "edits" ? (item.latest_editor_name ? ` · 编辑者 ${C.escapeHtml(item.latest_editor_name)}` : " · 编辑者待更新") : item.history_author_name ? ` · 作者 ${C.escapeHtml(item.history_author_name)}` : "";
+      return `<div class="activity"><strong>${pageLink(item)}</strong><span class="small">${C.kindBadge(item.page_kind || "other")} · 评分 ${C.ratingLabel(item.rating)} · ${timeLabel} ${C.escapeHtml(itemTime(item) || "n/a")}${actor}</span></div>`;
+    }
+    function render() {
+      [...$("tabs").querySelectorAll("[data-tab]")].forEach((button) => button.setAttribute("aria-selected", String(button.dataset.tab === state.tab)));
+      const rows = filteredItems();
+      if (!rows.length) {
+        $("list").innerHTML = `<div class="empty">没有匹配动态</div>`;
+        return;
+      }
+      const sliced = C.pageSlice(rows, state.page, pageSize());
+      state.page = sliced.page;
+      $("list").innerHTML = C.pager("recent", rows.length, state.page, sliced.size) + sliced.items.map(renderItem).join("") + C.pager("recent-bottom", rows.length, state.page, sliced.size);
+    }
+    async function init() {
+      $("nav").innerHTML = C.renderNav("recent");
+      C.wireRefresh();
+      state.payload = await C.loadJson("data/recent-head.json", false);
+      renderStats(state.payload.stats || {});
+      render();
+      if (state.payload.partial) {
+        C.idle(async () => {
+          try {
+            state.payload = await C.loadJson("data/recent-index.json.gz");
+            renderStats(state.payload.stats || {});
+            render();
+          } catch (err) {
+            console.warn("full recent index failed", err);
+          }
+        });
+      }
+      $("tabs").addEventListener("click", (event) => {
+        const tab = event.target.closest("[data-tab]");
+        if (!tab) return;
+        state.tab = tab.dataset.tab;
+        state.page = 1;
+        render();
+      });
+      $("query").addEventListener("input", () => { state.page = 1; render(); });
+      $("pageSize").addEventListener("change", () => { state.page = 1; render(); });
+      $("list").addEventListener("click", (event) => {
+        const action = C.pagerAction(event);
+        if (!action) return;
+        state.page = action.page;
+        render();
+      });
+      $("list").addEventListener("keydown", (event) => {
+        const action = C.pagerAction(event);
+        if (!action) return;
+        state.page = action.page;
+        render();
+      });
+      $("list").addEventListener("change", (event) => {
+        const action = C.pagerAction(event);
+        if (!action) return;
+        state.page = action.page;
+        render();
+      });
+    }
+    init().catch((err) => { $("list").innerHTML = `<div class="empty">加载失败：${C.escapeHtml(err.message)}</div>`; });
+  </script>
+</body>
+</html>
