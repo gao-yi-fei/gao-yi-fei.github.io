@@ -98,6 +98,53 @@ jobs:
             git push
           fi
 
+      - name: Confirm GitHub Pages deployment
+        if: steps.refresh_window.outputs.run == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.SCPPER_BOT_TOKEN }}
+        shell: bash
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "SCPPER_BOT_TOKEN is missing; skipping Pages deployment confirmation."
+            exit 0
+          fi
+
+          target="$(git rev-parse HEAD)"
+          for attempt in 1 2 3 4; do
+            if [ "$attempt" -eq 1 ]; then
+              sleep 30
+            else
+              sleep 45
+            fi
+
+            latest="$(
+              gh api "repos/$GITHUB_REPOSITORY/pages/builds/latest" \
+                --jq '[.status, .commit, (.error.message // .message // "")] | @tsv' 2>/dev/null || true
+            )"
+            status="$(printf '%s' "$latest" | awk -F '\t' 'NR==1 { print $1 }')"
+            commit="$(printf '%s' "$latest" | awk -F '\t' 'NR==1 { print $2 }')"
+            message="$(printf '%s' "$latest" | awk -F '\t' 'NR==1 { print $3 }')"
+
+            echo "Pages check ${attempt}: status=${status:-unknown} commit=${commit:-unknown} target=$target ${message:+message=$message}"
+            if [ "$commit" = "$target" ] && [ "$status" = "built" ]; then
+              echo "GitHub Pages confirmed built for $target."
+              exit 0
+            fi
+
+            if [ "$commit" = "$target" ] && { [ "$status" = "errored" ] || [ "$status" = "failed" ]; }; then
+              echo "Latest Pages build failed for $target; requesting rebuild."
+              gh api -X POST "repos/$GITHUB_REPOSITORY/pages/builds" >/dev/null || true
+              continue
+            fi
+
+            if [ "$attempt" -ge 2 ]; then
+              echo "Requesting Pages build/rebuild for $target."
+              gh api -X POST "repos/$GITHUB_REPOSITORY/pages/builds" >/dev/null || true
+            fi
+          done
+
+          echo "Pages build was not confirmed in this run; the next dispatch will check again."
+
       - name: Queue next dispatch loop
         if: always() && github.event_name == 'workflow_dispatch'
         env:
