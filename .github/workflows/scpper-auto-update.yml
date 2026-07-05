@@ -3,7 +3,7 @@ name: Auto Update SCPPER-MC
 on:
   workflow_dispatch:
   schedule:
-    - cron: "17,47 * * * *"
+    - cron: "7,22,37,52 * * * *"
 
 permissions:
   contents: write
@@ -45,6 +45,7 @@ jobs:
         run: |
           git config user.name "piglin-site-bot"
           git config user.email "piglin-site-bot@users.noreply.github.com"
+          find tools -type d -name __pycache__ -prune -exec rm -rf {} +
           git add -A index.html pages.html users.html forum.html recent.html sw.js assets data downloads tools .github
           if git diff --cached --quiet; then
             echo "No site changes."

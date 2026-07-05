@@ -176,6 +176,68 @@ window.SCPPER = (() => {
       document.getElementById(id)?.scrollIntoView({ block: "start", behavior: "smooth" });
     }
   }
+  function recentTitle(item) {
+    return item.title || item.page_title || item.thread_title || item.page_name || item.thread_id || "unknown";
+  }
+  function recentExternalHref(item, tab) {
+    if (tab === "posts") return item.post_url || item.thread_url || item.url || "#";
+    if (tab === "updates" && item.type === "thread") return item.last_post_url || item.thread_url || item.url || "#";
+    return item.url || item.page_url || item.thread_url || item.post_url || "#";
+  }
+  function recentLocalHref(item, tab) {
+    if (tab === "posts") return forumHref(item.category_id, item.thread_id, item.id);
+    if (item.page_name) return pageHref(item.page_name);
+    if (tab === "updates" && item.type === "thread") return forumHref(item.category_id, item.thread_id, item.id);
+    if (item.category_id || item.thread_id) return forumHref(item.category_id, item.thread_id);
+    return "#";
+  }
+  function recentTime(item, tab) {
+    if (tab === "edits") return formatBeijing(item.last_edited_at, item.last_edited_at_beijing);
+    if (tab === "updates") return formatBeijing(item.updated_at, item.updated_at_beijing);
+    return formatBeijing(item.created_at, item.created_at_beijing);
+  }
+  function recentActor(item, tab) {
+    if (tab === "posts") return item.author || (item.author_user && item.author_user.name) || "unknown";
+    if (tab === "edits") return item.latest_editor_name || "";
+    return item.history_author_name || "";
+  }
+  function renderRecentItem(item, tab, options = {}) {
+    const title = recentTitle(item);
+    const external = recentExternalHref(item, tab);
+    const local = recentLocalHref(item, tab);
+    const cardAttrs = local && local !== "#" ? ` data-href="${escapeHtml(local)}" role="link" tabindex="0"` : "";
+    const titleHtml = external && external !== "#"
+      ? `<a href="${escapeHtml(external)}" target="_blank" rel="noreferrer">${escapeHtml(title)}</a>`
+      : escapeHtml(title);
+    const time = recentTime(item, tab) || "n/a";
+    if (tab === "posts") {
+      return `<div class="activity activity-card"${cardAttrs}><strong>${titleHtml}</strong><span class="small">${escapeHtml(item.category_name || "")} · ${escapeHtml(recentActor(item, tab))} · ${escapeHtml(time)}</span>${item.content ? `<p>${escapeHtml(item.content)}</p>` : ""}</div>`;
+    }
+    if (tab === "updates" && item.type === "thread") {
+      return `<div class="activity activity-card"${cardAttrs}><strong>${titleHtml}</strong><span class="small">\u8ba8\u8bba\u66f4\u65b0 · ${escapeHtml(item.category_name || "")} · ${escapeHtml(time)}</span></div>`;
+    }
+    const label = tab === "edits" ? "\u7f16\u8f91" : tab === "updates" ? "\u66f4\u65b0" : "\u53d1\u5e03";
+    const actor = recentActor(item, tab);
+    const actorLabel = tab === "edits" ? "\u7f16\u8f91\u8005" : "\u4f5c\u8005";
+    const meta = `${kindBadge(item.page_kind || "other")} · \u8bc4\u5206 ${ratingLabel(item.rating)} · ${label} ${escapeHtml(time)}${actor ? ` · ${actorLabel} ${escapeHtml(actor)}` : ""}`;
+    return `<div class="activity activity-card"${cardAttrs}><strong>${titleHtml}</strong><span class="small">${meta}</span>${options.showTags && item.tags?.length ? `<div class="tags">${item.tags.slice(0, 8).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>` : ""}</div>`;
+  }
+  function wireRecentCards(root) {
+    const node = root || document;
+    node.addEventListener("click", (event) => {
+      if (event.target.closest("a,button,input,select,textarea,label")) return;
+      const card = event.target.closest(".activity-card[data-href]");
+      if (!card) return;
+      location.href = card.dataset.href;
+    });
+    node.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      const card = event.target.closest(".activity-card[data-href]");
+      if (!card) return;
+      event.preventDefault();
+      location.href = card.dataset.href;
+    });
+  }
   idle(registerServiceWorker);
-  return { fmt, escapeHtml, loadJson, idle, pageHref, forumHref, refreshData, renderNav, wireRefresh, ratingLabel, ratingClass, normalize, pager, pagerAction, pageSlice, kindBadge, formatBeijing, tickBeijing, scrollMobile };
+  return { fmt, escapeHtml, loadJson, idle, pageHref, forumHref, refreshData, renderNav, wireRefresh, ratingLabel, ratingClass, normalize, pager, pagerAction, pageSlice, kindBadge, formatBeijing, tickBeijing, scrollMobile, recentTitle, recentExternalHref, recentLocalHref, recentTime, recentActor, renderRecentItem, wireRecentCards };
 })();

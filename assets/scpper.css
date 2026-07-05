@@ -89,6 +89,10 @@ input, select { width:100%; padding:0 12px; }
 .activity, .comment, .post { padding:10px 12px; border-top:1px solid var(--line); }
 .activity:first-child, .comment:first-child, .post:first-child { border-top:0; }
 .activity strong { display:block; }
+.activity-card { cursor:pointer; }
+.activity-card:hover, .activity-card:focus { background:var(--soft); outline:0; }
+.activity-card a { cursor:pointer; }
+.compact-list { padding:0; }
 .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; align-items:start; }
 .forum-grid { display:grid; grid-template-columns:280px minmax(360px,1fr) minmax(420px,1.2fr); gap:14px; align-items:start; }

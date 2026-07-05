@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -33,16 +33,16 @@
     </section>
     <section class="grid-3">
       <div class="panel">
-        <div class="panel-head"><h2>最近发帖</h2><div class="small">只显示少量摘要</div></div>
-        <div class="panel-section" id="recentPosts"></div>
+        <div class="panel-head"><h2>最近发帖</h2><div class="small">与最近页一致</div></div>
+        <div class="panel-section compact-list" id="recentPosts"></div>
       </div>
       <div class="panel">
         <div class="panel-head"><h2>最近页面</h2><div class="small">按创建时间</div></div>
-        <div class="panel-section" id="recentPages"></div>
+        <div class="panel-section compact-list" id="recentPages"></div>
       </div>
       <div class="panel">
         <div class="panel-head"><h2>最近编辑</h2><div class="small">按编辑时间</div></div>
-        <div class="panel-section" id="recentEdits"></div>
+        <div class="panel-section compact-list" id="recentEdits"></div>
       </div>
     </section>
     <div class="actions" style="margin:14px 0 26px">
@@ -56,8 +56,9 @@
   <script>
     const C = window.SCPPER;
     const $ = (id) => document.getElementById(id);
+
     function pageLink(item) {
-      const title = item.title || item.page_title || item.thread_title || item.page_name || item.thread_id || "unknown";
+      const title = C.recentTitle(item);
       const href = item.url || item.page_url || item.thread_url || "#";
       return href === "#" ? C.escapeHtml(title) : `<a href="${C.escapeHtml(href)}" target="_blank" rel="noreferrer">${C.escapeHtml(title)}</a>`;
     }
@@ -87,17 +88,17 @@
         <h3>${pageLink(contest.hub)}</h3>
         <p class="small">竞赛信息来自 SCP-MC 主页提示与竞赛中心页；排名按分数、upvote 比例、发布时间排序。</p>
         ${scheduleItems.length ? `<div class="tags">${scheduleItems.map(([label, value]) => `<span class="tag">${label} ${C.escapeHtml(value)}</span>`).join("")}</div>` : ""}
-        ${top.length ? top.map((item, index) => `<div class="activity"><strong>#${index + 1} ${pageLink(item)}</strong><span class="small">评分 ${C.ratingLabel(item.rating)} · +${C.fmt.format(item.vote_up || 0)} / -${C.fmt.format(item.vote_down || 0)} · 发布 ${C.escapeHtml(C.formatBeijing(item.created_at, item.created_at_beijing) || "n/a")}</span></div>`).join("") : `<p class="small">暂未识别到参赛作品。</p>`}
+        ${top.length ? top.map((item, index) => {
+          const author = item.history_author_name ? ` · 作者 ${C.escapeHtml(item.history_author_name)}` : "";
+          return `<div class="activity activity-card" data-href="${C.escapeHtml(C.pageHref(item.page_name))}" role="link" tabindex="0"><strong>#${index + 1} ${pageLink(item)}</strong><span class="small">评分 ${C.ratingLabel(item.rating)} · +${C.fmt.format(item.vote_up || 0)} / -${C.fmt.format(item.vote_down || 0)} · 发布 ${C.escapeHtml(C.formatBeijing(item.created_at, item.created_at_beijing) || "n/a")}${author}</span></div>`;
+        }).join("") : `<p class="small">暂未识别到参赛作品。</p>`}
       `;
     }
-    function renderSmallList(id, items, timeKey, timeLabel) {
+    function renderRecentList(id, items, tab) {
       const rows = (items || []).slice(0, 5);
-      $(id).innerHTML = rows.length ? rows.map((item) => `
-        <div class="activity">
-          <strong>${pageLink(item)}</strong>
-          <span class="small">${timeLabel} ${C.escapeHtml(C.formatBeijing(item[timeKey], item[`${timeKey}_beijing`]) || item.created_at_beijing || item.updated_at_beijing || "")}</span>
-        </div>
-      `).join("") : `<p class="small">暂无数据。</p>`;
+      $(id).innerHTML = rows.length
+        ? rows.map((item) => C.renderRecentItem(item, tab)).join("")
+        : `<p class="small">暂无数据。</p>`;
     }
     async function init() {
       $("nav").innerHTML = C.renderNav("home");
@@ -106,9 +107,10 @@
       const payload = await C.loadJson("data/home-index.json.gz");
       renderStats(payload.stats || {});
       renderContest(payload.current_contest);
-      renderSmallList("recentPosts", payload.recent_posts, "created_at", "发帖");
-      renderSmallList("recentPages", payload.recent_pages, "created_at", "发布");
-      renderSmallList("recentEdits", payload.recent_edits, "last_edited_at", "编辑");
+      renderRecentList("recentPosts", payload.recent_posts, "posts");
+      renderRecentList("recentPages", payload.recent_pages, "pages");
+      renderRecentList("recentEdits", payload.recent_edits, "edits");
+      C.wireRecentCards(document);
     }
     init().catch((err) => {
       $("contest").innerHTML = `<div class="empty">加载失败：${C.escapeHtml(err.message)}</div>`;
@@ -116,4 +118,3 @@
   </script>
 </body>
 </html>
-

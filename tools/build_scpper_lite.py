@@ -1890,13 +1890,18 @@ def build_recent_index(
                     "label": "讨论更新",
                     "updated_at": update_at,
                     "updated_at_beijing": format_beijing_value(update_at),
+                    "category_id": thread.get("category_id"),
                     "thread_id": thread.get("thread_id"),
                     "title": thread.get("title"),
                     "url": thread.get("url"),
                     "category_name": thread.get("category_name"),
                     "group_name": thread.get("group_name"),
                     "comments_count": thread.get("comments_count"),
+                    "last_post_url": thread.get("last_post_url"),
                     "is_page_discussion": bool(thread.get("is_page_discussion")),
+                    "page_name": thread.get("page_name"),
+                    "page_title": thread.get("page_title"),
+                    "page_url": thread.get("page_url"),
                 }
             )
     updates.sort(key=lambda item: item.get("updated_at") or "", reverse=True)

@@ -10,7 +10,7 @@
 <body>
   <header>
     <h1>SCPPER-MC</h1>
-    <p class="lead">最近动态分页。这里完整展示最近发帖、最近页面、最近编辑和综合更新。</p>
+    <p class="lead">最近动态分页。标题链接打开 Wikidot 原页面，点击整张卡片会跳到站内对应位置。</p>
     <div class="credit">created by piglin</div>
     <nav class="nav" id="nav" aria-label="站点导航"></nav>
   </header>
@@ -41,23 +41,12 @@
     const $ = (id) => document.getElementById(id);
     const state = { payload: null, tab: "posts", page: 1 };
     const pageSize = () => Number($("pageSize").value) || 50;
-    function localHref(item) {
-      if (state.tab === "posts") return C.forumHref(item.category_id, item.thread_id, item.id);
-      if (item.page_name) return C.pageHref(item.page_name);
-      if (item.category_id || item.thread_id) return C.forumHref(item.category_id, item.thread_id);
-      return item.url || item.page_url || item.thread_url || item.post_url || "#";
-    }
-    function pageLink(item) {
-      const title = item.title || item.page_title || item.thread_title || item.page_name || item.thread_id || "unknown";
-      const href = localHref(item);
-      if (href === "#") return C.escapeHtml(title);
-      const external = /^https?:/i.test(href);
-      return `<a href="${C.escapeHtml(href)}"${external ? ' target="_blank" rel="noreferrer"' : ""}>${C.escapeHtml(title)}</a>`;
-    }
+
     function searchText(item) {
       return C.normalize([
         item.title, item.page_title, item.thread_title, item.page_name, item.thread_id,
-        item.category_name, item.group_name, item.author, item.author_user?.name, item.content
+        item.category_name, item.group_name, item.author, item.author_user?.name,
+        item.history_author_name, item.latest_editor_name, item.content
       ].join(" "));
     }
     function tabItems() {
@@ -80,24 +69,10 @@
         ["生成时间", stats.generated_at_beijing || C.formatBeijing(stats.generated_at)],
       ].map(([label, value]) => `<li><span>${label}</span>${typeof value === "number" ? C.fmt.format(value) : C.escapeHtml(value)}</li>`).join("");
     }
-    function itemTime(item) {
-      if (state.tab === "edits") return C.formatBeijing(item.last_edited_at, item.last_edited_at_beijing);
-      if (state.tab === "updates") return C.formatBeijing(item.updated_at, item.updated_at_beijing);
-      return C.formatBeijing(item.created_at, item.created_at_beijing);
-    }
-    function renderItem(item) {
-      if (state.tab === "posts") {
-        return `<div class="activity"><strong>${pageLink(item)}</strong><span class="small">${C.escapeHtml(item.category_name || "")} · ${C.escapeHtml(item.author || "unknown")} · ${C.escapeHtml(itemTime(item))}${item.post_url ? ` · <a href="${C.escapeHtml(item.post_url)}" target="_blank" rel="noreferrer">原帖</a>` : ""}</span><p>${C.escapeHtml(item.content || "")}</p></div>`;
-      }
-      if (state.tab === "updates" && item.type === "thread") {
-        return `<div class="activity"><strong>${pageLink(item)}</strong><span class="small">讨论更新 · ${C.escapeHtml(item.category_name || "")} · ${C.escapeHtml(itemTime(item))}</span></div>`;
-      }
-      const timeLabel = state.tab === "edits" ? "编辑" : state.tab === "updates" ? "更新" : "发布";
-      const actor = state.tab === "edits" ? (item.latest_editor_name ? ` · 编辑者 ${C.escapeHtml(item.latest_editor_name)}` : " · 编辑者待更新") : item.history_author_name ? ` · 作者 ${C.escapeHtml(item.history_author_name)}` : "";
-      return `<div class="activity"><strong>${pageLink(item)}</strong><span class="small">${C.kindBadge(item.page_kind || "other")} · 评分 ${C.ratingLabel(item.rating)} · ${timeLabel} ${C.escapeHtml(itemTime(item) || "n/a")}${actor}</span></div>`;
-    }
     function render() {
-      [...$("tabs").querySelectorAll("[data-tab]")].forEach((button) => button.setAttribute("aria-selected", String(button.dataset.tab === state.tab)));
+      [...$("tabs").querySelectorAll("[data-tab]")].forEach((button) => {
+        button.setAttribute("aria-selected", String(button.dataset.tab === state.tab));
+      });
       const rows = filteredItems();
       if (!rows.length) {
         $("list").innerHTML = `<div class="empty">没有匹配动态</div>`;
@@ -105,7 +80,9 @@
       }
       const sliced = C.pageSlice(rows, state.page, pageSize());
       state.page = sliced.page;
-      $("list").innerHTML = C.pager("recent", rows.length, state.page, sliced.size) + sliced.items.map(renderItem).join("") + C.pager("recent-bottom", rows.length, state.page, sliced.size);
+      $("list").innerHTML = C.pager("recent", rows.length, state.page, sliced.size)
+        + sliced.items.map((item) => C.renderRecentItem(item, state.tab, { showTags: true })).join("")
+        + C.pager("recent-bottom", rows.length, state.page, sliced.size);
     }
     async function init() {
       $("nav").innerHTML = C.renderNav("recent");
@@ -151,8 +128,11 @@
         state.page = action.page;
         render();
       });
+      C.wireRecentCards($("list"));
     }
-    init().catch((err) => { $("list").innerHTML = `<div class="empty">加载失败：${C.escapeHtml(err.message)}</div>`; });
+    init().catch((err) => {
+      $("list").innerHTML = `<div class="empty">加载失败：${C.escapeHtml(err.message)}</div>`;
+    });
   </script>
 </body>
 </html>

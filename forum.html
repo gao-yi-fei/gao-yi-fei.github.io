@@ -137,6 +137,11 @@
       $("threads").innerHTML = C.pager("list", rows.length, state.listPage, sliced.size) + body + C.pager("list-bottom", rows.length, state.listPage, sliced.size);
       renderPosts();
     }
+    function pageDiscussionLink(thread) {
+      if (!thread.page_name) return "";
+      const label = thread.page_title || thread.page_name;
+      return ` · <a href="${C.escapeHtml(C.pageHref(thread.page_name))}">站内页面：${C.escapeHtml(label)}</a>`;
+    }
     function renderPosts() {
       const thread = state.threads.find((item) => String(item.thread_id) === String(state.selectedId));
       if (!thread) {
@@ -152,7 +157,7 @@
             <div class="small">Forum › ${C.escapeHtml(thread.group_name || "")} › ${C.escapeHtml(thread.category_name || "")}</div>
             <h3>${C.escapeHtml(thread.title)}</h3>
             <div class="small">${C.escapeHtml(thread.description || "")}</div>
-            <div class="small">由 ${C.escapeHtml(thread.started_author?.name || "unknown")} 开始于 ${C.escapeHtml(C.formatBeijing(thread.started_created_at, thread.started_created_at_beijing) || "")} · <a href="${C.escapeHtml(thread.url)}" target="_blank" rel="noreferrer">打开原讨论串</a></div>
+            <div class="small">由 ${C.escapeHtml(thread.started_author?.name || "unknown")} 开始于 ${C.escapeHtml(C.formatBeijing(thread.started_created_at, thread.started_created_at_beijing) || "")} · <a href="${C.escapeHtml(thread.url)}" target="_blank" rel="noreferrer">打开原讨论串</a>${pageDiscussionLink(thread)}</div>
           </div>
         </section>
         ${posts.length ? posts.map((post) => `
@@ -226,8 +231,6 @@
       renderStats();
       renderCategories();
       if (state.selectedCategory) {
-        state.threads = state.threadCache.get(String(state.selectedCategory)) || [];
-        refreshThreads({ resetPage: true });
         loadCategoryThreads(state.selectedCategory);
       }
       $("query").addEventListener("input", () => refreshThreads({ resetPage: true }));
