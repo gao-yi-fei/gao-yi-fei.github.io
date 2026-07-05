@@ -20,6 +20,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+          token: ${{ secrets.SCPPER_BOT_TOKEN || github.token }}
 
       - name: Sync latest main before deciding refresh
         run: |
