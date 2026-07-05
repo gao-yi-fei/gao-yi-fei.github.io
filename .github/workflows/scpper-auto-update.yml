@@ -17,6 +17,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 330
     steps:
+      - name: Mark run start
+        id: run_clock
+        shell: bash
+        run: echo "start=$(date -u +%s)" >> "$GITHUB_OUTPUT"
+
       - uses: actions/checkout@v4
         with:
           ref: main
@@ -92,3 +97,20 @@ jobs:
             git commit -m "Auto refresh SCPPER-MC site"
             git push
           fi
+
+      - name: Queue next dispatch loop
+        if: always() && github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ secrets.SCPPER_BOT_TOKEN }}
+          RUN_START: ${{ steps.run_clock.outputs.start }}
+        shell: bash
+        run: |
+          now="$(date -u +%s)"
+          elapsed="$((now - RUN_START))"
+          delay="$((900 - elapsed))"
+          if [ "$delay" -lt 60 ]; then
+            delay=60
+          fi
+          echo "Queueing next Auto Update SCPPER-MC dispatch in ${delay}s."
+          sleep "$delay"
+          gh workflow run scpper-auto-update.yml --repo "$GITHUB_REPOSITORY" --ref main
