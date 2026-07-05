@@ -1,16 +1,16 @@
 # SCPper-lite data
 
-- Generated: 2026-07-05T08:16:07+00:00
-- Pages: 1322
+- Generated: 2026-07-05T08:31:56+00:00
+- Pages: 1315
 - Users: 346
-- Rated pages: 1322
-- Voters captured: 7947
-- History authors captured: 1322
-- Discussion threads linked: 1050
-- Comment previews captured: 3606
-- Forum threads captured: 1416
-- Page discussion threads linked: 1050
-- Forum posts captured: 5318
+- Rated pages: 1315
+- Voters captured: 7945
+- History authors captured: 1315
+- Discussion threads linked: 1047
+- Comment previews captured: 3603
+- Forum threads captured: 1413
+- Page discussion threads linked: 1047
+- Forum posts captured: 5315
 - Shards: 32
 
 `home-index.json.gz`, `search-index.json.gz`, `user-index.json.gz`, `forum-categories.json.gz`, and `recent-index.json.gz` are loaded first for fast search and summaries. `details/*.json.gz`, `user-details/*.json.gz`, and `sources/*.json.gz` are loaded on demand by shard. `forum-threads/*.json.gz` is loaded on demand by forum category.
