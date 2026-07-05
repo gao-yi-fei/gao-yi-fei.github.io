@@ -3,7 +3,7 @@ name: Auto Update SCPPER-MC
 on:
   workflow_dispatch:
   schedule:
-    - cron: "7,22,37,52 * * * *"
+    - cron: "*/5 * * * *"
 
 permissions:
   contents: write
@@ -18,14 +18,49 @@ jobs:
     timeout-minutes: 330
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Sync latest main before deciding refresh
+        run: |
+          git fetch origin main
+          git checkout main
+          git reset --hard origin/main
+
+      - name: Check refresh window
+        id: refresh_window
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            echo "Manual dispatch; refreshing now."
+            exit 0
+          fi
+          stamp="$(cat data/cloud-updated-at.txt 2>/dev/null || true)"
+          if [ -z "$stamp" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            echo "No previous cloud-updated-at.txt; refreshing now."
+            exit 0
+          fi
+          last="$(date -u -d "$stamp" +%s 2>/dev/null || echo 0)"
+          now="$(date -u +%s)"
+          age="$((now - last))"
+          echo "Last successful refresh was ${age}s ago."
+          if [ "$age" -ge 720 ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - uses: actions/setup-python@v5
+        if: steps.refresh_window.outputs.run == 'true'
         with:
           python-version: "3.11"
           cache: "pip"
           cache-dependency-path: tools/requirements-wikidot-crawler.txt
 
       - uses: actions/cache@v4
+        if: steps.refresh_window.outputs.run == 'true'
         with:
           path: .scpper-cache
           key: scpper-cache-${{ github.run_id }}
@@ -33,15 +68,18 @@ jobs:
             scpper-cache-
 
       - name: Install crawler dependencies
+        if: steps.refresh_window.outputs.run == 'true'
         run: python -m pip install -r tools/requirements-wikidot-crawler.txt
 
       - name: Crawl, build, repair, and stage site
+        if: steps.refresh_window.outputs.run == 'true'
         env:
           SCPPER_WORKERS: "32"
           SCPPER_FORUM_WORKERS: "24"
         run: python tools/cloud_update_scpper.py
 
       - name: Commit refreshed site
+        if: steps.refresh_window.outputs.run == 'true'
         run: |
           git config user.name "piglin-site-bot"
           git config user.email "piglin-site-bot@users.noreply.github.com"
