@@ -105,6 +105,10 @@ jobs:
           RUN_START: ${{ steps.run_clock.outputs.start }}
         shell: bash
         run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "SCPPER_BOT_TOKEN is missing; cannot queue next dispatch."
+            exit 0
+          fi
           now="$(date -u +%s)"
           elapsed="$((now - RUN_START))"
           delay="$((900 - elapsed))"
@@ -113,4 +117,7 @@ jobs:
           fi
           echo "Queueing next Auto Update SCPPER-MC dispatch in ${delay}s."
           sleep "$delay"
-          gh workflow run scpper-auto-update.yml --repo "$GITHUB_REPOSITORY" --ref main
+          gh workflow run scpper-auto-update.yml --repo "$GITHUB_REPOSITORY" --ref main || {
+            echo "Failed to queue next dispatch; leaving current refresh successful."
+            exit 0
+          }
