@@ -951,6 +951,7 @@
     $("lobbyStatus").textContent = `连接大厅 ${url}...`;
     app.lobbySocket = new WebSocket(url);
     app.lobbySocket.addEventListener("open", () => {
+      updateNetworkStatus("自有大厅已连接。");
       $("lobbyStatus").textContent = "大厅已连接，房间列表实时更新。";
       lobbySend({ type: "hello" });
       publishRoom();
@@ -968,16 +969,19 @@
       }
     });
     app.lobbySocket.addEventListener("close", () => {
+      updateNetworkStatus("大厅连接已断开，正在重连。");
       $("lobbyStatus").textContent = "大厅连接已断开，5 秒后重连。";
       window.setTimeout(() => connectLobby(true), 5000);
     });
     app.lobbySocket.addEventListener("error", () => {
+      updateNetworkStatus("大厅连接失败，可以手动输入房间码。");
       $("lobbyStatus").textContent = "大厅连接失败，可手动输入房间码。";
     });
   }
 
   function connectMqttLobby(force = false) {
     if (!window.mqtt) {
+      updateNetworkStatus("公共大厅库加载失败，可以手动输入房间码。");
       $("lobbyStatus").textContent = "未配置大厅后端，且公共大厅库加载失败；可以手动输入房间码。";
       renderRooms();
       return;
@@ -993,6 +997,7 @@
       reconnectPeriod: 5000,
     });
     app.lobbyClient.on("connect", () => {
+      updateNetworkStatus("公共大厅已连接。");
       $("lobbyStatus").textContent = "公共大厅已连接，房间列表实时更新。";
       app.lobbyClient.subscribe(mqttRoomTopic("+"));
       publishRoom();
@@ -1009,9 +1014,11 @@
       renderRooms();
     });
     app.lobbyClient.on("close", () => {
+      updateNetworkStatus("公共大厅连接断开，正在重连。");
       $("lobbyStatus").textContent = "公共大厅连接断开，正在重连。";
     });
     app.lobbyClient.on("error", () => {
+      updateNetworkStatus("公共大厅连接失败，可以手动输入房间码。");
       $("lobbyStatus").textContent = "公共大厅连接失败，可以手动输入房间码。";
     });
   }

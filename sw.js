@@ -1,4 +1,4 @@
-const CACHE = "scpper-mc-v4";
+const CACHE = "scpper-mc-v5";
 const CACHEABLE = /\.(?:html|css|js|json|gz)$/i;
 
 self.addEventListener("install", (event) => {
@@ -43,6 +43,7 @@ self.addEventListener("fetch", (event) => {
       if (response.ok) cache.put(request, response.clone());
       return response;
     }).catch(() => cached);
-    return cached || fetched;
+    const networkFirst = url.pathname === "/" || /\.(?:html|css|js)$/i.test(url.pathname);
+    return networkFirst ? fetched || cached : cached || fetched;
   })());
 });
