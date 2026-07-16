@@ -95,6 +95,9 @@ def main() -> int:
         archive_base.with_suffix(".zip").unlink()
     shutil.make_archive(str(archive_base), "zip", root_dir=backup_dir)
 
+    for name in ["game.html", "assets/fighting.js"]:
+        copy_entry(ROOT / name, build_dir / name)
+
     for name in [
         "index.html", "pages.html", "users.html", "forum.html", "recent.html", "game.html",
         "sw.js", "assets", "data", "downloads",
