@@ -8,6 +8,7 @@ window.SCPPER = (() => {
     ["/users.html", "用户索引", "users"],
     ["/forum.html", "讨论区", "forum"],
     ["/recent.html", "最近", "recent"],
+    ["/game.html", "暴塔", "game"],
   ];
   function escapeHtml(value) {
     return String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;", "'":"&#39;" }[c]));

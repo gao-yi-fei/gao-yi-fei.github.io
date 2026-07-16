@@ -96,7 +96,7 @@ def main() -> int:
     shutil.make_archive(str(archive_base), "zip", root_dir=backup_dir)
 
     for name in [
-        "index.html", "pages.html", "users.html", "forum.html", "recent.html",
+        "index.html", "pages.html", "users.html", "forum.html", "recent.html", "game.html",
         "sw.js", "assets", "data", "downloads",
     ]:
         copy_entry(build_dir / name, ROOT / name)

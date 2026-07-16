@@ -57,6 +57,7 @@ def main() -> None:
             "users.html",
             "forum.html",
             "recent.html",
+            "game.html",
             "sw.js",
             "assets",
             "data",

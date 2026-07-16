@@ -120,6 +120,10 @@ def collect_local_files(site_dir: Path) -> dict[str, Path]:
     if forum_page.exists():
         paths["forum.html"] = forum_page
 
+    game_page = site_dir / "game.html"
+    if game_page.exists():
+        paths["game.html"] = game_page
+
     data_dir = site_dir / "data"
     if not data_dir.exists():
         raise FileNotFoundError(data_dir)
