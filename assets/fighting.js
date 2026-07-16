@@ -281,6 +281,7 @@
       }
       if (this.players[1].actionPoints <= 0 && this.current === 0 && this.players[0].actionPoints <= 0) {
         this.endRound();
+        if (!this.gameOver) this.nextRound();
         return;
       }
       this.checkGameState();
@@ -690,56 +691,96 @@
     },
   };
 
+  const ROOM_TTL_MS = 35000;
+  const ROOM_HEARTBEAT_MS = 7000;
+  const MQTT_BROKER = "wss://broker.emqx.io:8084/mqtt";
+  const MQTT_TOPIC = "scpper-mc/baota/v3/rooms";
   const app = {
-    mode: "local",
-    side: "both",
+    mode: "lobby",
+    side: null,
     peer: null,
     conn: null,
+    lobbySocket: null,
+    lobbyClient: null,
+    lobbyKind: "",
+    lobbyTimer: null,
     roomCode: "",
     connected: false,
+    rooms: new Map(),
+    mySelection: { name: "玩家", characterId: "undead" },
     selections: {
-      p1: { name: "玩家1", characterId: "undead" },
-      p2: { name: "玩家2", characterId: "frost" },
+      p1: { name: "房主", characterId: "undead" },
+      p2: { name: "访客", characterId: "frost" },
     },
     engine: null,
   };
 
-  function selectionFromInputs() {
-    app.selections.p1 = {
-      name: clampName($("p1Name").value, "玩家1"),
-      characterId: $("p1Character").value || "undead",
-    };
-    app.selections.p2 = {
-      name: clampName($("p2Name").value, "玩家2"),
-      characterId: $("p2Character").value || "frost",
-    };
+  function lobbyUrl() {
+    const params = new URLSearchParams(location.search);
+    const explicit = params.get("lobby") || localStorage.getItem("baotaLobbyUrl") || window.BAOTA_LOBBY_URL || "";
+    if (explicit === "mqtt" || explicit === "public") return "";
+    if (explicit) return explicit;
+    if (location.hostname === "127.0.0.1" || location.hostname === "localhost") return "ws://127.0.0.1:8792";
+    return "";
   }
 
-  function applySelectionsToInputs() {
-    $("p1Name").value = app.selections.p1.name;
-    $("p1Character").value = app.selections.p1.characterId;
-    $("p2Name").value = app.selections.p2.name;
-    $("p2Character").value = app.selections.p2.characterId;
+  function mqttRoomTopic(code = "+") {
+    return `${MQTT_TOPIC}/${String(code || "+").replace(/[^A-Z0-9+]/gi, "").toUpperCase()}`;
+  }
+
+  function currentDef(id) {
+    return CHARACTER_BY_ID[id] || CHARACTER_DEFS[0];
+  }
+
+  function readMySelection() {
+    app.mySelection = {
+      name: clampName($("myName").value, "玩家"),
+      characterId: $("myCharacter").value || "undead",
+    };
+    if (app.mode === "host") app.selections.p1 = { ...app.mySelection };
+    if (app.mode === "guest") app.selections.p2 = { ...app.mySelection };
+  }
+
+  function applyMySelectionToInputs() {
+    const selected = app.side === "p2" ? app.selections.p2 : app.side === "p1" ? app.selections.p1 : app.mySelection;
+    $("myName").value = selected.name || "玩家";
+    $("myCharacter").value = selected.characterId || "undead";
+    app.mySelection = { name: $("myName").value, characterId: $("myCharacter").value };
     updateCharacterNotes();
   }
 
-  function canEditPlayer(index) {
-    if (app.mode === "local") return true;
-    if (app.mode === "host") return index === 1;
-    if (app.mode === "guest") return index === 2;
-    return false;
+  function playerSummary(slot) {
+    const selected = app.selections[slot];
+    const def = currentDef(selected.characterId);
+    if (!selected?.name) {
+      return `<div class="empty">等待${slot === "p1" ? "房主" : "访客"}选择角色</div>`;
+    }
+    return `<strong>${C.escapeHtml(selected.name)} / ${C.escapeHtml(def.name)}</strong><p class="small">${C.escapeHtml(def.desc)}</p><div class="tags">${def.skills.slice(0, 6).map(([name, prob, handler]) => `<span class="tag" style="border-color:${SKILL_META[handler]?.[1] || "#d8dee8"}">${C.escapeHtml(name)} ${prob}%</span>`).join("")}</div>`;
+  }
+
+  function updateSummaries() {
+    $("p1Summary").innerHTML = playerSummary("p1");
+    $("p2Summary").innerHTML = playerSummary("p2");
+    $("p1Ready").textContent = app.selections.p1.name ? "已选择" : "等待选择";
+    $("p2Ready").textContent = app.connected ? "已加入" : "等待加入";
   }
 
   function updateInputLocks() {
-    $("p1Name").disabled = !canEditPlayer(1) || !!app.engine;
-    $("p1Character").disabled = !canEditPlayer(1) || !!app.engine;
-    $("p2Name").disabled = !canEditPlayer(2) || !!app.engine;
-    $("p2Character").disabled = !canEditPlayer(2) || !!app.engine;
-    $("startGame").disabled = app.mode === "guest" || (app.mode === "host" && !app.connected);
+    const inBattle = !!app.engine;
+    $("myName").disabled = inBattle;
+    $("myCharacter").disabled = inBattle;
+    $("hostRoom").disabled = inBattle || app.mode === "host" || app.mode === "guest";
+    $("joinRoom").disabled = inBattle || app.mode === "host" || app.mode === "guest";
+    $("roomInput").disabled = inBattle || app.mode === "host" || app.mode === "guest";
+    $("startGame").disabled = app.mode !== "host" || !app.connected || inBattle;
     $("copyRoom").disabled = !app.roomCode;
-    $("disconnectRoom").disabled = app.mode === "local";
-    $("p1Ready").textContent = canEditPlayer(1) ? "可编辑" : "由对方选择";
-    $("p2Ready").textContent = canEditPlayer(2) ? "可编辑" : "由对方选择";
+    $("disconnectRoom").disabled = app.mode === "lobby";
+    $("sideHint").textContent = app.mode === "host"
+      ? "你是房主，等待访客加入后可以开始。"
+      : app.mode === "guest"
+        ? "你是访客，等待房主开始。"
+        : "创建房间后你是房主；加入房间后你是访客。";
+    updateSummaries();
   }
 
   function updateNetworkStatus(text) {
@@ -749,19 +790,14 @@
 
   function renderOptions() {
     const options = CHARACTER_DEFS.map((def) => `<option value="${def.id}">${def.name} - ${def.desc}</option>`).join("");
-    $("p1Character").innerHTML = options;
-    $("p2Character").innerHTML = options;
-    $("p1Character").value = app.selections.p1.characterId;
-    $("p2Character").value = app.selections.p2.characterId;
+    $("myCharacter").innerHTML = options;
+    $("myCharacter").value = app.mySelection.characterId;
   }
 
   function updateCharacterNotes() {
-    for (const [slot, selectId, noteId] of [["p1", "p1Character", "p1Note"], ["p2", "p2Character", "p2Note"]]) {
-      const def = CHARACTER_BY_ID[$(selectId).value] || CHARACTER_DEFS[0];
-      const total = def.skills.reduce((sum, item) => sum + item[1], 0);
-      $(noteId).innerHTML = `<strong>${C.escapeHtml(def.name)}</strong>：${C.escapeHtml(def.desc)}<div class="tags">${def.skills.map(([name, prob, handler]) => `<span class="tag" style="border-color:${SKILL_META[handler]?.[1] || "#d8dee8"}">${C.escapeHtml(name)} ${prob}%</span>`).join("")}</div><div class="small">概率合计 ${total}%</div>`;
-      app.selections[slot].characterId = def.id;
-    }
+    const def = currentDef($("myCharacter").value);
+    const total = def.skills.reduce((sum, item) => sum + item[1], 0);
+    $("myNote").innerHTML = `<strong>${C.escapeHtml(def.name)}</strong>：${C.escapeHtml(def.desc)}<div class="tags">${def.skills.map(([name, prob, handler]) => `<span class="tag" style="border-color:${SKILL_META[handler]?.[1] || "#d8dee8"}">${C.escapeHtml(name)} ${prob}%</span>`).join("")}</div><div class="small">概率合计 ${total}%</div>`;
   }
 
   function renderRoster() {
@@ -800,11 +836,13 @@
     $("turnHint").textContent = snapshot.gameOver
       ? "战斗结束"
       : snapshot.roundEnd
-        ? "回合结束，等待下一回合"
+        ? "系统正在进入下一回合"
         : current
           ? `${current.displayName} 行动中`
           : "等待行动";
+    $("battleRoomCode").textContent = app.roomCode ? `房间 ${app.roomCode}` : "房间 --";
     $("battleLog").innerHTML = snapshot.logs.map((entry) => `<p ${entry.color ? `style="color:${entry.color}"` : ""}>${C.escapeHtml(entry.text)}</p>`).join("");
+    $("logCount").textContent = C.fmt.format(snapshot.logs.length);
     $("battleLog").scrollTop = $("battleLog").scrollHeight;
     updateControls();
     updateInputLocks();
@@ -812,8 +850,7 @@
 
   function localSideCanAct() {
     if (!app.engine || app.engine.gameOver) return false;
-    if (app.mode === "local") return true;
-    if (app.engine.current == null) return app.mode === "host";
+    if (app.engine.current == null) return false;
     return (app.mode === "host" && app.engine.current === 0) || (app.mode === "guest" && app.engine.current === 1);
   }
 
@@ -821,18 +858,18 @@
     const engine = app.engine;
     const canAct = localSideCanAct();
     $("actionButton").disabled = !engine || engine.roundEnd || engine.gameOver || !canAct;
-    $("nextRoundButton").disabled = !engine || !engine.roundEnd || engine.gameOver || !(app.mode === "local" || app.mode === "host");
     $("restartButton").disabled = !engine || app.mode === "guest";
   }
 
   function startBattle() {
-    selectionFromInputs();
-    if (app.mode === "host" && !app.connected) {
+    readMySelection();
+    if (app.mode !== "host" || !app.connected) {
       updateNetworkStatus(`房间 ${app.roomCode} 等待访客加入后才能开始。`);
       return;
     }
     app.engine = new BattleEngine(app.selections);
     renderBattle();
+    publishRoom("playing");
     broadcast({ type: "start", selections: app.selections, snapshot: app.engine.clone() });
   }
 
@@ -840,6 +877,7 @@
     app.engine = null;
     $("battlePanel").hidden = true;
     updateInputLocks();
+    publishRoom(app.connected ? "ready" : "waiting");
     broadcast({ type: "reset", selections: app.selections });
   }
 
@@ -850,17 +888,6 @@
       return;
     }
     app.engine.takeAction();
-    renderBattle();
-    broadcastSnapshot();
-  }
-
-  function performNextRound() {
-    if (!app.engine) return;
-    if (app.mode === "guest") {
-      send({ type: "intent", action: "nextRound" });
-      return;
-    }
-    app.engine.nextRound();
     renderBattle();
     broadcastSnapshot();
   }
@@ -877,6 +904,139 @@
     broadcast({ type: "snapshot", snapshot: app.engine?.clone() });
   }
 
+  function lobbySend(message) {
+    if (app.lobbySocket?.readyState === WebSocket.OPEN) app.lobbySocket.send(JSON.stringify(message));
+  }
+
+  function publishRoom(status = null) {
+    if (app.mode !== "host" || !app.roomCode) return;
+    const hostDef = currentDef(app.selections.p1.characterId);
+    const guestDef = currentDef(app.selections.p2.characterId);
+    const payload = {
+      type: "room",
+      code: app.roomCode,
+      peerId: peerIdFromRoom(app.roomCode),
+      status: status || (app.engine ? "playing" : app.connected ? "ready" : "waiting"),
+      hostName: app.selections.p1.name,
+      hostCharacter: hostDef.name,
+      guestName: app.connected ? app.selections.p2.name : "",
+      guestCharacter: app.connected ? guestDef.name : "",
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+    };
+    lobbySend(payload);
+    if (app.lobbyClient?.connected) {
+      app.lobbyClient.publish(mqttRoomTopic(app.roomCode), JSON.stringify(payload), { qos: 0, retain: false });
+    }
+  }
+
+  function publishClosedRoom() {
+    if (!app.roomCode) return;
+    const payload = { type: "room", code: app.roomCode, status: "closed", updatedAt: Date.now() };
+    lobbySend({ type: "close", code: app.roomCode });
+    if (app.lobbyClient?.connected) {
+      app.lobbyClient.publish(mqttRoomTopic(app.roomCode), JSON.stringify(payload), { qos: 0, retain: false });
+    }
+  }
+
+  function connectLobby(force = false) {
+    const url = lobbyUrl();
+    if (!url) {
+      connectMqttLobby(force);
+      return;
+    }
+    app.lobbyKind = "ws";
+    if (!force && app.lobbySocket && [WebSocket.OPEN, WebSocket.CONNECTING].includes(app.lobbySocket.readyState)) return;
+    try { app.lobbySocket?.close(); } catch {}
+    $("lobbyStatus").textContent = `连接大厅 ${url}...`;
+    app.lobbySocket = new WebSocket(url);
+    app.lobbySocket.addEventListener("open", () => {
+      $("lobbyStatus").textContent = "大厅已连接，房间列表实时更新。";
+      lobbySend({ type: "hello" });
+      publishRoom();
+    });
+    app.lobbySocket.addEventListener("message", (event) => {
+      let message;
+      try { message = JSON.parse(event.data); } catch { return; }
+      if (message.type === "rooms") {
+        app.rooms.clear();
+        const stamp = Date.now();
+        for (const room of message.rooms || []) {
+          app.rooms.set(room.code, { ...room, seenAt: stamp });
+        }
+        renderRooms();
+      }
+    });
+    app.lobbySocket.addEventListener("close", () => {
+      $("lobbyStatus").textContent = "大厅连接已断开，5 秒后重连。";
+      window.setTimeout(() => connectLobby(true), 5000);
+    });
+    app.lobbySocket.addEventListener("error", () => {
+      $("lobbyStatus").textContent = "大厅连接失败，可手动输入房间码。";
+    });
+  }
+
+  function connectMqttLobby(force = false) {
+    if (!window.mqtt) {
+      $("lobbyStatus").textContent = "未配置大厅后端，且公共大厅库加载失败；可以手动输入房间码。";
+      renderRooms();
+      return;
+    }
+    app.lobbyKind = "mqtt";
+    if (!force && app.lobbyClient?.connected) return;
+    try { app.lobbyClient?.end(true); } catch {}
+    $("lobbyStatus").textContent = "连接公共大厅中...";
+    app.lobbyClient = mqtt.connect(MQTT_BROKER, {
+      clientId: `scpper_mc_${Math.random().toString(36).slice(2)}`,
+      clean: true,
+      connectTimeout: 8000,
+      reconnectPeriod: 5000,
+    });
+    app.lobbyClient.on("connect", () => {
+      $("lobbyStatus").textContent = "公共大厅已连接，房间列表实时更新。";
+      app.lobbyClient.subscribe(mqttRoomTopic("+"));
+      publishRoom();
+    });
+    app.lobbyClient.on("message", (topic, buffer) => {
+      let room;
+      try { room = JSON.parse(buffer.toString()); } catch { return; }
+      if (!room?.code) return;
+      if (room.status === "closed") {
+        app.rooms.delete(room.code);
+      } else {
+        app.rooms.set(room.code, { ...room, seenAt: Date.now() });
+      }
+      renderRooms();
+    });
+    app.lobbyClient.on("close", () => {
+      $("lobbyStatus").textContent = "公共大厅连接断开，正在重连。";
+    });
+    app.lobbyClient.on("error", () => {
+      $("lobbyStatus").textContent = "公共大厅连接失败，可以手动输入房间码。";
+    });
+  }
+
+  function renderRooms() {
+    const rooms = [...app.rooms.values()]
+      .filter((room) => Date.now() - (room.updatedAt || 0) < ROOM_TTL_MS)
+      .sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
+    $("roomList").innerHTML = rooms.length
+      ? rooms.map((room) => {
+        const statusText = room.status === "playing" ? "对战中" : room.status === "ready" ? "已满员" : "等待中";
+        const disabled = room.status !== "waiting" || app.mode !== "lobby";
+        return `<article class="game-room-card">
+          <div>
+            <strong>${C.escapeHtml(room.code)}</strong>
+            <span class="game-room-status status-${C.escapeHtml(room.status || "waiting")}">${statusText}</span>
+          </div>
+          <p>${C.escapeHtml(room.hostName || "房主")} / ${C.escapeHtml(room.hostCharacter || "未知角色")}</p>
+          ${room.guestName ? `<p class="small">访客 ${C.escapeHtml(room.guestName)} / ${C.escapeHtml(room.guestCharacter || "未知角色")}</p>` : `<p class="small">等待访客加入</p>`}
+          <button type="button" data-join-room="${C.escapeHtml(room.code)}" ${disabled ? "disabled" : ""}>加入</button>
+        </article>`;
+      }).join("")
+      : `<div class="empty">暂无公开房间。你可以创建一个，或手动输入房间码。</div>`;
+  }
+
   function createRoomCode() {
     return Math.random().toString(36).slice(2, 7).toUpperCase();
   }
@@ -886,21 +1046,29 @@
   }
 
   function closeNetwork() {
+    if (app.mode === "host" && app.roomCode) publishClosedRoom();
+    if (app.lobbyTimer) window.clearInterval(app.lobbyTimer);
+    app.lobbyTimer = null;
     try { app.conn?.close(); } catch {}
     try { app.peer?.destroy(); } catch {}
     app.peer = null;
     app.conn = null;
     app.connected = false;
     app.roomCode = "";
-    app.mode = "local";
-    app.side = "both";
-    updateNetworkStatus("本地模式");
+    app.mode = "lobby";
+    app.side = null;
+    app.engine = null;
+    app.selections.p1 = { name: "房主", characterId: "undead" };
+    app.selections.p2 = { name: "访客", characterId: "frost" };
+    $("battlePanel").hidden = true;
+    updateNetworkStatus("已回到联机大厅。");
     updateInputLocks();
+    renderRooms();
   }
 
   function ensurePeerJs() {
     if (!window.Peer) {
-      updateNetworkStatus("联机库暂时没有加载成功，可以先使用本地双人。");
+      updateNetworkStatus("联机库暂时没有加载成功，请稍后重试。");
       return false;
     }
     return true;
@@ -908,15 +1076,19 @@
 
   function hostRoom() {
     if (!ensurePeerJs()) return;
-    closeNetwork();
-    selectionFromInputs();
+    readMySelection();
+    if (app.mode !== "lobby") closeNetwork();
     app.mode = "host";
     app.side = "p1";
+    app.selections.p1 = { ...app.mySelection };
+    app.selections.p2 = { name: "访客", characterId: "frost" };
     app.roomCode = createRoomCode();
     const peerId = peerIdFromRoom(app.roomCode);
     app.peer = new Peer(peerId, { debug: 1 });
     app.peer.on("open", () => {
-      updateNetworkStatus(`房间已创建：${app.roomCode}。把房间码发给对手。`);
+      updateNetworkStatus(`房间已创建：${app.roomCode}。等待访客加入。`);
+      publishRoom("waiting");
+      app.lobbyTimer = window.setInterval(() => publishRoom(), ROOM_HEARTBEAT_MS);
       updateInputLocks();
     });
     app.peer.on("connection", (conn) => {
@@ -928,6 +1100,7 @@
       setupConnection(conn);
       app.connected = true;
       updateNetworkStatus(`房间 ${app.roomCode} 已连接，对手正在选择角色。`);
+      publishRoom("ready");
       syncSelections();
     });
     app.peer.on("error", (err) => {
@@ -944,10 +1117,11 @@
       updateNetworkStatus("请输入房间码。");
       return;
     }
-    closeNetwork();
-    selectionFromInputs();
+    readMySelection();
+    if (app.mode !== "lobby") closeNetwork();
     app.mode = "guest";
     app.side = "p2";
+    app.selections.p2 = { ...app.mySelection };
     app.roomCode = code.toUpperCase();
     app.peer = new Peer(undefined, { debug: 1 });
     app.peer.on("open", () => {
@@ -990,13 +1164,14 @@
         name: clampName(message.selection?.name, "玩家2"),
         characterId: message.selection?.characterId || "frost",
       };
-      applySelectionsToInputs();
+      updateSummaries();
+      publishRoom("ready");
       syncSelections();
       return;
     }
     if (message.type === "selectionState" && app.mode === "guest") {
       app.selections = message.selections;
-      applySelectionsToInputs();
+      applyMySelectionToInputs();
       updateNetworkStatus(`已加入房间 ${app.roomCode}，等待房主开始。`);
       updateInputLocks();
       return;
@@ -1004,7 +1179,7 @@
     if (message.type === "start" && app.mode === "guest") {
       app.selections = message.selections;
       app.engine = BattleEngine.fromSnapshot(message.snapshot);
-      applySelectionsToInputs();
+      applyMySelectionToInputs();
       renderBattle();
       return;
     }
@@ -1016,7 +1191,7 @@
     if (message.type === "reset" && app.mode === "guest") {
       app.selections = message.selections || app.selections;
       app.engine = null;
-      applySelectionsToInputs();
+      applyMySelectionToInputs();
       $("battlePanel").hidden = true;
       updateInputLocks();
       return;
@@ -1025,8 +1200,6 @@
       if (!app.engine) return;
       if (message.action === "takeAction" && app.engine.current === 1) {
         app.engine.takeAction();
-      } else if (message.action === "nextRound" && app.engine.roundEnd) {
-        app.engine.nextRound();
       }
       renderBattle();
       broadcastSnapshot();
@@ -1039,13 +1212,15 @@
 
   function syncSelections() {
     if (app.mode !== "host") return;
-    selectionFromInputs();
+    readMySelection();
     send({ type: "selectionState", selections: app.selections });
+    publishRoom();
   }
 
   function pushOwnSelection() {
-    selectionFromInputs();
+    readMySelection();
     updateCharacterNotes();
+    updateSummaries();
     if (app.mode === "guest") {
       send({ type: "selection", selection: app.selections.p2 });
     } else if (app.mode === "host") {
@@ -1064,19 +1239,31 @@
   }
 
   function bindEvents() {
-    $("localMode").addEventListener("click", closeNetwork);
     $("hostRoom").addEventListener("click", hostRoom);
     $("joinRoom").addEventListener("click", joinRoom);
+    $("refreshRooms").addEventListener("click", () => {
+      app.rooms.clear();
+      renderRooms();
+      connectLobby(true);
+    });
+    $("roomList").addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-join-room]");
+      if (!button || button.disabled) return;
+      $("roomInput").value = button.dataset.joinRoom;
+      joinRoom();
+    });
     $("copyRoom").addEventListener("click", copyRoom);
     $("disconnectRoom").addEventListener("click", closeNetwork);
     $("startGame").addEventListener("click", startBattle);
     $("actionButton").addEventListener("click", performAction);
-    $("nextRoundButton").addEventListener("click", performNextRound);
     $("restartButton").addEventListener("click", resetBattle);
-    for (const id of ["p1Name", "p1Character", "p2Name", "p2Character"]) {
+    for (const id of ["myName", "myCharacter"]) {
       $(id).addEventListener("input", pushOwnSelection);
       $(id).addEventListener("change", pushOwnSelection);
     }
+    window.addEventListener("beforeunload", () => {
+      if (app.mode === "host" && app.roomCode) publishClosedRoom();
+    });
   }
 
   function init() {
@@ -1086,9 +1273,11 @@
     renderOptions();
     renderRoster();
     bindEvents();
-    applySelectionsToInputs();
+    applyMySelectionToInputs();
     updateInputLocks();
     renderBattle();
+    renderRooms();
+    connectLobby();
   }
 
   init();

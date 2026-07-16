@@ -63,6 +63,7 @@ def main() -> None:
             "data",
             "downloads",
             "tools",
+            "server",
             ".github",
         ]
         for name in publish_entries:

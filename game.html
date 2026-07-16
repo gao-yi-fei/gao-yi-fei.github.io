@@ -12,7 +12,7 @@
     <div class="topline">
       <div>
         <h1>SCPPER-MC</h1>
-        <p class="lead">暴塔 Online：从 FIGHTING.py 移植而来的回合战斗小游戏，支持本地双人和在线真人对战。</p>
+        <p class="lead">暴塔 Online：纯联机回合战斗。进入大厅，选角色，建房或加入现有房间。</p>
         <div class="credit">created by piglin</div>
       </div>
       <div class="card" style="min-width:220px">
@@ -26,93 +26,84 @@
   <main class="game-shell">
     <section class="panel game-hero">
       <div>
-        <span class="game-kicker">暴塔 v0.2.2 / Web</span>
-        <h2>抽象但上头的随机回合战斗</h2>
-        <p>每回合玩家按行动点依次出手，技能由角色概率池随机触发。护盾会格挡一次伤害，治疗、沉默、换血、连击和大招会把局面搅得很热闹。</p>
+        <span class="game-kicker">暴塔 v0.3 / Online Lobby</span>
+        <h2>只保留联机模式</h2>
+        <p>大厅负责显示现有房间，战斗由房主端计算并通过 WebRTC 同步。下一回合自动推进，战斗日志默认收起。</p>
       </div>
-      <div class="game-status-pill" id="networkStatus">本地模式</div>
+      <div class="game-status-pill" id="networkStatus">正在连接大厅...</div>
     </section>
 
-    <section class="grid-2 game-setup-grid" id="setupPanel">
-      <div class="panel">
+    <section class="game-lobby-layout" id="setupPanel">
+      <div class="panel game-lobby-panel">
+        <div class="panel-head game-lobby-head">
+          <div>
+            <h2>现有房间</h2>
+            <div class="small" id="lobbyStatus">连接大厅中...</div>
+          </div>
+          <button type="button" id="refreshRooms">刷新</button>
+        </div>
+        <div class="panel-section game-room-list" id="roomList"></div>
+      </div>
+
+      <div class="panel game-player-panel">
         <div class="panel-head">
-          <h2>对战方式</h2>
-          <div class="small">在线模式使用 WebRTC 点对点连接；房间码只用于建立连接。</div>
+          <h2>我的参战信息</h2>
+          <div class="small" id="sideHint">创建房间后你是房主；加入房间后你是访客。</div>
+        </div>
+        <div class="panel-section">
+          <label class="game-field">名字<input id="myName" value="玩家" maxlength="18"></label>
+          <label class="game-field">角色<select id="myCharacter"></select></label>
+          <div class="game-character-note" id="myNote"></div>
         </div>
         <div class="panel-section game-mode-panel">
-          <button type="button" class="game-primary" id="localMode">本地双人</button>
-          <button type="button" id="hostRoom">创建联机房间</button>
+          <button type="button" class="game-primary" id="hostRoom">创建房间</button>
           <div class="game-join-row">
             <input id="roomInput" maxlength="24" placeholder="输入房间码">
-            <button type="button" id="joinRoom">加入房间</button>
+            <button type="button" id="joinRoom">加入</button>
           </div>
-          <div class="small" id="roomInfo">本地双人可以直接在同一页面选择两名角色开打。</div>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="panel-head">
-          <h2>联机说明</h2>
-          <div class="small">一方创建房间，另一方输入房间码加入。</div>
-        </div>
-        <div class="panel-section">
-          <ol class="game-rules">
-            <li>房主创建房间，把房间码发给对手。</li>
-            <li>双方各自选择角色与名字。</li>
-            <li>房主点击开始，之后只在轮到自己时能行动。</li>
-            <li>如果联机库加载失败，仍可使用本地双人模式。</li>
-          </ol>
+          <div class="actions">
+            <button type="button" id="copyRoom" disabled>复制房间码</button>
+            <button type="button" id="disconnectRoom" disabled>离开房间</button>
+          </div>
+          <button type="button" class="game-primary" id="startGame" disabled>开始对战</button>
+          <div class="small" id="roomInfo">等待大厅连接。</div>
         </div>
       </div>
     </section>
 
-    <section class="grid-2 game-select-grid">
+    <section class="grid-2 game-versus-grid">
       <div class="panel game-select-card" id="selectP1">
         <div class="panel-head">
-          <h2>玩家1 / 房主</h2>
-          <div class="small" id="p1Ready">可编辑</div>
+          <h2>房主</h2>
+          <div class="small" id="p1Ready">等待选择</div>
         </div>
-        <div class="panel-section">
-          <label class="game-field">名字<input id="p1Name" value="玩家1" maxlength="18"></label>
-          <label class="game-field">角色<select id="p1Character"></select></label>
-          <div class="game-character-note" id="p1Note"></div>
-        </div>
+        <div class="panel-section game-player-summary" id="p1Summary"></div>
       </div>
       <div class="panel game-select-card" id="selectP2">
         <div class="panel-head">
-          <h2>玩家2 / 访客</h2>
-          <div class="small" id="p2Ready">可编辑</div>
+          <h2>访客</h2>
+          <div class="small" id="p2Ready">等待加入</div>
         </div>
-        <div class="panel-section">
-          <label class="game-field">名字<input id="p2Name" value="玩家2" maxlength="18"></label>
-          <label class="game-field">角色<select id="p2Character"></select></label>
-          <div class="game-character-note" id="p2Note"></div>
-        </div>
+        <div class="panel-section game-player-summary" id="p2Summary"></div>
       </div>
     </section>
-
-    <div class="actions game-start-actions">
-      <button type="button" class="game-primary" id="startGame">开始游戏</button>
-      <button type="button" id="copyRoom" disabled>复制房间码</button>
-      <button type="button" id="disconnectRoom" disabled>断开联机</button>
-    </div>
 
     <section class="panel game-board" id="battlePanel" hidden>
       <div class="panel-head game-battle-head">
         <div>
+          <span class="game-kicker" id="battleRoomCode">房间 --</span>
           <h2 id="roundTitle">第 1 回合</h2>
           <div class="small" id="turnHint">等待开始</div>
         </div>
         <div class="game-controls">
-          <button type="button" class="game-primary" id="actionButton">开始行动</button>
-          <button type="button" id="nextRoundButton">下一回合</button>
-          <button type="button" id="restartButton">重新开始</button>
+          <button type="button" class="game-primary" id="actionButton">行动</button>
+          <button type="button" id="restartButton">重开</button>
         </div>
       </div>
       <div class="game-arena">
         <article class="game-fighter" id="fighterP1">
           <div class="game-fighter-head">
-            <h3 id="p1BattleName">玩家1</h3>
+            <h3 id="p1BattleName">房主</h3>
             <span class="game-side">P1</span>
           </div>
           <div class="game-health"><span id="p1HealthBar"></span></div>
@@ -124,7 +115,7 @@
         </article>
         <article class="game-fighter" id="fighterP2">
           <div class="game-fighter-head">
-            <h3 id="p2BattleName">玩家2</h3>
+            <h3 id="p2BattleName">访客</h3>
             <span class="game-side">P2</span>
           </div>
           <div class="game-health"><span id="p2HealthBar"></span></div>
@@ -136,7 +127,10 @@
         </article>
       </div>
       <div class="game-skill-banner" id="skillBanner">等待行动</div>
-      <div class="game-log" id="battleLog" aria-live="polite"></div>
+      <details class="game-log-wrap">
+        <summary>展开战斗日志 <span id="logCount">0</span></summary>
+        <div class="game-log" id="battleLog" aria-live="polite"></div>
+      </details>
     </section>
 
     <section class="panel game-roster">
@@ -150,6 +144,8 @@
 
   <script src="/assets/common.js"></script>
   <script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+  <script src="/assets/baota-config.js"></script>
   <script src="/assets/fighting.js"></script>
 </body>
 </html>

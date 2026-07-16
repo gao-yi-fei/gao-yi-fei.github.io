@@ -12,6 +12,7 @@ self.addEventListener("install", (event) => {
     "/recent.html",
     "/game.html",
     "/assets/common.js",
+    "/assets/baota-config.js",
     "/assets/fighting.js",
     "/assets/scpper.css",
     "/data/home-index.json.gz",
