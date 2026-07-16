@@ -924,6 +924,8 @@
       createdAt: Date.now(),
       updatedAt: Date.now(),
     };
+    app.rooms.set(app.roomCode, { ...payload, seenAt: Date.now() });
+    renderRooms();
     lobbySend(payload);
     if (app.lobbyClient?.connected) {
       app.lobbyClient.publish(mqttRoomTopic(app.roomCode), JSON.stringify(payload), { qos: 0, retain: false });
@@ -933,6 +935,8 @@
   function publishClosedRoom() {
     if (!app.roomCode) return;
     const payload = { type: "room", code: app.roomCode, status: "closed", updatedAt: Date.now() };
+    app.rooms.delete(app.roomCode);
+    renderRooms();
     lobbySend({ type: "close", code: app.roomCode });
     if (app.lobbyClient?.connected) {
       app.lobbyClient.publish(mqttRoomTopic(app.roomCode), JSON.stringify(payload), { qos: 0, retain: false });
