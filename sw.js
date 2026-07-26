@@ -1,4 +1,4 @@
-const CACHE = "scpper-mc-v5";
+const CACHE = "scpper-mc-v6";
 const CACHEABLE = /\.(?:html|css|js|json|gz)$/i;
 
 self.addEventListener("install", (event) => {
@@ -10,10 +10,7 @@ self.addEventListener("install", (event) => {
     "/users.html",
     "/forum.html",
     "/recent.html",
-    "/game.html",
     "/assets/common.js",
-    "/assets/baota-config.js",
-    "/assets/fighting.js",
     "/assets/scpper.css",
     "/data/home-index.json.gz",
     "/data/forum-categories.json.gz",

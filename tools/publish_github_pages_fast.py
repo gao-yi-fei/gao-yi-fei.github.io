@@ -57,13 +57,11 @@ def main() -> None:
             "users.html",
             "forum.html",
             "recent.html",
-            "game.html",
             "sw.js",
             "assets",
             "data",
             "downloads",
             "tools",
-            "server",
             ".github",
         ]
         for name in publish_entries:
