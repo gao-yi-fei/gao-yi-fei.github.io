@@ -1,6 +1,6 @@
 # SCPper-lite data
 
-- Generated: 2026-08-02T12:44:23+00:00
+- Generated: 2026-08-02T14:17:15+00:00
 - Pages: 1337
 - Users: 353
 - Rated pages: 1337
