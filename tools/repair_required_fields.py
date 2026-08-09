@@ -166,6 +166,9 @@ def missing_reasons(
     sources: dict[str, str],
     row: dict[str, str] | None = None,
 ) -> list[str]:
+    # A retained deletion archive cannot be re-fetched from the live wiki.
+    if page.get("archived_deleted"):
+        return []
     reasons = vote_reasons(page)
     if not has_author(page):
         reasons.append("author")
