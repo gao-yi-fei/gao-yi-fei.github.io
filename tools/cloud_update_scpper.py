@@ -82,11 +82,12 @@ def main() -> int:
         "--site", str(build_dir),
         "--backup", str(backup_dir),
         "--workers", str(args.workers),
-        "--timeout", str(max(args.timeout, 60)),
-        "--retries", "10",
-        "--source-retries", "8",
+        "--timeout", str(min(args.timeout, 30)),
+        "--retries", "4",
+        "--source-retries", "3",
         "--comments-per-thread", str(args.comments_per_thread),
         "--soft-comment-failures",
+        "--allow-unresolved",
     ])
 
     if not args.skip_source_archive:
