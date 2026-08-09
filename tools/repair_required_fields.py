@@ -47,6 +47,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Return success when the only remaining issues after repair are comment mismatches.",
     )
+    parser.add_argument(
+        "--allow-unresolved",
+        action="store_true",
+        help="Publish repaired data and retry unresolved live fields on the next refresh.",
+    )
     parser.add_argument("--out-report", default="")
     return parser.parse_args()
 
@@ -450,7 +455,7 @@ def main() -> int:
         "report": str(report_path),
         "soft_comment_only": soft_comment_only,
     }, ensure_ascii=False, indent=2))
-    return 0 if not final_missing or soft_comment_only else 2
+    return 0 if not final_missing or soft_comment_only or args.allow_unresolved else 2
 
 
 if __name__ == "__main__":
