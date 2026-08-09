@@ -76,7 +76,8 @@
       return tags.length ? `<span class="tag-list">${tags.map((tag) => `<span class="tag">${C.escapeHtml(tag)}</span>`).join("")}</span>` : `<span class="tag-list"><span class="small">无外部标签</span></span>`;
     }
     function renderKindAndTags(page) {
-      return `<span class="kind-line">${C.kindBadge(page.page_kind)}</span>${renderTagList(page)}`;
+      const archived = page.archived_deleted ? `<span class="tag bad">已删除存档</span>` : "";
+      return `<span class="kind-line">${C.kindBadge(page.page_kind)}${archived}</span>${renderTagList(page)}`;
     }
     function selectedKinds() {
       return new Set([...document.querySelectorAll("#kindFilter input:checked")].map((el) => el.value));
@@ -172,7 +173,7 @@
         return `<button class="row" aria-selected="${state.selectedName === page.page_name}" data-page-name="${C.escapeHtml(page.page_name)}">
           <span><span class="${C.ratingClass(page.rating)}">${C.ratingLabel(page.rating)}</span><br><span class="small">#${C.fmt.format(offset + index + 1)}</span></span>
           <span><span class="title">${C.escapeHtml(page.title || page.page_name)}</span>
-          <span class="name">${C.escapeHtml(page.page_name)} · ${C.escapeHtml(page.history_author_name || "作者未知")}</span>
+          <span class="name">${C.escapeHtml(page.page_name)} · ${C.escapeHtml(page.history_author_name || "作者未知")}${page.archived_deleted ? " · 已删除存档" : ""}</span>
           ${renderKindAndTags(page)}</span>
           <span class="small">${comments == null ? "" : `${comments} 评论`}<br>${voteSummary(page)}<br>${C.escapeHtml(C.formatBeijing(page.created_at, page.created_at_beijing))}</span>
         </button>`;
@@ -272,7 +273,7 @@
       const voters = detail?.voters?.users || [], comments = detail?.comments_preview?.posts || [], source = state.sourceCache.get(name), sourceError = state.sourceErrors.get(name);
       const historyAuthor = detail?.history_author?.author, groups = voterGroups(page, voters);
       $("detail").innerHTML = `
-        <section><h2>${C.escapeHtml(page.title || page.page_name)}</h2><div class="small">${C.escapeHtml(page.page_name)} · ${C.kindBadge(page.page_kind)} · 评分 ${C.ratingLabel(page.rating)} · ${voteSummary(page)}</div>
+        <section><h2>${C.escapeHtml(page.title || page.page_name)}</h2><div class="small">${C.escapeHtml(page.page_name)} · ${C.kindBadge(page.page_kind)}${page.archived_deleted ? " · 已删除存档" : ""} · 评分 ${C.ratingLabel(page.rating)} · ${voteSummary(page)}</div>
           <div class="actions"><a href="${C.escapeHtml(page.url)}" target="_blank" rel="noreferrer">原页面</a>${entry.discussion?.url ? `<a href="${C.escapeHtml(entry.discussion.url)}" target="_blank" rel="noreferrer">讨论帖</a>` : ""}<a href="${C.escapeHtml(backupHref())}">完整备份 zip</a></div></section>
         ${error ? `<section><h3>详情载入失败</h3><p class="small">${C.escapeHtml(error)}</p></section>` : ""}
         <section><h3>元数据</h3><p class="small">Page ID: ${C.escapeHtml(page.page_id || "n/a")}<br>发布：${C.escapeHtml(C.formatBeijing(page.created_at, page.created_at_beijing) || "n/a")}<br>最近编辑：${C.escapeHtml(C.formatBeijing(page.last_edited_at, page.last_edited_at_beijing) || "n/a")}<br>创建者：${historyAuthor ? formatUser(historyAuthor) : C.escapeHtml(page.history_author?.status || page.history_author_name || "unknown")}</p><div class="small">页面类型</div><div class="kind-line">${C.kindBadge(page.page_kind)}</div><div class="small" style="margin-top:10px">标签</div>${renderTagList(page)}</section>
