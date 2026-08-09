@@ -230,10 +230,12 @@ def wikidot_ajax(
     raise RuntimeError(f"failed ajax {module_name} for {page_url}: {last_exc}")
 
 
-def read_manifest(backup_dir: Path) -> list[ManifestRow]:
-    path = backup_dir / "manifest.csv"
-    if not path.exists():
+def read_manifest(backup_dir: Path, filename: str | None = None) -> list[ManifestRow]:
+    path = backup_dir / filename if filename else backup_dir / "manifest.csv"
+    if not path.exists() and not filename:
         path = backup_dir / "index.csv"
+    if not path.exists():
+        return []
     with path.open("r", encoding="utf-8-sig", newline="") as handle:
         rows = []
         for row in csv.DictReader(handle):
@@ -360,6 +362,7 @@ def compact_page_ref(page: dict[str, Any]) -> dict[str, Any]:
         "page_name": page.get("page_name"),
         "title": page.get("title") or page.get("page_name"),
         "url": page.get("url"),
+        "archived_deleted": bool(page.get("archived_deleted")),
         "rating": page.get("rating"),
         "vote_up": page.get("voters", {}).get("up"),
         "vote_down": page.get("voters", {}).get("down"),
@@ -1431,6 +1434,7 @@ def build_page(row: ManifestRow, backup_dir: Path, args: argparse.Namespace) -> 
     page = {
         "url": row.url,
         "page_name": row.page_name,
+        "archived_deleted": row.status == "archived_deleted",
         "title": row.title.removesuffix(" - SCP基金会Minecraft分部") if row.title else "",
         "page_id": row.page_id or None,
         "site_id": row.site_id or None,
@@ -2175,6 +2179,7 @@ def main() -> int:
     backup_dir = Path(args.backup)
     out_dir = Path(args.out)
     rows = [row for row in read_manifest(backup_dir) if row.status == "ok"]
+    rows.extend(read_manifest(backup_dir, "archived_deleted.csv"))
     if args.page:
         rows = [row for row in rows if row.page_name == args.page]
     if args.max_pages:
