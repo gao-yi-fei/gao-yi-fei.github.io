@@ -43,6 +43,7 @@ def main() -> int:
     parser.add_argument("--timeout", type=float, default=45.0)
     parser.add_argument("--retries", type=int, default=5)
     parser.add_argument("--comments-per-thread", type=int, default=0)
+    parser.add_argument("--skip-source-archive", action="store_true")
     args = parser.parse_args()
 
     cache_dir = (ROOT / args.cache_dir).resolve()
@@ -88,17 +89,21 @@ def main() -> int:
         "--soft-comment-failures",
     ])
 
-    downloads = build_dir / "downloads"
-    downloads.mkdir(parents=True, exist_ok=True)
-    archive_base = downloads / backup_dir.name
-    if archive_base.with_suffix(".zip").exists():
-        archive_base.with_suffix(".zip").unlink()
-    shutil.make_archive(str(archive_base), "zip", root_dir=backup_dir)
+    if not args.skip_source_archive:
+        downloads = build_dir / "downloads"
+        downloads.mkdir(parents=True, exist_ok=True)
+        archive_base = downloads / backup_dir.name
+        if archive_base.with_suffix(".zip").exists():
+            archive_base.with_suffix(".zip").unlink()
+        shutil.make_archive(str(archive_base), "zip", root_dir=backup_dir)
 
-    for name in [
+    publish_entries = [
         "index.html", "pages.html", "users.html", "forum.html", "recent.html",
-        "sw.js", "assets", "data", "downloads",
-    ]:
+        "sw.js", "assets", "data",
+    ]
+    if not args.skip_source_archive:
+        publish_entries.append("downloads")
+    for name in publish_entries:
         copy_entry(build_dir / name, ROOT / name)
 
     stamp = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
