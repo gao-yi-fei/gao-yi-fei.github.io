@@ -115,6 +115,7 @@
       $("nav").innerHTML = C.renderNav("home");
       C.wireRefresh();
       C.tickBeijing("nowBeijing");
+      await C.initDataVersion();
       const payload = await C.loadJson("data/home-index.json.gz");
       let contest = payload.current_contest;
       try {
