@@ -1944,6 +1944,7 @@ def write_site(
     sources: dict[str, str],
     backup_dir: Path,
     forum_index: dict[str, Any] | None = None,
+    generated_dt: datetime | None = None,
 ) -> None:
     data_dir = out_dir / "data"
     if data_dir.exists():
@@ -1957,7 +1958,7 @@ def write_site(
     source_dir.mkdir(parents=True, exist_ok=True)
     user_detail_dir.mkdir(parents=True, exist_ok=True)
     forum_thread_dir.mkdir(parents=True, exist_ok=True)
-    generated_dt = datetime.now(timezone.utc)
+    generated_dt = generated_dt or datetime.now(timezone.utc)
     generated_at = generated_dt.isoformat(timespec="seconds")
     forum_index = forum_index or {"groups": [], "categories": [], "threads": []}
     forum_index = merge_page_discussions_into_forum(forum_index, pages)
