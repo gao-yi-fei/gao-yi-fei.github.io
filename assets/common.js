@@ -36,7 +36,7 @@ window.SCPPER = (() => {
     let stored = "";
     try { stored = localStorage.getItem("scpper-data-version") || ""; } catch (_) {}
     if (stored) cacheToken = stored;
-    if (!versionPromise) versionPromise = fetch("/data/sync-version.json", { cache: "no-store" })
+    if (!versionPromise) versionPromise = fetch("data/sync-version.json", { cache: "no-store" })
       .then((res) => res.ok ? res.json() : null)
       .then((payload) => {
         cacheToken = String(payload?.version || cacheToken || "");
