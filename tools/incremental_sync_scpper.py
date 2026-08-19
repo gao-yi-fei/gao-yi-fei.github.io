@@ -26,6 +26,7 @@ if str(TOOLS_DIR) not in sys.path:
     sys.path.insert(0, str(TOOLS_DIR))
 build = importlib.import_module("build_scpper_lite")
 contest = importlib.import_module("refresh_contest_snapshot")
+crawler = importlib.import_module("crawl_wikidot_sources")
 
 BASE = "https://scp-wiki-mc.wikidot.com"
 FEEDS = (
@@ -232,11 +233,98 @@ def refresh_index_timestamps(data_dir: Path) -> None:
         path.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
 
+def load_page_ledger(path: Path) -> dict[str, dict[str, str]]:
+    if not path.exists():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        return {str(url): value for url, value in (payload.get("urls") or {}).items() if isinstance(value, dict)}
+    except (OSError, json.JSONDecodeError):
+        return {}
+
+
+def save_page_ledger(path: Path, urls: set[str], pages: dict[str, dict[str, Any]]) -> None:
+    by_url = {str(page.get("url")): page for page in pages.values() if page.get("url")}
+    payload = {"captured_at": build.now_iso(), "urls": {}}
+    for url in sorted(urls):
+        page = by_url.get(url)
+        if page and page.get("page_id"):
+            payload["urls"][url] = {"page_id": str(page["page_id"]), "page_name": str(page.get("page_name") or "")}
+    path.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
+
+def reconcile_category_moves(
+    pages: dict[str, dict[str, Any]], sources: dict[str, str], data_dir: Path, args: argparse.Namespace
+) -> tuple[int, int]:
+    ledger_path = data_dir / "page-ledger.json"
+    previous = load_page_ledger(ledger_path)
+    category_args = SimpleNamespace(
+        user_agent="SCPPER-MC category ledger", delay=0.0, retries=args.retries,
+        timeout=args.timeout, include_search=False, limit=0,
+    )
+    current_urls = set(crawler.parse_categories(BASE, category_args))
+    if not previous:
+        save_page_ledger(ledger_path, current_urls, pages)
+        return 0, 0
+
+    newly_discovered_urls = current_urls - set(previous)
+    moved = 0
+    unresolved = False
+    refreshed_by_id: dict[str, tuple[str, dict[str, Any], str]] = {}
+    with ThreadPoolExecutor(max_workers=max(1, min(args.workers, 12))) as executor:
+        futures = {
+            executor.submit(refresh_page, urlparse(url).path.strip("/"), None, args): url
+            for url in newly_discovered_urls
+        }
+        for future in as_completed(futures):
+            try:
+                canonical, page, source = future.result()
+            except Exception:  # Do not infer a deletion while a possible destination failed to load.
+                unresolved = True
+                continue
+            page_id = str(page.get("page_id") or "")
+            if page_id:
+                refreshed_by_id[page_id] = (canonical, page, source)
+
+    moved_old_urls: set[str] = set()
+    for old_url, record in previous.items():
+        replacement = refreshed_by_id.get(str(record.get("page_id") or ""))
+        if not replacement:
+            continue
+        canonical, page, source = replacement
+        old_name = str(record.get("page_name") or "")
+        pages.pop(old_name, None)
+        sources.pop(old_name, None)
+        page["moved"] = True
+        page["moved_from"] = None
+        page["moved_to"] = page.get("url")
+        page["archived_deleted"] = False
+        pages[canonical] = page
+        sources[canonical] = source
+        moved_old_urls.add(old_url)
+        moved += 1
+
+    deleted = 0
+    if not unresolved:
+        for old_url in set(previous) - current_urls - moved_old_urls:
+            old_name = str(previous[old_url].get("page_name") or "")
+            page = pages.get(old_name)
+            if not page:
+                continue
+            page["archived_deleted"] = True
+            page["moved"] = False
+            page["moved_to"] = None
+            deleted += 1
+    save_page_ledger(ledger_path, current_urls, pages)
+    return moved, deleted
+
+
 def main() -> int:
     args = parse_args()
     site_dir = Path(args.site).resolve()
     data_dir = site_dir / "data"
     pages, sources = load_pages_and_sources(data_dir)
+    moved_count, deleted_count = reconcile_category_moves(pages, sources, data_dir, args)
     forum_payload = read_gzip(data_dir / "forum-index.json.gz")
     forum_index = {key: value for key, value in forum_payload.items() if key != "stats"}
     feed_html = {path: build.fetch_text(f"{BASE}{path}", timeout=args.timeout, retries=args.retries) for path in FEEDS}
@@ -295,6 +383,7 @@ def main() -> int:
         "captured_at": build.now_iso(), "page_targets": len(page_names), "page_refreshed": len(refreshed),
         "feed_candidates": len(candidates), "feed_created": len(created), "feed_changed": len(changed), "feed_posts": len(commented),
         "forum_threads_refreshed": thread_count, "changed_data_files": changed_files, "failures": failures,
+        "category_moves": moved_count, "category_deletions": deleted_count,
         "feeds": list(FEEDS),
     }
     (data_dir / "incremental-sync.json").write_text(
