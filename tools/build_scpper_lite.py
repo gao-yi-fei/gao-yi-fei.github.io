@@ -68,6 +68,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build static SCPper-lite data and UI.")
     parser.add_argument("--backup", default=DEFAULT_BACKUP, help="Backup directory with manifest.csv.")
     parser.add_argument("--out", default=DEFAULT_OUT, help="Output static site directory.")
+    parser.add_argument("--previous-site", default="", help="Previous published site used to preserve deleted-page metadata.")
     parser.add_argument("--workers", type=int, default=8, help="Concurrent page fetch workers.")
     parser.add_argument("--timeout", type=float, default=30.0, help="HTTP timeout.")
     parser.add_argument("--retries", type=int, default=3, help="Retries per HTTP request.")
@@ -1000,6 +1001,7 @@ def parse_forum_comments(
                 "thread_page": page_no,
                 "post_url": f"{thread_url.split('#', 1)[0]}#post-{post_id}" if post_id else None,
                 "content": content[:1000] if content else "",
+                "content_html": content_node.decode_contents().strip()[:8000] if content_node else "",
             }
         )
         if limit > 0 and len(posts) >= limit:
@@ -1472,6 +1474,40 @@ def build_page(row: ManifestRow, backup_dir: Path, args: argparse.Namespace) -> 
     if not page.get("title"):
         page["title"] = row.page_name
     return page, {source_key: source}
+
+
+def load_previous_pages(site_dir: Path) -> dict[str, dict[str, Any]]:
+    pages: dict[str, dict[str, Any]] = {}
+    for path in (site_dir / "data" / "details").glob("*.json.gz"):
+        try:
+            with gzip.open(path, "rt", encoding="utf-8") as handle:
+                pages.update((json.load(handle).get("pages") or {}))
+        except (OSError, json.JSONDecodeError):
+            continue
+    return pages
+
+
+def preserve_deleted_page_metadata(pages: list[dict[str, Any]], previous: dict[str, dict[str, Any]]) -> None:
+    fields = ("rating", "rating_text", "voters", "voters_status", "history_author", "created_at", "created_at_beijing", "last_edited_at", "last_edited_at_beijing", "discussion", "comments_preview", "page_kind", "tags")
+    for page in pages:
+        if not page.get("archived_deleted"):
+            continue
+        old = previous.get(page.get("page_name"))
+        if not old:
+            continue
+        for field in fields:
+            if old.get(field) is not None:
+                page[field] = old[field]
+        page["archived_deleted"] = True
+
+
+def preserve_comment_histories(pages: list[dict[str, Any]], previous: dict[str, dict[str, Any]]) -> None:
+    for page in pages:
+        old_posts = {str(post.get("id")): post for post in ((previous.get(page.get("page_name")) or {}).get("comments_preview") or {}).get("posts") or [] if post.get("id")}
+        for post in ((page.get("comments_preview") or {}).get("posts") or []):
+            old = old_posts.get(str(post.get("id")))
+            if old and old.get("history"):
+                post["history"] = old["history"]
 
 
 def latest_post(posts: list[dict[str, Any]]) -> dict[str, Any] | None:
@@ -2194,6 +2230,11 @@ def main() -> int:
             page, source = future.result()
             pages.append(page)
             sources.update(source)
+
+    if args.previous_site:
+        previous_pages = load_previous_pages(Path(args.previous_site))
+        preserve_deleted_page_metadata(pages, previous_pages)
+        preserve_comment_histories(pages, previous_pages)
 
     forum_index = {"groups": [], "categories": [], "threads": []}
     if not args.skip_live and not args.skip_forum:
