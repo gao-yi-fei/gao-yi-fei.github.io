@@ -87,6 +87,7 @@
     async function init() {
       $("nav").innerHTML = C.renderNav("recent");
       C.wireRefresh();
+      await C.initDataVersion();
       state.payload = await C.loadJson("data/recent-head.json", false);
       renderStats(state.payload.stats || {});
       render();
