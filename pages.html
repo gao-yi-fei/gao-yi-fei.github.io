@@ -301,6 +301,7 @@
     async function init() {
       $("nav").innerHTML = C.renderNav("pages");
       C.wireRefresh();
+      await C.initDataVersion();
       const preferredName = new URLSearchParams(location.search).get("page") || "";
       const payload = await C.loadJson("data/pages-head.json", false);
       applyPayload(payload, preferredName);
