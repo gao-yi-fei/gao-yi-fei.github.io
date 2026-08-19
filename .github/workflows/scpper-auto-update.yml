@@ -3,13 +3,13 @@ name: Auto Update SCPPER-MC
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "17 */6 * * *"
 
 permissions:
   contents: write
 
 concurrency:
-  group: scpper-auto-update
+  group: scpper-sync
   cancel-in-progress: false
 
 jobs:
