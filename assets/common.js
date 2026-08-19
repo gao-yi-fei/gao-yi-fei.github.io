@@ -33,10 +33,14 @@ window.SCPPER = (() => {
   }
   async function initDataVersion() {
     if (cacheToken) return cacheToken;
+    let stored = "";
+    try { stored = localStorage.getItem("scpper-data-version") || ""; } catch (_) {}
+    if (stored) cacheToken = stored;
     if (!versionPromise) versionPromise = fetch("/data/sync-version.json", { cache: "no-store" })
       .then((res) => res.ok ? res.json() : null)
       .then((payload) => {
-        cacheToken = String(payload?.version || "");
+        cacheToken = String(payload?.version || cacheToken || "");
+        try { if (cacheToken) localStorage.setItem("scpper-data-version", cacheToken); } catch (_) {}
         return cacheToken;
       })
       .catch(() => cacheToken);
@@ -63,8 +67,12 @@ window.SCPPER = (() => {
     if (!("serviceWorker" in navigator) || location.protocol === "file:") return;
     navigator.serviceWorker.register("/sw.js").catch(() => {});
   }
-  function refreshData() {
-    cacheToken = String(Date.now());
+  async function refreshData() {
+    versionPromise = null;
+    cacheToken = "";
+    await initDataVersion();
+    if (!cacheToken) cacheToken = String(Date.now());
+    try { localStorage.setItem("scpper-data-version", cacheToken); } catch (_) {}
     const next = `${location.pathname}?v=${cacheToken}`;
     if (location.search) {
       location.replace(next);
