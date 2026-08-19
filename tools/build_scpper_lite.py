@@ -1436,9 +1436,7 @@ def build_page(row: ManifestRow, backup_dir: Path, args: argparse.Namespace) -> 
     page = {
         "url": row.url,
         "page_name": row.page_name,
-        # SCP-MC keeps intentionally removed works in Wikidot's `deleted:` category.
-        # Treat those pages like retained deletion archives in the public index.
-        "archived_deleted": row.status == "archived_deleted" or row.page_name.startswith("deleted:"),
+        "archived_deleted": row.status == "archived_deleted",
         "title": row.title.removesuffix(" - SCP基金会Minecraft分部") if row.title else "",
         "page_id": row.page_id or None,
         "site_id": row.site_id or None,
