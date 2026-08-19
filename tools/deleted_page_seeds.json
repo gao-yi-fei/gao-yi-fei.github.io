@@ -1,7 +1,1558 @@
 [
   {
-    "page_name": "scp-mc-993",
-    "title": "SCP-MC-993",
-    "url": "https://scp-wiki-mc.wikidot.com/scp-mc-993"
+    "page_name": "day--deleted-1402048199",
+    "detail": {
+      "url": "https://scp-wiki-mc.wikidot.com/day",
+      "page_name": "day--deleted-1402048199",
+      "title": "从日出到日落",
+      "page_id": "1402048199",
+      "site_id": "4427955",
+      "source_file": "_default/day.wikidot",
+      "raw_file": "_raw_viewsource/_default/day.html",
+      "source_bytes": "1764",
+      "source_chars": "694",
+      "source_sha256": "8be093a44a466faee7f56c68b5f02804e579de47f942ca8d9f8ff0720f23240d",
+      "source_excerpt": "[[>]]\n\n[[module Rate]]\n\n[[/>]]\n\n\n\nDr.Ding醒了，在哈拉德纳平原的临时小屋里，窗外的太阳缓缓升起，他看了一眼日期：“2021年10月18日，时间这么快啊，又到生日了。”10月18日，是Dr.Ding的生日，他经常忘记日子，也就只有早上看日历的时候能想起来今天是几月几日，吃个早饭差不多又会忘了。\n\n\n\n\n\n“昨晚又是在编写学志的时候睡着了吗？”Dr.Ding坐了起来伸了个懒腰，桌上摆着一张纸，标题是地理学志：岛礁板块，纸上的字逐渐潦草，直到最后变成了扭曲的线条。“呃，这，以后还是不要半夜写了吧。”Dr.Ding站了起来，从桌子旁边的木桶里随手拿了一份熟鱼，和...",
+      "author_hints": {
+        "users": [],
+        "author_pages": []
+      },
+      "live_error": "",
+      "page_kind": "original",
+      "created_at": "2022-04-03T08:34:20+00:00",
+      "created_at_beijing": "2022/04/03 16:34:20",
+      "last_edited_at": "2022-04-08T09:03:10+00:00",
+      "last_edited_at_beijing": "2022/04/08 17:03:10",
+      "unix_name": "day",
+      "rating": 5,
+      "rating_text": "+5",
+      "has_rating_widget": true,
+      "voters_status": "captured",
+      "tags": [
+        "人之为本竞赛",
+        "原创",
+        "故事"
+      ],
+      "page_info": "页面版本: 6, 最后编辑于: 08 Apr 2022 09:03",
+      "revision_count": 6,
+      "discussion": {
+        "label": "讨论 (7)",
+        "url": "https://scp-wiki-mc.wikidot.com/forum/t-14592395/day",
+        "thread_id": "14592395",
+        "comments_count": 7
+      },
+      "html_users": [],
+      "voters": {
+        "status": "captured",
+        "count": 11,
+        "up": 8,
+        "down": 3,
+        "up_deleted": 0,
+        "down_deleted": 0,
+        "up_users": [
+          {
+            "name": "Andrrrrrre",
+            "user_id": "6411381",
+            "profile": "http://www.wikidot.com/user:info/andrrrrrre",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "Andy_W7",
+            "user_id": "2964191",
+            "profile": "http://www.wikidot.com/user:info/andy-w7",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "chara__the__dreemurr",
+            "user_id": "7613459",
+            "profile": "http://www.wikidot.com/user:info/chara-the-dreemurr",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "Creator_Fear",
+            "user_id": "8646978",
+            "profile": "http://www.wikidot.com/user:info/creator-fear",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "EndLimitx321",
+            "user_id": "8335120",
+            "profile": "http://www.wikidot.com/user:info/endlimitx321",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "poif",
+            "user_id": "8015370",
+            "profile": "http://www.wikidot.com/user:info/poif",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "Qian Shu Lian",
+            "user_id": "9496441",
+            "profile": "http://www.wikidot.com/user:info/qian-shu-lian",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "YiChen_Reaminze",
+            "user_id": "7169775",
+            "profile": "http://www.wikidot.com/user:info/yichen-reaminze",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          }
+        ],
+        "down_users": [
+          {
+            "name": "Darkskiller",
+            "user_id": "7669979",
+            "profile": "http://www.wikidot.com/user:info/darkskiller",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          },
+          {
+            "name": "Diamond_shovel",
+            "user_id": "6978637",
+            "profile": "http://www.wikidot.com/user:info/diamond-shovel",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          },
+          {
+            "name": "piglin",
+            "user_id": "6559037",
+            "profile": "http://www.wikidot.com/user:info/piglin",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          }
+        ],
+        "users": [
+          {
+            "name": "Andrrrrrre",
+            "user_id": "6411381",
+            "profile": "http://www.wikidot.com/user:info/andrrrrrre",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "Andy_W7",
+            "user_id": "2964191",
+            "profile": "http://www.wikidot.com/user:info/andy-w7",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "chara__the__dreemurr",
+            "user_id": "7613459",
+            "profile": "http://www.wikidot.com/user:info/chara-the-dreemurr",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "Creator_Fear",
+            "user_id": "8646978",
+            "profile": "http://www.wikidot.com/user:info/creator-fear",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "Darkskiller",
+            "user_id": "7669979",
+            "profile": "http://www.wikidot.com/user:info/darkskiller",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          },
+          {
+            "name": "Diamond_shovel",
+            "user_id": "6978637",
+            "profile": "http://www.wikidot.com/user:info/diamond-shovel",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          },
+          {
+            "name": "EndLimitx321",
+            "user_id": "8335120",
+            "profile": "http://www.wikidot.com/user:info/endlimitx321",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "piglin",
+            "user_id": "6559037",
+            "profile": "http://www.wikidot.com/user:info/piglin",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          },
+          {
+            "name": "poif",
+            "user_id": "8015370",
+            "profile": "http://www.wikidot.com/user:info/poif",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "Qian Shu Lian",
+            "user_id": "9496441",
+            "profile": "http://www.wikidot.com/user:info/qian-shu-lian",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "YiChen_Reaminze",
+            "user_id": "7169775",
+            "profile": "http://www.wikidot.com/user:info/yichen-reaminze",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          }
+        ]
+      },
+      "history_author": {
+        "status": "captured",
+        "source": "history_revision_0",
+        "revision_id": "1459773459",
+        "version": 0,
+        "created_text": "03 Apr 2022 08:34",
+        "created_at": "2022-04-03T08:34:20+00:00",
+        "created_at_beijing": "2022/04/03 16:34:20",
+        "author": {
+          "name": "SMUJ",
+          "user_id": "7480204",
+          "profile": "http://www.wikidot.com/user:info/smuj",
+          "deleted": false
+        },
+        "latest": {
+          "status": "captured",
+          "source": "history_latest",
+          "revision_id": "1459955594",
+          "version": 6,
+          "edited_text": "08 Apr 2022 09:03",
+          "edited_at": "2022-04-08T09:03:10+00:00",
+          "edited_at_beijing": "2022/04/08 17:03:10",
+          "editor": {
+            "name": "Tengurthy Clotsfoot",
+            "user_id": "6664179",
+            "profile": "http://www.wikidot.com/user:info/tengurthy-clotsfoot",
+            "deleted": false
+          }
+        },
+        "history_page": 1
+      },
+      "comments_preview": {
+        "url": "https://scp-wiki-mc.wikidot.com/forum/t-14592395/day",
+        "thread_id": "14592395",
+        "page_count": 1,
+        "captured_posts": 7,
+        "complete": true,
+        "errors": [],
+        "posts": [
+          {
+            "id": "5250890",
+            "title": null,
+            "author": "Area35_zt",
+            "author_user": {
+              "name": "Area35_zt",
+              "user_id": "6120541",
+              "profile": "http://www.wikidot.com/user:info/area35-zt",
+              "deleted": false
+            },
+            "author_id": null,
+            "created_text": "03 Apr 2022 13:48",
+            "created_at": "2022-04-03T13:48:42+00:00",
+            "created_at_beijing": "2022/04/03 21:48:42",
+            "thread_page": 1,
+            "post_url": "https://scp-wiki-mc.wikidot.com/forum/t-14592395/day#post-5250890",
+            "content": "我在down不down上犹豫了半天最终决定还是D了（逃 首先，这篇文里我并没有看出什么突出的情感，也并不知道作者要表达的内容。全文太短，甚至让人感觉它像是赶工赶出来的似的。要知道短篇/超短篇故事要么表达的情感有独到之处，要么文笔非常好，而这篇文章（至少在我看来）两者都不占。 我最后还是坚持了 质量决定评分的原则 ，很抱歉给Downvote了。希望可以围绕这篇文章再打磨打磨。"
+          },
+          {
+            "id": "5251537",
+            "title": null,
+            "author": "Area35_zt",
+            "author_user": {
+              "name": "Area35_zt",
+              "user_id": "6120541",
+              "profile": "http://www.wikidot.com/user:info/area35-zt",
+              "deleted": false
+            },
+            "author_id": null,
+            "created_text": "04 Apr 2022 08:44",
+            "created_at": "2022-04-04T08:44:18+00:00",
+            "created_at_beijing": "2022/04/04 16:44:18",
+            "thread_page": 1,
+            "post_url": "https://scp-wiki-mc.wikidot.com/forum/t-14592395/day#post-5251537",
+            "content": "我悟了！ 您看看这个： http://scp-wiki-mc.wikidot.com/day-scret"
+          },
+          {
+            "id": "5251620",
+            "title": null,
+            "author": "LarryZip",
+            "author_user": {
+              "name": "LarryZip",
+              "user_id": "6680438",
+              "profile": "http://www.wikidot.com/user:info/larryzip",
+              "deleted": false
+            },
+            "author_id": null,
+            "created_text": "04 Apr 2022 10:41",
+            "created_at": "2022-04-04T10:41:37+00:00",
+            "created_at_beijing": "2022/04/04 18:41:37",
+            "thread_page": 1,
+            "post_url": "https://scp-wiki-mc.wikidot.com/forum/t-14592395/day#post-5251620",
+            "content": "建议别删了，归档吧。。。"
+          },
+          {
+            "id": "5252489",
+            "title": null,
+            "author": "Diamond_shovel",
+            "author_user": {
+              "name": "Diamond_shovel",
+              "user_id": "6978637",
+              "profile": "http://www.wikidot.com/user:info/diamond-shovel",
+              "deleted": false
+            },
+            "author_id": null,
+            "created_text": "05 Apr 2022 07:04",
+            "created_at": "2022-04-05T07:04:27+00:00",
+            "created_at_beijing": "2022/04/05 15:04:27",
+            "thread_page": 1,
+            "post_url": "https://scp-wiki-mc.wikidot.com/forum/t-14592395/day#post-5252489",
+            "content": "额，不挂删吗 管理员你在看吗，挂删啊"
+          },
+          {
+            "id": "5255195",
+            "title": "职员贴：删除宣告",
+            "author": "piglin",
+            "author_user": {
+              "name": "piglin",
+              "user_id": "6559037",
+              "profile": "http://www.wikidot.com/user:info/piglin",
+              "deleted": false
+            },
+            "author_id": null,
+            "created_text": "07 Apr 2022 23:14",
+            "created_at": "2022-04-07T23:14:06+00:00",
+            "created_at_beijing": "2022/04/08 07:14:06",
+            "thread_page": 1,
+            "post_url": "https://scp-wiki-mc.wikidot.com/forum/t-14592395/day#post-5255195",
+            "content": "根据 删帖指导 ，此条目目前评分已回升-2分及以上，故此宣告作废。若评分再次跌穿-2分，此删除宣告贴将重启。 ——Tengurthy Clotsfoot 已编辑"
+          },
+          {
+            "id": "5256152",
+            "title": "看完解密之后我悟了",
+            "author": "chara__the__dreemurr",
+            "author_user": {
+              "name": "chara__the__dreemurr",
+              "user_id": "7613459",
+              "profile": "http://www.wikidot.com/user:info/chara-the-dreemurr",
+              "deleted": false
+            },
+            "author_id": null,
+            "created_text": "09 Apr 2022 01:14",
+            "created_at": "2022-04-09T01:14:17+00:00",
+            "created_at_beijing": "2022/04/09 09:14:17",
+            "thread_page": 1,
+            "post_url": "https://scp-wiki-mc.wikidot.com/forum/t-14592395/day#post-5256152",
+            "content": "来给个uv）"
+          },
+          {
+            "id": "6433522",
+            "title": null,
+            "author": "EndLimitx321",
+            "author_user": {
+              "name": "EndLimitx321",
+              "user_id": "8335120",
+              "profile": "http://www.wikidot.com/user:info/endlimitx321",
+              "deleted": false
+            },
+            "author_id": null,
+            "created_text": "18 Feb 2024 16:19",
+            "created_at": "2024-02-18T16:19:50+00:00",
+            "created_at_beijing": "2024/02/19 00:19:50",
+            "thread_page": 1,
+            "post_url": "https://scp-wiki-mc.wikidot.com/forum/t-14592395/day#post-6433522",
+            "content": "有一种世界末日惬意溜冰的感觉，喜欢"
+          }
+        ]
+      },
+      "archive_display_name": "day",
+      "archived_deleted": true,
+      "moved": false,
+      "moved_from": null,
+      "moved_to": null,
+      "url_reused": false,
+      "replacement_page_id": null
+    },
+    "source": "[[>]]\n\n[[module Rate]]\n\n[[/>]]\n\n\n\nDr.Ding醒了，在哈拉德纳平原的临时小屋里，窗外的太阳缓缓升起，他看了一眼日期：“2021年10月18日，时间这么快啊，又到生日了。”10月18日，是Dr.Ding的生日，他经常忘记日子，也就只有早上看日历的时候能想起来今天是几月几日，吃个早饭差不多又会忘了。\n\n\n\n\n\n“昨晚又是在编写学志的时候睡着了吗？”Dr.Ding坐了起来伸了个懒腰，桌上摆着一张纸，标题是地理学志：岛礁板块，纸上的字逐渐潦草，直到最后变成了扭曲的线条。“呃，这，以后还是不要半夜写了吧。”Dr.Ding站了起来，从桌子旁边的木桶里随手拿了一份熟鱼，和一份在哈拉德纳平原极为稀少的面包，吃饱喝足后，随便从箱子里拿了一个云杉木船，走到了河边，放下船，沿着河上结的冰滑动向着海岸划去，每月他都要回到中央板块一次，大部分的异常都在那，所以站点也大多集中在中央板块，他也总回去与同事相处。\n\n\n\n\n\n“老丁啊，不是我说你，你老是这样自己一个人待在外面，早晚人格分裂。”一个不和谐的声音从脑海里蹦出。\n\n“闭嘴吧你，你是不是忘了自己就是我的另一人格，Dr.Yang。”Dr.Ding没好气的回答。\n\n\n\n\n\n中午，Dr.Ding在中央板块站点中吃了中午饭，还有一块生日蛋糕。下午，Dr.Ding在[[[SCP-MC-007-J]]]的收容间里进行了几次实验，随后就又开船回到了裂隙大陆。\n\nDr.Ding回到了小屋，躺在床上，放起了音乐。伴随着音乐的声音，太阳渐渐落下，Dr.Ding缓缓睡了过去。\n\n“我的人生，就和现在一样，毫无出息的沉沦了吧”\n"
+  },
+  {
+    "page_name": "scp-mc-061--deleted-1460105552",
+    "detail": {
+      "url": "https://scp-wiki-mc.wikidot.com/scp-mc-061",
+      "page_name": "scp-mc-061--deleted-1460105552",
+      "title": "SCP-MC-061",
+      "page_id": "1460105552",
+      "site_id": "4427955",
+      "source_file": "_default/scp-mc-061.wikidot",
+      "raw_file": "_raw_viewsource/_default/scp-mc-061.html",
+      "source_bytes": "3603",
+      "source_chars": "2483",
+      "source_sha256": "9a7eb95929395e25f4ebd208a9c7a86730442f9a7e6b597ffbbad851eea78d27",
+      "source_excerpt": "[[include :scp-wiki-cn:theme:aonibiiro]]\n\n\n\n[[module CSS]]\n\n:root {\n\n    --1-color: #800000;/* 顶端栏条的背景色以及评分栏边框颜色 */\n\n    --2-color: #DEB887;/* 整个页面正文部分的背景色 */\n\n    --3-color: #F5F5F5;/* 页面标题颜色以及顶端栏字的颜色 */\n\n    --4-color: #F5F5F5;/* 文中字体颜色以及底下页面版本颜色 */\n\n    --5-color: #8B0000;/* 登录账号的颜色与链接的颜色 */...",
+      "author_hints": {
+        "users": [],
+        "author_pages": []
+      },
+      "live_error": "",
+      "page_kind": "original",
+      "created_at": "2025-08-25T12:53:28+00:00",
+      "created_at_beijing": "2025/08/25 20:53:28",
+      "last_edited_at": "2025-08-29T08:07:26+00:00",
+      "last_edited_at_beijing": "2025/08/29 16:07:26",
+      "unix_name": "scp-mc-061",
+      "rating": -2,
+      "rating_text": "-2",
+      "has_rating_widget": true,
+      "voters_status": "captured",
+      "tags": [
+        "euclid",
+        "scp",
+        "原创",
+        "敌对生物",
+        "易变物体",
+        "自我复制"
+      ],
+      "page_info": "页面版本: 4, 最后编辑于: 29 Aug 2025 08:07",
+      "revision_count": 4,
+      "discussion": {
+        "label": "讨论 (3)",
+        "url": "https://scp-wiki-mc.wikidot.com/forum/t-17230582/scp-mc-061",
+        "thread_id": "17230582",
+        "comments_count": 3
+      },
+      "html_users": [],
+      "voters": {
+        "status": "captured",
+        "count": 2,
+        "up": 0,
+        "down": 2,
+        "up_deleted": 0,
+        "down_deleted": 0,
+        "up_users": [],
+        "down_users": [
+          {
+            "name": "baiyanfeifei",
+            "user_id": "7296164",
+            "profile": "http://www.wikidot.com/user:info/baiyanfeifei",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          },
+          {
+            "name": "BlueLighting",
+            "user_id": "9859827",
+            "profile": "http://www.wikidot.com/user:info/bluelighting",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          }
+        ],
+        "users": [
+          {
+            "name": "baiyanfeifei",
+            "user_id": "7296164",
+            "profile": "http://www.wikidot.com/user:info/baiyanfeifei",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          },
+          {
+            "name": "BlueLighting",
+            "user_id": "9859827",
+            "profile": "http://www.wikidot.com/user:info/bluelighting",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          }
+        ]
+      },
+      "history_author": {
+        "status": "captured",
+        "source": "history_revision_0",
+        "revision_id": "1531760856",
+        "version": 0,
+        "created_text": "25 Aug 2025 12:53",
+        "created_at": "2025-08-25T12:53:28+00:00",
+        "created_at_beijing": "2025/08/25 20:53:28",
+        "author": {
+          "name": "EEEemerald",
+          "user_id": "8299296",
+          "profile": "http://www.wikidot.com/user:info/eeeemerald",
+          "deleted": false
+        },
+        "latest": {
+          "status": "captured",
+          "source": "history_latest",
+          "revision_id": "1531836571",
+          "version": 4,
+          "edited_text": "29 Aug 2025 08:07",
+          "edited_at": "2025-08-29T08:07:26+00:00",
+          "edited_at_beijing": "2025/08/29 16:07:26",
+          "editor": {
+            "name": "EEEemerald",
+            "user_id": "8299296",
+            "profile": "http://www.wikidot.com/user:info/eeeemerald",
+            "deleted": false
+          }
+        },
+        "history_page": 1
+      },
+      "comments_preview": {
+        "url": "https://scp-wiki-mc.wikidot.com/forum/t-17230582/scp-mc-061",
+        "thread_id": "17230582",
+        "page_count": 1,
+        "captured_posts": 3,
+        "complete": true,
+        "errors": [],
+        "posts": [
+          {
+            "id": "7165215",
+            "title": null,
+            "author": "baiyanfeifei",
+            "author_user": {
+              "name": "baiyanfeifei",
+              "user_id": "7296164",
+              "profile": "http://www.wikidot.com/user:info/baiyanfeifei",
+              "deleted": false
+            },
+            "author_id": null,
+            "created_text": "25 Aug 2025 14:58",
+            "created_at": "2025-08-25T14:58:03+00:00",
+            "created_at_beijing": "2025/08/25 22:58:03",
+            "thread_page": 1,
+            "post_url": "https://scp-wiki-mc.wikidot.com/forum/t-17230582/scp-mc-061#post-7165215",
+            "content": "哥们这也太短了吧"
+          },
+          {
+            "id": "7169355",
+            "title": "虫",
+            "author": "Minecraftzswj",
+            "author_user": {
+              "name": "Minecraftzswj",
+              "user_id": "7894780",
+              "profile": "http://www.wikidot.com/user:info/minecraftzswj",
+              "deleted": false
+            },
+            "author_id": null,
+            "created_text": "26 Aug 2025 12:55",
+            "created_at": "2025-08-26T12:55:09+00:00",
+            "created_at_beijing": "2025/08/26 20:55:09",
+            "thread_page": 1,
+            "post_url": "https://scp-wiki-mc.wikidot.com/forum/t-17230582/scp-mc-061#post-7169355",
+            "content": "……与另一SCP-MC-061个体，其中所有可被烧练的物品都将转变为烧练后的成品。 烧练→烧炼"
+          },
+          {
+            "id": "7180054",
+            "title": null,
+            "author": "EndLimitx321",
+            "author_user": {
+              "name": "EndLimitx321",
+              "user_id": "8335120",
+              "profile": "http://www.wikidot.com/user:info/endlimitx321",
+              "deleted": false
+            },
+            "author_id": null,
+            "created_text": "29 Aug 2025 15:24",
+            "created_at": "2025-08-29T15:24:01+00:00",
+            "created_at_beijing": "2025/08/29 23:24:01",
+            "thread_page": 1,
+            "post_url": "https://scp-wiki-mc.wikidot.com/forum/t-17230582/scp-mc-061#post-7180054",
+            "content": "大爆炸大爆炸大爆炸大爆炸大爆炸大爆炸"
+          }
+        ]
+      },
+      "archive_display_name": "scp-mc-061",
+      "archived_deleted": true,
+      "moved": false,
+      "moved_from": null,
+      "moved_to": null,
+      "url_reused": false,
+      "replacement_page_id": null
+    },
+    "source": "[[include :scp-wiki-cn:theme:aonibiiro]]\n\n\n\n[[module CSS]]\n\n:root {\n\n    --1-color: #800000;/* 顶端栏条的背景色以及评分栏边框颜色 */\n\n    --2-color: #DEB887;/* 整个页面正文部分的背景色 */\n\n    --3-color: #F5F5F5;/* 页面标题颜色以及顶端栏字的颜色 */\n\n    --4-color: #F5F5F5;/* 文中字体颜色以及底下页面版本颜色 */\n\n    --5-color: #8B0000;/* 登录账号的颜色与链接的颜色 */\n\n    --6-color: #FFA500;/* 顶端副标题文字 */\n\n    --7-color: #FFD700;/* 顶端主标题文字 */\n\n}\n\n\n\n#page-content div.myImageBlock {\n\n    margin: 2em 0;\n\n    width: 100%;\n\n    border: solid 1px #AD90F8;\n\n    background-color: #170438;\n\n    box-shadow: 0 1px 6px rgba(0,0,0,0.25);\n\n}\n\n#page-content div.myImageBlock img {\n\n    width: 100%;\n\n}\n\n#page-content div.myImageBlock div.myImageCaption {\n\n    text-align: center;\n\n    border-top: solid 1px #AD90F8;\n\n}\n\n#page-content div.myImageBlock div.myImageCaption p {\n\n    margin: 4px 1em;\n\n    padding: 0;\n\n}\n\n\n\ndiv#extra-div-1 {\n\n    background: url(\"https://zh.minecraft.wiki/images/Crimson_Forest.png?e2ae8&format=original\");\n\n    background-size: cover;\n\n    background-position: 50% 20%;\n\n}\n\n\n\n#header h1 a::before {\n\n    content: \"AREA-MC-08\";\n\n    color: var(--7-color);\n\n}\n\n\n\n#header h2 span::before {\n\n    content: \"热浪奔涌·火舞烬生\";\n\n    color: var(--6-color);\n\n    filter: drop-shadow(0 0 2rem #000000);\n\n}\n\n\n\n#header {\n\n    background: url(\"https://aceattackassassin.wikidot.com/local--files/secure-facility-dossier-area-mc-08/Area-MC-08-LOGO-Dark\") 0px 60px / 7em 7em no-repeat;\n\n    background-size: 60px 60px;\n\n}\n\n\n\n#login-status, #login-status a {\n\n    color: var(--5-color);\n\n}\n\n\n\n[[/module]]\n\n\n\n\n\n[[>]]\n\n[[module rate]]\n\n[[/>]]\n\n\n\n**项目编号：**SCP-MC-061\n\n\n\n**项目等级：**Euclid\n\n\n\n**特殊收容措施：**SCP-MC-061种群必须维持在1～3只，且个体之间应收容于不同的收容间内部，每个收容间之间的间距不得低于35格且不应带有窗口。人员被要求远离SCP-MC-061实体，若存在特殊情况导致人员必须接触项目，人员需穿戴苦力怕头颅或携带隐身状态效果。\n\n\n\n**描述：**SCP-MC-061指一类由GoI-MC-023（“苦力怕社区”）制造的异常苦力怕，当前被收容于Area-MC-08。SCP-MC-061个体生命值为40滴[[footnote]] 即♥ × 20。 [[/footnote]]，高度约为1.9格，造成的爆炸的爆炸威力为10。若在爆炸时SCP-MC-061个体带有任意状态效果，则在爆炸后生成一片范围为3*3*3的抗火效果的区域效果云。\n\n\n\nSCP-MC-061的外观纹理类似火，其头部两侧带有犄角，纹理类似程序员艺术[[footnote]] Minecraft在1.14之前的艺术风格。 [[/footnote]]风格的下界岩。当人员距离SCP-MC-061个体7格之内时，该个体将追逐该人员，并在追逐过程中向人员所在方向发射火焰弹，直至其与人员相距不超过3格。当人员距SCP-MC-061个体不超过3格时，SCP-MC-061个体将在10游戏刻[[footnote]] 总部时间0.5秒。 [[/footnote]]内爆炸，并在其爆炸范围内以12%的概率生成熔岩与另一SCP-MC-061个体，其中所有可被烧炼的物品都将转变为烧炼后的成品。\n\n\n\n**附录1：**Dr.ant的笔记\n\n> 所以可以用SCP-MC-061来烹饪[[[SCP-MC-983 |SCP-MC-983-1]]]吗？——Dr.ant\n\n\n\n\n\n[[footnoteblock]]\n\n@@@@\n\n[[div class=\"footer-wikiwalk-nav\"]]\n\n[[=]]\n\n<< [[[SCP-MC-060]]] | SCP-MC-061 | [[[SCP-MC-062]]] >>\n\n[[/=]]\n\n[[/div]]\n"
+  },
+  {
+    "page_name": "scp-mc-181--deleted-1461453540",
+    "detail": {
+      "url": "https://scp-wiki-mc.wikidot.com/scp-mc-181",
+      "page_name": "scp-mc-181--deleted-1461453540",
+      "title": "SCP-MC-181",
+      "page_id": "1461453540",
+      "site_id": "4427955",
+      "source_file": "_default/scp-mc-181.wikidot",
+      "raw_file": "_raw_viewsource/_default/scp-mc-181.html",
+      "source_bytes": "5175",
+      "source_chars": "2839",
+      "source_sha256": "eb253d3e6302210089755feb16a1f6297fab344a7847f4195dff79b9aafb460b",
+      "source_excerpt": "[[>]]\n\n[[module Rate]]\n\n[[/>]]\n\n\n\n[[div class=\"blockquote\"]]\n\n= [[size 150%]]**基金会Minecraft分部信息安全管理系统的通知**[[/size]]\n\n= [[image http://scp-wiki-mc.wikidot.com/local--files/main/scp-mc-logo.svg width=\"50%\"]]\n\n= **由于该项目的同化性质，与SCP-MC-181有关的文档均带有不稳定性，如发现档案内有部分不符合基金会文档标准的内容，请上报至相关负责人。**\n\n= **[[size 150%]]...",
+      "author_hints": {
+        "users": [],
+        "author_pages": []
+      },
+      "live_error": "",
+      "page_kind": "original",
+      "created_at": "2025-10-27T15:53:38+00:00",
+      "created_at_beijing": "2025/10/27 23:53:38",
+      "last_edited_at": "2026-07-04T12:34:00+00:00",
+      "last_edited_at_beijing": "2026/07/04 20:34:00",
+      "unix_name": "scp-mc-181",
+      "rating": 3,
+      "rating_text": "+3",
+      "has_rating_widget": true,
+      "voters_status": "captured",
+      "tags": [
+        "keter",
+        "scp",
+        "中立生物",
+        "信息危害",
+        "原创",
+        "强迫性",
+        "感知力",
+        "易变物体",
+        "智能",
+        "模因",
+        "精神影响"
+      ],
+      "page_info": "页面版本: 32, 最后编辑于: 04 Jul 2026 12:34",
+      "revision_count": 32,
+      "discussion": {
+        "label": "讨论 (3)",
+        "url": "https://scp-wiki-mc.wikidot.com/forum/t-17398100/scp-mc-181",
+        "thread_id": "17398100",
+        "comments_count": 3
+      },
+      "html_users": [],
+      "voters": {
+        "status": "captured",
+        "count": 3,
+        "up": 3,
+        "down": 0,
+        "up_deleted": 0,
+        "down_deleted": 0,
+        "up_users": [
+          {
+            "name": "ACAppleby",
+            "user_id": "9860823",
+            "profile": "http://www.wikidot.com/user:info/acappleby",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "baiyin86893",
+            "user_id": "10017371",
+            "profile": "http://www.wikidot.com/user:info/baiyin86893",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "JasonAlpha",
+            "user_id": "6406928",
+            "profile": "http://www.wikidot.com/user:info/jasonalpha",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          }
+        ],
+        "down_users": [],
+        "users": [
+          {
+            "name": "ACAppleby",
+            "user_id": "9860823",
+            "profile": "http://www.wikidot.com/user:info/acappleby",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "baiyin86893",
+            "user_id": "10017371",
+            "profile": "http://www.wikidot.com/user:info/baiyin86893",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "JasonAlpha",
+            "user_id": "6406928",
+            "profile": "http://www.wikidot.com/user:info/jasonalpha",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          }
+        ]
+      },
+      "history_author": {
+        "status": "captured",
+        "source": "history_revision_0",
+        "revision_id": "1533949677",
+        "version": 0,
+        "created_text": "27 Oct 2025 15:53",
+        "created_at": "2025-10-27T15:53:38+00:00",
+        "created_at_beijing": "2025/10/27 23:53:38",
+        "author": {
+          "name": "Agent_BlackCat1768",
+          "user_id": "8852167",
+          "profile": "http://www.wikidot.com/user:info/agent-blackcat1768",
+          "deleted": false
+        },
+        "latest": {
+          "status": "captured",
+          "source": "history_latest",
+          "revision_id": "1545009185",
+          "version": 32,
+          "edited_text": "04 Jul 2026 12:34",
+          "edited_at": "2026-07-04T12:34:00+00:00",
+          "edited_at_beijing": "2026/07/04 20:34:00",
+          "editor": {
+            "name": "Agent_BlackCat1768",
+            "user_id": "8852167",
+            "profile": "http://www.wikidot.com/user:info/agent-blackcat1768",
+            "deleted": false
+          }
+        },
+        "history_page": 1
+      },
+      "comments_preview": {
+        "url": "https://scp-wiki-mc.wikidot.com/forum/t-17398100/scp-mc-181",
+        "thread_id": "17398100",
+        "page_count": 1,
+        "captured_posts": 3,
+        "complete": true,
+        "errors": [],
+        "posts": [
+          {
+            "id": "7366921",
+            "title": "特别感谢",
+            "author": "Agent_BlackCat1768",
+            "author_user": {
+              "name": "Agent_BlackCat1768",
+              "user_id": "8852167",
+              "profile": "http://www.wikidot.com/user:info/agent-blackcat1768",
+              "deleted": false
+            },
+            "author_id": null,
+            "created_text": "27 Oct 2025 16:09",
+            "created_at": "2025-10-27T16:09:42+00:00",
+            "created_at_beijing": "2025/10/28 00:09:42",
+            "thread_page": 1,
+            "post_url": "https://scp-wiki-mc.wikidot.com/forum/t-17398100/scp-mc-181#post-7366921",
+            "content": "特别感谢: TC，FDSVideo，JasonAlpha，Hominoidea等众多来自写作交流群的大佬们对本小白的写作指导！ 没有大佬的帮助根本就不会有这篇文章。"
+          },
+          {
+            "id": "7387127",
+            "title": "UP",
+            "author": "ACAppleby",
+            "author_user": {
+              "name": "ACAppleby",
+              "user_id": "9860823",
+              "profile": "http://www.wikidot.com/user:info/acappleby",
+              "deleted": false
+            },
+            "author_id": null,
+            "created_text": "01 Nov 2025 04:12",
+            "created_at": "2025-11-01T04:12:49+00:00",
+            "created_at_beijing": "2025/11/01 12:12:49",
+            "thread_page": 1,
+            "post_url": "https://scp-wiki-mc.wikidot.com/forum/t-17398100/scp-mc-181#post-7387127",
+            "content": "比我这个新人第一次写的稳，心态不是很急，起码不像我在发出来之后改了五十多次😱，加油哦（忽然想起我已经一个多月没发新东西了）"
+          },
+          {
+            "id": "8373521",
+            "title": "Listpages魔法玉米（）",
+            "author": "Agent_BlackCat1768",
+            "author_user": {
+              "name": "Agent_BlackCat1768",
+              "user_id": "8852167",
+              "profile": "http://www.wikidot.com/user:info/agent-blackcat1768",
+              "deleted": false
+            },
+            "author_id": null,
+            "created_text": "04 Jul 2026 12:39",
+            "created_at": "2026-07-04T12:39:23+00:00",
+            "created_at_beijing": "2026/07/04 20:39:23",
+            "thread_page": 1,
+            "post_url": "https://scp-wiki-mc.wikidot.com/forum/t-17398100/scp-mc-181#post-8373521",
+            "content": "我滴Listpages任务，完成啦！！！！！"
+          }
+        ]
+      },
+      "archive_display_name": "scp-mc-181",
+      "archived_deleted": true,
+      "moved": false,
+      "moved_from": null,
+      "moved_to": null,
+      "url_reused": true,
+      "replacement_page_id": "1469113755"
+    },
+    "source": "[[>]]\n\n[[module Rate]]\n\n[[/>]]\n\n\n\n[[div class=\"blockquote\"]]\n\n= [[size 150%]]**基金会Minecraft分部信息安全管理系统的通知**[[/size]]\n\n= [[image http://scp-wiki-mc.wikidot.com/local--files/main/scp-mc-logo.svg width=\"50%\"]]\n\n= **由于该项目的同化性质，与SCP-MC-181有关的文档均带有不稳定性，如发现档案内有部分不符合基金会文档标准的内容，请上报至相关负责人。**\n\n= **[[size 150%]]——Dr.████████[[/size]]**\n\n\n\n[[/div]]\n\n@@@@\n\n@@@@\n\n@@@@\n\n**项目编号：**SCP-MC-181\n\n\n\n**项目等级：**--Safe-- Euclid\n\n\n\n[[include component:image-block name=https://scp-mc-sandbox-pro.wdfiles.com/local--files/agent-blackcat1768/scp-mc|align=center|width=700px|caption=SCP-MC-181。]]\n\n\n\n**特殊收容措施：**由于SCP-MC-181本身的异常性质，所以无法被收容于任何总部现实以及主观现实的设施中。\n\n\n\n无论何种原因，与SCP-MC-181产生不必要的肢体接触都需要立刻前往██████进行相关处理。--加入我们吧！多美好的事情！！！--\n\n\n\n如有人员在任何情况下观测到疑似SCP-MC-181的存在，都应立刻上报给Dr.████████并联系附近最近的机动特遣队进行处理，--随后，加入SCP-MC-181的怀抱--并接受█级记忆清除。\n\n@@@@\n\n@@@@\n\n@@@@\n\n[[div class=\"blockquote\"]]\n\n= [[size 150%]]**基金会Minecraft分部信息安全管理系统的通知**[[/size]]\n\n= [[image http://scp-wiki-mc.wikidot.com/local--files/main/scp-mc-logo.svg width=\"50%\"]]\n\n= **由于该项目的友好性质，与SCP-MC-181有关的文档均为事实，如发现档案内有部分不符合基金会文档标准的内容，请与SCP-MC-181进行肢体接触，并忘记这一切，加入我们。**\n\n= **[[size 150%]]——Dr.[[span class=\"bblock\"]]Nineteen[[/span]][[/size]]**\n\n[[/div]]\n\n@@@@\n\n@@@@\n\n@@@@\n\n**描述：**目前，任何包含SCP-MC-181相关外观描述、图像媒体等媒介的物体，都会在█分钟内转变为继承SCP-MC-181部分特性的易变物体（下文称之为SCP-MC-181-1）。\n\n\n\n被同化后的SCP-MC-181-1仍保留原来的记忆与思维（在被SCP-MC-181操控后除外）。\n\n\n\nSCP-MC-181具有自主意识以及极高的智慧，并拥有部分同化能力[[footnote]]指SCP-MC-181可将任何物体转化为SCP-MC-181-1的能力。[[/footnote]]。\n\n\n\n该能力在该项目与Dr.N███████接触后的█日内被发现（该记录见下文**初次发现**）。\n\n\n\nSCP-MC-181对主观现实中的大部分物体都具有同化的能力，且可以将本体意识转移到任意一个SCP-MC-181-1上，当本体意识转移至某一个SCP-MC-181-1后，该个体将被视作SCP-MC-181本体。\n\n\n\nSCP-MC-181通常以人形生物的状态出现，但有时也会伪装成易变物体（如僵尸，羊，末影龙等，这些形态被认为是SCP-MC-181-1刚转变为SCP-MC-181的表现）。\n\n\n\nSCP-MC-181对有生命的易变物体表现出敌意，在目标出现在SCP-MC-181的10米范围内时，SCP-MC-181将以█米每分钟的速度向目标[[footnote]]此处的目标包括大部分易变物体，但不包括媒体设备所呈现的任何易变物体画面。[[/footnote]]冲去并接触目标从而将其转化为SCP-MC-181-1。\n\n\n\nSCP-MC-181可与玩家互动。\n\n但在以下情况下会试图对该玩家进行同化:\n\n[[div class=\"foldable-list-container\"]]\n\n* 受到玩家直接伤害\n\n* 受到玩家间接伤害\n\n[[/div]]\n\n\n\n[[div class=\"blockquote\"]]\n\n别再看这篇文档了！\n\n我操，为什么还有人会看这篇文档，这篇文档已经被同化成SCP-MC-181-1了！\n\n没发现他妈的文档里有很多不对劲的地方吗！？\n\n——Dr.████████\n\n[[/div]]\n\n\n\n[[collapsible show=\"+ 【待考证】SCP-MC-181的初次发现 \" hide=\"- 收回\"]]\n\n\n\n[[div class=\"blockquote\"]]\n\n**记录1：**Dr.N████████在20██年█月█日的一次存档回收记录\n\n\n\n**注意，由于SCP-MC-181的特性，与该事件有关的相关记录均已损坏，以下是通过部分恢复的数据及其余目击人员的口述还原的事件过程**\n\n\n\n**概述：**Dr.N███████在当天的一次普通回收存档任务内被与其一同的小队成员观测到其易变物体出现部分失真[[footnote]]失真指面部如老式电视机一样的花屏，无法辨别[[/footnote]]的现象。\n\n\n\n其人类所特有的面部特征也在█小时后变成了[§f§k§a§b]（经推测，这种特性不仅干涉了主观现实，并也一同干扰了客观现实及所有与Dr.N███████有关的所有档案及相关图片，视频，音频及其他媒体介质）。\n\n\n\n**结语：**在Dr.N███████变成SCP-MC-181-1之后，小队成员注意到其易变物体旁边出现了███，随后SCP-MC-181-1消失。\n\n[[/div]]\n\n\n\n[[/collapsible]]\n\n\n\n\n\n**附录：**初次发现记录中参与该事件的所有成员均已接受了█级记忆清除，以确保相关成员不会因某种媒介变成SCP-MC-181-1。\n\n\n\n[[footnoteblock]]\n\n\n\n[[div class=\"footer-wikiwalk-nav\"]]\n\n[[=]]\n\n<< [[[SCP-MC-180]]] | SCP-MC-181 | [[[SCP-MC-182]]] >>\n\n[[/=]]\n\n[[/div]]\n"
+  },
+  {
+    "page_name": "scp-mc-255--deleted-1329879570",
+    "detail": {
+      "url": "https://scp-wiki-mc.wikidot.com/scp-mc-255",
+      "page_name": "scp-mc-255--deleted-1329879570",
+      "title": "SCP-MC-255",
+      "page_id": "1329879570",
+      "site_id": "4427955",
+      "source_file": "_default/scp-mc-255.wikidot",
+      "raw_file": "_raw_viewsource/_default/scp-mc-255.html",
+      "source_bytes": "1462",
+      "source_chars": "836",
+      "source_sha256": "40f526a2bada5a662067df0be10b75deac1aed35c5ee074a0b65cf9b66843c56",
+      "source_excerpt": "[[>]]\n\n[[module Rate]]\n\n[[/>]]\n\n\n\n**项目编号：**SCP-MC-255\n\n\n\n**项目等级：**Euclid\n\n\n\n**特殊收容措施：**所有的SCP-MC-255个体需收容于一个由白色混凝土筑成的收容室内，半径20格内不得存在任何可发光物体[[footnote]]包括但不限于萤石，火把，发光鱿鱼，红石灯[[/footnote]]，所有最新发现的SCP-MC-255个体与其附近的可发光物体必须立即销毁。\n\n\n\n**描述：**SCP-MC-255是一异常恒久物体，与萤石相似，但不能发光。一个SCP-MC-255半径10格内的任何发光物体均会被SCP-MC-25...",
+      "author_hints": {
+        "users": [],
+        "author_pages": []
+      },
+      "live_error": "",
+      "page_kind": "original",
+      "created_at": "2021-11-01T14:11:16+00:00",
+      "created_at_beijing": "2021/11/01 22:11:16",
+      "last_edited_at": "2025-10-27T15:31:14+00:00",
+      "last_edited_at_beijing": "2025/10/27 23:31:14",
+      "unix_name": "scp-mc-255",
+      "rating": -2,
+      "rating_text": "-2",
+      "has_rating_widget": true,
+      "voters_status": "captured",
+      "tags": [
+        "euclid",
+        "scp",
+        "传染性",
+        "原创",
+        "恒久物体"
+      ],
+      "page_info": "页面版本: 5, 最后编辑于: 27 Oct 2025 15:31",
+      "revision_count": 5,
+      "discussion": {
+        "label": "讨论 (3)",
+        "url": "https://scp-wiki-mc.wikidot.com/forum/t-14260905/scp-mc-255",
+        "thread_id": "14260905",
+        "comments_count": 3
+      },
+      "html_users": [],
+      "voters": {
+        "status": "captured",
+        "count": 12,
+        "up": 5,
+        "down": 7,
+        "up_deleted": 0,
+        "down_deleted": 1,
+        "up_users": [
+          {
+            "name": "Alice schach",
+            "user_id": "6371490",
+            "profile": "http://www.wikidot.com/user:info/alice-schach",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "GREAT-GUIDA",
+            "user_id": "6173283",
+            "profile": "http://www.wikidot.com/user:info/great-guida",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "guzl",
+            "user_id": "6264210",
+            "profile": "http://www.wikidot.com/user:info/guzl",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "ink_sac_dadie",
+            "user_id": "7667320",
+            "profile": "http://www.wikidot.com/user:info/ink-sac-dadie",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "Savagememelord1",
+            "user_id": "7496968",
+            "profile": "http://www.wikidot.com/user:info/savagememelord1",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          }
+        ],
+        "down_users": [
+          {
+            "name": "ACAppleby",
+            "user_id": "9860823",
+            "profile": "http://www.wikidot.com/user:info/acappleby",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          },
+          {
+            "name": "Black Whate",
+            "user_id": "6649761",
+            "profile": "http://www.wikidot.com/user:info/black-whate",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          },
+          {
+            "name": "Diamond_shovel",
+            "user_id": "6978637",
+            "profile": "http://www.wikidot.com/user:info/diamond-shovel",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          },
+          {
+            "name": "piglin",
+            "user_id": "6559037",
+            "profile": "http://www.wikidot.com/user:info/piglin",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          },
+          {
+            "name": "SZHH420",
+            "user_id": "9433599",
+            "profile": "http://www.wikidot.com/user:info/szhh420",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          },
+          {
+            "name": "wdssss",
+            "user_id": "6836563",
+            "profile": "http://www.wikidot.com/user:info/wdssss",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          }
+        ],
+        "users": [
+          {
+            "name": "ACAppleby",
+            "user_id": "9860823",
+            "profile": "http://www.wikidot.com/user:info/acappleby",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          },
+          {
+            "name": "Alice schach",
+            "user_id": "6371490",
+            "profile": "http://www.wikidot.com/user:info/alice-schach",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "Black Whate",
+            "user_id": "6649761",
+            "profile": "http://www.wikidot.com/user:info/black-whate",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          },
+          {
+            "name": "Diamond_shovel",
+            "user_id": "6978637",
+            "profile": "http://www.wikidot.com/user:info/diamond-shovel",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          },
+          {
+            "name": "GREAT-GUIDA",
+            "user_id": "6173283",
+            "profile": "http://www.wikidot.com/user:info/great-guida",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "guzl",
+            "user_id": "6264210",
+            "profile": "http://www.wikidot.com/user:info/guzl",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "ink_sac_dadie",
+            "user_id": "7667320",
+            "profile": "http://www.wikidot.com/user:info/ink-sac-dadie",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "piglin",
+            "user_id": "6559037",
+            "profile": "http://www.wikidot.com/user:info/piglin",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          },
+          {
+            "name": "Savagememelord1",
+            "user_id": "7496968",
+            "profile": "http://www.wikidot.com/user:info/savagememelord1",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "SZHH420",
+            "user_id": "9433599",
+            "profile": "http://www.wikidot.com/user:info/szhh420",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          },
+          {
+            "name": "wdssss",
+            "user_id": "6836563",
+            "profile": "http://www.wikidot.com/user:info/wdssss",
+            "deleted": false,
+            "vote": -1,
+            "vote_text": "-"
+          },
+          {
+            "name": "(account deleted)",
+            "user_id": null,
+            "profile": null,
+            "deleted": true,
+            "vote": -1,
+            "vote_text": "-"
+          }
+        ]
+      },
+      "history_author": {
+        "status": "captured",
+        "source": "history_revision_0",
+        "revision_id": "1386033277",
+        "version": 0,
+        "created_text": "01 Nov 2021 14:11",
+        "created_at": "2021-11-01T14:11:16+00:00",
+        "created_at_beijing": "2021/11/01 22:11:16",
+        "author": {
+          "name": "SMUJ",
+          "user_id": "7480204",
+          "profile": "http://www.wikidot.com/user:info/smuj",
+          "deleted": false
+        },
+        "latest": {
+          "status": "captured",
+          "source": "history_latest",
+          "revision_id": "1533947217",
+          "version": 5,
+          "edited_text": "27 Oct 2025 15:31",
+          "edited_at": "2025-10-27T15:31:14+00:00",
+          "edited_at_beijing": "2025/10/27 23:31:14",
+          "editor": {
+            "name": "Oscar168",
+            "user_id": "7198635",
+            "profile": "http://www.wikidot.com/user:info/oscar168",
+            "deleted": false
+          }
+        },
+        "history_page": 1
+      },
+      "comments_preview": {
+        "url": "https://scp-wiki-mc.wikidot.com/forum/t-14260905/scp-mc-255",
+        "thread_id": "14260905",
+        "page_count": 1,
+        "captured_posts": 3,
+        "complete": true,
+        "errors": [],
+        "posts": [
+          {
+            "id": "5124189",
+            "title": null,
+            "author": "piglin",
+            "author_user": {
+              "name": "piglin",
+              "user_id": "6559037",
+              "profile": "http://www.wikidot.com/user:info/piglin",
+              "deleted": false
+            },
+            "author_id": null,
+            "created_text": "03 Nov 2021 22:12",
+            "created_at": "2021-11-03T22:12:19+00:00",
+            "created_at_beijing": "2021/11/04 06:12:19",
+            "thread_page": 1,
+            "post_url": "https://scp-wiki-mc.wikidot.com/forum/t-14260905/scp-mc-255#post-5124189",
+            "content": "洗版了"
+          },
+          {
+            "id": "6433527",
+            "title": null,
+            "author": "EndLimitx321",
+            "author_user": {
+              "name": "EndLimitx321",
+              "user_id": "8335120",
+              "profile": "http://www.wikidot.com/user:info/endlimitx321",
+              "deleted": false
+            },
+            "author_id": null,
+            "created_text": "18 Feb 2024 16:23",
+            "created_at": "2024-02-18T16:23:27+00:00",
+            "created_at_beijing": "2024/02/19 00:23:27",
+            "thread_page": 1,
+            "post_url": "https://scp-wiki-mc.wikidot.com/forum/t-14260905/scp-mc-255#post-6433527",
+            "content": "这也能欧几里得？no偏down 写长一点会好一点"
+          },
+          {
+            "id": "6752290",
+            "title": null,
+            "author": "SZHH420",
+            "author_user": {
+              "name": "SZHH420",
+              "user_id": "9433599",
+              "profile": "http://www.wikidot.com/user:info/szhh420",
+              "deleted": false
+            },
+            "author_id": null,
+            "created_text": "09 Dec 2024 02:16",
+            "created_at": "2024-12-09T02:16:43+00:00",
+            "created_at_beijing": "2024/12/09 10:16:43",
+            "thread_page": 1,
+            "post_url": "https://scp-wiki-mc.wikidot.com/forum/t-14260905/scp-mc-255#post-6752290",
+            "content": "确实不像是E的，感觉没写好down了"
+          }
+        ]
+      },
+      "archive_display_name": "scp-mc-255",
+      "archived_deleted": true,
+      "moved": false,
+      "moved_from": null,
+      "moved_to": null,
+      "url_reused": true,
+      "replacement_page_id": "1469109533"
+    },
+    "source": "[[>]]\n\n[[module Rate]]\n\n[[/>]]\n\n\n\n**项目编号：**SCP-MC-255\n\n\n\n**项目等级：**Euclid\n\n\n\n**特殊收容措施：**所有的SCP-MC-255个体需收容于一个由白色混凝土筑成的收容室内，半径20格内不得存在任何可发光物体[[footnote]]包括但不限于萤石，火把，发光鱿鱼，红石灯[[/footnote]]，所有最新发现的SCP-MC-255个体与其附近的可发光物体必须立即销毁。\n\n\n\n**描述：**SCP-MC-255是一异常恒久物体，与萤石相似，但不能发光。一个SCP-MC-255半径10格内的任何发光物体均会被SCP-MC-255感染而失去发光的特性，被感染的发光物体会在一天内转变为SCP-MC-255。\n\n\n\n**附录：**\n\n**实验记录**\n\n__**实验A**__\n\n[[div class=\"blockquote\"]]\n\n**对象：**发光鱿鱼\n\n\n\n**过程：**SCP-MC-255与发光鱿鱼接触。\n\n\n\n**结果：**发光鱿鱼失去发光性质，不再发光，但仍能掉落正常的发光墨囊。\n\n\n\n**分析：**发光鱿鱼等发光易变物体同样能被SCP-MC-255感染。\n\n[[/div]]\n\n\n\n__**实验B**__\n\n[[div class=\"blockquote\"]]\n\n**对象：**红石灯\n\n\n\n**过程：**SCP-MC-255与未激活的红石灯接触。\n\n\n\n**结果：**红石灯无法使用红石块激活。\n\n\n\n**分析：**暂时失去发光性质的恒久物体同样能被SCP-MC-255感染。\n\n[[/div]]\n\n\n\n[[footnoteblock]]\n\n\n\n[[div class=\"footer-wikiwalk-nav\"]]\n\n[[=]]\n\n<< [[[SCP-MC-254]]] | SCP-MC-255 | [[[SCP-MC-256]]] >>\n\n[[/=]]\n\n[[/div]]\n"
+  },
+  {
+    "page_name": "scp-mc-271-arc",
+    "detail": {
+      "url": "https://scp-wiki-mc.wikidot.com/scp-mc-271-arc",
+      "page_name": "scp-mc-271-arc",
+      "archived_deleted": true,
+      "title": "SCP-MC-271-ARC",
+      "page_id": "1165147980",
+      "site_id": "4427955",
+      "source_file": "_default/scp-mc-271-arc.wikidot",
+      "raw_file": "_raw_viewsource/_default/scp-mc-271-arc.html",
+      "source_bytes": "4494",
+      "source_chars": "2198",
+      "source_sha256": "d22c2c03bc587600b3ae75ab24a21627ddab5f527954fc1e41f11c319d3ae1db",
+      "source_excerpt": "> //本页面已被标记删除；但因网站上某些页面依赖本文的知识—通常为故事或补充材料—它已被保留。以下的文章/故事有提及本页面：//\n\n>\n\n> * [http://scp-wiki-mc.wikidot.com/scp-mc-908 SCP-MC-908]\n\n>\n\n> //有关已归档SCP的更多信息，请查看或[[[archived-scps|被归档的SCP项目]]]中心。//\n\n\n\n[[>]]\n\n[[module Rate]]\n\n[[/>]]\n\n\n\n**项目编号：**SCP-MC-271\n\n\n\n**项目等级：**--Safe Thaumiel-- Safe\n\n\n\n**特殊收容措施：**由于项目...",
+      "author_hints": {
+        "users": [],
+        "author_pages": []
+      },
+      "live_error": "",
+      "page_kind": "other",
+      "created_at": null,
+      "created_at_beijing": null,
+      "last_edited_at": null,
+      "last_edited_at_beijing": null,
+      "comments_preview": {
+        "posts": []
+      }
+    },
+    "source": "> //本页面已被标记删除；但因网站上某些页面依赖本文的知识—通常为故事或补充材料—它已被保留。以下的文章/故事有提及本页面：//\n\n>\n\n> * [http://scp-wiki-mc.wikidot.com/scp-mc-908 SCP-MC-908]\n\n>\n\n> //有关已归档SCP的更多信息，请查看或[[[archived-scps|被归档的SCP项目]]]中心。//\n\n\n\n[[>]]\n\n[[module Rate]]\n\n[[/>]]\n\n\n\n**项目编号：**SCP-MC-271\n\n\n\n**项目等级：**--Safe Thaumiel-- Safe\n\n\n\n**特殊收容措施：**由于项目的稀缺性及项目的特殊性，目前收容的所有项目均装在██只玻璃瓶内，且全部装入一保险箱内，附近有███个保险箱作掩护，在该收容室内每█小时更换10名守卫，这十名守卫每个需有不同、持续很久且不会传染的的轻微病症，每次更换守卫时要检查守卫病症是否转好且保险箱是否破损，若有，立即处决该守卫且请站门主管重新放药物并报告O5议会置放的新位置。\n\n\n\n**描述：**SCP-MC-271是一种彩色的液体，这个scp有治愈一切损伤的能力，但是不同于SCP-500，这种药似乎只能在MC大陆饮用，一旦跨出MC大陆，项目会突然消失，并留下一股有██花的味道，接触到项目的非MC生物会变成MC大陆生物。[[footnote]]（如主站、小马国分部等或喷射（饮用）给MC大陆外生物，该生物会变成MC大陆生物）[[/footnote]]但与SCP-500相同的是，任何分析成分都失败了。\n\n这些药真是千奇百怪 -- ████博士\n\n\n\n**附录：**\n\n最初源于20██/██/██ ██：██时，一探险队进入一个丛林神庙，在约█处发现了SCP-MC-271，上面用中文写着“献给重病、绝症的人，请珍忄（推测为“惜”）”。拿走后该字条立刻消失。这时探险队明白找到宝藏了，经过一番打斗争夺后，队长Daliy在一个秘密的地方藏好剩下的SCP-MC-271.因为Daliy血量突然增多（估计有4██血）立刻引起基金会注意，派出Z██████特工携带C级记忆清除剂（喷溅）前往收容。收容共3███ML，装入██只玻璃瓶内带回基金会。\n\n20██/██/██ 当SCP-008患者闯入MC大陆时，基金会特允把█瓶制向患者喷洒，患者立刻治愈，但患者成了MC大陆的正常玩家。\n\n怎么办，有些在人类世界蒸发了，不过味道还不错 -- Z██████特工\n\n剩下的好好保存 -- 刚刚给Z██████特工记忆删除的Alz站门主管。\n\n[[tabview]]\n\n[[tab O5-MC议会的讨论]]\n\n[[collapsible show=\"+ 1号会议：紧急情况（需5级权限）\" hide=\"- 允许浏览\"]]\n\n记录于【已编辑】：会议由19点开始\n\nO5-MC-01：各位O5-MC成员们，你们也收到消息了，我们找到了一些与总部SCP-500相似的项目，不过项目只能在我们大陆使用...（被O5-MC-07打断）\n\nO5-MC-07（不耐烦）：我们都知道了，你不必把整个项目描述统统说一遍的。\n\nO5-MC-01：那么，我们的收容措施...（再次被O5-MC-07打断）\n\nO5-MC-07（咆哮）：跳过！\n\nO5-MC-03：放轻松，1号只是想向我们仔细地说明一下而已。\n\nO5-MC-05:我们继续吧。\n\nO5-MC-01（脸色有些红润）：那么，咳咳，我们探讨一下关于项目的紧急情况，由O5-MC-02和O5-MC-09的方案α和O5-MC-03、O5-MC-08和O5-MC-05的方案β：\n\nα：将项目保存于原地。（支持者：O5-MC-02、O5-MC-04、O5-MC-06、O5-MC-07、O5-MC-11、O5-MC-12）\n\nβ：迅速移走项目，移至【已编辑】。（支持者：O5-MC-01、O5-MC-03、O5-MC-05、O5-MC-08、O5-MC-09、O5-MC-10、O5-MC-13，被选中。）\n\nO5-MC-07（嘲笑）：难道你们不怕项目被发现吗？\n\n会议结束后，O5-MC-07被O5-MC-03、O5-MC-05暴打一顿（O5-MC-05在暴打他前说：他死不了。后狠狠地揍）\n\n[[/collapsible]]\n\n[[/tab]]\n\n[[tab 谈话：O5-MC-01与站门主管Alz、副主管Ale的谈话]]\n\n记录于2020/06/██：会议由23:23分开始于Alz的办公室。\n\nO5-MC-01：好了，Alz、Ale你们会担任又一项SCP收容项目：（讲述性质、收容措施省略266字）\n\nAlz：好的，那么将其编为SCP-MC-271？\n\nO5-MC-01：好的，那么，明白了吗？\n\nAlz、Ale：明白了。\n\n[[/tab]]\n\n[[/tabview]]\n\n[[[http://scp-wiki-mc.wikidot.com/scp-mc-271-officet|探险队的记录]]]||\n\n\n\n[[footnoteblock title=\"脚注\"]]\n\n\n\n[[=]]\n\n<< [[[SCP-MC-270]]] | SCP-MC-271 | [[[SCP-MC-272]]] >>\n\n[[/=]]\n"
+  },
+  {
+    "page_name": "scp-mc-860--deleted-1460735107",
+    "detail": {
+      "url": "https://scp-wiki-mc.wikidot.com/scp-mc-860",
+      "page_name": "scp-mc-860--deleted-1460735107",
+      "title": "SCP-MC-860",
+      "page_id": "1460735107",
+      "site_id": "4427955",
+      "source_file": "_default/scp-mc-860.wikidot",
+      "raw_file": "_raw_viewsource/_default/scp-mc-860.html",
+      "source_bytes": "3392",
+      "source_chars": "1800",
+      "source_sha256": "647b9f00bdadd03d4484d60db506607d0757b5ef4c07ad97ed0b11eb14f7021e",
+      "source_excerpt": "[[>]]\n\n[[module Rate]]\n\n[[/>]]\n\n[[include :scp-wiki-cn:component:anomaly-class-bar-source\n\n|lang= cn\n\n|item-number= SCP-MC-860\n\n|clearance= 2\n\n|container-class= euclid\n\n|secondary-class= \n\n|secondary-icon= http://url.com\n\n|disruption-class= vlam\n\n|risk-class= 待观察\n\n]]\n\n**特殊收容措施：**SCP-MC-860将被编入MTF-En...",
+      "author_hints": {
+        "users": [],
+        "author_pages": []
+      },
+      "live_error": "",
+      "page_kind": "original",
+      "created_at": "2025-10-23T14:47:19+00:00",
+      "created_at_beijing": "2025/10/23 22:47:19",
+      "last_edited_at": "2025-10-26T16:28:01+00:00",
+      "last_edited_at_beijing": "2025/10/27 00:28:01",
+      "unix_name": "scp-mc-860",
+      "rating": 0,
+      "rating_text": "0",
+      "has_rating_widget": true,
+      "voters_status": "captured",
+      "tags": [
+        "euclid",
+        "scp",
+        "site-mc-09",
+        "原创",
+        "声音",
+        "奇术",
+        "易变物体",
+        "玩家"
+      ],
+      "page_info": "页面版本: 5, 最后编辑于: 26 Oct 2025 16:28",
+      "revision_count": 5,
+      "discussion": null,
+      "html_users": [],
+      "voters": {
+        "status": "captured",
+        "count": 0,
+        "up": 0,
+        "down": 0,
+        "up_deleted": 0,
+        "down_deleted": 0,
+        "up_users": [],
+        "down_users": [],
+        "users": []
+      },
+      "history_author": {
+        "status": "captured",
+        "source": "history_revision_0",
+        "revision_id": "1533177464",
+        "version": 0,
+        "created_text": "23 Oct 2025 14:47",
+        "created_at": "2025-10-23T14:47:19+00:00",
+        "created_at_beijing": "2025/10/23 22:47:19",
+        "author": {
+          "name": "SMUJ",
+          "user_id": "7480204",
+          "profile": "http://www.wikidot.com/user:info/smuj",
+          "deleted": false
+        },
+        "latest": {
+          "status": "captured",
+          "source": "history_latest",
+          "revision_id": "1533712794",
+          "version": 5,
+          "edited_text": "26 Oct 2025 16:28",
+          "edited_at": "2025-10-26T16:28:01+00:00",
+          "edited_at_beijing": "2025/10/27 00:28:01",
+          "editor": {
+            "name": "SMUJ",
+            "user_id": "7480204",
+            "profile": "http://www.wikidot.com/user:info/smuj",
+            "deleted": false
+          }
+        },
+        "history_page": 1
+      },
+      "comments_preview": {
+        "posts": []
+      },
+      "archive_display_name": "scp-mc-860",
+      "archived_deleted": true,
+      "moved": false,
+      "moved_from": null,
+      "moved_to": null,
+      "url_reused": true,
+      "replacement_page_id": "1469150602"
+    },
+    "source": "[[>]]\n\n[[module Rate]]\n\n[[/>]]\n\n[[include :scp-wiki-cn:component:anomaly-class-bar-source\n\n|lang= cn\n\n|item-number= SCP-MC-860\n\n|clearance= 2\n\n|container-class= euclid\n\n|secondary-class= \n\n|secondary-icon= http://url.com\n\n|disruption-class= vlam\n\n|risk-class= 待观察\n\n]]\n\n**特殊收容措施：**SCP-MC-860将被编入MTF-Enchantment-14，在必要时需作为特遣队员接受特遣队的调遣，平日保留其原职位，仍作为Site-MC-09职员活动。SCP-MC-860-1由SCP-MC-860随身携带，SCP-MC-860-2则需收容于一个潜影盒内，并放置于站点主管办公室，需要经过站点主管Dr.Ding/Dr.Yang/Dr.Jin任意一位允许才可取出。\n\n\n\n**描述：**SCP-MC-860是原Site-MC-09职员乔可[[footnote]]二级研究员、考古学家，就职于Site-MC-09探险部门的分部门。[[/footnote]]，在一次针对[[[SCP-MC-760]]]的古代遗迹的考古行动中，意外接触SCP-MC-860-2后获得异常性质，并在回到Site-MC-09后自愿接受收容。SCP-MC-860-1外观为一个蓝色的收纳袋，其收纳功能仅对SCP-MC-860-2有效，无法用于收纳其他物品，且无法染色，不可被以任何方式破坏。SCP-MC-860-2外观为一个回响碎片，无法被用于合成，无法被以任何方式破坏。\n\n\n\n当SCP-MC-860将SCP-MC-860-2置入SCP-MC-860-1内时，SCP-MC-860-1会释放光照等级为10的光芒，持续15秒，并在SCP-MC-860体表生成一种由幽匿和皮革组成的物质，并逐渐组成一套服装，并获得一根由幽匿及下界合金组成的法杖。SCP-MC-860的此状态被称为激活状态，激活状态将持续45分钟，进入激活状态的SCP-MC-860身体素质将得到大幅度提升（详见附录），获得飞行能力，并拥有通过法杖释放尖啸声波的异常能力。\n\n\n\nSCP-MC-860所释放的尖啸声波与监守者发射的尖啸声波类似，射程约25格，会对攻击路径上的所有生物造成25点伤害。此外，SCP-MC-860可以释放另一种范围型尖啸声波，对以自身为中心，半径五格的球形范围内所有生物造成30点伤害。SCP-MC-860还可通过法杖使某一恒久物体转化为SCP-MC-860-3，SCP-MC-860可设定其触发时间，当易变物体接触SCP-MC-860-3或达到SCP-MC-860所设定的触发时间后，SCP-MC-860-3会向外释放范围型尖啸声波。\n\n\n\n**附录：**[[collapsible show=\"+ 安保部门测定的激活状态下SCP-MC-860的战斗力数据\" hide=\"- 收回\"]]\n\n* **攻击力：**单次攻击可造成84点伤害，尖啸声波可造成25点至30点伤害。\n\n* **破坏力：**破坏任意一种恒久物体时的破坏速度与使用对应钻石制工具的破坏速度相当，且其空手具有与铁相当的挖掘等级。\n\n* **移动速度：**地面移动速度为八米每秒，飞行移动速度为十五米每秒。\n\n* **攻击速度：**攻击速度为1.6，与手持剑时攻击相当。\n\n* **生命值：**激活状态下，SCP-MC-860的生命值将提升至800点。\n\n* **持续作战能力：**SCP-MC-860对任意种类的伤害都具有50%的减伤，且具有每秒恢复5点生命值的能力。\n\n* **环境加成：**SCP-MC-860处在深暗之域群系中时，激活状态下的所有的数值提升至原先的150%\n\n\n\n[[/collapsible]]\n\n\n\n[[footnoteblock]]\n\n\n\n[[div class=\"footer-wikiwalk-nav\"]]\n\n[[=]]\n\n<< [[[SCP-MC-859]]] | SCP-MC-860 | [[[SCP-MC-861]]] >>\n\n[[/=]]\n\n[[/div]]\n"
+  },
+  {
+    "page_name": "scp-mc-982",
+    "detail": {
+      "url": "https://scp-wiki-mc.wikidot.com/scp-mc-982",
+      "page_name": "scp-mc-982",
+      "archived_deleted": true,
+      "title": "SCP-MC-982   零号唱片",
+      "page_id": "1469119336",
+      "site_id": "4427955",
+      "source_file": "_default/scp-mc-982.wikidot",
+      "raw_file": "_raw_viewsource/_default/scp-mc-982.html",
+      "source_bytes": "1627",
+      "source_chars": "785",
+      "source_sha256": "c35656a1e27a141d6fc85b75823812692d603ef56a70e1cadfa0d644642fe95c",
+      "source_excerpt": "**项目编号：**SCP-MC-982\n\n**项目等级：**Euclid\n\n\n\n**特殊收容措施：**该项目应被置于一间3格*3格*3格的黑曜石房间中，且设施顶部需有恒久光源对其进行照射以防该项目突破收容。对项目进行实验的 实验人员 的CRV[[footnote]]认知危害抗阻系数[[/footnote]]系数要求≥10，且权限为三级或以上。\n\n\n\n**描述：**SCP-MC-982为一黑胶绿底唱片，可使用唱片机播放。播放该唱片时，周围半径50格内人员将受到认知危害，等级均为4。\n\n\n\n基金会对项目性质进行研究时，发现其构成成分极其坚硬，几乎无法使用常规方式进行破坏。当玩家手持该项目时，其将产...",
+      "author_hints": {
+        "users": [
+          "ZYXzyxZYXzyx"
+        ],
+        "author_pages": []
+      },
+      "live_error": "",
+      "page_kind": "other",
+      "created_at": null,
+      "created_at_beijing": null,
+      "last_edited_at": null,
+      "last_edited_at_beijing": null,
+      "comments_preview": {
+        "posts": []
+      }
+    },
+    "source": "**项目编号：**SCP-MC-982\n\n**项目等级：**Euclid\n\n\n\n**特殊收容措施：**该项目应被置于一间3格*3格*3格的黑曜石房间中，且设施顶部需有恒久光源对其进行照射以防该项目突破收容。对项目进行实验的 实验人员 的CRV[[footnote]]认知危害抗阻系数[[/footnote]]系数要求≥10，且权限为三级或以上。\n\n\n\n**描述：**SCP-MC-982为一黑胶绿底唱片，可使用唱片机播放。播放该唱片时，周围半径50格内人员将受到认知危害，等级均为4。\n\n\n\n基金会对项目性质进行研究时，发现其构成成分极其坚硬，几乎无法使用常规方式进行破坏。当玩家手持该项目时，其将产生将该项目放入唱片机的冲动，其原因未知，推测项目未播放时具有轻度认知危害。\n\n\n\n当设施内除去光源照射时，该项目表现出将恒久物体转化为易变物体的能力。因此，设施内应使用恒久光源持续照射，以防收容失效。\n\n\n\n**附录：**\n\n\n\n实验记录：\n\n\n\n> 实验日期：20██年█月█日\n\n> \n\n> 实验开始，要求D12836进入项目收容设施，D12836进入设施后对项目表现出强烈占有欲并未听从指令直接将项目放入唱片机，唱片机内播放出“six forty seven”音乐。随后，设施内除CRV≥10人员外均有不同程度的认知危害。\n\n\n\n------\n\n[[collapsible show=\"唱片真好听\" hide=\"啊啊啊啊啊要死了要死了QAQ\"]]\n\n[[*user ZYXzyxZYXzyx]]\n\n[[/collapsible]]\n\n[[div class=\"footer-wikiwalk-nav\"]]\n\n[[=]]\n\n« [[[SCP-MC-981]]] | SCP-MC-982 | [[[SCP-MC-983]]] »\n\n[[/=]]\n\n[[/div]]\n"
+  },
+  {
+    "page_name": "scp-mc-993--deleted-unknown",
+    "detail": {
+      "page_name": "scp-mc-993--deleted-unknown",
+      "title": "SCP-MC-993",
+      "url": "https://scp-wiki-mc.wikidot.com/scp-mc-993",
+      "archived_deleted": true,
+      "moved": false,
+      "moved_from": null,
+      "moved_to": null,
+      "page_id": null,
+      "site_id": null,
+      "source_file": "",
+      "raw_file": "",
+      "source_bytes": 0,
+      "source_chars": 0,
+      "source_sha256": "",
+      "source_excerpt": "",
+      "author_hints": {},
+      "live_error": "historical page removed before source capture",
+      "page_kind": "other",
+      "tags": [],
+      "rating": null,
+      "rating_text": null,
+      "voters": {
+        "status": "historical_record_missing",
+        "users": []
+      },
+      "history_author": {
+        "status": "historical_record_missing"
+      },
+      "discussion": null,
+      "comments_preview": {
+        "posts": []
+      },
+      "created_at": null,
+      "created_at_beijing": null,
+      "last_edited_at": null,
+      "last_edited_at_beijing": null,
+      "archive_display_name": "scp-mc-993"
+    },
+    "source": "**特殊收容措施：**该项目应被置于一3格*3格*3格的黑曜石房间中，且设施顶部需有恒久光源对其进行照射以防该项目突破收容。对项目进行实验要求CRV[[footnote]]认知危害抗阻系数你看见了对吗他们在你眼中静静地流淌你看见了对吗他们在你眼中静静地流淌你看见了对吗他们在你眼中静静地流淌你看见了对吗他们在你眼中静静地流淌[[/footnote]]系数≥10，访问权限3级。\n"
+  },
+  {
+    "page_name": "wevcwmrvewij--deleted-1460372051",
+    "detail": {
+      "url": "https://scp-wiki-mc.wikidot.com/wevcwmrvewij",
+      "page_name": "wevcwmrvewij--deleted-1460372051",
+      "title": "七夕合著之序曲",
+      "page_id": "1460372051",
+      "site_id": "4427955",
+      "source_file": "_default/wevcwmrvewij.wikidot",
+      "raw_file": "_raw_viewsource/_default/wevcwmrvewij.html",
+      "source_bytes": "9776",
+      "source_chars": "3818",
+      "source_sha256": "5ed7e09a062f844ba2bdbcfe4e5d9dd80a65ca6e8a99ca16bae38ad7727cc8c4",
+      "source_excerpt": "[[include :scp-wiki-mc:theme:obsidian centertitle=a|no-content-wrap-image=a]]\n\n\n\n\n\n[[include :scp-wiki-cn:component:info-ayers\n\n|page=wevcwmrvewij\n\n|authorPage=hominoidea\n\n|comments=\n\n\n\n= **七夕合著之序曲**\n\n\n\n= 不要让我派去的人面对本不必要的抉择。为了我们共同的目标，回来。\n\n\n\n= **作者：**\n\n\n\n= [[*user hominoidea]]@@@@\n\n\n\n------\n\n\n\n\n\n]]...",
+      "author_hints": {
+        "users": [
+          "hominoidea"
+        ],
+        "author_pages": [
+          "hominoidea"
+        ]
+      },
+      "live_error": "",
+      "page_kind": "original",
+      "created_at": "2025-09-10T07:02:13+00:00",
+      "created_at_beijing": "2025/09/10 15:02:13",
+      "last_edited_at": "2025-09-10T07:08:40+00:00",
+      "last_edited_at_beijing": "2025/09/10 15:08:40",
+      "unix_name": "wevcwmrvewij",
+      "rating": 5,
+      "rating_text": "+5",
+      "has_rating_widget": true,
+      "voters_status": "captured",
+      "tags": [
+        "原创",
+        "故事"
+      ],
+      "page_info": "页面版本: 3, 最后编辑于: 10 Sep 2025 07:08",
+      "revision_count": 3,
+      "discussion": null,
+      "html_users": [
+        "Hominoidea"
+      ],
+      "voters": {
+        "status": "captured",
+        "count": 5,
+        "up": 5,
+        "down": 0,
+        "up_deleted": 0,
+        "down_deleted": 0,
+        "up_users": [
+          {
+            "name": "EEEemerald",
+            "user_id": "8299296",
+            "profile": "http://www.wikidot.com/user:info/eeeemerald",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "FDSVideo",
+            "user_id": "6878250",
+            "profile": "http://www.wikidot.com/user:info/fdsvideo",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "Lxv37-wttoae",
+            "user_id": "8708015",
+            "profile": "http://www.wikidot.com/user:info/lxv37-wttoae",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "Qian Shu Lian",
+            "user_id": "9496441",
+            "profile": "http://www.wikidot.com/user:info/qian-shu-lian",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "Rexstar",
+            "user_id": "8711256",
+            "profile": "http://www.wikidot.com/user:info/rexstar",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          }
+        ],
+        "down_users": [],
+        "users": [
+          {
+            "name": "EEEemerald",
+            "user_id": "8299296",
+            "profile": "http://www.wikidot.com/user:info/eeeemerald",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "FDSVideo",
+            "user_id": "6878250",
+            "profile": "http://www.wikidot.com/user:info/fdsvideo",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "Lxv37-wttoae",
+            "user_id": "8708015",
+            "profile": "http://www.wikidot.com/user:info/lxv37-wttoae",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "Qian Shu Lian",
+            "user_id": "9496441",
+            "profile": "http://www.wikidot.com/user:info/qian-shu-lian",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          },
+          {
+            "name": "Rexstar",
+            "user_id": "8711256",
+            "profile": "http://www.wikidot.com/user:info/rexstar",
+            "deleted": false,
+            "vote": 1,
+            "vote_text": "+"
+          }
+        ]
+      },
+      "history_author": {
+        "status": "captured",
+        "source": "history_revision_0",
+        "revision_id": "1532216777",
+        "version": 0,
+        "created_text": "10 Sep 2025 07:02",
+        "created_at": "2025-09-10T07:02:13+00:00",
+        "created_at_beijing": "2025/09/10 15:02:13",
+        "author": {
+          "name": "Hominoidea",
+          "user_id": "6625968",
+          "profile": "http://www.wikidot.com/user:info/hominoidea",
+          "deleted": false
+        },
+        "latest": {
+          "status": "captured",
+          "source": "history_latest",
+          "revision_id": "1532216849",
+          "version": 3,
+          "edited_text": "10 Sep 2025 07:08",
+          "edited_at": "2025-09-10T07:08:40+00:00",
+          "edited_at_beijing": "2025/09/10 15:08:40",
+          "editor": {
+            "name": "Hominoidea",
+            "user_id": "6625968",
+            "profile": "http://www.wikidot.com/user:info/hominoidea",
+            "deleted": false
+          }
+        },
+        "history_page": 1
+      },
+      "comments_preview": {
+        "posts": []
+      },
+      "archive_display_name": "wevcwmrvewij",
+      "archived_deleted": true,
+      "moved": false,
+      "moved_from": null,
+      "moved_to": null,
+      "url_reused": false,
+      "replacement_page_id": null
+    },
+    "source": "[[include :scp-wiki-mc:theme:obsidian centertitle=a|no-content-wrap-image=a]]\n\n\n\n\n\n[[include :scp-wiki-cn:component:info-ayers\n\n|page=wevcwmrvewij\n\n|authorPage=hominoidea\n\n|comments=\n\n\n\n= **七夕合著之序曲**\n\n\n\n= 不要让我派去的人面对本不必要的抉择。为了我们共同的目标，回来。\n\n\n\n= **作者：**\n\n\n\n= [[*user hominoidea]]@@@@\n\n\n\n------\n\n\n\n\n\n]]\n\n\n\n\n\n[[>]]\n\n[[module Rate]]\n\n[[/>]]\n\n\n\n[[div class=\"blockquote\"]]\n\n\n\n**主题：**行动授权\n\n**优先级：**Alpha\n\n**发件人：**O5-MC-6\n\n**收件人：**MTF-Steve-01-6\n\n\n\n------\n\n\n\n根据O5议会多数决议及伦理道德委员会第07-21紧急裁定，兹授权你单位执行执行一项紧急联络任务。\n\n\n\n前往指定坐标，定位并进入O5-MC-2于该坐标的私人地堡设施。与O5-MC-建立直接物理接触，确认其状态，并接收其可能持有的任何最高优先级物品或信息。\n\n\n\n自南华兰省异常食物腐烂事件最终处理会议后，O5-MC-2已失联超过72小时。所有远程通讯尝试均失败。其最后已知位置即私人地堡设施。鉴于当前形势的敏感性与潜在的信息危害风险，此行动定性为黑色行动。不存在官方记录，不存在后援。若被截获或暴露，基金会将否认一切。你们的身份已从基金会数据库中抹除，一旦行动失败，你们身上所佩戴的逆模因炸弹将即刻启动。\n\n\n\n你们被授权使用一切必要手段抵达目标点并完成目标。\n\n\n\n\n\n[[/div]]\n\n\n\n------\n\n\n\n昏暗。\n\n\n\n天地好似被一块漆黑的布蒙住了一般，除了漫天飞舞的雪片外，别无他物。呼啸的山风如同怨灵的哭嚎，撕扯着他们的白色雪地伪装服，试图将他们从陡峭的岩壁上掀翻下去。\n\n\n\n冰镐钉入冻得如同钢铁般的岩石，发出的声音瞬间就被风的怒吼所淹没。一行细碎的人影正紧贴着这黑色的岩壁，缓慢地向上蠕动着。\n\n\n\n目标位于这片无人山脉的顶峰，一个在任何地图上都找不到标记的地方。O5-MC-2的私人地堡。一位以不择手段和拥有无数禁忌知识闻名的O5议会成员。同时也是O5-MC-6和伦理道德委员会的主要反对者。\n\n\n\n南华兰省的事件最终处理会议成了导火索。会议不欢而散，然后，2号就消失了，回到了他的私人巢穴。\n\n\n\n然后就是整整七十二小时的静默。\n\n\n\n身为伦理道德委员会副主席的O5-MC-6提出了物理接触的提议，被O5议会所通过。于是他们便被部署到了这里，攀登着无边的岩壁。\n\n\n\n没有人知道在山顶会发生什么，即使是其他O5议员也不会知道。\n\n\n\n这是一次黑色行动。意味着他们不存在。成功了，无人喝彩；失败了，逆模因炸弹会确保他们从未存在过。基金会庞大的机器不会留下任何他们来过的痕迹。\n\n\n\n风雪更紧了。能见度降至不足五米。透过夜视药水赋予其的视野，只能看到一片疯狂舞动的雪幕。攀登变得极其艰难，每上升一米都耗费巨大的体力。队员们依靠着经过强化的身体素质和钢铁般的意志维持着节奏。\n\n\n\n“高度，两千四百七十米。”通讯器里传来小队导航员声音，夹杂着大量的静电噪音。\n\n\n\n没有回应。节省一切能量和注意力。\n\n\n\n最前方的队员猛地一挥手，队伍瞬间停止移动，紧贴岩壁。上方传来一阵不祥的隆隆声。小型雪崩。积雪和碎冰从他们侧方几米处倾泻而下，砸入下方的深渊，无影无踪。\n\n\n\n“生物信号扫描持续进行中，目标区域无任何生命特征读数。重复，无生命特征。”通讯器里传来技术员的声音。\n\n\n\n这并不完全出乎意料。地堡的屏蔽措施极好，或者……\n\n\n\n里歇尔只是敲了敲麦克风，表示收到。\n\n\n\n在山脚时，MTF-Steve-01常用的技术装备就已失效，这不足为奇，他们所面对的，是一位O5议员。\n\n\n\n攀登持续了数个小时。终于，在时间几乎失去意义的某个时刻，一片相对平坦的区域模糊地出现在队员视野中。顶峰到了。\n\n\n\n根据坐标指示，地堡的入口应该伪装成一块巨大的岩石或是类似的自然构造。\n\n\n\n“发现入口。”技术员你的声音传来。他蹲在一个几乎被积雪完全覆盖的金属舱门前。舱门与山岩融为一体，几乎天衣无缝，但仔细看仍能发现人工的痕迹。\n\n\n\n他上前，将一个便携式扫描终端连接在舱门一侧的隐蔽面板上。“没有外部物理锁。生物识别和密码双重加密。系统处于离线备用电源模式。尝试绕过……”\n\n\n\n手指在终端上飞快跳动。几分钟后，舱门内部传来数声活塞推动和收缩的声音。原本是舱门的地方只剩下了一个向下延伸的的金属阶梯。\n\n\n\n一股经过过滤的、干燥冰冷的空气从通道内涌出，带着一丝极微弱的、难以形容的气味，大概是某种陈旧尘埃的味道。\n\n\n\n里歇尔第一个进入。身后队员依次迅速进入，最后一人负责清除他们留在舱门外的痕迹，并放置数个方块来阻挡舱门意外关闭，这是他们的退路，尽管他们都知道，可能根本用不上。\n\n\n\n阶梯尽头是一条简洁的金属走廊，墙壁是冰冷的下界合金，红石灯带散发着微弱的光源，提供着最低限度的照明。一切看起来干净整洁，就像从来没人来过一样。\n\n\n\n“生命信号扫描，依旧为零。”技术员再次确认，声音在狭窄的走廊里产生轻微的回音。\n\n\n\n小队缓慢而警惕地向地堡内部推进。走廊两侧有几个房间，门都紧闭着。里歇尔打出手势，队员们交替上前检查。\n\n\n\n“休息室，空。”\n\n\n\n“储藏室，基础物资，无异常。”\n\n\n\n“备用发电机室，运转正常。”\n\n\n\n越往里走，那种空无一人的死寂感就越发强烈。\n\n\n\n最终，他们抵达了走廊尽头的一扇被刻意装饰成深色橡木材质的金属门，这与地堡整体的金属质感格格不入。门上没有标识。\n\n\n\n里歇尔第一个推开门，弩的红外瞄准线划入黑暗，随即被一种沉黯的、吸收了过多光线的材质所吞噬。\n\n\n\n这是一间书房。\n\n\n\n空气中有一种陈年纸张、皮革和上光剂混合的冰冷气味，取代了外部走廊的金属气息。四壁皆是高耸的红木书架，直抵天花板，上面塞满了密密麻麻的书籍和文件夹，其中一些书籍的装帧古老得超乎想象。房间中央铺着一张厚实的东方地毯，图案繁复却色彩暗淡。地毯上摆放着一张巨大的红木书桌，桌面上异常整洁，空无一物，只有一盏黄铜底座绿玻璃灯罩的台灯孤零零地立着。书桌后是一张高背皮质办公椅，背对着入口方向。\n\n\n\n一切看起来都井井有条，甚至堪称奢华，但同样沉默着。书架上的书沉默着，书桌沉默着，椅子也沉默着。仿佛时间在这里停滞了许久。\n\n\n\n“生命信号扫描，依旧为零。”技术员的声音在堆满书籍的密闭空间里显得有些沉闷，他再次确认了读数。\n\n\n\n小队呈扇形散开，检查这个空间。里歇尔示意检查书架和可能的暗门，两名队员开始仔细而快速地排查书架之间的缝隙和墙壁。另一名队员检查书桌的抽屉。\n\n\n\n“抽屉全部是空的。被彻底清空了。”队员低声报告。\n\n\n\n“书架后方未发现异常，书籍大多是实体档案，有些贴着保密标识。”另一名队员补充道。\n\n\n\n一无所获。\n\n\n\n里歇尔走到那张巨大的高背椅后，用戴着手套的手缓缓将其转过来。\n\n\n\n椅子上空无一物。只是在座椅的正中心，放置着一枚小巧的，闪烁着金属冷光的徽章。\n\n\n\n上面刻着一个“2”.\n\n\n\n//风雪仍在继续。//\n\n\n\n------\n\n\n\n[[div class=\"blockquote\"]]\n\n\n\n2号，\n\n\n\n我长话短说，因为我们可能没有多少时间了。\n\n\n\n南华兰省事件的处理方式，以及你派出的人，伦理道德委员会都知道了。他们认为你越权了。\n\n\n\n我和3号，及其他数位同仁，都不赞同他们的看法。\n\n\n\n官僚主义和对程序近乎迷信的崇拜正在杀死我们，老朋友。它让我们在面对真正迫在眉睫的威胁时变得迟缓且盲目。有时，若想执行真正的正义，确保人类的存续，手段必须超出常理所划定的界限。这一点，我与你看法一致。\n\n\n\n然而，目前的力量对比对我们不利。委员会已经投票决定采取行动。他们准备派人去找你，在那个完全封闭的山顶没人会知道发生什么。\n\n\n\n为了阻止这种情况，我主动提请由我来处理此事。我已向他们保证，我会找到你，并说服你回来。这暂时稳住了他们最极端的成员。\n\n\n\n因此，我派遣了我的一支小队前往你最后已知的坐标。\n\n\n\n你必须立刻离开你那偏远的庇护所，返回Site-MC-01-2。在那里，你处于议会设施的正式保护之下，委员会的爪牙不敢在没有经过大量公开辩论和正式投票的情况下强行进入。那会引发他们最不愿看到的内战。\n\n\n\n返回Site-01-2，重新建立所有官方通讯频道。公开现身。让自己重新回到体系的视野和保护之中。这是目前唯一能让他们暂时止步的方法。\n\n\n\n一旦你回到官方席位上，我们才能有资本继续斗争，才能为我们争取时间和空间来谋划下一步。留在外面，你就是孤身一人，一个靶子。回来，你仍然是O5议会的一员，享有相应的权利和保护。\n\n\n\n不要让我派去的人面对本不必要的抉择。为了我们共同的目标，回来。\n\n\n\n立刻行动。\n\n\n\n[[>]]\n\n\n\n//6号//\n\n\n\n[[/>]]\n\n\n\n[[/div]]\n"
   }
 ]

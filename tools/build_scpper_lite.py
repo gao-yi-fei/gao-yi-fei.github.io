@@ -362,9 +362,11 @@ def compact_page_ref(page: dict[str, Any]) -> dict[str, Any]:
     latest_editor = (page.get("history_author", {}).get("latest") or {}).get("editor") or {}
     return {
         "page_name": page.get("page_name"),
+        "archive_display_name": page.get("archive_display_name"),
         "title": page.get("title") or page.get("page_name"),
         "url": page.get("url"),
         "archived_deleted": bool(page.get("archived_deleted")),
+        "url_reused": bool(page.get("url_reused")),
         "moved": bool(page.get("moved")),
         "moved_from": page.get("moved_from"),
         "moved_to": page.get("moved_to"),
@@ -474,6 +476,7 @@ def build_search_entry(page: dict[str, Any]) -> dict[str, Any]:
     search_parts = [
         page.get("title"),
         page_name,
+        page.get("archive_display_name"),
         page.get("url"),
         page.get("page_id"),
         page.get("source_file"),
@@ -485,9 +488,11 @@ def build_search_entry(page: dict[str, Any]) -> dict[str, Any]:
     ]
     return {
         "page_name": page_name,
+        "archive_display_name": page.get("archive_display_name"),
         "title": page.get("title") or page_name,
         "url": page.get("url"),
         "archived_deleted": bool(page.get("archived_deleted")),
+        "url_reused": bool(page.get("url_reused")),
         "moved": bool(page.get("moved")),
         "moved_to": page.get("moved_to"),
         "rating": page.get("rating"),
@@ -1501,11 +1506,13 @@ def load_deleted_page_seeds() -> list[dict[str, Any]]:
     if not DELETED_SEEDS.exists():
         return []
     seeds = json.loads(DELETED_SEEDS.read_text(encoding="utf-8"))
-    return [
-        {
+    pages = []
+    for seed in seeds:
+        if not seed.get("page_name"):
+            continue
+        page = dict(seed.get("detail") or {
             "page_name": seed["page_name"], "title": seed.get("title") or seed["page_name"],
             "url": seed.get("url") or f"https://scp-wiki-mc.wikidot.com/{seed['page_name']}",
-            "archived_deleted": True, "moved": False, "moved_from": None, "moved_to": None,
             "page_id": None, "site_id": None, "source_file": "", "raw_file": "",
             "source_bytes": 0, "source_chars": 0, "source_sha256": "", "source_excerpt": "",
             "author_hints": {}, "live_error": "historical page removed before source capture",
@@ -1515,9 +1522,11 @@ def load_deleted_page_seeds() -> list[dict[str, Any]]:
             "discussion": None, "comments_preview": {"posts": []},
             "created_at": None, "created_at_beijing": None,
             "last_edited_at": None, "last_edited_at_beijing": None,
-        }
-        for seed in seeds if seed.get("page_name")
-    ]
+        })
+        page.update({"archived_deleted": True, "moved": False, "moved_from": None, "moved_to": None})
+        page["_seed_source"] = seed.get("source") or ""
+        pages.append(page)
+    return pages
 
 
 def preserve_deleted_page_metadata(pages: list[dict[str, Any]], previous: dict[str, dict[str, Any]]) -> None:
@@ -2001,10 +2010,8 @@ def build_home_index(recent_index: dict[str, Any], limit: int = 5) -> dict[str, 
 
 
 def write_json(path: Path, payload: Any) -> None:
-    path.write_text(
-        json.dumps(payload, ensure_ascii=False, separators=(",", ":")),
-        encoding="utf-8",
-    )
+    with path.open("w", encoding="utf-8", newline="\n") as handle:
+        handle.write(json.dumps(payload, ensure_ascii=False, separators=(",", ":")))
 
 
 def write_site(
@@ -2210,11 +2217,10 @@ def write_site(
         with gzip.open(source_dir / f"{shard}.json.gz", "wt", encoding="utf-8", compresslevel=9) as handle:
             handle.write(source_payload)
 
-    (data_dir / "sources.sha256").write_text(
-        source_hash.hexdigest() + "\n", encoding="ascii"
-    )
-    (data_dir / "README.md").write_text(
-        "\n".join(
+    with (data_dir / "sources.sha256").open("w", encoding="ascii", newline="\n") as handle:
+        handle.write(source_hash.hexdigest() + "\n")
+    with (data_dir / "README.md").open("w", encoding="utf-8", newline="\n") as handle:
+        handle.write("\n".join(
             [
                 "# SCPper-lite data",
                 "",
@@ -2238,10 +2244,7 @@ def write_site(
                 "are loaded on demand by shard. `forum-threads/*.json.gz` "
                 "is loaded on demand by forum category.",
             ]
-        )
-        + "\n",
-        encoding="utf-8",
-    )
+        ) + "\n")
 
 
 def main() -> int:
@@ -2269,7 +2272,11 @@ def main() -> int:
         preserve_deleted_page_metadata(pages, previous_pages)
         preserve_comment_histories(pages, previous_pages)
     existing_names = {page["page_name"] for page in pages}
-    pages.extend(page for page in load_deleted_page_seeds() if page["page_name"] not in existing_names)
+    for page in load_deleted_page_seeds():
+        if page["page_name"] in existing_names:
+            continue
+        sources[page["page_name"]] = page.pop("_seed_source")
+        pages.append(page)
 
     forum_index = {"groups": [], "categories": [], "threads": []}
     if not args.skip_live and not args.skip_forum:

@@ -165,6 +165,57 @@ def refresh_page(name: str, old: dict[str, Any] | None, args: argparse.Namespace
     return canonical_name, page, source
 
 
+def archived_identity_name(name: str, page_id: str) -> str:
+    """Return a stable storage key for a page whose public URL was reused."""
+    return f"{name}--deleted-{page_id}"
+
+
+def archive_replaced_page(
+    name: str, old: dict[str, Any], source: str, replacement_page_id: str
+) -> tuple[str, dict[str, Any], str] | None:
+    """Preserve the old object when a newly created page reuses its URL.
+
+    Wikidot permits a deleted page name to be created again.  The URL remains
+    identical, but its Page ID changes.  The old object is a deletion archive,
+    not a move, and therefore needs a distinct local key before the new object
+    is written at the original name.
+    """
+    old_page_id = str(old.get("page_id") or "")
+    if not old_page_id or old_page_id == replacement_page_id:
+        return None
+    archived_name = archived_identity_name(name, old_page_id)
+    archived = dict(old)
+    archived.update({
+        "page_name": archived_name,
+        "archive_display_name": name,
+        "archived_deleted": True,
+        "moved": False,
+        "moved_from": None,
+        "moved_to": None,
+        "url_reused": True,
+        "replacement_page_id": replacement_page_id,
+    })
+    return archived_name, archived, source
+
+
+def save_deleted_page_seeds(pages: dict[str, dict[str, Any]], sources: dict[str, str]) -> None:
+    """Persist every deletion archive for a later full rebuild.
+
+    Incremental updates may discover a deletion long after the original backup
+    was made.  Keeping the archive in this seed file means the six-hour deep
+    crawl cannot silently discard it.
+    """
+    path = TOOLS_DIR / "deleted_page_seeds.json"
+    records = [
+        {"page_name": page["page_name"], "detail": page, "source": sources.get(page["page_name"], "")}
+        for page in pages.values()
+        if page.get("archived_deleted") and page.get("page_name")
+    ]
+    records.sort(key=lambda item: item["page_name"])
+    with path.open("w", encoding="utf-8", newline="\n") as handle:
+        handle.write(json.dumps(records, ensure_ascii=False, indent=2) + "\n")
+
+
 def refresh_forum_threads(forum_index: dict[str, Any], urls: dict[str, str], args: argparse.Namespace) -> int:
     by_url = {str(item.get("url") or "").split("#", 1)[0]: item for item in forum_index.get("threads") or []}
     live_args = SimpleNamespace(timeout=args.timeout, retries=args.retries, comments_per_thread=0)
@@ -250,7 +301,8 @@ def save_page_ledger(path: Path, urls: set[str], pages: dict[str, dict[str, Any]
         page = by_url.get(url)
         if page and page.get("page_id"):
             payload["urls"][url] = {"page_id": str(page["page_id"]), "page_name": str(page.get("page_name") or "")}
-    path.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    with path.open("w", encoding="utf-8", newline="\n") as handle:
+        handle.write(json.dumps(payload, ensure_ascii=False, separators=(",", ":")))
 
 
 def reconcile_category_moves(
@@ -337,13 +389,16 @@ def main() -> int:
     previous_failures = set()
     if previous_report_path.exists():
         previous_failures = set(json.loads(previous_report_path.read_text(encoding="utf-8")).get("failures") or {})
-    candidates = {name for name in created if name not in pages}
+    # A newly-created page may deliberately reuse the URL of a deleted page.
+    # It must be fetched even when that URL already has a local record so the
+    # Page ID comparison below can archive the old identity first.
+    candidates = set(created)
     candidates.update(name for name, observed in changed.items() if name not in pages or str(pages[name].get("last_edited_at") or "") < observed)
     candidates.update(name for name, observed in commented.items() if name not in pages or not page_has_post_at_least(pages[name], observed))
     candidates.update(previous_failures)
     page_names = set(sorted(candidates)[: max(1, args.max_pages)])
 
-    refreshed: dict[str, tuple[dict[str, Any], str]] = {}
+    refreshed: dict[str, tuple[str, dict[str, Any], str]] = {}
     failures: dict[str, str] = {}
     with ThreadPoolExecutor(max_workers=max(1, args.workers)) as executor:
         futures = {executor.submit(refresh_page, name, pages.get(name), args): name for name in page_names}
@@ -351,12 +406,25 @@ def main() -> int:
             name = futures[future]
             try:
                 canonical, page, source = future.result()
-                refreshed[canonical] = (page, source)
+                refreshed[name] = (canonical, page, source)
             except Exception as exc:  # noqa: BLE001 - leave prior record intact for next run.
                 failures[name] = str(exc)
-    for name, (page, source) in refreshed.items():
-        pages[name] = page
-        sources[name] = source
+    replaced_archives = 0
+    for requested_name, (canonical, page, source) in refreshed.items():
+        old = pages.get(requested_name)
+        archived = archive_replaced_page(
+            requested_name, old, sources.get(requested_name, ""), str(page.get("page_id") or "")
+        ) if old else None
+        if archived:
+            archived_name, archived_page, archived_source = archived
+            pages[archived_name] = archived_page
+            sources[archived_name] = archived_source
+            replaced_archives += 1
+        if canonical != requested_name:
+            pages.pop(requested_name, None)
+            sources.pop(requested_name, None)
+        pages[canonical] = page
+        sources[canonical] = source
     thread_count = refresh_forum_threads(forum_index, forum_urls, args)
 
     previous_stats = read_gzip(data_dir / "home-index.json.gz").get("stats") or {}
@@ -372,6 +440,7 @@ def main() -> int:
             forum_index, generated_dt=generated_dt,
         )
         changed_files = copy_changed_data(temp_site / "data", data_dir)
+    save_deleted_page_seeds(pages, sources)
     subprocess.run(
         [sys.executable, "tools/refresh_contest_snapshot.py", "--site", str(site_dir),
          "--workers", "12", "--timeout", str(args.timeout), "--retries", str(args.retries)],
@@ -384,11 +453,11 @@ def main() -> int:
         "feed_candidates": len(candidates), "feed_created": len(created), "feed_changed": len(changed), "feed_posts": len(commented),
         "forum_threads_refreshed": thread_count, "changed_data_files": changed_files, "failures": failures,
         "category_moves": moved_count, "category_deletions": deleted_count,
+        "url_reuse_archives": replaced_archives,
         "feeds": list(FEEDS),
     }
-    (data_dir / "incremental-sync.json").write_text(
-        json.dumps(report, ensure_ascii=False, separators=(",", ":")), encoding="utf-8"
-    )
+    with (data_dir / "incremental-sync.json").open("w", encoding="utf-8", newline="\n") as handle:
+        handle.write(json.dumps(report, ensure_ascii=False, separators=(",", ":")))
     print(json.dumps(report, ensure_ascii=False))
     return 0
 
