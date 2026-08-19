@@ -211,6 +211,27 @@ def copy_changed_data(source: Path, destination: Path) -> int:
     return changed
 
 
+def refresh_index_timestamps(data_dir: Path) -> None:
+    now = datetime.now(timezone.utc)
+    stamp = now.isoformat(timespec="seconds")
+    stamp_beijing = build.format_beijing_time(now)
+    for name in ("search-index.json.gz", "user-index.json.gz", "forum-index.json.gz", "forum-categories.json.gz"):
+        path = data_dir / name
+        payload = read_gzip(path)
+        stats = payload.setdefault("stats", {})
+        stats["generated_at"] = stamp
+        stats["generated_at_beijing"] = stamp_beijing
+        with gzip.open(path, "wt", encoding="utf-8", compresslevel=9) as handle:
+            json.dump(payload, handle, ensure_ascii=False, separators=(",", ":"))
+    for name in ("pages-head.json", "users-head.json"):
+        path = data_dir / name
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        stats = payload.setdefault("stats", {})
+        stats["generated_at"] = stamp
+        stats["generated_at_beijing"] = stamp_beijing
+        path.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
+
 def main() -> int:
     args = parse_args()
     site_dir = Path(args.site).resolve()
@@ -269,6 +290,7 @@ def main() -> int:
         cwd=ROOT,
         check=True,
     )
+    refresh_index_timestamps(data_dir)
     report = {
         "captured_at": build.now_iso(), "page_targets": len(page_names), "page_refreshed": len(refreshed),
         "feed_candidates": len(candidates), "feed_created": len(created), "feed_changed": len(changed), "feed_posts": len(commented),
