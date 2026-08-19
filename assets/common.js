@@ -1,6 +1,7 @@
 window.SCPPER = (() => {
   const fmt = new Intl.NumberFormat("zh-CN");
   let cacheToken = new URLSearchParams(location.search).get("v") || "";
+  let versionPromise = null;
   const jsonCache = new Map();
   const nav = [
     ["/", "主页", "home"],
@@ -29,6 +30,17 @@ window.SCPPER = (() => {
     }
     jsonCache.set(key, parsed);
     return parsed;
+  }
+  async function initDataVersion() {
+    if (cacheToken) return cacheToken;
+    if (!versionPromise) versionPromise = fetch("/data/sync-version.json", { cache: "no-store" })
+      .then((res) => res.ok ? res.json() : null)
+      .then((payload) => {
+        cacheToken = String(payload?.version || "");
+        return cacheToken;
+      })
+      .catch(() => cacheToken);
+    return versionPromise;
   }
   function idle(task) {
     if ("requestIdleCallback" in window) {
@@ -239,5 +251,5 @@ window.SCPPER = (() => {
     });
   }
   idle(registerServiceWorker);
-  return { fmt, escapeHtml, loadJson, idle, pageHref, forumHref, refreshData, renderNav, wireRefresh, ratingLabel, ratingClass, normalize, pager, pagerAction, pageSlice, kindBadge, formatBeijing, tickBeijing, scrollMobile, recentTitle, recentExternalHref, recentLocalHref, recentTime, recentActor, renderRecentItem, wireRecentCards };
+  return { fmt, escapeHtml, loadJson, initDataVersion, idle, pageHref, forumHref, refreshData, renderNav, wireRefresh, ratingLabel, ratingClass, normalize, pager, pagerAction, pageSlice, kindBadge, formatBeijing, tickBeijing, scrollMobile, recentTitle, recentExternalHref, recentLocalHref, recentTime, recentActor, renderRecentItem, wireRecentCards };
 })();
