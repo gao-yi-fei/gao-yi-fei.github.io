@@ -778,8 +778,9 @@ def main() -> int:
             if url in current_urls:
                 del archived_deleted_by_url[url]
         if args.reuse_existing and completed_results:
+            current_page_ids = {result.page_id for result in results if result.page_id}
             for url, previous in completed_results.items():
-                if url and url not in current_urls:
+                if url and url not in current_urls and previous.page_id not in current_page_ids:
                     archived_deleted_by_url[url] = mark_deleted_archive(previous)
         archived_deleted = sorted(archived_deleted_by_url.values(), key=lambda item: item.url)
 
