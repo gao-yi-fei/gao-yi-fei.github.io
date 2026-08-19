@@ -70,6 +70,16 @@
         ["生成时间", stats.generated_at_beijing || C.formatBeijing(stats.generated_at)],
       ].map(([label, value]) => `<li><span>${label}</span>${typeof value === "number" ? C.fmt.format(value) : C.escapeHtml(value)}</li>`).join("");
     }
+    function liveContestStage(schedule) {
+      const start = Date.parse(schedule?.submission_start?.at || "");
+      const submissionEnd = Date.parse(schedule?.submission_end?.at || "");
+      const votingEnd = Date.parse(schedule?.voting_end?.at || "");
+      const now = Date.now();
+      if (Number.isFinite(start) && now < start) return "未开始";
+      if (Number.isFinite(submissionEnd) && now < submissionEnd) return "投稿中";
+      if (Number.isFinite(votingEnd) && now < votingEnd) return "投票中";
+      return Number.isFinite(votingEnd) ? "已结束" : (schedule?.stage || "进行中");
+    }
     function renderContest(contest) {
       if (!contest) {
         $("contestHint").textContent = "未识别到当前竞赛";
@@ -82,8 +92,9 @@
         ["投稿截止", schedule.submission_end?.at_beijing],
         ["投票截止", schedule.voting_end?.at_beijing],
       ].filter(([, value]) => value);
-      $("contestHint").textContent = `${contest.tag}${schedule.stage ? ` · ${schedule.stage}` : ""}${contest.entry_count != null ? ` · ${C.fmt.format(contest.entry_count)} 项` : ""}`;
-      const top = (contest.ranking || []).slice(0, 8);
+      const stage = liveContestStage(schedule);
+      $("contestHint").textContent = `${contest.tag}${stage ? ` · ${stage}` : ""}${contest.entry_count != null ? ` · ${C.fmt.format(contest.entry_count)} 项` : ""}`;
+      const top = contest.ranking || [];
       $("contest").innerHTML = `
         <h3>${pageLink(contest.hub)}</h3>
         <p class="small">竞赛信息来自 SCP-MC 主页提示与竞赛中心页；排名按分数、upvote 比例、发布时间排序。</p>
@@ -105,8 +116,14 @@
       C.wireRefresh();
       C.tickBeijing("nowBeijing");
       const payload = await C.loadJson("data/home-index.json.gz");
+      let contest = payload.current_contest;
+      try {
+        const live = await C.loadJson("data/contest-live.json", false);
+        contest = live.current_contest || contest;
+      } catch (_) {}
       renderStats(payload.stats || {});
-      renderContest(payload.current_contest);
+      renderContest(contest);
+      setInterval(() => renderContest(contest), 30_000);
       renderRecentList("recentPosts", payload.recent_posts, "posts");
       renderRecentList("recentPages", payload.recent_pages, "pages");
       renderRecentList("recentEdits", payload.recent_edits, "edits");
