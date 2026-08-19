@@ -188,6 +188,10 @@ def main() -> int:
         json.dumps({"current_contest": contest}, ensure_ascii=False, separators=(",", ":")),
         encoding="utf-8",
     )
+    (data_dir / "sync-version.json").write_text(
+        json.dumps({"version": now.strftime("%Y%m%d%H%M%S"), "captured_at": now.isoformat(timespec="seconds")}, separators=(",", ":")),
+        encoding="utf-8",
+    )
     print(json.dumps({"entries": len(fresh), "stage": contest["schedule"].get("stage")}, ensure_ascii=False))
     return 0
 
