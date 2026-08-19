@@ -34,6 +34,7 @@ from tqdm import tqdm
 
 DEFAULT_BACKUP = "backups/scp-wiki-mc-source-20260703-165715"
 DEFAULT_OUT = "site-scpper"
+DELETED_SEEDS = Path(__file__).with_name("deleted_page_seeds.json")
 USER_RE = re.compile(r"\[\[\*?user\s+([^\]\|]+)(?:\|[^\]]*)?\]\]", re.IGNORECASE)
 AUTHOR_PAGE_RE = re.compile(r"^\s*\|authorPage\s*=\s*(.+?)\s*$", re.IGNORECASE | re.MULTILINE)
 RATING_RE = re.compile(r"[-+]?\d+")
@@ -486,6 +487,9 @@ def build_search_entry(page: dict[str, Any]) -> dict[str, Any]:
         "page_name": page_name,
         "title": page.get("title") or page_name,
         "url": page.get("url"),
+        "archived_deleted": bool(page.get("archived_deleted")),
+        "moved": bool(page.get("moved")),
+        "moved_to": page.get("moved_to"),
         "rating": page.get("rating"),
         "tags": page.get("tags") or [],
         "page_kind": page.get("page_kind") or page_kind(page.get("tags") or []),
@@ -1493,6 +1497,29 @@ def load_previous_pages(site_dir: Path) -> dict[str, dict[str, Any]]:
     return pages
 
 
+def load_deleted_page_seeds() -> list[dict[str, Any]]:
+    if not DELETED_SEEDS.exists():
+        return []
+    seeds = json.loads(DELETED_SEEDS.read_text(encoding="utf-8"))
+    return [
+        {
+            "page_name": seed["page_name"], "title": seed.get("title") or seed["page_name"],
+            "url": seed.get("url") or f"https://scp-wiki-mc.wikidot.com/{seed['page_name']}",
+            "archived_deleted": True, "moved": False, "moved_from": None, "moved_to": None,
+            "page_id": None, "site_id": None, "source_file": "", "raw_file": "",
+            "source_bytes": 0, "source_chars": 0, "source_sha256": "", "source_excerpt": "",
+            "author_hints": {}, "live_error": "historical page removed before source capture",
+            "page_kind": "other", "tags": [], "rating": None, "rating_text": None,
+            "voters": {"status": "historical_record_missing", "users": []},
+            "history_author": {"status": "historical_record_missing"},
+            "discussion": None, "comments_preview": {"posts": []},
+            "created_at": None, "created_at_beijing": None,
+            "last_edited_at": None, "last_edited_at_beijing": None,
+        }
+        for seed in seeds if seed.get("page_name")
+    ]
+
+
 def preserve_deleted_page_metadata(pages: list[dict[str, Any]], previous: dict[str, dict[str, Any]]) -> None:
     fields = ("rating", "rating_text", "voters", "voters_status", "history_author", "created_at", "created_at_beijing", "last_edited_at", "last_edited_at_beijing", "discussion", "comments_preview", "page_kind", "tags")
     for page in pages:
@@ -2241,6 +2268,8 @@ def main() -> int:
         previous_pages = load_previous_pages(Path(args.previous_site))
         preserve_deleted_page_metadata(pages, previous_pages)
         preserve_comment_histories(pages, previous_pages)
+    existing_names = {page["page_name"] for page in pages}
+    pages.extend(page for page in load_deleted_page_seeds() if page["page_name"] not in existing_names)
 
     forum_index = {"groups": [], "categories": [], "threads": []}
     if not args.skip_live and not args.skip_forum:
