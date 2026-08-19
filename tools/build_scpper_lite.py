@@ -987,7 +987,7 @@ def parse_forum_comments(
         created_text = text_or_none(time_node)
         created_at = odate_to_iso(time_node)
         content_node = post.select_one(".content")
-        content = text_or_none(content_node)
+        content = content_node.get_text("\n", strip=True) if content_node else ""
         posts.append(
             {
                 "id": post_id or None,
@@ -1436,7 +1436,9 @@ def build_page(row: ManifestRow, backup_dir: Path, args: argparse.Namespace) -> 
     page = {
         "url": row.url,
         "page_name": row.page_name,
-        "archived_deleted": row.status == "archived_deleted",
+        # SCP-MC keeps intentionally removed works in Wikidot's `deleted:` category.
+        # Treat those pages like retained deletion archives in the public index.
+        "archived_deleted": row.status == "archived_deleted" or row.page_name.startswith("deleted:"),
         "title": row.title.removesuffix(" - SCP基金会Minecraft分部") if row.title else "",
         "page_id": row.page_id or None,
         "site_id": row.site_id or None,
