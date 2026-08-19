@@ -1455,7 +1455,7 @@ def build_page(row: ManifestRow, backup_dir: Path, args: argparse.Namespace) -> 
         "last_edited_at_beijing": None,
     }
 
-    if not args.skip_live and row.status == "ok":
+    if not args.skip_live and row.status in {"ok", "archived_deleted"}:
         try:
             page_html = fetch_text(row.url, timeout=args.timeout, retries=args.retries)
             enrich_page_from_html(page, row, page_html, args)
@@ -2215,7 +2215,7 @@ def main() -> int:
     args = parse_args()
     backup_dir = Path(args.backup)
     out_dir = Path(args.out)
-    rows = [row for row in read_manifest(backup_dir) if row.status == "ok"]
+    rows = [row for row in read_manifest(backup_dir) if row.status in {"ok", "archived_deleted"}]
     rows.extend(read_manifest(backup_dir, "archived_deleted.csv"))
     if args.page:
         rows = [row for row in rows if row.page_name == args.page]
