@@ -11,6 +11,7 @@ import subprocess
 import sys
 import tempfile
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime, timezone
 from pathlib import Path
 from types import SimpleNamespace
 from typing import Any
@@ -118,6 +119,22 @@ def load_pages_and_sources(data_dir: Path) -> tuple[dict[str, dict[str, Any]], d
     return pages, sources
 
 
+def preserve_comment_history(previous: dict[str, Any] | None, current: dict[str, Any]) -> None:
+    old_posts = {str(post.get("id")): post for post in ((previous or {}).get("posts") or []) if post.get("id")}
+    captured_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    for post in current.get("posts") or []:
+        old = old_posts.get(str(post.get("id")))
+        if not old:
+            continue
+        history = list(old.get("history") or [])
+        before = {key: old.get(key) for key in ("content", "content_html", "title")}
+        after = {key: post.get(key) for key in ("content", "content_html", "title")}
+        if before != after and (not history or history[-1].get("content_html") != before["content_html"]):
+            history.append({**before, "captured_at": captured_at})
+        if history:
+            post["history"] = history
+
+
 def refresh_page(name: str, old: dict[str, Any] | None, args: argparse.Namespace) -> tuple[str, dict[str, Any], str]:
     url = f"{BASE}/{name}"
     source_name, source = contest.fetch_page_source(url, args)
@@ -141,6 +158,7 @@ def refresh_page(name: str, old: dict[str, Any] | None, args: argparse.Namespace
     })
     live_args = SimpleNamespace(timeout=args.timeout, retries=args.retries, comments_per_thread=0)
     build.enrich_page_from_html(page, row, page_html, live_args)
+    preserve_comment_history((old or {}).get("comments_preview"), page.get("comments_preview") or {})
     if not page.get("title"):
         page["title"] = canonical_name
     return canonical_name, page, source
@@ -156,7 +174,9 @@ def refresh_forum_threads(forum_index: dict[str, Any], urls: dict[str, str], arg
             continue
         if str(thread.get("last_created_at") or "") >= observed_at:
             continue
+        previous = thread.get("comments_preview") or {}
         thread["comments_preview"] = build.fetch_forum_comments(url, live_args)
+        preserve_comment_history(previous, thread["comments_preview"])
         posts = thread["comments_preview"].get("posts") or []
         latest = build.latest_post(posts)
         if latest:
