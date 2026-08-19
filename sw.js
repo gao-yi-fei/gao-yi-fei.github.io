@@ -1,4 +1,4 @@
-const CACHE = "scpper-mc-v7";
+const CACHE = "scpper-mc-v8";
 const CACHEABLE = /\.(?:html|css|js|json|gz)$/i;
 
 self.addEventListener("install", (event) => {
@@ -18,6 +18,7 @@ self.addEventListener("install", (event) => {
     "/data/users-head.json",
     "/data/recent-head.json",
     "/data/contest-live.json",
+    "/data/sync-version.json",
   ]).catch(() => {})));
 });
 
@@ -41,7 +42,7 @@ self.addEventListener("fetch", (event) => {
       if (response.ok) cache.put(request, response.clone());
       return response;
     }).catch(() => cached);
-    const networkFirst = url.pathname === "/" || /\.(?:html|css|js)$/i.test(url.pathname) || url.pathname === "/data/contest-live.json";
+    const networkFirst = url.pathname === "/" || /\.(?:html|css|js)$/i.test(url.pathname) || url.pathname === "/data/contest-live.json" || url.pathname === "/data/sync-version.json";
     return networkFirst ? fetched || cached : cached || fetched;
   })());
 });
