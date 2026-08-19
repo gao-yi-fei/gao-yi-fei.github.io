@@ -109,6 +109,9 @@ def main() -> int:
 
     stamp = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
     (ROOT / "data" / "cloud-updated-at.txt").write_text(stamp + "\n", encoding="ascii")
+    (ROOT / "data" / "sync-version.json").write_text(
+        '{"version":"' + datetime.utcnow().strftime("%Y%m%d%H%M%S") + '"}\n', encoding="ascii"
+    )
     return 0
 
 
