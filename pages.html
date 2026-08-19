@@ -39,6 +39,7 @@
         <option value="author">已抓取作者</option>
         <option value="discussion">有讨论帖</option>
         <option value="source">有源码</option>
+        <option value="archived">仅已删除存档</option>
       </select>
       <select id="pageSize" aria-label="每页数量">
         <option value="20">每页 20</option>
@@ -147,6 +148,7 @@
         if (filter === "author" && !page.history_author_name) return false;
         if (filter === "discussion" && !page.discussion) return false;
         if (filter === "source" && !page.source_file) return false;
+        if (filter === "archived" && !page.archived_deleted) return false;
         return matchesPageQuery(page, q, mode);
       });
       rows.sort((a, b) => {
@@ -246,7 +248,7 @@
       if (!comments.length) return `<p class="small">没有公开评论，或该页无页面讨论帖。</p>`;
       const sliced = C.pageSlice(comments, state.commentsPage, pageSize());
       state.commentsPage = sliced.page;
-      const body = sliced.items.map((item) => `<div class="comment"><strong>${C.escapeHtml(item.author || "unknown")}</strong> <span class="small">${C.escapeHtml(C.formatBeijing(item.created_at, item.created_at_beijing))}</span>${item.title || item.post_url ? `<p class="small">${item.post_url ? `<a href="${C.escapeHtml(item.post_url)}" target="_blank" rel="noreferrer">${C.escapeHtml(item.title || "评论")}</a>` : C.escapeHtml(item.title)}</p>` : ""}<p>${C.escapeHtml(item.content || "")}</p></div>`).join("");
+      const body = sliced.items.map((item) => `<div class="comment"><strong>${C.escapeHtml(item.author || "unknown")}</strong> <span class="small">${C.escapeHtml(C.formatBeijing(item.created_at, item.created_at_beijing))}</span>${item.title || item.post_url ? `<p class="small">${item.post_url ? `<a href="${C.escapeHtml(item.post_url)}" target="_blank" rel="noreferrer">${C.escapeHtml(item.title || "评论")}</a>` : C.escapeHtml(item.title)}</p>` : ""}<pre>${C.escapeHtml(item.content_html || item.content || "")}</pre>${item.history?.length ? `<details><summary>历史版本 ${item.history.length}</summary>${item.history.map((version) => `<pre>${C.escapeHtml(version.content_html || version.content || "")}</pre>`).join("")}</details>` : ""}</div>`).join("");
       return C.pager("comments", comments.length, state.commentsPage, sliced.size) + body + C.pager("comments-bottom", comments.length, state.commentsPage, sliced.size);
     }
     function voterGroups(page, voters) {
