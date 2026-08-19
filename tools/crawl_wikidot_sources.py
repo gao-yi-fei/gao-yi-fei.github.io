@@ -639,7 +639,7 @@ def fetch_one(
         source_path.parent.mkdir(parents=True, exist_ok=True)
         source_path.write_text(source, encoding="utf-8", newline="\n")
 
-        result.status = "archived_deleted" if urlparse(result.final_url or url).path.strip("/").startswith("archived:") else "ok"
+        result.status = "ok"
         result.sha256 = digest
         result.char_count = len(source)
 
@@ -768,7 +768,7 @@ def main() -> int:
             jsonl_handle.close()
 
     results.sort(key=lambda item: item.url)
-    failed = [item for item in results if item.status not in {"ok", "archived_deleted", "skipped"}]
+    failed = [item for item in results if item.status not in {"ok", "skipped"}]
     if args.with_metadata:
         archived_deleted_by_url = load_page_result_csv(
             out_dir / "archived_deleted.csv", out_dir, require_source=False
