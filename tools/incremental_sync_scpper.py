@@ -55,38 +55,57 @@ def page_name(url: str) -> str:
     return urlparse(url).path.strip("/").split("/", 1)[0]
 
 
-def page_targets_from_feed(html: str, feed_url: str) -> set[str]:
+def created_page_names(html: str, feed_url: str) -> set[str]:
     soup = BeautifulSoup(html, "html.parser")
     targets: set[str] = set()
-    selectors = (
-        ".list-pages-box td._default a[href]",
-        ".changes-list-item td.title a[href]",
-    )
-    for selector in selectors:
-        for link in soup.select(selector):
-            url = urljoin(feed_url, link["href"])
-            name = page_name(url)
-            if name and not name.startswith(("system:", "forum:")):
-                targets.add(name)
-    for post in soup.select("#recent-posts-container .post"):
-        for link in post.select(".info a[href]"):
-            href = link["href"]
-            if "/comments/show" not in href:
-                continue
-            name = page_name(urljoin(feed_url, href))
-            if name:
-                targets.add(name)
+    for link in soup.select(".list-pages-box td._default a[href]"):
+        name = page_name(urljoin(feed_url, link["href"]))
+        if name and not name.startswith(("system:", "forum:")):
+            targets.add(name)
     return targets
 
 
-def forum_targets_from_feed(html: str, feed_url: str) -> set[str]:
+def newest_timestamp(items: dict[str, str], key: str, value: str | None) -> None:
+    if value and (key not in items or value > items[key]):
+        items[key] = value
+
+
+def changed_page_times(html: str, feed_url: str) -> dict[str, str]:
     soup = BeautifulSoup(html, "html.parser")
-    targets = set()
-    for link in soup.select("#recent-posts-container .post .info a[href]"):
-        url = urljoin(feed_url, link["href"])
-        if "/forum/t-" in url:
-            targets.add(url.split("#", 1)[0])
+    targets: dict[str, str] = {}
+    for item in soup.select(".changes-list-item"):
+        link = item.select_one("td.title a[href]")
+        observed_at = build.odate_to_iso(item.select_one(".odate"))
+        if link and observed_at:
+            name = page_name(urljoin(feed_url, link["href"]))
+            if name and not name.startswith(("system:", "forum:")):
+                newest_timestamp(targets, name, observed_at)
     return targets
+
+
+def recent_post_times(html: str, feed_url: str) -> tuple[dict[str, str], dict[str, str]]:
+    soup = BeautifulSoup(html, "html.parser")
+    pages: dict[str, str] = {}
+    threads: dict[str, str] = {}
+    for post in soup.select("#recent-posts-container .post"):
+        observed_at = build.odate_to_iso(post.select_one(".info .odate"))
+        if not observed_at:
+            continue
+        for link in post.select(".info a[href]"):
+            url = urljoin(feed_url, link["href"])
+            if "/comments/show" in url:
+                name = page_name(url)
+                if name:
+                    newest_timestamp(pages, name, observed_at)
+            elif "/forum/t-" in url:
+                newest_timestamp(threads, url.split("#", 1)[0], observed_at)
+    return pages, threads
+
+
+def page_has_post_at_least(page: dict[str, Any], observed_at: str) -> bool:
+    posts = ((page.get("comments_preview") or {}).get("posts") or [])
+    newest = max((str(post.get("created_at") or "") for post in posts), default="")
+    return newest >= observed_at
 
 
 def load_pages_and_sources(data_dir: Path) -> tuple[dict[str, dict[str, Any]], dict[str, str]]:
@@ -127,13 +146,15 @@ def refresh_page(name: str, old: dict[str, Any] | None, args: argparse.Namespace
     return canonical_name, page, source
 
 
-def refresh_forum_threads(forum_index: dict[str, Any], urls: set[str], args: argparse.Namespace) -> int:
+def refresh_forum_threads(forum_index: dict[str, Any], urls: dict[str, str], args: argparse.Namespace) -> int:
     by_url = {str(item.get("url") or "").split("#", 1)[0]: item for item in forum_index.get("threads") or []}
     live_args = SimpleNamespace(timeout=args.timeout, retries=args.retries, comments_per_thread=0)
     count = 0
-    for url in urls:
+    for url, observed_at in urls.items():
         thread = by_url.get(url)
         if not thread:
+            continue
+        if str(thread.get("last_created_at") or "") >= observed_at:
             continue
         thread["comments_preview"] = build.fetch_forum_comments(url, live_args)
         posts = thread["comments_preview"].get("posts") or []
@@ -178,11 +199,20 @@ def main() -> int:
     forum_payload = read_gzip(data_dir / "forum-index.json.gz")
     forum_index = {key: value for key, value in forum_payload.items() if key != "stats"}
     feed_html = {path: build.fetch_text(f"{BASE}{path}", timeout=args.timeout, retries=args.retries) for path in FEEDS}
-    page_names: set[str] = set()
-    for path in FEEDS:
-        page_names.update(page_targets_from_feed(feed_html[path], f"{BASE}{path}"))
-    page_names = set(sorted(page_names)[: max(1, args.max_pages)])
-    forum_urls = forum_targets_from_feed(feed_html["/forum:recent-posts"], f"{BASE}/forum:recent-posts")
+    created = set()
+    for path in FEEDS[:3]:
+        created.update(created_page_names(feed_html[path], f"{BASE}{path}"))
+    changed = changed_page_times(feed_html["/system:recent-changes"], f"{BASE}/system:recent-changes")
+    commented, forum_urls = recent_post_times(feed_html["/forum:recent-posts"], f"{BASE}/forum:recent-posts")
+    previous_report_path = data_dir / "incremental-sync.json"
+    previous_failures = set()
+    if previous_report_path.exists():
+        previous_failures = set(json.loads(previous_report_path.read_text(encoding="utf-8")).get("failures") or {})
+    candidates = {name for name in created if name not in pages}
+    candidates.update(name for name, observed in changed.items() if name not in pages or str(pages[name].get("last_edited_at") or "") < observed)
+    candidates.update(name for name, observed in commented.items() if name not in pages or not page_has_post_at_least(pages[name], observed))
+    candidates.update(previous_failures)
+    page_names = set(sorted(candidates)[: max(1, args.max_pages)])
 
     refreshed: dict[str, tuple[dict[str, Any], str]] = {}
     failures: dict[str, str] = {}
@@ -221,6 +251,7 @@ def main() -> int:
     )
     report = {
         "captured_at": build.now_iso(), "page_targets": len(page_names), "page_refreshed": len(refreshed),
+        "feed_candidates": len(candidates), "feed_created": len(created), "feed_changed": len(changed), "feed_posts": len(commented),
         "forum_threads_refreshed": thread_count, "changed_data_files": changed_files, "failures": failures,
         "feeds": list(FEEDS),
     }
