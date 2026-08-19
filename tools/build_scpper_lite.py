@@ -364,6 +364,9 @@ def compact_page_ref(page: dict[str, Any]) -> dict[str, Any]:
         "title": page.get("title") or page.get("page_name"),
         "url": page.get("url"),
         "archived_deleted": bool(page.get("archived_deleted")),
+        "moved": bool(page.get("moved")),
+        "moved_from": page.get("moved_from"),
+        "moved_to": page.get("moved_to"),
         "rating": page.get("rating"),
         "vote_up": page.get("voters", {}).get("up"),
         "vote_down": page.get("voters", {}).get("down"),
@@ -1437,6 +1440,9 @@ def build_page(row: ManifestRow, backup_dir: Path, args: argparse.Namespace) -> 
         "url": row.url,
         "page_name": row.page_name,
         "archived_deleted": row.status == "archived_deleted",
+        "moved": urlparse(row.url).path.strip("/").startswith("archived:"),
+        "moved_from": None,
+        "moved_to": row.url if urlparse(row.url).path.strip("/").startswith("archived:") else None,
         "title": row.title.removesuffix(" - SCP基金会Minecraft分部") if row.title else "",
         "page_id": row.page_id or None,
         "site_id": row.site_id or None,
@@ -1455,7 +1461,7 @@ def build_page(row: ManifestRow, backup_dir: Path, args: argparse.Namespace) -> 
         "last_edited_at_beijing": None,
     }
 
-    if not args.skip_live and row.status in {"ok", "archived_deleted"}:
+    if not args.skip_live and row.status == "ok":
         try:
             page_html = fetch_text(row.url, timeout=args.timeout, retries=args.retries)
             enrich_page_from_html(page, row, page_html, args)
@@ -2215,7 +2221,7 @@ def main() -> int:
     args = parse_args()
     backup_dir = Path(args.backup)
     out_dir = Path(args.out)
-    rows = [row for row in read_manifest(backup_dir) if row.status in {"ok", "archived_deleted"}]
+    rows = [row for row in read_manifest(backup_dir) if row.status == "ok"]
     rows.extend(read_manifest(backup_dir, "archived_deleted.csv"))
     if args.page:
         rows = [row for row in rows if row.page_name == args.page]
