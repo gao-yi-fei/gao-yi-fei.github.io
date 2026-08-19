@@ -71,6 +71,7 @@ def main() -> int:
         sys.executable, "tools/build_scpper_lite.py",
         "--backup", str(backup_dir),
         "--out", str(build_dir),
+        "--previous-site", str(ROOT),
         "--workers", str(args.workers),
         "--forum-workers", str(args.forum_workers),
         "--timeout", str(args.timeout),
