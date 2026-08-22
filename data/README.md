@@ -6,10 +6,10 @@
 - Rated pages: 1365
 - Voters captured: 8202
 - History authors captured: 1365
-- Discussion threads linked: 1092
+- Discussion threads linked: 1093
 - Comment previews captured: 3688
-- Forum threads captured: 1463
-- Page discussion threads linked: 1092
+- Forum threads captured: 1464
+- Page discussion threads linked: 1093
 - Forum posts captured: 5431
 - Shards: 32
 
