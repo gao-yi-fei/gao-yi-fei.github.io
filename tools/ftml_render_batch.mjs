@@ -75,7 +75,7 @@ function stripUnavailable(source) {
 
 function restoreTokens(html) {
   return html
-    .replace(/SCPPER_USER_([A-Za-z0-9_-]+)__/g, (_match, value) => `<span class="wiki-user">${Buffer.from(value, "base64url").toString("utf8").replace(/[&<>"']/g, (c) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]))}</span>`)
+    .replace(/SCPPER_USER_([A-Za-z0-9_-]+)__/g, (_match, value) => { const name = Buffer.from(value, "base64url").toString("utf8"); const safe = name.replace(/[&<>"']/g, (c) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c])); return `<a class="wiki-user" href="/users.html?user=${encodeURIComponent(name)}">${safe}</a>`; })
     .replace(/SCPPER_IMAGE_[A-Za-z0-9_-]*__/g, '<span class="missing-resource">图片附件未归档</span>')
     .replace(/SCPPER_NOTICE_([A-Za-z0-9_-]+)__/g, (_match, value) => `<aside class="backup-note">包含组件未归档：<code>${Buffer.from(value, "base64url").toString("utf8").replace(/[&<>"']/g, (c) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]))}</code></aside>`);
 }

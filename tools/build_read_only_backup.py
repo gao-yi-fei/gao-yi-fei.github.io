@@ -19,7 +19,7 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
-from urllib.parse import urlparse
+from urllib.parse import quote, urlparse
 
 from bs4 import BeautifulSoup, NavigableString
 
@@ -174,8 +174,11 @@ def render_wikitext(source: str, pages: dict[str, Any]) -> tuple[str, Counter[st
             close_table()
             if wrappers: output.append("</div>"); wrappers.pop()
             continue
-        if low in {"[[footnoteblock]]", "[[toc]]", "[[/toc]]"}:
+        if low in {"[[footnoteblock]]", "[[/toc]]"}:
             notices["widgets"] += 1; continue
+        if low == "[[toc]]":
+            # The real TOC is assembled after headings have stable IDs.
+            notices["widgets"] += 1; output.append('<div class="wiki-toc-placeholder"></div>'); continue
         if re.fullmatch(r"-{4,}", line):
             close_table(); output.append("<hr>"); continue
         heading = re.match(r"^(\+{1,6})\s+(.+)$", line)
@@ -259,6 +262,10 @@ def sanitize_ftml_html(fragment: str, pages: dict[str, Any]) -> str:
         if "wj-table" in classes:
             mapped.append("wiki-table")
         mapped.extend(item for item in classes if item in {"small", "ruby", "rt", "normal-link", "wiki-user", "missing-resource", "footnote-ref", "footnote-marker", "footnote-list", "show-text", "wiki-code", "wiki-table", "wiki-align-right"})
+        if "wiki-user" in classes:
+            tag.name = "a"
+            tag["href"] = "/users.html?user=" + quote(tag.get_text(" ", strip=True), safe="")
+            mapped = ["wiki-user"]
         if mapped:
             tag["class"] = mapped
         elif tag.has_attr("class"):
@@ -279,6 +286,9 @@ def sanitize_ftml_html(fragment: str, pages: dict[str, Any]) -> str:
         if tag.name != "a":
             continue
         href = str(tag.get("href") or "").strip()
+        if href.startswith("/users.html?user="):
+            tag["href"] = href
+            continue
         candidate = None
         if href.startswith(("http://", "https://")):
             parsed = urlparse(href)
@@ -306,6 +316,36 @@ def sanitize_ftml_html(fragment: str, pages: dict[str, Any]) -> str:
         if tag.name not in {"br", "hr"} and not tag.get_text(strip=True) and not tag.find(["br", "hr"]):
             tag.decompose()
     return "".join(str(child) for child in root.contents).strip()
+
+def enhance_article_body(body: str, source: str) -> str:
+    """Add stable local anchors and a static TOC to sanitized FTML output."""
+    soup = BeautifulSoup(body, "html.parser")
+    headings = []
+    used: set[str] = set()
+    for heading in soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6"]):
+        label = heading.get_text(" ", strip=True) or "section"
+        base = re.sub(r"[^\w\u4e00-\u9fff-]+", "-", label, flags=re.UNICODE).strip("-").lower() or "section"
+        anchor = base
+        index = 2
+        while anchor in used:
+            anchor = f"{base}-{index}"; index += 1
+        used.add(anchor); heading["id"] = anchor
+        headings.append((int(heading.name[1:]), label, anchor))
+    if "[[toc" in source.lower() and headings:
+        nav = soup.new_tag("nav", attrs={"class": "wiki-toc", "aria-label": "目录"})
+        title = soup.new_tag("strong"); title.string = "目录"; nav.append(title)
+        ul = soup.new_tag("ul")
+        for level, label, anchor in headings:
+            li = soup.new_tag("li", attrs={"class": f"toc-level-{level}"})
+            link = soup.new_tag("a", href=f"#{anchor}"); link.string = label
+            li.append(link); ul.append(li)
+        nav.append(ul)
+        placeholder = soup.find(class_="wiki-toc-placeholder")
+        if placeholder: placeholder.replace_with(nav)
+        else: soup.insert(0, nav)
+    else:
+        for placeholder in soup.select(".wiki-toc-placeholder"): placeholder.decompose()
+    return "".join(str(child) for child in soup.contents).strip()
     for tag in list(root.find_all(True)):
         name = tag.name.lower()
         if name not in allowed:
@@ -426,7 +466,8 @@ def render_ftml_batch(records: list[dict[str, Any]], pages: dict[str, Any]) -> d
             fallback_body, fallback_notices = render_wikitext(records_by_name.get(name, {}).get("source") or "", pages)
             notices.update(fallback_notices)
             html = fallback_body
-        return name, (sanitize_ftml_html(html, pages), notices)
+        clean = sanitize_ftml_html(html, pages)
+        return name, (enhance_article_body(clean, records_by_name.get(name, {}).get("source") or ""), notices)
 
     with ThreadPoolExecutor(max_workers=min(32, len(payload))) as executor:
         for name, value in executor.map(sanitize_one, payload.items()):

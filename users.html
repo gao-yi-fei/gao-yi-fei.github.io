@@ -144,7 +144,10 @@
       state.stats = payload.stats || {};
       state.userMap = new Map();
       state.users.forEach((user) => state.userMap.set(user.key, user));
+      const requested = new URLSearchParams(location.search).get("user")?.trim().toLowerCase();
+      const requestedEntry = requested && state.users.find((user) => String(user.name || "").toLowerCase() === requested);
       if (preferredKey && state.userMap.has(preferredKey)) state.selectedKey = preferredKey;
+      else if (requestedEntry) state.selectedKey = requestedEntry.key;
       else if (!state.selectedKey || !state.userMap.has(state.selectedKey)) state.selectedKey = state.users[0]?.key || null;
       renderStats();
       refresh();
