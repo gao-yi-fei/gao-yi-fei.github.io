@@ -30,6 +30,12 @@ function stripUnavailable(source) {
     const name = match.replace(/^\[\[include\s+/i, "").split(/[\s|]/)[0] || "未命名组件";
     return token("NOTICE", name);
   });
+  // CSS is a complete multiline module. Match it before the generic module
+  // rule; otherwise only the opening line is removed and CSS leaks as prose.
+  text = text.replace(/\[\[module\s+css\b[\s\S]*?\[\[\/module\]\]/gis, () => {
+    removed.modules += 1;
+    return token("NOTICE", "动态模块（css）在只读备份中已省略");
+  });
   text = text.replace(/\[\[module\s+([^\s\]]+)[^\n]*?(?:\n(?![\[\[])[^\n]*)*?\]\]|\[\[\/module\]\]/gis, (match) => {
     const name = (match.match(/^\[\[module\s+([^\s\]]+)/i) || [])[1]?.toLowerCase();
     if (name === "rate") {
