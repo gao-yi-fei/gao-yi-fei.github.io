@@ -10,6 +10,7 @@ import argparse
 import gzip
 import html
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -24,10 +25,22 @@ from bs4 import BeautifulSoup, NavigableString
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA, WIKI = ROOT / "data", ROOT / "wiki"
-# FTML is strict but expensive on old mega-pages. Keep full FTML for the bulk
-# of the snapshot and use the sanitized fallback for oversized pages so the
-# full static site can be rebuilt and published without pathological waits.
-FTML_MAX_SOURCE_CHARS = 8_000
+# Always render through Wikijump's FTML parser so every page gets the full
+# Wikidot syntax treatment (colors, footnotes, collapsibles, tables, lists,
+# quotes, code, ruby, alignment, ...). The sanitized fallback below is only
+# used for pages FTML itself fails on.
+FTML_MAX_SOURCE_CHARS = None
+
+# These contest/campaign hub pages contain an achievement-table row that makes
+# the Wikijump FTML tokenizer spin in a (non-deterministic) infinite loop. They
+# are informational index pages, so render them through the Python fallback
+# directly instead of letting a hang stall the whole parallel build.
+HANG_PAGES = {
+    "image-campaign-hub",
+    "2024gamerules-contest-hub",
+    "2025-reminisence-contest-hub",
+    "ancient-city-contest-hub",
+}
 
 def read_shards(directory: Path, key: str) -> dict[str, Any]:
     result: dict[str, Any] = {}
@@ -57,6 +70,7 @@ def page_name_from_link(target: str) -> str | None:
 
 def inline_wikitext(value: str, pages: dict[str, Any], notices: Counter[str]) -> str:
     text = html.escape(value.strip())
+    text = re.sub(r"##[^#\n]*##", "", text)
     text = re.sub(r"\[\[backup-footnote\s+(.*?)\]\]", lambda m: f'<sup class="footnote">{html.escape(html.unescape(m.group(1)).strip())}</sup>', text, flags=re.I)
     def triple(match: re.Match[str]) -> str:
         raw = html.unescape(match.group(1)).strip()
@@ -189,16 +203,109 @@ def canonical_page_name(value: str, pages: dict[str, Any]) -> str | None:
     return None
 
 def sanitize_ftml_html(fragment: str, pages: dict[str, Any]) -> str:
-    """Retain only offline-safe FTML output and rewrite captured page links."""
+    """Keep Wikijump's rendered semantics but strip everything that is not
+    safe or usable in a static offline reader (scripts, remote media, dynamic
+    widgets, raw styling beyond text colors, and leftover wikitext tokens).
+    """
     soup = BeautifulSoup(fragment, "html.parser")
     root = soup.find("wj-body") or soup
     aliases = {name.casefold(): name for name in pages}
     allowed = {"a", "blockquote", "br", "code", "details", "div", "em", "h1", "h2", "h3", "h4", "h5", "h6", "hr", "li", "ol", "p", "pre", "s", "section", "small", "span", "strong", "sub", "summary", "sup", "table", "tbody", "td", "th", "thead", "tr", "ul"}
-    for tag in list(root.find_all(["style", "script", "iframe", "img", "svg", "link", "meta", "template", "video", "audio", "object", "embed"])):
-        if tag.name == "img":
-            tag.decompose()
+    style_ok = {"color", "font-size", "background-color", "text-align", "font-weight", "font-style", "text-decoration", "font-family", "line-height", "letter-spacing"}
+
+    # FTML custom elements that need to become plain, static equivalents.
+    for tag in list(root.find_all(["style", "script", "iframe", "img", "svg", "link", "meta", "template", "video", "audio", "object", "embed", "wj-code-copy", "wj-code-panel", "wj-code-language", "wj-footnote-ref-tooltip", "wj-title", "wj-collapsible-hide-text"])):
+        tag.decompose()
+    for tag in list(root.find_all(["wj-footnote-ref", "wj-footnote-ref-marker", "wj-footnote-list-item-marker"])):
+        is_marker = tag.name in {"wj-footnote-ref-marker", "wj-footnote-list-item-marker"}
+        tag.name = "sup" if is_marker else "span"
+        tag["class"] = ["footnote-ref"] if not is_marker else ["footnote-marker"]
+    for tag in list(root.find_all(["wj-footnote-list"])):
+        tag.name = "div"; tag["class"] = ["footnote-list"]
+    for tag in list(root.find_all(["wj-footnote-list-item"])):
+        tag.name = "li"
+    for tag in list(root.find_all(["wj-collapsible"])):
+        tag.name = "details"; tag["class"] = ["wiki-collapsible"]
+    for tag in list(root.find_all(["wj-collapsible-button"])):
+        tag.name = "summary"
+        tag["class"] = []
+        for sub in list(tag.find_all(["wj-collapsible-show-text", "wj-collapsible-hide-text"])):
+            sub.name = "span"; sub["class"] = ["show-text"]
+    for tag in list(root.find_all(["wj-collapsible-content"])):
+        tag.name = "div"
+    for tag in list(root.find_all(["wj-code"])):
+        tag.name = "div"; tag["class"] = ["wiki-code"]
+    for tag in list(root.find_all(["wj-user-info"])):
+        tag.name = "span"; tag["class"] = ["wiki-user"]
+    for tag in list(root.find_all(["wj-math"])):
+        tag.name = "code"; tag["class"] = ["wj-math"]
+    for tag in list(root.find_all(True)):
+        name = tag.name.lower()
+        if name == "wj-body":
+            continue
+        if name not in allowed:
+            tag.unwrap()
+            continue
+        classes = set(tag.get("class") or [])
+        mapped: list[str] = []
+        if "wj-align-center" in classes:
+            mapped.append("wiki-aligned")
+        if "wj-align-right" in classes:
+            mapped.append("wiki-align-right")
+        if "wj-collapsible" in classes:
+            mapped.append("wiki-collapsible")
+        if any(item.startswith("wj-tab") for item in classes):
+            mapped.append("wiki-tab")
+        if "wj-table" in classes:
+            mapped.append("wiki-table")
+        mapped.extend(item for item in classes if item in {"small", "ruby", "rt", "normal-link", "wiki-user", "missing-resource", "footnote-ref", "footnote-marker", "footnote-list", "show-text", "wiki-code", "wiki-table", "wiki-align-right"})
+        if mapped:
+            tag["class"] = mapped
+        elif tag.has_attr("class"):
+            del tag["class"]
+        if tag.has_attr("style"):
+            kept = []
+            for part in (tag["style"] or "").split(";"):
+                prop, sep, value = part.partition(":")
+                if sep and prop.strip().lower() in style_ok:
+                    kept.append(f"{prop.strip()}: {value.strip()}")
+            if kept:
+                tag["style"] = "; ".join(kept)
+            else:
+                del tag["style"]
+        for attr in list(tag.attrs):
+            if attr not in {"class", "style"} and not (tag.name == "a" and attr == "href"):
+                del tag[attr]
+        if tag.name != "a":
+            continue
+        href = str(tag.get("href") or "").strip()
+        candidate = None
+        if href.startswith(("http://", "https://")):
+            parsed = urlparse(href)
+            if parsed.netloc.casefold().endswith("wikidot.com"):
+                candidate = parsed.path.strip("/").split("/")[-1]
+        elif href.startswith("/"):
+            candidate = href.strip("/")
+        if candidate and candidate.casefold() in aliases:
+            tag["href"] = article_href(aliases[candidate.casefold()])
+        elif href.startswith(("http://", "https://")):
+            tag["href"] = href
+            tag["rel"] = "noreferrer"
         else:
+            tag.unwrap()
+    for node in list(root.find_all(string=True)):
+        cleaned = re.sub(r"\[\[[^\]\n]*\]\]", "", str(node))
+        cleaned = re.sub(r"\[\[[^\]\n]*$", "", cleaned)
+        cleaned = re.sub(r"\[\[include[^\n]*", "", cleaned, flags=re.I)
+        cleaned = re.sub(r"##[^#\n]*##", "", cleaned)
+        cleaned = re.sub(r"%%[A-Za-z0-9_|%{}: .+-]+%%", "", cleaned)
+        cleaned = re.sub(r"@{3,}", "", cleaned)
+        if cleaned != node:
+            node.replace_with(NavigableString(cleaned))
+    for tag in reversed(root.find_all(True)):
+        if tag.name not in {"br", "hr"} and not tag.get_text(strip=True) and not tag.find(["br", "hr"]):
             tag.decompose()
+    return "".join(str(child) for child in root.contents).strip()
     for tag in list(root.find_all(True)):
         name = tag.name.lower()
         if name not in allowed:
@@ -258,24 +365,72 @@ def sanitize_ftml_html(fragment: str, pages: dict[str, Any]) -> str:
 def render_ftml_batch(records: list[dict[str, Any]], pages: dict[str, Any]) -> dict[str, tuple[str, Counter[str]]]:
     if not records:
         return {}
+    records_by_name = {record["name"]: record for record in records}
+    ftml_records = [record for record in records if record["name"] not in HANG_PAGES]
+    if len(ftml_records) != len(records):
+        print(f"Skipping FTML for {len(records) - len(ftml_records)} known-hang pages; using Python fallback", flush=True)
     command = ["node", str(ROOT / "tools" / "ftml_render_batch.mjs")]
     # FTML is CPU-bound. This is a one-time frozen-snapshot build, so use the
     # available CPU budget to parse independent pages concurrently.
-    buckets: list[list[dict[str, Any]]] = [[] for _ in range(min(16, len(records)))]
-    for index, record in enumerate(sorted(records, key=lambda item: len(item["source"]), reverse=True)):
+    workers = max(1, min(os.cpu_count() or 4, len(ftml_records), 32))
+    buckets: list[list[dict[str, Any]]] = [[] for _ in range(workers)]
+    for index, record in enumerate(sorted(ftml_records, key=lambda item: len(item["source"]), reverse=True)):
         buckets[index % len(buckets)].append(record)
-    def run_bucket(bucket: list[dict[str, Any]]) -> dict[str, Any]:
-        response = subprocess.run(command, input=json.dumps(bucket, ensure_ascii=False), text=True, encoding="utf-8", capture_output=True, cwd=ROOT, check=True)
+    BUCKET_TIMEOUT = 120
+    SINGLE_TIMEOUT = 20
+
+    def run_bucket(bucket: list[dict[str, Any]], timeout: int) -> dict[str, Any]:
+        response = subprocess.run(command, input=json.dumps(bucket, ensure_ascii=False), text=True, encoding="utf-8", capture_output=True, cwd=ROOT, check=True, timeout=timeout)
         return json.loads(response.stdout)
+
+    def render_bucket(bucket: list[dict[str, Any]]) -> dict[str, Any]:
+        """Render a bucket, recursively halving on timeout so a single page
+        that hangs the FTML WASM cannot stall the whole build."""
+        try:
+            return run_bucket(bucket, BUCKET_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            hang_names = [r["name"] for r in bucket if r["name"] in HANG_PAGES]
+            if hang_names:
+                # Known-hang pages stay in the bucket (timeout keeps them from
+                # stalling siblings); they are recorded as failed below.
+                pass
+            if len(bucket) == 1:
+                print(f"FTML hung on {bucket[0]['name']}; using Python fallback", flush=True)
+                return {}
+            mid = len(bucket) // 2
+            half = render_bucket(bucket[:mid]) if mid else {}
+            half.update(render_bucket(bucket[mid:]))
+            return half
     with ThreadPoolExecutor(max_workers=len(buckets)) as executor:
-        parts = list(executor.map(run_bucket, buckets))
+        parts = list(executor.map(render_bucket, buckets))
     payload = {name: item for part in parts for name, item in part.items()}
+    for name in records_by_name:
+        if name in HANG_PAGES:
+            payload[name] = {"html": "", "removed": {}, "errors": 1, "error": "FTML hang blacklist"}
+    for name in records_by_name:
+        if name not in payload:
+            payload[name] = {"html": "", "removed": {}, "errors": 1, "error": "FTML timeout"}
     rendered: dict[str, tuple[str, Counter[str]]] = {}
-    for name, item in payload.items():
+    # Sanitizing the parsed HTML (BeautifulSoup, per page) is independent and
+    # is itself the second biggest CPU cost after FTML, so run it concurrently
+    # instead of serially in the caller thread.
+    def sanitize_one(item: tuple[str, dict[str, Any]]) -> tuple[str, tuple[str, Counter[str]]]:
+        name, item = item
         notices = Counter(item.get("removed") or {})
         if item.get("errors"):
             notices["parser_errors"] += int(item["errors"])
-        rendered[name] = (sanitize_ftml_html(item.get("html") or "", pages), notices)
+        html = item.get("html") or ""
+        if item.get("error") or not html.strip():
+            # FTML hard-failed for this page; use the sanitized fallback so it
+            # still renders instead of coming out blank.
+            fallback_body, fallback_notices = render_wikitext(records_by_name.get(name, {}).get("source") or "", pages)
+            notices.update(fallback_notices)
+            html = fallback_body
+        return name, (sanitize_ftml_html(html, pages), notices)
+
+    with ThreadPoolExecutor(max_workers=min(32, len(payload))) as executor:
+        for name, value in executor.map(sanitize_one, payload.items()):
+            rendered[name] = value
     return rendered
 
 def kind_label(kind: str) -> str:
@@ -302,17 +457,11 @@ def main() -> int:
     total_notices, missing_sources = Counter[str](), []
     selected = {name: page for name, page in pages.items() if not args.only or name in args.only}
     records: list[dict[str, Any]] = []
-    fallback: dict[str, tuple[str, Counter[str]]] = {}
     for name, page in selected.items():
         source = sources.get(name)
         if source is None: missing_sources.append(name); source = page.get("source_excerpt") or ""
-        if FTML_MAX_SOURCE_CHARS is not None and len(source) > FTML_MAX_SOURCE_CHARS:
-            body, notices = render_wikitext(source, pages)
-            fallback[name] = (sanitize_ftml_html(body, pages), notices)
-        else:
-            records.append({"name": name, "title": page.get("title") or name, "tags": page.get("tags") or [], "rating": page.get("rating") or 0, "source": source})
+        records.append({"name": name, "title": page.get("title") or name, "tags": page.get("tags") or [], "rating": page.get("rating") or 0, "source": source})
     parsed = render_ftml_batch(records, pages)
-    parsed.update(fallback)
     for name, page in sorted(selected.items()):
         source = sources.get(name) or page.get("source_excerpt") or ""
         body, notices = parsed[name]

@@ -4,13 +4,14 @@
   "source_count": 1382,
   "missing_full_sources": [],
   "parser_notices": {
-    "attachments": 532,
-    "html": 29,
-    "includes": 2682,
-    "modules": 1476,
-    "parser_errors": 4053,
-    "spacers": 15574,
-    "widgets": 58
+    "attachments": 491,
+    "html": 82,
+    "includes": 3125,
+    "modules": 1054,
+    "parser_errors": 14284,
+    "rate": 844,
+    "spacers": 12979,
+    "widgets": 10
   },
   "format": "wikijump-ftml-read-only-v2"
 }

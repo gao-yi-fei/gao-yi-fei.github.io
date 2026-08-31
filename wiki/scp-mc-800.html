@@ -1,4 +1,4 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>SCP-MC-800 | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page=scp-mc-800">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">原创页面 </p><h1>SCP-MC-800</h1><p class="page-name">scp-mc-800</p><dl class="article-meta"><div><dt>创建者</dt><dd>xuyifan_exe</dd></div><div><dt>评分</dt><dd class="rating">+6 <small>+6 / -0</small></dd></div><div><dt>发布时间</dt><dd>2023/02/07 00:12:11</dd></div><div><dt>最近编辑</dt><dd>2023/02/12 10:19:07</dd></div></dl><div class="tags"><span class="tag">k级情景</span><span class="tag">safe</span><span class="tag">scp</span><span class="tag">原创</span><span class="tag">工具</span><span class="tag">物品</span></div></header><aside class="reader-warning">此页动态内容未在只读备份中运行：1 个动态模块。正文与原始源码仍已保留。</aside><section class="article-body"><p><strong>项目编号</strong>：SCP-MC-800</p><p><strong>项目等级</strong>：Safe</p><p><strong>特护收容措施</strong>：SCP-MC-800被收容于一个小型箱子，并已重命名为“SCP-MC-800”。有计算或实验需要的人员可以申请站点主管出借项目。</p><p><strong>描述</strong>：SCP-MC-800是一份异常的书与笔。最初发现时的名称为“N IDE”，并且内含一段“样例代码”。虽然该段代码已被遗忘，但经过相关人员的回忆和测试，该代码采用的语言的表现形式和语言特性已被知晓。此编程语言被基金会命名为“N”。</p><p>在项目中输入一个N表达式，然后合上项目，项目就会进入一个被推测为“计算”的状态，该状态的持续时间与人工模拟执行该代码（如果可以）的时间成正比。在此状态中，项目依然可以被打开，但如果此时修改内容，“计算”将重新开始。“计算”结束后打开项目，将发现内容已被替换为计算结果（计算表达式而得到的文本值或错误信息）。</p><p>以下为N的语法和语言特性，按照符号优先级从高到低排序。</p><table class="wiki-tab"><tbody><tr><th>符号</th><th>功能</th></tr></tbody></table><table class="wiki-tab"><tbody><tr><td>括号 ()</td><td>调整符号结合顺序。</td></tr></tbody></table><table class="wiki-tab"><tbody><tr><td>函数记号 '</td><td>表达一个单参函数。记号左侧为参数名，右侧为函数值。例如 x'x 是一个将参数直接作为计算结果的函数。该符号为右结合，例如 x'y'x 等同于 x'(y'x)。</td></tr></tbody></table><table class="wiki-tab"><tbody><tr><td>调用记号 空格</td><td>表达一次函数的调用。一个函数和一个值以空格隔开，后者为参数。例如 x'x y 表示当参数为 y 时，函数 x'x 的函数值，即为 y。该符号为左结合，例如 f x y 等同于 (f x) y。</td></tr></tbody></table><table class="wiki-tab"><tbody><tr><td>连接记号 空格</td><td>表达两段文本的连接。若两个文本值以空格隔开，则表示前者末尾连接了后者。例如 "Ha" "ha!" 的值为 "Haha!"。该符号的优先级、结合顺序，同调用记号。</td></tr></tbody></table><table class="wiki-tab"><tbody><tr><td>引号 ""</td><td>表达一段文本。例如 "SCP-MC-800" 是内容为 “SCP-MC-800” 的文本值。</td></tr></tbody></table><table class="wiki-tab"><tbody><tr><td>空</td><td>“空”是这样一种“值”，它保证永远不会参与计算。这是项目最为异常之处，似乎项目有预测后续计算过程的能力。当两个括号或平行记号中间没有值时，可以表示“空”。例如 () 或 (|)。</td></tr></tbody></table><table class="wiki-tab"><tbody><tr><td>平行记号 |</td><td>表达一次非确定性计算。该记号前后的两个值都有可能作为计算结果，除非在那种可能性里，“空”必将参与计算。例如 x | y | z 的值为x、y或z，而 x | () y | z 的值为x或z，因为“空”保证不会参与计算。该符号无所谓左结合或右结合。</td></tr></tbody></table><table class="wiki-tab"><tbody><tr><td>赋值记号 :=</td><td>表达一次对全局变量的设置。记号左侧为变量名，右侧为要设置的值。整个赋值表达式的值总是空文本 ""，但会给相应全局变量以设置的值。例如，计算 1 := "1" 后，可以在后续输入的表达式中用 1 来指示 "1"。该符号只能出现在整个表达式的最外层。</td></tr></tbody></table><hr/><details class="wiki-collapsible"><summary><span>+ 黑箱测试记录</span></summary><div><hr/><pre><code>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>SCP-MC-800 | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page=scp-mc-800">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">原创页面 </p><h1>SCP-MC-800</h1><p class="page-name">scp-mc-800</p><dl class="article-meta"><div><dt>创建者</dt><dd>xuyifan_exe</dd></div><div><dt>评分</dt><dd class="rating">+6 <small>+6 / -0</small></dd></div><div><dt>发布时间</dt><dd>2023/02/07 00:12:11</dd></div><div><dt>最近编辑</dt><dd>2023/02/12 10:19:07</dd></div></dl><div class="tags"><span class="tag">k级情景</span><span class="tag">safe</span><span class="tag">scp</span><span class="tag">原创</span><span class="tag">工具</span><span class="tag">物品</span></div></header><section class="article-body"><div class="wiki-align-right"><p>包含组件未归档：<code>评分组件已由页首快照替代</code></p></div><p><strong>项目编号</strong>：SCP-MC-800</p><p><strong>项目等级</strong>：Safe</p><p><strong>特护收容措施</strong>：SCP-MC-800被收容于一个小型箱子，并已重命名为“SCP-MC-800”。有计算或实验需要的人员可以申请站点主管出借项目。</p><p><strong>描述</strong>：SCP-MC-800是一份异常的书与笔。最初发现时的名称为“N IDE”，并且内含一段“样例代码”。虽然该段代码已被遗忘，但经过相关人员的回忆和测试，该代码采用的语言的表现形式和语言特性已被知晓。此编程语言被基金会命名为“N”。</p><p>在项目中输入一个N表达式，然后合上项目，项目就会进入一个被推测为“计算”的状态，该状态的持续时间与人工模拟执行该代码（如果可以）的时间成正比。在此状态中，项目依然可以被打开，但如果此时修改内容，“计算”将重新开始。“计算”结束后打开项目，将发现内容已被替换为计算结果（计算表达式而得到的文本值或错误信息）。</p><p>以下为N的语法和语言特性，按照符号优先级从高到低排序。</p><table class="wiki-tab wiki-table"><tbody><tr><th>符号</th><th>功能</th></tr></tbody></table><table class="wiki-tab wiki-table"><tbody><tr><td>括号 ()</td><td>调整符号结合顺序。</td></tr></tbody></table><table class="wiki-tab wiki-table"><tbody><tr><td>函数记号 '</td><td>表达一个单参函数。记号左侧为参数名，右侧为函数值。例如 x'x 是一个将参数直接作为计算结果的函数。该符号为右结合，例如 x'y'x 等同于 x'(y'x)。</td></tr></tbody></table><table class="wiki-tab wiki-table"><tbody><tr><td>调用记号 空格</td><td>表达一次函数的调用。一个函数和一个值以空格隔开，后者为参数。例如 x'x y 表示当参数为 y 时，函数 x'x 的函数值，即为 y。该符号为左结合，例如 f x y 等同于 (f x) y。</td></tr></tbody></table><table class="wiki-tab wiki-table"><tbody><tr><td>连接记号 空格</td><td>表达两段文本的连接。若两个文本值以空格隔开，则表示前者末尾连接了后者。例如 "Ha" "ha!" 的值为 "Haha!"。该符号的优先级、结合顺序，同调用记号。</td></tr></tbody></table><table class="wiki-tab wiki-table"><tbody><tr><td>引号 ""</td><td>表达一段文本。例如 "SCP-MC-800" 是内容为 “SCP-MC-800” 的文本值。</td></tr></tbody></table><table class="wiki-tab wiki-table"><tbody><tr><td>空</td><td>“空”是这样一种“值”，它保证永远不会参与计算。这是项目最为异常之处，似乎项目有预测后续计算过程的能力。当两个括号或平行记号中间没有值时，可以表示“空”。例如 () 或 (|)。</td></tr></tbody></table><table class="wiki-tab wiki-table"><tbody><tr><td>平行记号 |</td><td>表达一次非确定性计算。该记号前后的两个值都有可能作为计算结果，除非在那种可能性里，“空”必将参与计算。例如 x | y | z 的值为x、y或z，而 x | () y | z 的值为x或z，因为“空”保证不会参与计算。该符号无所谓左结合或右结合。</td></tr></tbody></table><table class="wiki-tab wiki-table"><tbody><tr><td>赋值记号 :=</td><td>表达一次对全局变量的设置。记号左侧为变量名，右侧为要设置的值。整个赋值表达式的值总是空文本 ""，但会给相应全局变量以设置的值。例如，计算 1 := "1" 后，可以在后续输入的表达式中用 1 来指示 "1"。该符号只能出现在整个表达式的最外层。</td></tr></tbody></table><hr/><details class="wiki-collapsible"><summary><span>+ 黑箱测试记录</span><span>- 以下为Dr. X█对项目的黑箱测试记录</span></summary><div><hr/><div class="wiki-code"><pre><code>
 
 &gt; 0
 
@@ -6,7 +6,7 @@
 
 Undefined variable '0'!
 
-</code></pre><p><strong>备注</strong>：语言没有自然数吗？看来如同文档说的那样，值只有函数、文本两种。这样子用起来可就麻烦了。只能从逻辑值、自然数开始定义数据结构了。</p><hr/><pre><code>
+</code></pre></div><p><strong>备注</strong>：语言没有自然数吗？看来如同文档说的那样，值只有函数、文本两种。这样子用起来可就麻烦了。只能从逻辑值、自然数开始定义数据结构了。</p><hr/><div class="wiki-code"><pre><code>
 
 &gt; true := x'y'x
 
@@ -36,7 +36,7 @@ Undefined variable '0'!
 
 true
 
-</code></pre><p><strong>备注</strong>：我采用的策略是用函数定义数据结构。以上定义了逻辑类型数据的所有基本操作。虽然N语言的函数只接受一个参数，但是若函数被调用后返回一个函数，就可以接受“第二个”参数了。那么—— true 是这样一个函数，它接受两个参数，并直接以第一个为计算结果。false 则以第二个。这具体如何运作？以 bool-&gt;str 这个文本转换函数为例。可以推测项目是这样计算 bool-&gt;str true 的：</p><pre><code>
+</code></pre></div><p><strong>备注</strong>：我采用的策略是用函数定义数据结构。以上定义了逻辑类型数据的所有基本操作。虽然N语言的函数只接受一个参数，但是若函数被调用后返回一个函数，就可以接受“第二个”参数了。那么—— true 是这样一个函数，它接受两个参数，并直接以第一个为计算结果。false 则以第二个。这具体如何运作？以 bool-&gt;str 这个文本转换函数为例。可以推测项目是这样计算 bool-&gt;str true 的：</p><div class="wiki-code"><pre><code>
 
 bool-&gt;str true
 
@@ -48,7 +48,7 @@ bool-&gt;str true
 
 = "true"
 
-</code></pre><p>如果给予参数 false，那么同理可以得到 "false"。</p><hr/><pre><code>
+</code></pre></div><p>如果给予参数 false，那么同理可以得到 "false"。</p><hr/><div class="wiki-code"><pre><code>
 
 &gt; 0 := case0'case1+'case0
 
@@ -56,7 +56,7 @@ bool-&gt;str true
 
 &gt; 1+ := n'case0'case1+'(case1+ n)
 
-</code></pre><p><strong>备注</strong>：现在来到了更高级的数据结构：自然数。同逻辑值一样，自然数也有两种：零、其他自然数加一。对于零，可以直接仿照上面的 true 来定义。但对于“自然数加一”，就要考虑是哪个自然数了。1+ 是一个自然数的“构造函数”，虽然看起来接受三个参数，但是</p><pre><code>1+ n</code></pre><p>才是一个真正的自然数，即我们说的 n + 1。在以上体系中写作 case0'case1+'(case1+ n) ——那么，它也就与上面的 false 类似，接受两个参数，并且只用到第二个参数。但与彼不同，这里要求第二个参数也是一个函数，它接受一个比 n + 1 小了 1 的自然数 n，来传达调用方：既然这个自然数不是零，那么它的前一个数是什么？</p><hr/><pre><code>
+</code></pre></div><p><strong>备注</strong>：现在来到了更高级的数据结构：自然数。同逻辑值一样，自然数也有两种：零、其他自然数加一。对于零，可以直接仿照上面的 true 来定义。但对于“自然数加一”，就要考虑是哪个自然数了。1+ 是一个自然数的“构造函数”，虽然看起来接受三个参数，但是</p><div class="wiki-code"><pre><code>1+ n</code></pre></div><p>才是一个真正的自然数，即我们说的 n + 1。在以上体系中写作 case0'case1+'(case1+ n) ——那么，它也就与上面的 false 类似，接受两个参数，并且只用到第二个参数。但与彼不同，这里要求第二个参数也是一个函数，它接受一个比 n + 1 小了 1 的自然数 n，来传达调用方：既然这个自然数不是零，那么它的前一个数是什么？</p><hr/><div class="wiki-code"><pre><code>
 
 &gt; nat-&gt;str := n'(n
 
@@ -68,7 +68,7 @@ bool-&gt;str true
 
 Undefined variable 'nat-&gt;str'!
 
-</code></pre><p><strong>备注</strong>：什么，这个把自然数转化为文本的函数哪里写错了？看来N语言不支持这种递归表达。但我暂且解释它：对于这个文本转换函数，如果作为参数的自然数是零，那么对应的转换文本就是 "0"；否则就得到它的前一个自然数 n-1，再调用 nat-&gt;str 把 n-1 转化为文本——没错，函数在计算中又要调用自己——再往前面连接一个 "1+"。不过既然N不支持上面的递归表达式，我只有把函数传递给它自己了。这可不是个小麻烦。</p><hr/><pre><code>
+</code></pre></div><p><strong>备注</strong>：什么，这个把自然数转化为文本的函数哪里写错了？看来N语言不支持这种递归表达。但我暂且解释它：对于这个文本转换函数，如果作为参数的自然数是零，那么对应的转换文本就是 "0"；否则就得到它的前一个自然数 n-1，再调用 nat-&gt;str 把 n-1 转化为文本——没错，函数在计算中又要调用自己——再往前面连接一个 "1+"。不过既然N不支持上面的递归表达式，我只有把函数传递给它自己了。这可不是个小麻烦。</p><hr/><div class="wiki-code"><pre><code>
 
 &gt; nat-&gt;str__raw := nat-&gt;str__raw'n'(n
 
@@ -102,7 +102,7 @@ Undefined variable 'nat-&gt;str'!
 
 1+1+1+1+0
 
-</code></pre><p><strong>备注</strong>：自然数及其加法都通过了测试。那来看看更麻烦的减法：你也知道，并非任意两个自然数相减都得到自然数。可是N不是有个新奇特性“空”吗？或许可以在计算小数减大数时产生“空”，表示这种情况没有结果的。</p><hr/><pre><code>
+</code></pre></div><p><strong>备注</strong>：自然数及其加法都通过了测试。那来看看更麻烦的减法：你也知道，并非任意两个自然数相减都得到自然数。可是N不是有个新奇特性“空”吗？或许可以在计算小数减大数时产生“空”，表示这种情况没有结果的。</p><hr/><div class="wiki-code"><pre><code>
 
 &gt; decrease := n'(n
 
@@ -136,7 +136,7 @@ Undefined variable 'nat-&gt;str'!
 
 负1+0
 
-</code></pre><p><strong>备注</strong>：水到渠成！最后那次测试，正体现了这些新奇语言特性的巨大应用价值。可以用 | 记号列出多个可能的计算方向，并在后续过程中用“空”来去除不可行的部分——而项目可以提前预知它们，从而直接前往计算某个可行结果，大大降低时间复杂度。具体应用？想想树上查找吧——现在只需要自上而下遍历所有位置而无需回溯，分别对每个元素进行一次比较即可，与目标不同则舍去，相同则已找到——对项目来说即顺流而下直达任意正确答案。这节省了沿路比较元素的开销，甚至连树的单调性也成了多余。</p><hr/><pre><code>
+</code></pre></div><p><strong>备注</strong>：水到渠成！最后那次测试，正体现了这些新奇语言特性的巨大应用价值。可以用 | 记号列出多个可能的计算方向，并在后续过程中用“空”来去除不可行的部分——而项目可以提前预知它们，从而直接前往计算某个可行结果，大大降低时间复杂度。具体应用？想想树上查找吧——现在只需要自上而下遍历所有位置而无需回溯，分别对每个元素进行一次比较即可，与目标不同则舍去，相同则已找到——对项目来说即顺流而下直达任意正确答案。这节省了沿路比较元素的开销，甚至连树的单调性也成了多余。</p><hr/><div class="wiki-code"><pre><code>
 
 &gt; nil := case-nil'case-tree'case-nil
 
@@ -202,7 +202,7 @@ Undefined variable 'nat-&gt;str'!
 
 4th
 
-</code></pre><p><strong>备注</strong>：非确定性树上查找算法意料之中地通过了测试，符合“能得到任意正确答案”的预想。现在我已经完全理解了文档中对各种语言特性的描述，也就是说，表象已经通晓——而我接下来要思索的是原理。项目是如何预知“空”的？“空”意味着什么？</p></div></details><hr/><blockquote><p>++ <strong>提议880-1</strong><br/>+++ <strong>Dr. X█ 致 O5-MC 议会。</strong><br/><br/>我要求立即集中大量研究人员以开展对SCP-MC-800的精密研究；或者干脆直接将其无效化，投进熔岩之类的——我们还没试过呢。它就算安稳地搁在箱子里，也足以使人胆寒。<br/><br/>SCP-MC-800并非字面的“Safe”。相反，它有潜力造成ZK级事件。诸君应该已经玩味了我那尽力写得深入浅出但依然晦涩不堪的黑箱测试记录。想过吗？项目如何预知“空”？“空”意味着什么？<br/><br/>我的看法：每当计算一道 | ，平行世界诞生；每当计算一个“空”，平行世界湮灭。想想——“非确定性计算”，人们梦寐以求的能力！算力不足者的救世主！——不就能被看作这样的一个暴君吗？<br/><br/>当我写下 map-find map-for-testing 2 时，命运将我们带向何方？九个 nil，五个 0，而只有两个 2。还不算自然数的相等判定算法！这是疯狂的漂流，我们将撞向十六个地方，只有两个地方是生门。存者且偷生，死者长已矣！毁灭的世界不会知道自己的毁灭，而幸存的我们还在欢庆暴君的神力。<br/><br/>也许将来有一天，某个好奇的研究员在项目里写下了短短的两个字符“()”，然后轻合书页，等待着那个不可能的计算结果。因为项目必须要给出结果，或陷入死递归，而后者必不存在于那两个字符中，那么他令世界的存在陷于不可能。命运。<br/><br/>愿认真考虑。</p></blockquote><div><div class="wiki-aligned"><p>« <a href="/wiki/scp-mc-799.html">SCP-MC-799</a> | SCP-MC-800 | <a href="/wiki/scp-mc-801.html">SCP-MC-801</a> »</p></div></div></section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>[[&gt;]]
+</code></pre></div><p><strong>备注</strong>：非确定性树上查找算法意料之中地通过了测试，符合“能得到任意正确答案”的预想。现在我已经完全理解了文档中对各种语言特性的描述，也就是说，表象已经通晓——而我接下来要思索的是原理。项目是如何预知“空”的？“空”意味着什么？</p></div></details><hr/><blockquote><p>++ <strong>提议880-1</strong><br/>+++ <strong>Dr. X█ 致 O5-MC 议会。</strong><br/><br/>我要求立即集中大量研究人员以开展对SCP-MC-800的精密研究；或者干脆直接将其无效化，投进熔岩之类的——我们还没试过呢。它就算安稳地搁在箱子里，也足以使人胆寒。<br/><br/>SCP-MC-800并非字面的“Safe”。相反，它有潜力造成ZK级事件。诸君应该已经玩味了我那尽力写得深入浅出但依然晦涩不堪的黑箱测试记录。想过吗？项目如何预知“空”？“空”意味着什么？<br/><br/>我的看法：每当计算一道 | ，平行世界诞生；每当计算一个“空”，平行世界湮灭。想想——“非确定性计算”，人们梦寐以求的能力！算力不足者的救世主！——不就能被看作这样的一个暴君吗？<br/><br/>当我写下 map-find map-for-testing 2 时，命运将我们带向何方？九个 nil，五个 0，而只有两个 2。还不算自然数的相等判定算法！这是疯狂的漂流，我们将撞向十六个地方，只有两个地方是生门。存者且偷生，死者长已矣！毁灭的世界不会知道自己的毁灭，而幸存的我们还在欢庆暴君的神力。<br/><br/>也许将来有一天，某个好奇的研究员在项目里写下了短短的两个字符“()”，然后轻合书页，等待着那个不可能的计算结果。因为项目必须要给出结果，或陷入死递归，而后者必不存在于那两个字符中，那么他令世界的存在陷于不可能。命运。<br/><br/>愿认真考虑。</p></blockquote><div><p>« <a href="/wiki/scp-mc-799.html">SCP-MC-799</a> | SCP-MC-800 | <a href="/wiki/scp-mc-801.html">SCP-MC-801</a> »</p></div></section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>[[&gt;]]
 
 [[module Rate]]
 

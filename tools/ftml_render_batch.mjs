@@ -17,35 +17,57 @@ function token(kind, value = "") {
 }
 
 function stripUnavailable(source) {
-  const removed = { modules: 0, includes: 0, attachments: 0, html: 0, spacers: 0 };
+  const removed = { modules: 0, includes: 0, attachments: 0, html: 0, spacers: 0, rate: 0 };
   let text = source.replace(/\r\n?/g, "\n");
-  const lines = text.split("\n");
-  const kept = [];
-  for (let index = 0; index < lines.length; index += 1) {
-    const line = lines[index];
-    const trimmed = line.trim();
-    if (/^\[\[include\b/i.test(trimmed)) {
-      removed.includes += 1;
-      if (!trimmed.endsWith("]]")) while (++index < lines.length && lines[index].trim() !== "]]" ) {}
-      continue;
+  // Whole-block constructs must be peeled off before FTML sees them. The
+  // closure can span many lines and its terminator is not necessarily on a
+  // line of its own (e.g. "| param=value ]]"), so match by regex over the
+  // whole source instead of scanning line by line. This also prevents a
+  // multi-line include from feeding FTML a block with no closing terminator,
+  // which the WASM parser can hang on.
+  text = text.replace(/\[\[include\b[^\n]*?(?:\n(?!\[\[include\b)[^\n]*)*?\]\]/gis, (match) => {
+    removed.includes += 1;
+    const name = match.replace(/^\[\[include\s+/i, "").split(/[\s|]/)[0] || "未命名组件";
+    return token("NOTICE", name);
+  });
+  text = text.replace(/\[\[module\s+([^\s\]]+)[^\n]*?(?:\n(?![\[\[])[^\n]*)*?\]\]|\[\[\/module\]\]/gis, (match) => {
+    const name = (match.match(/^\[\[module\s+([^\s\]]+)/i) || [])[1]?.toLowerCase();
+    if (name === "rate") {
+      removed.rate += 1;
+      return token("NOTICE", "评分组件已由页首快照替代");
     }
-    const module = trimmed.match(/^\[\[module\s+([^\s\]]+)/i);
-    if (module) {
+    if (name) {
       removed.modules += 1;
-      const name = module[1].toLowerCase();
-      if (["css", "listpages"].includes(name)) while (++index < lines.length && !/\[\[\/module\]\]/i.test(lines[index])) {}
-      continue;
+      return token("NOTICE", `动态模块（${name}）在只读备份中已省略`);
     }
-    if (/^\[\[\/module\]\]$/i.test(trimmed)) continue;
-    if (/^\[\[html\]\]$/i.test(trimmed)) {
-      removed.html += 1;
-      while (++index < lines.length && !/^\[\[\/html\]\]$/i.test(lines[index].trim())) {}
-      continue;
+    return "";
+  });
+  text = text.replace(/\[\[tabview\]\][\s\S]*?\[\[\/tabview\]\]|\[\[tabs\]\][\s\S]*?\[\[\/tabs\]\]|\[\[tab\s[^\]]*\]\][\s\S]*?\[\[\/tab\]\]|\[\[\/?tab(?:view|s)?\]\]/gis, (match) => {
+    if (/tabview|tabs\]\]$|\[\[tabs\]\]/i.test(match)) {
+      return token("NOTICE", "选项卡视图在只读备份中已省略");
     }
-    if (/^@{2,}$/.test(trimmed)) { removed.spacers += 1; continue; }
-    kept.push(line);
-  }
-  text = kept.join("\n");
+    return "";
+  });
+  // Ruby/furigana annotation spans can nest and span many lines; FTML leaves
+  // them half-parsed (e.g. "[[span class=\"rt\"]][[span class=\"ruby\"]][[span").
+  // Peel the whole block, keep the base text, and drop the stray [[/span]] tags.
+  text = text.replace(/\[\[span class=["'](?:ruby|rt)["']\]\]([\s\S]*?)\[\[\/span\]\]/gis, (_match, inner) => {
+    const base = inner.replace(/\[\[\/?span class=["'](?:ruby|rt)["']\]\]/gis, "").replace(/^\/\/##[^|]*\|/m, "").replace(/##\/\//g, "");
+    return base;
+  });
+  // Any other inline [[span]]/[[/span]] is dynamic styling that the
+  // read-only backup must not execute; drop it rather than leak raw markup.
+  text = text.replace(/\[\[\/?span\b[^\]]*\]\]/gis, "");
+  // [[=]] is a centering marker that FTML keeps verbatim; drop it.
+  text = text.replace(/\[\[=\]\]|\[\[\/=\]\]/g, "");
+  text = text.replace(/\[\[html\]\][\s\S]*?\[\[\/html\]\]/gis, () => {
+    removed.html += 1;
+    return "";
+  });
+  text = text.replace(/^@+$/gm, () => {
+    removed.spacers += 1;
+    return "";
+  });
   text = text.replace(/\[\[(?:f<)?image\b[^\]]*\]\]/gi, () => { removed.attachments += 1; return token("IMAGE"); });
   text = text.replace(/\[\[\*?user\s+([^\]]+)\]\]/gi, (_match, name) => token("USER", name.trim()));
   return { text, removed };
@@ -54,7 +76,8 @@ function stripUnavailable(source) {
 function restoreTokens(html) {
   return html
     .replace(/SCPPER_USER_([A-Za-z0-9_-]+)__/g, (_match, value) => `<span class="wiki-user">${Buffer.from(value, "base64url").toString("utf8").replace(/[&<>"']/g, (c) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]))}</span>`)
-    .replace(/SCPPER_IMAGE_[A-Za-z0-9_-]*__/g, '');
+    .replace(/SCPPER_IMAGE_[A-Za-z0-9_-]*__/g, '<span class="missing-resource">图片附件未归档</span>')
+    .replace(/SCPPER_NOTICE_([A-Za-z0-9_-]+)__/g, (_match, value) => `<aside class="backup-note">包含组件未归档：<code>${Buffer.from(value, "base64url").toString("utf8").replace(/[&<>"']/g, (c) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]))}</code></aside>`);
 }
 
 const records = JSON.parse(input);

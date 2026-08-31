@@ -6,6 +6,13 @@ import sys
 BAD = re.compile(
     r"\[\[(?:include|span|module|a href)|%%title|<style|wj-user-info|<img"
 )
+ENTITY_TEXT = re.compile(r"&(?:lt|gt|amp|quot|#39);")
+RAW_TAGS = re.compile(
+    r"<(?:b|i|u|font|center|marquee|iframe|embed|object|video|audio|canvas|"
+    r"form|input|button|select|option|textarea|label|style|script|link|meta|"
+    r"img|svg)\b",
+    re.I,
+)
 
 
 def article_body(text):
@@ -55,6 +62,46 @@ def fix_unrendered_includes(root):
             fixed += 1
             print("fixed", f.name)
     print("fixed files:", fixed)
+
+
+def scan_entities(root):
+    hits = {}
+    for f in pathlib.Path(root).glob("*.html"):
+        text = f.read_text(encoding="utf-8", errors="replace")
+        body = article_body(text)
+        if body is None:
+            continue
+        found = ENTITY_TEXT.findall(body)
+        if found:
+            hits[f.name] = found[:4]
+    print("pages with literal entities in body:", len(hits))
+    for name, found in list(hits.items())[:20]:
+        print(name, found)
+
+
+def scan_raw_tags(root):
+    hits = {}
+    for f in pathlib.Path(root).glob("*.html"):
+        text = f.read_text(encoding="utf-8", errors="replace")
+        body = article_body(text)
+        if body is None:
+            continue
+        found = sorted({m.lower() for m in RAW_TAGS.findall(body)})
+        if found:
+            hits[f.name] = found[:8]
+    print("pages with suspicious raw tags in body:", len(hits))
+    for name, found in list(hits.items())[:20]:
+        print(name, found)
+
+
+def show_context(root, name, pattern, limit=8):
+    text = (pathlib.Path(root) / name).read_text(encoding="utf-8", errors="replace")
+    body = article_body(text)
+    for match in list(pattern.finditer(body))[:limit]:
+        start = max(0, match.start() - 140)
+        end = match.end() + 140
+        print(repr(body[start:end].replace("\n", " ")))
+        print("---")
 
 
 if __name__ == "__main__":
