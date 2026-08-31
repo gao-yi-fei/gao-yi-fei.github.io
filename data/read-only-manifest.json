@@ -1,0 +1,15 @@
+{
+  "generated_at_beijing": "2026/08/31 07:53:10",
+  "page_count": 1382,
+  "source_count": 1382,
+  "missing_full_sources": [],
+  "parser_notices": {
+    "attachments": 533,
+    "includes": 2681,
+    "modules": 1211,
+    "rating_modules": 892,
+    "spacers": 16005,
+    "widgets": 449
+  },
+  "format": "read-only-wikidot-fallback-v1"
+}

@@ -3,136 +3,31 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SCPPER-MC</title>
-  <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="/assets/scpper.css">
+  <title>SCP基金会 Minecraft 分部 | 只读备份</title>
+  <link rel="stylesheet" href="/assets/read-only.css">
+  <style>
+    .home { width:min(900px,calc(100% - 32px)); margin:44px auto 70px; }
+    .home h1 { margin:0; font-size:clamp(2rem,5vw,3.6rem); line-height:1.2; }
+    .home .intro { max-width:680px; color:var(--muted); font-size:1.08rem; }
+    .snapshot { display:flex; flex-wrap:wrap; gap:10px; margin:24px 0; color:var(--muted); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    .snapshot span { padding:7px 10px; border:1px solid var(--line); background:#fff; }
+    .home-search { width:100%; padding:14px 16px; border:1px solid #a6a29b; border-radius:0; font:1rem -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    .directory { margin-top:26px; border:1px solid var(--line); background:#fff; }.directory h2 { margin:0; padding:15px 18px; border-bottom:1px solid var(--line); font:700 1rem -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }.search-row { display:block; padding:13px 18px; border-bottom:1px solid #eceae4; text-decoration:none; }.search-row:hover { background:#f8fafc; }.search-row strong,.search-row span { display:block; }.search-row span,.empty { color:var(--muted); font:13px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }.empty { padding:18px; }
+    .home-links { display:flex; flex-wrap:wrap; gap:14px; margin-top:20px; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="topline">
-      <div>
-        <h1>SCPPER-MC</h1>
-        <p class="lead">SCP基金会 Minecraft 分部备份检索站。这里是基本状态页，完整检索请进入分页。</p>
-        <div class="credit">created by piglin</div>
-      </div>
-      <div class="card" style="min-width:220px">
-        <span class="card-label">当前北京时间</span>
-        <span class="card-value" id="nowBeijing">--</span>
-      </div>
-    </div>
-    <nav class="nav" id="nav" aria-label="站点导航"></nav>
-  </header>
-  <main>
-    <ul class="stats" id="stats"></ul>
-    <section class="panel" style="margin-bottom:14px">
-      <div class="panel-head">
-        <h2>当前竞赛</h2>
-        <div class="small" id="contestHint">加载中...</div>
-      </div>
-      <div class="panel-section" id="contest"></div>
-    </section>
-    <section class="grid-3">
-      <div class="panel">
-        <div class="panel-head"><h2>最近发帖</h2><div class="small">与最近页一致</div></div>
-        <div class="panel-section compact-list" id="recentPosts"></div>
-      </div>
-      <div class="panel">
-        <div class="panel-head"><h2>最近页面</h2><div class="small">按创建时间</div></div>
-        <div class="panel-section compact-list" id="recentPages"></div>
-      </div>
-      <div class="panel">
-        <div class="panel-head"><h2>最近编辑</h2><div class="small">按编辑时间</div></div>
-        <div class="panel-section compact-list" id="recentEdits"></div>
-      </div>
-    </section>
-    <div class="actions" style="margin:14px 0 26px">
-      <a href="/pages.html">进入页面索引</a>
-      <a href="/users.html">进入用户索引</a>
-      <a href="/forum.html">进入讨论区</a>
-      <a href="/recent.html">查看完整最近动态</a>
-    </div>
+  <header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备用站</span><nav><a href="/pages.html">完整页面索引</a><a href="/users.html">用户索引</a><a href="/forum.html">讨论区</a><a href="/recent.html">最近记录</a></nav></header>
+  <main class="home">
+    <p class="eyebrow">SCP FOUNDATION · MINECRAFT BRANCH</p>
+    <h1>只读备用站</h1>
+    <p class="intro">这是基于最后一次完整抓取建立的可阅读快照。页面正文会尽量解析 Wikidot 标记；主题、动态组件、脚本和未归档附件会降级显示，原始源码始终保留供查阅。</p>
+    <div class="snapshot"><span id="snapshot">正在读取快照信息…</span><span id="count">正在统计…</span><span>本站不提供编辑、评分或登录功能</span></div>
+    <input id="search" class="home-search" type="search" autocomplete="off" placeholder="搜索标题、页面名或标签，直接进入只读文章">
+    <section class="directory"><h2>最近编辑的页面</h2><div id="results"><p class="empty">正在载入目录…</p></div></section>
+    <nav class="home-links"><a href="/wiki/main.html">阅读原站首页快照</a><a href="/pages.html">使用完整高级检索</a><a href="/data/read-only-manifest.json">查看快照说明</a></nav>
   </main>
-  <script src="/assets/common.js"></script>
-  <script>
-    const C = window.SCPPER;
-    const $ = (id) => document.getElementById(id);
-
-    function pageLink(item) {
-      const title = C.recentTitle(item);
-      const href = item.url || item.page_url || item.thread_url || "#";
-      return href === "#" ? C.escapeHtml(title) : `<a href="${C.escapeHtml(href)}" target="_blank" rel="noreferrer">${C.escapeHtml(title)}</a>`;
-    }
-    function renderStats(stats) {
-      const k = stats.page_kind_counts || {};
-      $("stats").innerHTML = [
-        ["页面", stats.page_count], ["用户", stats.user_count], ["原创", k.original || 0], ["翻译", k.translation || 0],
-        ["段落", k.fragment || 0], ["讨论串", stats.forum_thread_count], ["帖子", stats.forum_post_count],
-        ["生成时间", stats.generated_at_beijing || C.formatBeijing(stats.generated_at)],
-      ].map(([label, value]) => `<li><span>${label}</span>${typeof value === "number" ? C.fmt.format(value) : C.escapeHtml(value)}</li>`).join("");
-    }
-    function liveContestStage(schedule) {
-      const start = Date.parse(schedule?.submission_start?.at || "");
-      const submissionEnd = Date.parse(schedule?.submission_end?.at || "");
-      const votingEnd = Date.parse(schedule?.voting_end?.at || "");
-      const now = Date.now();
-      if (Number.isFinite(start) && now < start) return "未开始";
-      if (Number.isFinite(submissionEnd) && now < submissionEnd) return "投稿中";
-      if (Number.isFinite(votingEnd) && now < votingEnd) return "投票中";
-      return Number.isFinite(votingEnd) ? "已结束" : (schedule?.stage || "进行中");
-    }
-    function renderContest(contest) {
-      if (!contest) {
-        $("contestHint").textContent = "未识别到当前竞赛";
-        $("contest").innerHTML = `<p class="small">没有找到带竞赛标签的中心页。</p>`;
-        return;
-      }
-      const schedule = contest.schedule || {};
-      const scheduleItems = [
-        ["投稿开始", schedule.submission_start?.at_beijing],
-        ["投稿截止", schedule.submission_end?.at_beijing],
-        ["投票截止", schedule.voting_end?.at_beijing],
-      ].filter(([, value]) => value);
-      const stage = liveContestStage(schedule);
-      $("contestHint").textContent = `${contest.tag}${stage ? ` · ${stage}` : ""}${contest.entry_count != null ? ` · ${C.fmt.format(contest.entry_count)} 项` : ""}`;
-      const top = contest.ranking || [];
-      $("contest").innerHTML = `
-        <h3>${pageLink(contest.hub)}</h3>
-        <p class="small">竞赛信息来自 SCP-MC 主页提示与竞赛中心页；排名按分数、upvote 比例、发布时间排序。</p>
-        ${scheduleItems.length ? `<div class="tags">${scheduleItems.map(([label, value]) => `<span class="tag">${label} ${C.escapeHtml(value)}</span>`).join("")}</div>` : ""}
-        ${top.length ? top.map((item, index) => {
-          const author = item.history_author_name ? ` · 作者 ${C.escapeHtml(item.history_author_name)}` : "";
-          return `<div class="activity activity-card" data-href="${C.escapeHtml(C.pageHref(item.page_name))}" role="link" tabindex="0"><strong>#${index + 1} ${pageLink(item)}</strong><span class="small">评分 ${C.ratingLabel(item.rating)} · +${C.fmt.format(item.vote_up || 0)} / -${C.fmt.format(item.vote_down || 0)} · 发布 ${C.escapeHtml(C.formatBeijing(item.created_at, item.created_at_beijing) || "n/a")}${author}</span></div>`;
-        }).join("") : `<p class="small">暂未识别到参赛作品。</p>`}
-      `;
-    }
-    function renderRecentList(id, items, tab) {
-      const rows = (items || []).slice(0, 5);
-      $(id).innerHTML = rows.length
-        ? rows.map((item) => C.renderRecentItem(item, tab)).join("")
-        : `<p class="small">暂无数据。</p>`;
-    }
-    async function init() {
-      $("nav").innerHTML = C.renderNav("home");
-      C.wireRefresh();
-      C.tickBeijing("nowBeijing");
-      await C.initDataVersion();
-      const payload = await C.loadJson("data/home-index.json.gz");
-      let contest = payload.current_contest;
-      try {
-        const live = await C.loadJson("data/contest-live.json", false);
-        contest = live.current_contest || contest;
-      } catch (_) {}
-      renderStats(payload.stats || {});
-      renderContest(contest);
-      setInterval(() => renderContest(contest), 30_000);
-      renderRecentList("recentPosts", payload.recent_posts, "posts");
-      renderRecentList("recentPages", payload.recent_pages, "pages");
-      renderRecentList("recentEdits", payload.recent_edits, "edits");
-      C.wireRecentCards(document);
-    }
-    init().catch((err) => {
-      $("contest").innerHTML = `<div class="empty">加载失败：${C.escapeHtml(err.message)}</div>`;
-    });
-  </script>
+  <footer>created by piglin · 本站为历史只读备份，内容版权仍归原作者与 SCP 基金会 Minecraft 分部。</footer>
+  <script src="/assets/read-only.js"></script>
 </body>
 </html>

@@ -56,6 +56,11 @@ window.SCPPER = (() => {
   function pageHref(pageName) {
     return `/pages.html?page=${encodeURIComponent(pageName || "")}`;
   }
+  function readerHref(pageName) {
+    const bytes = new TextEncoder().encode(String(pageName || ""));
+    const key = Array.from(bytes).map((byte) => ((byte >= 48 && byte <= 57) || (byte >= 65 && byte <= 90) || (byte >= 97 && byte <= 122) || [45, 46, 95].includes(byte)) ? String.fromCharCode(byte) : `~${byte.toString(16).padStart(2, "0")}`).join("") || "unnamed";
+    return `/wiki/${key}.html`;
+  }
   function forumHref(categoryId, threadId, postId) {
     const params = new URLSearchParams();
     if (categoryId) params.set("category", categoryId);
@@ -259,5 +264,5 @@ window.SCPPER = (() => {
     });
   }
   idle(registerServiceWorker);
-  return { fmt, escapeHtml, loadJson, initDataVersion, idle, pageHref, forumHref, refreshData, renderNav, wireRefresh, ratingLabel, ratingClass, normalize, pager, pagerAction, pageSlice, kindBadge, formatBeijing, tickBeijing, scrollMobile, recentTitle, recentExternalHref, recentLocalHref, recentTime, recentActor, renderRecentItem, wireRecentCards };
+  return { fmt, escapeHtml, loadJson, initDataVersion, idle, pageHref, readerHref, forumHref, refreshData, renderNav, wireRefresh, ratingLabel, ratingClass, normalize, pager, pagerAction, pageSlice, kindBadge, formatBeijing, tickBeijing, scrollMobile, recentTitle, recentExternalHref, recentLocalHref, recentTime, recentActor, renderRecentItem, wireRecentCards };
 })();
