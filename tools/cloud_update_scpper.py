@@ -52,21 +52,26 @@ def main() -> int:
     cache_dir.mkdir(parents=True, exist_ok=True)
     build_dir.parent.mkdir(parents=True, exist_ok=True)
 
-    run([
-        sys.executable, "tools/crawl_wikidot_sources.py",
-        "--base", args.base,
-        "--out", str(backup_dir),
-        "--workers", str(args.workers),
-        "--delay", "0",
-        "--timeout", str(args.timeout),
-        "--retries", str(args.retries),
-        "--discovery", "categories",
-        "--save-raw",
-        "--with-metadata",
-        "--reuse-existing",
-        "--force",
-        "--allow-failures",
-    ])
+    try:
+        run([
+            sys.executable, "tools/crawl_wikidot_sources.py",
+            "--base", args.base,
+            "--out", str(backup_dir),
+            "--workers", str(args.workers),
+            "--delay", "0",
+            "--timeout", str(args.timeout),
+            "--retries", str(args.retries),
+            "--discovery", "categories",
+            "--save-raw",
+            "--with-metadata",
+            "--reuse-existing",
+            "--force",
+            "--allow-failures",
+        ])
+    except subprocess.CalledProcessError as exc:
+        # A full outage must leave the published recovery snapshot untouched.
+        print(f"Wikidot unavailable; keeping the current snapshot ({exc}).", flush=True)
+        return 0
     run([
         sys.executable, "tools/build_scpper_lite.py",
         "--backup", str(backup_dir),

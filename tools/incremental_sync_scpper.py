@@ -376,7 +376,15 @@ def main() -> int:
     site_dir = Path(args.site).resolve()
     data_dir = site_dir / "data"
     pages, sources = load_pages_and_sources(data_dir)
-    moved_count, deleted_count = reconcile_category_moves(pages, sources, data_dir, args)
+    try:
+        moved_count, deleted_count = reconcile_category_moves(pages, sources, data_dir, args)
+    except Exception as exc:  # noqa: BLE001 - the published snapshot is the outage fallback.
+        print(json.dumps({
+            "source_available": False,
+            "message": "Wikidot unavailable; keeping the current snapshot.",
+            "error": str(exc),
+        }, ensure_ascii=False))
+        return 0
     forum_payload = read_gzip(data_dir / "forum-index.json.gz")
     forum_index = {key: value for key, value in forum_payload.items() if key != "stats"}
     feed_html = {path: build.fetch_text(f"{BASE}{path}", timeout=args.timeout, retries=args.retries) for path in FEEDS}
