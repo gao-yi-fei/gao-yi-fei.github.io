@@ -1,0 +1,289 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>更多MC组件：书与笔源代码-基岩版 | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page=component:book-and-quill-source-bedrock">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">原创页面 </p><h1>更多MC组件：书与笔源代码-基岩版</h1><p class="page-name">component:book-and-quill-source-bedrock</p><dl class="article-meta"><div><dt>创建者</dt><dd>A Nameless Creator</dd></div><div><dt>评分</dt><dd class="rating">0 <small>+0 / -0</small></dd></div><div><dt>发布时间</dt><dd>2024/03/30 17:48:26</dd></div><div><dt>最近编辑</dt><dd>2024/11/27 17:12:43</dd></div></dl><div class="tags"><span class="tag">原创</span><span class="tag">组件后端</span></div></header><section class="article-body"><p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p>/* PC端和移动端分别显示 */</p>
+<p>/*字体*/</p>
+<p>@font-face {</p>
+<p>font-family: &#x27;Minecraft&#x27;;</p>
+<p>src: url(&#x27;https://minecraft.fandom.com/media/hydra/fonts/minecraft.woff&#x27;) format(&#x27;woff&#x27;);</p>
+<p>}</p>
+<p>@font-face {</p>
+<p>font-family: &#x27;unifont&#x27;;</p>
+<p>src: url(&#x27;https://raw.githubusercontent.com/sTorYTeLler12138/Fonts/main/Unifont-mono.ttf&#x27;) format(&#x27;woff&#x27;);</p>
+<p>}</p>
+<p>@import url(https://fastly.jsdelivr.net/gh/hoah2333/Fonts@main/Typeface-VonwaonBitmap-16px.css);</p>
+<p>.book-quill {</p>
+<p>width: 665px;</p>
+<p>height: 400px;</p>
+<p>background-image: url(&#x27;https://s21.ax1x.com/2024/03/30/pFTUvVJ.png&#x27;); /* 书与笔背景图片 */</p>
+<p>background-size: cover;</p>
+<p>background-position: center;</p>
+<p>display: flex;</p>
+<p>justify-content: space-between;</p>
+<p>align-items: center;</p>
+<p>padding: 20px;</p>
+<p>margin: 0 auto;</p>
+<p>}</p>
+<p>.text-left, .text-right {</p>
+<p>width: 45%;</p>
+<p>margin-bottom: {$margin-bottom}px;</p>
+<p>}</p>
+<p>.text {</p>
+<p>padding: 20px;</p>
+<p>font-size: 16px;</p>
+<p>font-family: &quot;Minecraft&quot;, &#x27;unifont&#x27;, &#x27;VonwaonBitmap 16px&#x27;, serif !important;</p>
+<p>}</p>
+<p>h6 {</p>
+<p>font-size: 20px;</p>
+<p>font-family: &quot;Minecraft&quot;, &#x27;unifont&#x27;, &#x27;VonwaonBitmap 16px&#x27;, serif !important;</p>
+<p>}</p>
+<p>div.content-desktop {</p>
+<p>display: block;</p>
+<p>}</p>
+<p>div.content-mobile {</p>
+<p>display:none;</p>
+<p>}</p>
+<p>/*移动端样式*/</p>
+<p>@media (max-width: 1006px) {</p>
+<p>div.content-desktop {</p>
+<p>display: none;</p>
+<p>}</p>
+<p>div.content-mobile {</p>
+<p>display:block;</p>
+<p>}</p>
+<p>.book-quill {</p>
+<p>width: 329px;</p>
+<p>height: 420px;</p>
+<p>background-image: url(&#x27;https://s21.ax1x.com/2024/03/30/pFT5YTA.png&#x27;);</p>
+<p>background-size: cover;</p>
+<p>background-position: center;</p>
+<p>display: flex;</p>
+<p>justify-content: space-between;</p>
+<p>margin: 4px 10px 4px 5px;</p>
+<p>}</p>
+<p>.text {</p>
+<p>width: 90%;</p>
+<p>margin-bottom: 0px;</p>
+<p>font-size: 13px;</p>
+<p>font-family: &quot;Minecraft&quot;, &#x27;unifont&#x27;, &#x27;VonwaonBitmap 16px&#x27;, serif !important;</p>
+<p>}</p>
+<p>h6 {</p>
+<p>font-size: 16px;</p>
+<p>font-family: &quot;Minecraft&quot;, &#x27;unifont&#x27;, &#x27;VonwaonBitmap 16px&#x27;, serif !important;</p>
+<p>}</p>
+<p>}</p>
+<p>[[/module]]</p>
+<div class="wiki-block">
+<div class="wiki-block">
+<div class="wiki-block">
+<h6>{$left-title}</h6>
+<p>{$left-content}</p>
+</div>
+<div class="wiki-block">
+<h6>{$right-title}</h6>
+<p>{$right-content}</p>
+</div>
+</div>
+</div>
+<div class="wiki-block">
+<div class="wiki-block">
+<div class="wiki-block">
+<h6>{$left-title}</h6>
+<p>{$left-content}</p>
+<p>{$right-content}</p>
+</div>
+</div>
+</div></section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>[[module css]]
+
+/* PC端和移动端分别显示 */
+
+/*字体*/
+
+@font-face {
+
+    font-family: &#x27;Minecraft&#x27;;
+
+    src: url(&#x27;https://minecraft.fandom.com/media/hydra/fonts/minecraft.woff&#x27;) format(&#x27;woff&#x27;);
+
+}
+
+@font-face {
+
+    font-family: &#x27;unifont&#x27;;
+
+    src: url(&#x27;https://raw.githubusercontent.com/sTorYTeLler12138/Fonts/main/Unifont-mono.ttf&#x27;) format(&#x27;woff&#x27;);
+
+}
+
+  @import url(https://fastly.jsdelivr.net/gh/hoah2333/Fonts@main/Typeface-VonwaonBitmap-16px.css);
+
+
+
+  .book-quill {
+
+    width: 665px;
+
+    height: 400px;
+
+    background-image: url(&#x27;https://s21.ax1x.com/2024/03/30/pFTUvVJ.png&#x27;); /* 书与笔背景图片 */
+
+    background-size: cover;
+
+    background-position: center;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 20px;
+
+    margin: 0 auto;
+
+  }
+
+  .text-left, .text-right {
+
+    width: 45%;
+
+    margin-bottom: {$margin-bottom}px;
+
+  }
+
+  .text {
+
+    padding: 20px;
+
+    font-size: 16px;
+
+    font-family: &quot;Minecraft&quot;, &#x27;unifont&#x27;, &#x27;VonwaonBitmap 16px&#x27;, serif !important;
+
+  }
+
+  h6 {
+
+    font-size: 20px;
+
+    font-family: &quot;Minecraft&quot;, &#x27;unifont&#x27;, &#x27;VonwaonBitmap 16px&#x27;, serif !important;
+
+  }
+
+
+
+div.content-desktop {
+
+    display: block;
+
+}
+
+div.content-mobile {
+
+    display:none;
+
+}
+
+
+
+/*移动端样式*/
+
+@media (max-width: 1006px) {
+
+div.content-desktop {
+
+    display: none;
+
+}
+
+div.content-mobile {
+
+    display:block;
+
+}
+
+  .book-quill {
+
+    width: 329px;
+
+    height: 420px;
+
+    background-image: url(&#x27;https://s21.ax1x.com/2024/03/30/pFT5YTA.png&#x27;);
+
+    background-size: cover;
+
+    background-position: center;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin: 4px 10px 4px 5px;
+
+  }
+
+  .text {
+
+    width: 90%;
+
+    margin-bottom: 0px;
+
+    font-size: 13px;
+
+    font-family: &quot;Minecraft&quot;, &#x27;unifont&#x27;, &#x27;VonwaonBitmap 16px&#x27;, serif !important;
+
+  }
+
+  h6 {
+
+    font-size: 16px;
+
+    font-family: &quot;Minecraft&quot;, &#x27;unifont&#x27;, &#x27;VonwaonBitmap 16px&#x27;, serif !important;
+
+  }
+
+}
+
+[[/module]]
+
+[[div class=&quot;content-desktop&quot;]]
+
+[[div class=&quot;book-quill&quot;]]
+
+[[div class=&quot;text-left text&quot;]]
+
+++++++ {$left-title}
+
+{$left-content}
+
+[[/div]]
+
+[[div class=&quot;text-right text&quot;]]
+
+++++++ {$right-title}
+
+{$right-content}
+
+[[/div]]
+
+[[/div]]
+
+[[/div]]
+
+
+
+[[div class=&quot;content-mobile&quot;]]
+
+[[div class=&quot;book-quill&quot;]]
+
+[[div class=&quot;text&quot;]]
+
+++++++ {$left-title}
+
+{$left-content}
+
+{$right-content}
+
+[[/div]]
+
+[[/div]]
+
+[[/div]]
+</pre></details></article></main><footer>只读快照：2026/08/31 07:53:10 · created by piglin · 内容版权仍归原作者与 SCP 基金会 Minecraft 分部。</footer></body></html>

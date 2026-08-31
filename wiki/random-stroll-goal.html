@@ -1,0 +1,157 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>游荡 | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page=random-stroll-goal">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">原创页面 </p><h1>游荡</h1><p class="page-name">random-stroll-goal</p><dl class="article-meta"><div><dt>创建者</dt><dd>xuyifan_exe</dd></div><div><dt>评分</dt><dd class="rating">+1 <small>+1 / -0</small></dd></div><div><dt>发布时间</dt><dd>2020/04/06 08:59:16</dd></div><div><dt>最近编辑</dt><dd>2020/04/06 09:04:16</dd></div></dl><div class="tags"><span class="tag">分部现实百科</span><span class="tag">原创</span></div></header><section class="article-body"><p class="wiki-list"><strong>继承：</strong><a href="http://scp-wiki-mc.wikidot.com/goal" rel="noreferrer">任务目的</a></p>
+<p class="wiki-list"><strong>类名：</strong>RandomStrollGoal</p>
+<p class="wiki-list"><strong>数据</strong></p>
+<p class="wiki-list"><strong>PathfinderMob 寻路者：</strong>指代使用此目标任务的寻路者生物</p>
+<p class="wiki-list"><strong>double 要前往位置的X坐标：</strong>一次游荡行为的终点的X坐标</p>
+<p class="wiki-list"><strong>double 要前往位置的Y坐标：</strong>一次游荡行为的终点的Y坐标</p>
+<p class="wiki-list"><strong>double 要前往位置的Z坐标：</strong>一次游荡行为的终点的Z坐标</p>
+<p class="wiki-list"><strong>double 相对移速：</strong>给寻路者的导航器传入的相对移速参数</p>
+<p class="wiki-list"><strong>int 间歇值：</strong>任务目的闲置的每刻中，决定开始游荡的概率的倒数。默认为120。</p>
+<p class="wiki-list"><strong>boolean 强制激活：</strong>决定了是否在本任务目的的下一次激活判定中，绕过活跃检查和概率检查。</p>
+<p class="wiki-list"><strong>互斥特征：</strong>移动</p>
+<p class="wiki-list"><strong>是否开始：</strong></p>
+<p class="wiki-list"><strong>不继承</strong></p>
+<p class="wiki-list"><strong>如果寻路者正在被乘骑</strong></p>
+<p class="wiki-list"><strong>不开始</strong></p>
+<p class="wiki-list"><strong>否则如果不要求强制激活：</strong></p>
+<p class="wiki-list"><strong>如果寻路者的不活跃时间<sup class="footnote">不活跃时间在生物距离玩家过远才有可能增加，距离玩家较近或者作出动作后自动清零</sup>超过一秒</strong></p>
+<p class="wiki-list"><strong>不开始</strong></p>
+<p class="wiki-list"><strong>否则如果在前(间歇值)个自然数中随机选一个数，不为零</strong></p>
+<p class="wiki-list"><strong>不开始</strong></p>
+<p class="wiki-list"><strong>否则</strong></p>
+<p class="wiki-list"><strong>获得游荡终点的位置</strong></p>
+<p class="wiki-list"><strong>如果失败</strong></p>
+<p class="wiki-list"><strong>不开始</strong></p>
+<p class="wiki-list"><strong>把要前往位置的X坐标设为该终点位置的X坐标</strong></p>
+<p class="wiki-list"><strong>把要前往位置的Y坐标设为该终点位置的Y坐标</strong></p>
+<p class="wiki-list"><strong>把要前往位置的Z坐标设为该终点位置的Z坐标</strong></p>
+<p class="wiki-list"><strong>将强制激活设为false（即在下一次判定中不再绕过检查）</strong></p>
+<p class="wiki-list"><strong>开始</strong></p>
+<p class="wiki-list"><strong>获得游荡终点的位置</strong></p>
+<p class="wiki-list"><strong>在以寻路者位置为中心的10x7x10范围内选一个有效的位置（使用随机坐标引擎）</strong></p>
+<p class="wiki-list"><strong>是否继续</strong></p>
+<p class="wiki-list"><strong>不继承</strong></p>
+<p class="wiki-list"><strong>如果寻路者的导航器未完成且寻路者不在被乘骑中</strong></p>
+<p class="wiki-list"><strong>继续</strong></p>
+<p class="wiki-list"><strong>否则</strong></p>
+<p class="wiki-list"><strong>不继续</strong></p>
+<p class="wiki-list"><strong>开始</strong></p>
+<p class="wiki-list"><strong>不继承</strong></p>
+<p class="wiki-list"><strong>设置寻路者的导航器的路线：终点为要前往的位置，相对速度为数据里的相对速度</strong></p>
+<p class="wiki-list"><strong>停止</strong></p>
+<p class="wiki-list"><strong>停止寻路者的导航器</strong></p>
+<p class="wiki-list"><strong>被外部激活时</strong></p>
+<p class="wiki-list"><strong>将强制激活设为true（即在下次判定是否开始时绕过那检查）</strong></p>
+<p class="wiki-list"><strong>设置间歇值为N</strong></p>
+<p class="wiki-list"><strong>将间歇值赋值为N</strong></p></section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>* **继承：**[http://scp-wiki-mc.wikidot.com/goal 任务目的]
+
+
+
+* **类名：**RandomStrollGoal
+
+
+
+* **数据**
+
+ * **PathfinderMob 寻路者：**指代使用此目标任务的寻路者生物
+
+ * **double 要前往位置的X坐标：**一次游荡行为的终点的X坐标
+
+ * **double 要前往位置的Y坐标：**一次游荡行为的终点的Y坐标
+
+ * **double 要前往位置的Z坐标：**一次游荡行为的终点的Z坐标
+
+ * **double 相对移速：**给寻路者的导航器传入的相对移速参数
+
+ * **int 间歇值：**任务目的闲置的每刻中，决定开始游荡的概率的倒数。默认为120。
+
+ * **boolean 强制激活：**决定了是否在本任务目的的下一次激活判定中，绕过活跃检查和概率检查。
+
+
+
+* **互斥特征：**移动
+
+
+
+* **是否开始：**
+
+ * **不继承**
+
+ * **如果寻路者正在被乘骑**
+
+  * **不开始**
+
+ * **否则如果不要求强制激活：**
+
+  * **如果寻路者的不活跃时间[[footnote]]不活跃时间在生物距离玩家过远才有可能增加，距离玩家较近或者作出动作后自动清零[[/footnote]]超过一秒**
+
+   * **不开始**
+
+  * **否则如果在前(间歇值)个自然数中随机选一个数，不为零**
+
+   * **不开始**
+
+ * **否则**
+
+ * **获得游荡终点的位置**
+
+  * **如果失败**
+
+   * **不开始**
+
+ * **把要前往位置的X坐标设为该终点位置的X坐标**
+
+ * **把要前往位置的Y坐标设为该终点位置的Y坐标**
+
+ * **把要前往位置的Z坐标设为该终点位置的Z坐标**
+
+ * **将强制激活设为false（即在下一次判定中不再绕过检查）**
+
+ * **开始**
+
+
+
+* **获得游荡终点的位置**
+
+ * **在以寻路者位置为中心的10x7x10范围内选一个有效的位置（使用随机坐标引擎）**
+
+
+
+* **是否继续**
+
+ * **不继承**
+
+ * **如果寻路者的导航器未完成且寻路者不在被乘骑中**
+
+  * **继续**
+
+ * **否则**
+
+  * **不继续**
+
+
+
+* **开始**
+
+ * **不继承**
+
+ * **设置寻路者的导航器的路线：终点为要前往的位置，相对速度为数据里的相对速度**
+
+
+
+* **停止**
+
+ * **停止寻路者的导航器**
+
+
+
+* **被外部激活时**
+
+ * **将强制激活设为true（即在下次判定是否开始时绕过那检查）**
+
+
+
+* **设置间歇值为N**
+
+ * **将间歇值赋值为N**
+</pre></details></article></main><footer>只读快照：2026/08/31 07:53:10 · created by piglin · 内容版权仍归原作者与 SCP 基金会 Minecraft 分部。</footer></body></html>

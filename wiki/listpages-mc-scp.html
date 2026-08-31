@@ -1,0 +1,461 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Asriel佬的懒人迭代器，魔改by Darkwall W | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page=listpages-mc-scp">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">其他页面 </p><h1>Asriel佬的懒人迭代器，魔改by Darkwall W</h1><p class="page-name">listpages-mc-scp</p><dl class="article-meta"><div><dt>创建者</dt><dd>Agt Darkwall</dd></div><div><dt>评分</dt><dd class="rating">+4 <small>+4 / -0</small></dd></div><div><dt>发布时间</dt><dd>2021/09/18 09:23:07</dd></div><div><dt>最近编辑</dt><dd>n/a</dd></div></dl><div class="tags"><span class="muted">无</span></div></header><section class="article-body"><div class="wiki-aligned">
+<p><span class="module-note">评分组件已由页首快照替代</span></p>
+</div>
+<div class="wiki-aligned">
+<h4>懒人迭代生成器</h4>
+</div>
+<p>[[html]]</p>
+<p>&lt;style type=&quot;text/css&quot;&gt;</p>
+<p>body {</p>
+<p>font-family: &quot;Consolas&quot;,verdana, arial, helvetica, sans-serif;</p>
+<p>font-size: 12.8px;</p>
+<p>color: #333;</p>
+<p>}</p>
+<p>a {</p>
+<p>color: #b01;</p>
+<p>cursor: pointer;</p>
+<p>text-decoration: none;</p>
+<p>}</p>
+<p>a:hover {</p>
+<p>text-decoration: underline;</p>
+<p>}</p>
+<p>.offset-generator {</p>
+<p>display: none;</p>
+<p>}</p>
+<p>.main-content {</p>
+<p>display: none;</p>
+<p>}</p>
+<p>.main-button {</p>
+<p>display: none;</p>
+<p>}</p>
+<p>.finish-button {</p>
+<p>display: none;</p>
+<p>}</p>
+<p>.title-option {</p>
+<p>display: none;</p>
+<p>}</p>
+<p>&lt;/style&gt;</p>
+<p>&lt;script language=&quot;javascript&quot;&gt;</p>
+<p>var main;</p>
+<p>var offsetcount = 0;</p>
+<p>var offsets = &quot;&quot;;</p>
+<p>function CreateMain() {</p>
+<p>main = document.getElementById(&quot;MainURL&quot;).value;</p>
+<p>if (main != &quot;&quot;) {</p>
+<p>var result = &#x27;http://scp-wiki-mc.wikidot.com/&#x27; + main;</p>
+<p>window.open(result);</p>
+<p>document.getElementById(&quot;Save&quot;).innerHTML = &#x27;&#x27;;</p>
+<p>document.querySelector(&quot;.main-button&quot;).style.display = &quot;inline&quot;;</p>
+<p>} else {</p>
+<p>document.getElementById(&quot;Save&quot;).innerHTML = &#x27;未输入内容。&#x27;;</p>
+<p>}</p>
+<p>}</p>
+<p>function MainFinished() {</p>
+<p>document.getElementById(&quot;main-generator&quot;).innerHTML = &#x27;页面名称：&#x27; + main + &#x27;&lt;a href=&quot;http://scp-wiki-mc.wikidot.com/&#x27;</p>
+<h2>main + &#x27;&quot; target=&quot;_blank&quot;&gt;[前往]&lt;/a&gt;&#x27;;</h2>
+<p>document.querySelector(&quot;.offset-generator&quot;).style.display = &quot;inline&quot;;</p>
+<p>}</p>
+<p>function CreateOffset() {</p>
+<p>document.querySelector(&quot;.finish-button&quot;).style.display = &quot;inline&quot;;</p>
+<p>offsets = offsets + &#x27;&lt;div style=&quot;border:1px grey;background:#f0f0f0&quot;&gt;&lt;p&gt;&lt;strong&gt;第&#x27; + (offsetcount + 1) + &#x27;迭代&lt;/strong&gt; ---- &lt;a href=&quot;http://scp-wiki-mc.wikidot.com/fragment:&#x27;</p>
+<h2>main;</h2>
+<p>if (offsetcount &lt; 10) {</p>
+<p>offsets = offsets + &#x27;-0&#x27;;</p>
+<p>} else {</p>
+<p>offsets = offsets + &#x27;-&#x27;;</p>
+<p>}</p>
+<p>offsets = offsets + offsetcount + &#x27;/edit/true/parentPage/&#x27; + main + &#x27;&quot; target=&quot;_blank&quot;&gt;开始编辑&lt;/a&gt;&lt;br&gt;链接代码：[http://scp-wiki-mc.wikidot.com/&#x27;</p>
+<h2>main + &#x27;/offset/&#x27; + offsetcount + &#x27; 第&#x27; + (offsetcount + 1) + &#x27;迭代]&lt;/p&gt;&lt;/div&gt;&#x27;</h2>
+<p>document.getElementById(&quot;offset-display&quot;).innerHTML = offsets;</p>
+<p>offsetcount++;</p>
+<p>document.getElementById(&quot;offset_count&quot;).innerHTML = &#x27;共&#x27; + offsetcount + &#x27;个迭代。&#x27;;</p>
+<p>}</p>
+<p>function OffsetFinished() {</p>
+<p>var offsetlinks = &quot;&quot;;</p>
+<p>for (var i = 0; i &lt; offsetcount; i++) {</p>
+<p>if (i &lt; 10) {</p>
+<p>offsetlinks = offsetlinks + &#x27;&lt;br&gt;http://scp-wiki-mc.wikidot.com/fragment:&#x27; + main + &#x27;-0&#x27; + i;</p>
+<p>} else {</p>
+<p>offsetlinks = offsetlinks + &#x27;&lt;br&gt;http://scp-wiki-mc.wikidot.com/fragment:&#x27; + main + &#x27;-&#x27; + i;</p>
+<p>}</p>
+<p>}</p>
+<p>document.getElementById(&quot;offset-finish&quot;).innerHTML = &#x27;刷新代码&#x27;;</p>
+<p>document.querySelector(&quot;.main-content&quot;).style.display = &quot;inline&quot;;</p>
+<p>document.getElementById(&quot;description&quot;).innerHTML = &#x27;&lt;br&gt;请将下列代码复制到&lt;a href=&quot;http://scp-wiki-mc.wikidot.com/&#x27;</p>
+<h2>main + &#x27;/edit/true&quot; target=&quot;_blank&quot;&gt;主页面&lt;/a&gt;中，并保存。&#x27;;</h2>
+<p>document.getElementById(&quot;codes&quot;).innerHTML = &#x27;[[&gt;]]&lt;br&gt;<span class="module-note">评分组件已由页首快照替代</span>&lt;br&gt;[[/&gt;]]&#x27;</p>
+<h2>&#x27;&lt;p&gt;<span class="module-note">动态模块在只读备份中已省略</span>&#x27;</h2>
+<h2>&#x27;&lt;p&gt;%%content%%&lt;/p&gt;&#x27; + &#x27;&lt;p&gt;[[/module]]&lt;/p&gt;&#x27;</h2>
+<h2>&#x27;[!-- &lt;br&gt;编辑本页面的内容可能会导致错误。若要编辑文本，请至以下链接。&#x27;</h2>
+<h2>offsetlinks + &#x27;&lt;br&gt; --] &lt;/div&gt;&#x27;;</h2>
+<p>}</p>
+<p>&lt;/script&gt;</p>
+<p>&lt;body&gt;</p>
+<p>&lt;div style=&quot;text-align:center&quot; id=&quot;main-generator&quot;&gt;</p>
+<p>&lt;p&gt;请确认此为空页面，再开始创建页面。直接保存即可，稍后会进一步编辑。&lt;/p&gt;</p>
+<p>http://scp-wiki-mc.wikidot.com/</p>
+<p>&lt;input type=&quot;text&quot; id=&quot;MainURL&quot; name=&quot;textinput&quot; placeholder=&quot;页面名称&quot; size=&quot;15&quot;&gt;</p>
+<p>&lt;button onclick=&quot;CreateMain()&quot;&gt;生成&lt;/button&gt;</p>
+<p>&lt;p id=&quot;Save&quot;&gt;&lt;/p&gt;</p>
+<p>&lt;div style=&quot;text-align:center&quot; class=&quot;main-button&quot;&gt;</p>
+<p>&lt;button onclick=&quot;MainFinished()&quot;&gt;我已完成。&lt;/button&gt;</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;div class=&quot;offset-generator&quot;&gt;</p>
+<p>&lt;p id=&quot;offset_count&quot;&gt;当前没有迭代页面。&lt;/p&gt;</p>
+<p>&lt;p&gt;注意：这里的链接地址是贴在正文里、用来跳转到其他迭代的链接地址。点开它们并不能直接编辑你的文章。&lt;/p&gt;</p>
+<p>&lt;div style=&quot;text-align:center&quot;&gt;</p>
+<p>&lt;button id=&quot;OffsetButton&quot; onclick=&quot;CreateOffset()&quot;&gt;添加一个迭代页&lt;/button&gt;</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;div id=&quot;offset-display&quot;&gt;</p>
+<p>&lt;p&gt; &lt;/p&gt;</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;div style=&quot;text-align:center&quot; class=&quot;finish-button&quot;&gt;</p>
+<p>&lt;button id=&quot;offset-finish&quot; onclick=&quot;OffsetFinished()&quot;&gt;我已完成。&lt;/button&gt;</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;div id=&quot;maincontent&quot; class=&quot;main-content&quot;&gt;</p>
+<p>&lt;input type=&quot;radio&quot; name=&quot;title-change&quot; value=&quot;no&quot; onclick=&quot;document.querySelector(&#x27;.title-option&#x27;).style.display = &#x27;none&#x27;;&quot; checked&gt;标题始终不变</p>
+<p>&lt;input type=&quot;radio&quot; name=&quot;title-change&quot; value=&quot;yes&quot; onclick=&quot;document.querySelector(&#x27;.title-option&#x27;).style.display = &#x27;block&#x27;;&quot;&gt;标题随迭代改变</p>
+<p>&lt;p id=&quot;description&quot;&gt;&lt;/p&gt;</p>
+<p>&lt;div class=&quot;title-option&quot; style=&quot;background-color:#f0f0f0;font-size:0.9em;line-height:90%;padding: 4% 4% 0.5em 4%;margin: 5% 5% 0 5%;&quot;&gt;</p>
+<p>&lt;p&gt;<span class="module-note">动态模块在只读备份中已省略</span>&lt;/p&gt;</p>
+<p>&lt;p&gt;#page-title { &lt;br&gt;display: none; &lt;br&gt; }&lt;/p&gt;</p>
+<p>&lt;p&gt;.meta-title {&lt;br&gt;  border-bottom: solid 1px #bbbbbb;&lt;br&gt;  color: #990011;&lt;br&gt;  font-weight: normal;&lt;br&gt;  margin: 0 0 0.6em;&lt;br&gt;  padding: 0 0 0.25em;&lt;br&gt;  font-size: 200%;&lt;br&gt;}&lt;/p&gt;</p>
+<p>&lt;p&gt;.meta-title p {&lt;br&gt;  margin: 0;&lt;br&gt;}&lt;br&gt;[[/module]]&lt;/p&gt;</p>
+<p>&lt;p&gt;<span class="module-note">动态模块在只读备份中已省略</span>&lt;/p&gt;</p>
+<p>&lt;p&gt;[[div class=&quot;meta-title&quot;]]&lt;/p&gt;</p>
+<p>&lt;p&gt;%%title%%&lt;/p&gt;</p>
+<p>&lt;p&gt;[[/div]]&lt;/p&gt;</p>
+<p>&lt;p&gt;[[/module]]&lt;/p&gt;</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;div id=&quot;codes&quot; style=&quot;background-color:#f0f0f0;font-size:0.9em;line-height:90%;padding: 0.5em 4% 4% 4%;margin: 0% 5% 5% 5%;&quot;&gt;</p>
+<p>&lt;p&gt;&lt;/p&gt;</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;/body&gt;</p>
+<p>[[/html]]</p>
+<hr>
+<p>作者为W Asriel大佬，我替全网站感谢他。</p>
+<p>顺便说一句，生成迭代时如果链接上有“tag/段落”（代码没删干净）请把链接中的“tag/段落”删除，即可保存成功，由于段落标签是CN站的标签，这里使用会造成错误。之后请联系Agent Darkwall W，我会修改这个问题。</p></section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>[[&gt;]]
+
+[[module rate]]
+
+[[/&gt;]]
+
+
+
+[[=]]
+
++++ 懒人迭代生成器
+
+[[/=]]
+
+
+
+[[html]]
+
+
+
+&lt;style type=&quot;text/css&quot;&gt;
+
+    body {
+
+        font-family: &quot;Consolas&quot;,verdana, arial, helvetica, sans-serif;
+
+        font-size: 12.8px;
+
+        color: #333;
+
+    }
+
+
+
+    a {
+
+        color: #b01;
+
+        cursor: pointer;
+
+        text-decoration: none;
+
+    }
+
+
+
+        a:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+
+    .offset-generator {
+
+        display: none;
+
+    }
+
+
+
+    .main-content {
+
+        display: none;
+
+    }
+
+
+
+    .main-button {
+
+        display: none;
+
+    }
+
+
+
+    .finish-button {
+
+        display: none;
+
+    }
+
+
+
+     .title-option {
+
+        display: none;
+
+    }
+
+&lt;/style&gt;
+
+
+
+&lt;script language=&quot;javascript&quot;&gt;
+
+
+
+    var main;
+
+    var offsetcount = 0;
+
+    var offsets = &quot;&quot;;
+
+
+
+    function CreateMain() {
+
+        main = document.getElementById(&quot;MainURL&quot;).value;
+
+        if (main != &quot;&quot;) {
+
+            var result = &#x27;http://scp-wiki-mc.wikidot.com/&#x27; + main;
+
+            window.open(result);
+
+            document.getElementById(&quot;Save&quot;).innerHTML = &#x27;&#x27;;
+
+            document.querySelector(&quot;.main-button&quot;).style.display = &quot;inline&quot;;
+
+        } else {
+
+            document.getElementById(&quot;Save&quot;).innerHTML = &#x27;未输入内容。&#x27;;
+
+        }
+
+    }
+
+
+
+    function MainFinished() {
+
+        document.getElementById(&quot;main-generator&quot;).innerHTML = &#x27;页面名称：&#x27; + main + &#x27;&lt;a href=&quot;http://scp-wiki-mc.wikidot.com/&#x27;
+
+        + main + &#x27;&quot; target=&quot;_blank&quot;&gt;[前往]&lt;/a&gt;&#x27;;
+
+        document.querySelector(&quot;.offset-generator&quot;).style.display = &quot;inline&quot;;
+
+    }
+
+
+
+    function CreateOffset() {
+
+        document.querySelector(&quot;.finish-button&quot;).style.display = &quot;inline&quot;;
+
+        offsets = offsets + &#x27;&lt;div style=&quot;border:1px grey;background:#f0f0f0&quot;&gt;&lt;p&gt;&lt;strong&gt;第&#x27; + (offsetcount + 1) + &#x27;迭代&lt;/strong&gt; ---- &lt;a href=&quot;http://scp-wiki-mc.wikidot.com/fragment:&#x27;
+
+         + main;
+
+        if (offsetcount &lt; 10) {
+
+            offsets = offsets + &#x27;-0&#x27;;
+
+        } else {
+
+            offsets = offsets + &#x27;-&#x27;;
+
+        }
+
+        offsets = offsets + offsetcount + &#x27;/edit/true/parentPage/&#x27; + main + &#x27;&quot; target=&quot;_blank&quot;&gt;开始编辑&lt;/a&gt;&lt;br&gt;链接代码：[http://scp-wiki-mc.wikidot.com/&#x27;
+
+         + main + &#x27;/offset/&#x27; + offsetcount + &#x27; 第&#x27; + (offsetcount + 1) + &#x27;迭代]&lt;/p&gt;&lt;/div&gt;&#x27;
+
+
+
+        document.getElementById(&quot;offset-display&quot;).innerHTML = offsets;
+
+        offsetcount++;
+
+        document.getElementById(&quot;offset_count&quot;).innerHTML = &#x27;共&#x27; + offsetcount + &#x27;个迭代。&#x27;;
+
+    }
+
+
+
+    function OffsetFinished() {
+
+        var offsetlinks = &quot;&quot;;
+
+        for (var i = 0; i &lt; offsetcount; i++) {
+
+            if (i &lt; 10) {
+
+                offsetlinks = offsetlinks + &#x27;&lt;br&gt;http://scp-wiki-mc.wikidot.com/fragment:&#x27; + main + &#x27;-0&#x27; + i;
+
+            } else {
+
+                offsetlinks = offsetlinks + &#x27;&lt;br&gt;http://scp-wiki-mc.wikidot.com/fragment:&#x27; + main + &#x27;-&#x27; + i;
+
+            }
+
+        }
+
+        document.getElementById(&quot;offset-finish&quot;).innerHTML = &#x27;刷新代码&#x27;;
+
+        document.querySelector(&quot;.main-content&quot;).style.display = &quot;inline&quot;;
+
+        document.getElementById(&quot;description&quot;).innerHTML = &#x27;&lt;br&gt;请将下列代码复制到&lt;a href=&quot;http://scp-wiki-mc.wikidot.com/&#x27;
+
+        + main + &#x27;/edit/true&quot; target=&quot;_blank&quot;&gt;主页面&lt;/a&gt;中，并保存。&#x27;;
+
+        document.getElementById(&quot;codes&quot;).innerHTML = &#x27;[[&gt;]]&lt;br&gt;[[module rate]]&lt;br&gt;[[/&gt;]]&#x27;
+
+        + &#x27;&lt;p&gt;[[module ListPages category=&quot;fragment&quot; parent=&quot;.&quot; limit=&quot;1&quot; order=&quot;name&quot; offset=&quot;@URL|0&quot;]]&#x27;
+
+        + &#x27;&lt;p&gt;%%content%%&lt;/p&gt;&#x27; + &#x27;&lt;p&gt;[[/module]]&lt;/p&gt;&#x27;
+
+        + &#x27;[!-- &lt;br&gt;编辑本页面的内容可能会导致错误。若要编辑文本，请至以下链接。&#x27;
+
+        + offsetlinks + &#x27;&lt;br&gt; --] &lt;/div&gt;&#x27;;
+
+    }
+
+&lt;/script&gt;
+
+
+
+&lt;body&gt;
+
+    &lt;div style=&quot;text-align:center&quot; id=&quot;main-generator&quot;&gt;
+
+        &lt;p&gt;请确认此为空页面，再开始创建页面。直接保存即可，稍后会进一步编辑。&lt;/p&gt;
+
+        http://scp-wiki-mc.wikidot.com/
+
+        &lt;input type=&quot;text&quot; id=&quot;MainURL&quot; name=&quot;textinput&quot; placeholder=&quot;页面名称&quot; size=&quot;15&quot;&gt;
+
+        &lt;button onclick=&quot;CreateMain()&quot;&gt;生成&lt;/button&gt;
+
+        &lt;p id=&quot;Save&quot;&gt;&lt;/p&gt;
+
+        &lt;div style=&quot;text-align:center&quot; class=&quot;main-button&quot;&gt;
+
+            &lt;button onclick=&quot;MainFinished()&quot;&gt;我已完成。&lt;/button&gt;
+
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+
+    &lt;div class=&quot;offset-generator&quot;&gt;
+
+        &lt;p id=&quot;offset_count&quot;&gt;当前没有迭代页面。&lt;/p&gt;
+
+        &lt;p&gt;注意：这里的链接地址是贴在正文里、用来跳转到其他迭代的链接地址。点开它们并不能直接编辑你的文章。&lt;/p&gt;
+
+        &lt;div style=&quot;text-align:center&quot;&gt;
+
+            &lt;button id=&quot;OffsetButton&quot; onclick=&quot;CreateOffset()&quot;&gt;添加一个迭代页&lt;/button&gt;
+
+        &lt;/div&gt;
+
+        &lt;div id=&quot;offset-display&quot;&gt;
+
+            &lt;p&gt; &lt;/p&gt;
+
+        &lt;/div&gt;
+
+        &lt;div style=&quot;text-align:center&quot; class=&quot;finish-button&quot;&gt;
+
+            &lt;button id=&quot;offset-finish&quot; onclick=&quot;OffsetFinished()&quot;&gt;我已完成。&lt;/button&gt;
+
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+
+    &lt;div id=&quot;maincontent&quot; class=&quot;main-content&quot;&gt;
+
+            &lt;input type=&quot;radio&quot; name=&quot;title-change&quot; value=&quot;no&quot; onclick=&quot;document.querySelector(&#x27;.title-option&#x27;).style.display = &#x27;none&#x27;;&quot; checked&gt;标题始终不变
+
+            &lt;input type=&quot;radio&quot; name=&quot;title-change&quot; value=&quot;yes&quot; onclick=&quot;document.querySelector(&#x27;.title-option&#x27;).style.display = &#x27;block&#x27;;&quot;&gt;标题随迭代改变
+
+        &lt;p id=&quot;description&quot;&gt;&lt;/p&gt;
+
+        &lt;div class=&quot;title-option&quot; style=&quot;background-color:#f0f0f0;font-size:0.9em;line-height:90%;padding: 4% 4% 0.5em 4%;margin: 5% 5% 0 5%;&quot;&gt;
+
+            &lt;p&gt;[[module CSS]]&lt;/p&gt;
+
+            &lt;p&gt;#page-title { &lt;br&gt;display: none; &lt;br&gt; }&lt;/p&gt;
+
+            &lt;p&gt;.meta-title {&lt;br&gt;  border-bottom: solid 1px #bbbbbb;&lt;br&gt;  color: #990011;&lt;br&gt;  font-weight: normal;&lt;br&gt;  margin: 0 0 0.6em;&lt;br&gt;  padding: 0 0 0.25em;&lt;br&gt;  font-size: 200%;&lt;br&gt;}&lt;/p&gt;
+
+            &lt;p&gt;.meta-title p {&lt;br&gt;  margin: 0;&lt;br&gt;}&lt;br&gt;[[/module]]&lt;/p&gt;
+
+            &lt;p&gt;[[module ListPages category=&quot;fragment&quot; parent=&quot;.&quot; limit=&quot;1&quot; order=&quot;name&quot; offset=&quot;@URL|0&quot;]]&lt;/p&gt;
+
+            &lt;p&gt;[[div class=&quot;meta-title&quot;]]&lt;/p&gt;
+
+            &lt;p&gt;%%title%%&lt;/p&gt;
+
+            &lt;p&gt;[[/div]]&lt;/p&gt;
+
+            &lt;p&gt;[[/module]]&lt;/p&gt;
+
+        &lt;/div&gt;
+
+        &lt;div id=&quot;codes&quot; style=&quot;background-color:#f0f0f0;font-size:0.9em;line-height:90%;padding: 0.5em 4% 4% 4%;margin: 0% 5% 5% 5%;&quot;&gt;
+
+            &lt;p&gt;&lt;/p&gt;
+
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+
+&lt;/body&gt;
+
+
+
+[[/html]]
+
+
+
+-----
+
+
+
+作者为W Asriel大佬，我替全网站感谢他。
+
+顺便说一句，生成迭代时如果链接上有“tag/段落”（代码没删干净）请把链接中的“tag/段落”删除，即可保存成功，由于段落标签是CN站的标签，这里使用会造成错误。之后请联系Agent Darkwall W，我会修改这个问题。
+</pre></details></article></main><footer>只读快照：2026/08/31 07:53:10 · created by piglin · 内容版权仍归原作者与 SCP 基金会 Minecraft 分部。</footer></body></html>

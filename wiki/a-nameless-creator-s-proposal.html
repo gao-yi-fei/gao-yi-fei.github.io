@@ -1,0 +1,1156 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>无名者的提案——永失吾乡 | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page=a-nameless-creator-s-proposal">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">原创页面 </p><h1>无名者的提案——永失吾乡</h1><p class="page-name">a-nameless-creator-s-proposal</p><dl class="article-meta"><div><dt>创建者</dt><dd>A Nameless Creator</dd></div><div><dt>评分</dt><dd class="rating">+13 <small>+13 / -0</small></dd></div><div><dt>发布时间</dt><dd>2024/07/14 11:29:52</dd></div><div><dt>最近编辑</dt><dd>2025/02/19 23:53:47</dd></div></dl><div class="tags"><span class="tag">001提案</span><span class="tag">meta</span><span class="tag">safe</span><span class="tag">scp</span><span class="tag">互动性</span><span class="tag">历史性</span><span class="tag">原创</span><span class="tag">叙述性</span><span class="tag">精品</span></div></header><aside class="reader-warning">此页部分资源未归档：8 个包含组件。文本与源码仍已保留。</aside><section class="article-body"><aside class="backup-note">包含组件未归档：<code>:scp-wiki-cn:theme:basalt</code></aside>
+<p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p>/* 版式 */</p>
+<p>:root {</p>
+<p><s>header-logo: var(</s>logo);</p>
+<p><s>logo: url(http://scp-wiki-mc.wikidot.com/local</s>files/main/scp-mc-logo.svg);</p>
+<p>--basalt-overtone: 193,193,193;</p>
+<p>--basalt-UI-dark-palette: 45,39,54;</p>
+<p>--basalt-bright-element-color: 252,252,252;</p>
+<p>--basalt-dark-element-color: 193,193,193;</p>
+<p><s>header-title: var(</s>title);</p>
+<p><s>header-subtitle: var(</s>subtitle);</p>
+<p>--title: &quot;SCP基金会Minecraft分部&quot;;</p>
+<p>--subtitle: 控制-收容-保护;</p>
+<p>}</p>
+<p>#header h1 a::before {</p>
+<p>display: none;</p>
+<p>}</p>
+<p>#header h1 a span::after {</p>
+<p>margin-bottom: 0;</p>
+<p>}</p>
+<p>#container #header {</p>
+<p>background: none;</p>
+<p>position: absolute;</p>
+<p>box-shadow: unset;</p>
+<p>backdrop-filter: none;</p>
+<p>}</p>
+<p>#main-content {</p>
+<p>margin-top: 0;</p>
+<p>}</p>
+<p>#page-content {</p>
+<p>padding-top: 0;</p>
+<p>}</p>
+<p>#page-content &gt; p:nth-child(-n+4) {</p>
+<p>display: none;</p>
+<p>}</p>
+<p>#page-content .page-rate-widget-box {</p>
+<p>transform: skewX(-10deg);</p>
+<p>background-color:rgb(239,239,243);</p>
+<p>}</p>
+<p>body {</p>
+<p>background-image:</p>
+<p>linear-gradient(to bottom, rgb(252,252,252) 0%, rgba(252,252,252,0.8) 20%, rgba(252,252,252,0.5) 40%, rgba(1,1,1,0.5) 60%, rgba(1,1,1,0.8) 80%,rgb(1,1,1) 100%);</p>
+<p>}</p>
+<p>/* 我记得中分的梦神茶餐厅还是什么好像有一个选中后可见的blur，但我忘了也懒得去找了，所以新写了个悬浮可见的。 */</p>
+<p>.blur {</p>
+<p>filter: blur(3px);</p>
+<p>transition: filter 0.5s ease;</p>
+<p>}</p>
+<p>.blur:hover {</p>
+<p>filter: none;</p>
+<p>}</p>
+<p>/*日志间距*/</p>
+<p>.log {</p>
+<p>margin-left: 10px;</p>
+<p>margin-right: 10px;</p>
+<p>}</p>
+<p>/*假光标*/</p>
+<p>@keyframes blink {</p>
+<p>0% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>20% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>40% {</p>
+<p>opacity: 0;</p>
+<p>}</p>
+<p>60% {</p>
+<p>opacity: 0;</p>
+<p>}</p>
+<p>80% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>100% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>}</p>
+<p>.blinking-cursor::after {</p>
+<p>content: &quot;&quot;;</p>
+<p>border-right: 1px solid rgb(var(--basalt-overtone));</p>
+<p>animation: blink 1s infinite;</p>
+<p>position: relative;</p>
+<p>left: 1px;</p>
+<p>}</p>
+<p>/*以下代码来自某被down删的8000竞赛文*/</p>
+<p>.topsecret-desktop {</p>
+<p>position: absolute;</p>
+<p>font-size: 600%;</p>
+<p>z-index: 1;</p>
+<p>transform: translate(9.375%, -75%) rotate(-22.5deg);</p>
+<p>opacity: 0.25;</p>
+<p>color: #C40233;</p>
+<p>height: auto;</p>
+<p>}</p>
+<p>.topsecret-mobile {</p>
+<p>position: absolute;</p>
+<p>font-size: 300%;</p>
+<p>z-index: 1;</p>
+<p>transform: translate(9.375%, -75%) rotate(-22.5deg);</p>
+<p>opacity: 0.25;</p>
+<p>color: #C40233;</p>
+<p>height: 0px;</p>
+<p>overflow: hidden;</p>
+<p>}</p>
+<p>@media only screen and (max-width: 600px) {</p>
+<p>.topsecret-desktop {</p>
+<p>height: 0px;</p>
+<p>overflow: hidden;</p>
+<p>}</p>
+<p>.topsecret-mobile {</p>
+<p>height: auto;</p>
+<p>}</p>
+<p>}</p>
+<p>[[/module]]</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<div class="wiki-aligned">
+<p><span class="module-note">评分组件已由页首快照替代</span></p>
+</div>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<div class="wiki-aligned">
+<div class="wiki-block">
+<p>感谢诸君三千年来的不倦努力，我们才得以走到今日</p>
+<p>@@ @@</p>
+<p>感谢<strong>{{您}}</strong>这三千年来的任取予求，使我们终究得偿所愿</p>
+<p>@@ @@</p>
+<p>奉此牺牲，以成其志</p>
+<p>@@ @@</p>
+<p>别了，新生世界</p>
+<p>@@ @@</p>
+<p>你好，旧日家园</p>
+</div>
+</div>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<div class="wiki-block">
+<aside class="backup-note">包含组件未归档：<code>:scp-wiki-cn:component:anomaly-class-bar-source</code></aside>
+<aside class="backup-note">包含组件未归档：<code>:scp-wiki-cn:component:customizable-acs</code></aside>
+<div class="wiki-block">
+<div class="wiki-block">
+<aside class="backup-note">包含组件未归档：<code>:scp-wiki:component:listusers-1</code></aside>
+<p>= {{&lt;%%title%%&gt; [[span class=&quot;blinking-cursor&quot;]][[span class=&quot;log&quot;]]进入世界。[[/span]][[/span]]}}</p>
+<aside class="backup-note">包含组件未归档：<code>:scp-wiki:component:listusers-2</code></aside>
+<p>= {{&lt;Alex&gt; [[span class=&quot;blinking-cursor&quot;]][[span class=&quot;log&quot;]]进入世界。[[/span]][[/span]]}}</p>
+<aside class="backup-note">包含组件未归档：<code>:scp-wiki:component:listusers-3</code></aside>
+</div>
+</div>
+</div></section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>[[include :scp-wiki-cn:theme:basalt darkmode=a|hidetitle=a]]
+
+[[module css]]
+
+/* 版式 */
+
+:root {
+
+    --header-logo: var(--logo);
+
+    --logo: url(http://scp-wiki-mc.wikidot.com/local--files/main/scp-mc-logo.svg);
+
+
+
+    --basalt-overtone: 193,193,193;
+
+    --basalt-UI-dark-palette: 45,39,54;
+
+    --basalt-bright-element-color: 252,252,252;
+
+    --basalt-dark-element-color: 193,193,193;
+
+
+
+    --header-title: var(--title);
+
+    --header-subtitle: var(--subtitle);
+
+    --title: &quot;SCP基金会Minecraft分部&quot;;
+
+    --subtitle: 控制-收容-保护;
+
+}
+
+
+
+#header h1 a::before {
+
+    display: none;
+
+}
+
+
+
+#header h1 a span::after {
+
+    margin-bottom: 0;
+
+}
+
+
+
+#container #header {
+
+    background: none;
+
+    position: absolute;
+
+    box-shadow: unset;
+
+    backdrop-filter: none;
+
+}
+
+
+
+#main-content {
+
+    margin-top: 0;
+
+}
+
+#page-content {
+
+    padding-top: 0;
+
+}
+
+
+
+#page-content &gt; p:nth-child(-n+4) {
+
+    display: none;
+
+}
+
+
+
+#page-content .page-rate-widget-box {
+
+    transform: skewX(-10deg);
+
+    background-color:rgb(239,239,243);
+
+}
+
+
+
+body {
+
+    background-image:
+
+        linear-gradient(to bottom, rgb(252,252,252) 0%, rgba(252,252,252,0.8) 20%, rgba(252,252,252,0.5) 40%, rgba(1,1,1,0.5) 60%, rgba(1,1,1,0.8) 80%,rgb(1,1,1) 100%);
+
+}
+
+
+
+/* 我记得中分的梦神茶餐厅还是什么好像有一个选中后可见的blur，但我忘了也懒得去找了，所以新写了个悬浮可见的。 */
+
+.blur {
+
+    filter: blur(3px);
+
+    transition: filter 0.5s ease;
+
+}
+
+
+
+.blur:hover {
+
+    filter: none;
+
+}
+
+
+
+/*日志间距*/
+
+.log {
+
+    margin-left: 10px;
+
+    margin-right: 10px;
+
+}
+
+
+
+/*假光标*/
+
+@keyframes blink {
+
+  0% {
+
+    opacity: 1;
+
+  }
+
+  20% {
+
+    opacity: 1;
+
+  }
+
+  40% {
+
+    opacity: 0;
+
+  }
+
+  60% {
+
+    opacity: 0;
+
+  }
+
+  80% {
+
+    opacity: 1;
+
+  }
+
+  100% {
+
+    opacity: 1;
+
+  }
+
+}
+
+
+
+.blinking-cursor::after {
+
+    content: &quot;&quot;;
+
+    border-right: 1px solid rgb(var(--basalt-overtone));
+
+    animation: blink 1s infinite;
+
+    position: relative;
+
+    left: 1px;
+
+}
+
+
+
+/*以下代码来自某被down删的8000竞赛文*/
+
+.topsecret-desktop {
+
+    position: absolute;
+
+    font-size: 600%;
+
+    z-index: 1;
+
+    transform: translate(9.375%, -75%) rotate(-22.5deg);
+
+    opacity: 0.25;
+
+    color: #C40233;
+
+    height: auto;
+
+}
+
+
+
+.topsecret-mobile {
+
+    position: absolute;
+
+    font-size: 300%;
+
+    z-index: 1;
+
+    transform: translate(9.375%, -75%) rotate(-22.5deg);
+
+    opacity: 0.25;
+
+    color: #C40233;
+
+    height: 0px;
+
+    overflow: hidden;
+
+}
+
+
+
+@media only screen and (max-width: 600px) {
+
+    .topsecret-desktop {
+
+       height: 0px;
+
+       overflow: hidden;
+
+    }
+
+
+
+    .topsecret-mobile {
+
+        height: auto;
+
+    }
+
+}
+
+[[/module]]
+
+
+
+@@ @@
+
+
+
+@@ @@
+
+
+
+@@ @@
+
+
+
+[[&gt;]]
+
+[[module rate]]
+
+[[/&gt;]]
+
+
+
+@@ @@
+
+
+
+@@ @@
+
+
+
+@@ @@
+
+
+
+@@ @@
+
+[[=]]
+
+[[div style=&quot;color: rgba(0, 0, 0, 0.25);font-style: italic;font-family: ivymode, &#x27;华文新魏&#x27;, sans-serif;font-size: 1.425rem;&quot;]]
+
+感谢诸君三千年来的不倦努力，我们才得以走到今日
+
+
+
+@@ @@
+
+
+
+感谢**{{您}}**这三千年来的任取予求，使我们终究得偿所愿
+
+
+
+@@ @@
+
+
+
+奉此牺牲，以成其志
+
+
+
+@@ @@
+
+
+
+别了，新生世界
+
+
+
+@@ @@
+
+
+
+你好，旧日家园
+
+[[/div]]
+
+[[/=]]
+
+
+
+@@ @@
+
+
+
+@@ @@
+
+
+
+@@ @@
+
+
+
+@@ @@
+
+
+
+@@ @@
+
+
+
+@@ @@
+
+
+
+[[div style=&quot;color: rgb(0, 0, 0);&quot;]]
+
+[[include :scp-wiki-cn:component:anomaly-class-bar-source
+
+|lang= cn
+
+|item-number= 001
+
+|clearance= 6
+
+|container-class= SAFE
+
+|secondary-class= none
+
+|disruption-class= DARK
+
+|risk-class= 待观察（NOTICE）
+
+]]
+
+
+
+[[include :scp-wiki-cn:component:customizable-acs
+
+|containment-class= SAFE
+
+|containment-image= https://scp-wiki.wdfiles.com/local--files/component%3Aanomaly-class-bar/safe-icon.svg
+
+|containment-color= 102,101,106
+
+|inc-containment = --]]]
+
+
+
+[[include :scp-wiki-cn:component:customizable-acs
+
+|disruption-class= DARK
+
+|disruption-image= https://scp-wiki.wdfiles.com/local--files/component%3Aanomaly-class-bar/dark-icon.svg
+
+|disruption-color= 102,101,106
+
+|inc-disruption= --]]]
+
+
+
+[[include :scp-wiki-cn:component:customizable-acs
+
+|risk-class= NOTICE
+
+|risk-image= https://scp-wiki.wdfiles.com/local--files/component%3Aanomaly-class-bar/notice-icon.svg
+
+|risk-color= 102,101,106
+
+|inc-risk= --]]]
+
+
+
+[[include :scp-wiki-cn:component:customizable-acs
+
+|clearance-six= 102,101,106
+
+|inc-clearance= --]]]
+
+
+
+**特殊收容措施：**项目被保存在{{[信息已锁定]}}，仅O5成员通过身份验证后可于30分钟内阅读，超时项目将自动封锁并屏蔽。
+
+
+
+项目应被严密封锁，当且仅当O5议会全体成员全体同意且无任何成员反对或弃权时，可将项目向O5议会授权对象进行展示。任何未经授权私自泄露项目信息的行为都将被施以包括处决在内的严重处罚，非O5议会成员未经授权擅自泄露信息将被摘除思维中枢或处决，O5议会成员未经议会授权擅自泄露信息将被摘除思维中枢直至议会通过恢复其思考权限的决议。
+
+
+
+**描述：**{{[信息已锁定]}}
+
+[[/div]]
+
+
+
+[[div class=&quot;papernote&quot;]]
+
+附录 001.15 [[span style=&quot;float: right;&quot;]]//__第一次全体通告__//[[/span]]
+
+[[/div]]
+
+
+
+[[div style=&quot;background: #1E1E23;&quot; &quot;float: center; border: solid 4px #BDBAB7; width: auto; padding: 1px 15px; margin: auto; box-shadow: 2px 1px 3px rgba(0,0,0,.2);&quot;]]
+
+[[=]]
+
++++ {{首届全体同伴大会结果通告}}
+
+[[/=]]
+
+
+
+[[include :anc-s-sandbox:another-hr a=3|b=#BDBAB7]]
+
+
+
+敬告诸君，
+
+
+
+经全体同伴商议，已经确定我们所处的新情境与现实不可逆转。会议决定，沉溺过去无益，未来滚滚而来，我们应当在这个崭新的世界重新找到自己的人生理想和最高信仰，我们及我们所代表的文明将进入对新世界的探索阶段。
+
+
+
+经会议投票表决，以下为第一批兴趣结社及其负责人名单：
+
+
+
+* 奇观交流会
+
+ * 负责人：{{&lt;造奇观者Zhuangzi&gt;}}
+
+
+
+* 红石研究社
+
+ * 负责人：{{&lt;REDstoner-001&gt;}}
+
+
+
+* 秘学会
+
+ * 负责人：{{&lt;三头的炼药者&gt;}}
+
+
+
+大家可以根据自己的长处或兴趣自行选择加入一个或多个兴趣结社，自由探索新世界。
+
+
+
+[[&gt;]]
+
+[[span style=&quot;font-size: 80%;color: rgba(194,194,194,0.5);&quot;]]//{{由__REDstoner-001__编辑 第__7__版}}//[[/span]]
+
+[[/&gt;]]
+
+
+
+------
+
+
+
+= [[size 130%]] {{补录结社名单}} [[/size]]
+
+
+
+* 竞击俱乐部
+
+ * 负责人：{{&lt;spoon_fencer&gt;}}
+
+
+
+* 指令中心
+
+ * 负责人：{{&lt;创造主·阿诺倪谋斯&gt;}}
+
+
+
+[[&gt;]]
+
+[[span style=&quot;font-size: 80%;color: rgba(194,194,194,0.5);&quot;]]//{{由__spoon_fencer__编辑 第__41__版}}//[[/span]]
+
+[[/&gt;]]
+
+
+
+[[/div]]
+
+
+
+[[div class=&quot;smallmodal&quot;]]
+
+这是我们少有的积极且正向的时刻，来自于我们遥远稚嫩的童年。
+
+
+
+我们曾立起万种奇观，以彰显我们改造世界之能；
+
+
+
+我们曾制造千巧机关，以事生产输送兼重塑之便；
+
+
+
+我们曾探索无尽秘法，以穷尽万类并生并立之理；
+
+
+
+我们曾征战三界四野，以咨吾等至强至盛之荣光；
+
+
+
+……
+
+
+
+时至今日，我依旧能感受到胸膛里燃烧的火焰，那火焰闪烁着不容侵犯的理想光芒。
+
+
+
+可惜这火最终还是灭了，而我们也不再是心怀壮志的孩子了。
+
+
+
+[[&gt;]]
+
+—— [[span class=&quot;blur&quot;]]██████[[/span]]
+
+[[/&gt;]]
+
+[[/div]]
+
+@@ @@
+
+
+
+[[div class=&quot;papernote&quot;]]
+
+附录 001.78 [[span style=&quot;float: right;&quot;]]//__一卷残本__//[[/span]]
+
+[[/div]]
+
+
+
+[[div class=&quot;blockquote&quot;]]
+
+[[div style=&quot; text-indent: 2em;line-height: 1.5;font-family: &quot;KaiTi&quot;, 楷体, sans-serif;font-size: 1.2rem;&quot;]]
+
+自至高者阿诺倪谋斯创世以降，亘古三界便在诸神治下欣欣向荣。
+
+
+
+至高者与众神自天外降临，以不可思议伟力创生万物，开辟众生福祉。
+
+[[/div]]
+
+= [[span style=&quot;font-family: &quot;KaiTi&quot;, 楷体, sans-serif;font-size: 1.2rem;&quot;]]……[[/span]]
+
+[[div style=&quot; text-indent: 2em;line-height: 1.5;font-family: &quot;KaiTi&quot;, 楷体, sans-serif;font-size: 1.2rem;&quot;]]
+
+末路之地广袤浩渺，非凡躯可济渡，故「化生」之瓦努（wanv）赐此界灵长以穿梭界力，令往来无虞；又因其界无上下前后左右之分，遂聚土石为岛，投下十根黑曜石巨柱，以为中心；复以黑曜石雕琢，点水晶以为眸，化作巨龙，命为界镇守。
+
+[[/div]]
+
+= [[span style=&quot;font-family: &quot;KaiTi&quot;, 楷体, sans-serif;font-size: 1.2rem;&quot;]]……[[/span]]
+
+[[div style=&quot; text-indent: 2em;line-height: 1.5;font-family: &quot;KaiTi&quot;, 楷体, sans-serif;font-size: 1.2rem;&quot;]]
+
+下位界域派系林立，群落饱受战乱之苦，众神欲将之收归秩序之下。「无相的混沌迷雾」██剥去诸灵长之暴怒，使之共存无争；「化生」之瓦努塑造三头之躯，由「千手炼药师」赐其不可战胜威能，「执律者」罗耶尔授其镇守下界之责，于是统领猩红冷骨与森绿密林的不朽帝国由此建立。
+
+[[/div]]
+
+= [[span style=&quot;font-family: &quot;KaiTi&quot;, 楷体, sans-serif;font-size: 1.2rem;&quot;]]……[[/span]]
+
+[[div style=&quot; text-indent: 2em;line-height: 1.5;font-family: &quot;KaiTi&quot;, 楷体, sans-serif;font-size: 1.2rem;&quot;]]
+
+而在受神恩泽的主世界，由初始原人建立的国度分裂聚合，星落满地，但无不以领受神恩为荣：无论是师承战无不胜之神「击勺者」斯布恩·芬瑟尔无双战技的“碎骨人”；又或是受赐「千手炼药师」永生秘药的“分药使者”；乃至于获得「创造主」阿诺倪谋斯青睐而被授璽，从此超脱凡俗的“指令行者”……这些神职者，甚至比国王更加受人追捧。
+
+
+
+[[&gt;]]
+
+——//摘自《诸神本纪》//
+
+[[/&gt;]]
+
+[[/div]]
+
+[[/div]]
+
+
+
+
+
+[[div class=&quot;smallmodal&quot;]]
+
+探索的火焰熄灭之后，纵欲和骄奢便成为主流。如今回首的我已经不觉得羞耻了，这是正常的阶段，如同少年时总有的浮躁与轻狂，换算成故乡应该是……初中二年级的年纪。
+
+
+
+更何况彼时的我们已然不死不灭，拥有着在土著们看来无穷无尽的物质资源，被它们称为神明其实也不为过。
+
+
+
+只是，心里空空荡荡的，众口的恭维和众建的雕像、堆满仓库的钻石和下界合金……所有的一切都无法填满，因为这不过是时间的累积罢了，在时间的推进下也终将一文不值。
+
+
+
+我们声色犬马，我们纸醉金迷，但我们瞳孔中透露着迷茫，我们的心中满是彷徨——
+
+
+
+我们想家了。
+
+[[&gt;]]
+
+—— [[span class=&quot;blur&quot;]]--佚名的创██-- [[span class=&quot;log&quot;]]阿诺倪谋斯[[/span]][[/span]]
+
+[[/&gt;]]
+
+[[/div]]
+
+@@ @@
+
+
+
+
+
+[[div class=&quot;papernote&quot;]]
+
+附录 001.4 [[span style=&quot;float: right;&quot;]]//__第七次提交材料__//[[/span]]
+
+[[/div]]
+
+[[div class=&quot;darkdocument&quot;]]
+
+[[=]]
+
+[[span style=&quot;color:#FFFFF&quot;]]
+
++ **[[span class=&quot;ruby&quot;]]“归乡”计划[[span class=&quot;rt&quot;]]PROJECT HOMECOMING[[/span]][[/span]]**
+
+[[/span]]
+
+[[div style=&quot;color: rgba(250, 250, 250, 0.4);&quot;]]
+
+以红石线路代替电缆铜线，以万千实体代替芸芸众生；
+
+
+
+遇山移山，遇海填海；
+
+
+
+肢解下界以重塑炽热地核，搬空末地以再造漫天繁星……
+
+[[div class=&quot;topsecret-desktop&quot;]]
+
+**最高机密**
+
+[[/div]]
+
+[[div class=&quot;topsecret-mobile&quot;]]
+
+**最高机密**
+
+[[/div]]
+
+即便，将整个世界吃干抹净也在所不惜！
+
+
+
+我们决不放弃，我们誓不罢休！
+
+
+
+终有一日，
+
+
+
+眼中所见与心中所念将合二为一；
+
+
+
+++++ {{终有一日，}}
+
+
+
+++++ {{我们将归反故土。}}
+
+[[/div]]
+
+
+
+[[/=]]
+
+
+
+-----
+
+**{{目的：}}**拆除并分解世界，用得到的材料重建曾经的故乡。
+
+
+
+**{{决议反馈：}}**计划被全票通过，无反对票和弃权票。
+
+
+
+**{{实施过程：}}**解散原有的一切松散组织和制度，新成立“思乡者”联盟用于统筹和调控。
+
+
+
+将当前所在世界拆解，所解离得到的物资交由原红石研究社进行生产，产出材料交付原奇观交流会进行建造作业，由原指令中心负责“故乡”世界的框架搭建和运行维护，原秘学会负责特性修饰，原竞击俱乐部负责清除原生实体和新生漏洞。
+
+
+
+**{{结果：}}**由于最初67位决议者撤回决议，物资和建造工程难以为继，“归乡”计划宣告失败。部分成员裹挟已有成果叛逃，自行从“思乡者”联盟中分离并独立，自称[[[goi-aparallaktos-topos|无何有之乡]]]。
+
+
+
+[[div class=&quot;scp-image-block block-center&quot; style=&quot;width:90%;&quot;]]
+
+[[image https://s21.ax1x.com/2024/03/17/pF275s1.png style=&quot;width:100%;&quot; link=#]]
+
+[[div class=&quot;scp-image-caption&quot; style=&quot;width:100%;&quot;]]
+
+无何有之乡一角
+
+[[/div]]
+
+[[/div]]
+
+
+
+七个月单位总部现实时间后，“思乡者”联盟解散，其中{{[信息已锁定]}}位原成员宣布组成{{[信息已锁定]}}，成立SCP基金会Minecraft分部。
+
+-----
+
+[[=]]
+
+
+
+++++ 日志记录
+
+[[&gt;]]
+
+**USER ID(用户信息):** {{[信息群已锁定]}}
+
+
+
+**TIMESTAMP(时间戳):** 2019-03-19
+
+[[/&gt;]]
+
+
+
+[[/=]]
+
+
+
+[[div class=&quot;notation&quot;]]
+
+= [[span style=&quot;color: rgba(250, 250, 250, 0.4);&quot;]]{{//&lt;经过一段时间的讨论，会议开始确定各个成员的具体分工。&gt;//}}[[/span]]
+
+
+
+##brown|{{&lt;创造主·阿诺倪谋斯&gt;}}## ： [[span class=&quot;log&quot;]]那么就由我们//指令中心//来负责世界基础框架的搭建和运行吧，反正也不过是新建一个而已，不费事。[[/span]]
+
+
+
+= [[span style=&quot;color: rgba(250, 250, 250, 0.4);&quot;]]{{//&lt;1.1 神说：“我将铸造日月群星，锤炼大地与海洋，令万类得有所依。”，这是头一日。&gt;//}}[[/span]]
+
+
+
+##green|{{&lt;造奇观者Zhuangzi&gt;}}## ： [[span class=&quot;log&quot;]]我可以和我们的//奇观交流会//一起重新建造出我们记忆中的家乡，只要你们愿意分享你们的记忆和为我们提供充足的物资。[[/span]]
+
+
+
+= [[span style=&quot;color: rgba(250, 250, 250, 0.4);&quot;]]{{//&lt;1.2 神说：“我将建造高塔，构筑城墙，庇护众生兴旺繁荣。”，是第二日。&gt;//}}[[/span]]
+
+
+
+##grey|{{&lt;REDstoner-001&gt;}}## ： [[span class=&quot;log&quot;]]物资的事情就交给我们吧，反正量产工厂在//研究社//里已经是比较旧的技术了。[[/span]]
+
+
+
+= [[span style=&quot;color: rgba(250, 250, 250, 0.4);&quot;]]{{//&lt;1.3 神说：“我将造就机巧，铺展脉络，超脱物资之樊笼。”，是第三日。&gt;//}}[[/span]]
+
+
+
+##lightblue|{{&lt;三头的炼药者&gt;}}## ： 我们//秘学会//负责校正特性和定律，力求让一切事物的性质都和我们记忆中一致无二。[[span class=&quot;log&quot;]][[/span]]
+
+
+
+= [[span style=&quot;color: rgba(250, 250, 250, 0.4);&quot;]]{{//&lt;1.4 神说：“我将攫取秘法，赋予特性，令水流不止，火燃不息，旧梦永续。”，是第四日。&gt;//}}[[/span]]
+
+
+
+###A40913|{{&lt;spoon_fencer&gt;}}## ：其他的我这莽夫也不擅长，打打杀杀才是我拿手好戏。那我就负责除掉原来的所有生命吧，其他想要加入//俱乐部//的我们也来者不拒。
+
+
+
+[[div style=&quot;color: rgba(250, 250, 250, 0.4);font-style: italic;&quot;]]
+
+= {{&lt;1.5 神说：“我将破妄除念，灭绝大敌之所向，护火不灭。”，是第五日。&gt;}}
+
+
+
+= {{&lt;1.6 彼世创立，路有涯而天有际，是第六日。&gt;}}
+
+[[/div]]
+
+= [[span style=&quot;color: rgba(250, 250, 250, 0.3);font-style: italic;&quot;]]{{&lt;1.7 边际扩开，直至覆盖所见之一切，抵达无尽之彼岸，是第七日。&gt;}}[[/span]]
+
+
+
+= [[span style=&quot;color: rgba(250, 250, 250, 0.2);font-style: italic;&quot;]]{{&lt;1.8 至第八日，一切的工业已完毕，神将此夜月相定为最后一个轮转，事就这样成了。&gt;}}[[/span]]
+
+
+
+= [[span style=&quot;color: rgba(250, 250, 250, 0.1);font-style: italic;&quot;]]{{&lt;1.9 天穹撕裂，大地破碎，核心从襁褓中脱离，驶向遥远之梦，创世之功毁于一旦。&gt;}}[[/span]]
+
+
+
+[[/div]]
+
+[[/div]]
+
+
+
+[[div class=&quot;smallmodal&quot;]]
+
+一个完美的家，一个纤毫复现的故乡。
+
+
+
+从此以后游子不必为流浪而悲泣，浪客不必为家眷而忧愁……今夜如此，明夜如此，从今往后的每一夜都将如此。
+
+
+
+可……昨日所眷念之梦境尚在否？今日所牵挂之爱恋尚在否？明日所憧憬之银河又尚在否？
+
+
+
+可否细想？可敢细想？可忍细想？
+
+
+
+这便是计划所败之因由，最终的结果就在诸君眼前：一个残破而又濒临绝境的脆弱世界，以至于我们不得不扩大基本单位占位来减少数量，选用立方体的形象来节省资源，成立SCP基金会Minecraft分部来缝缝补补。
+
+
+
+是的，并不是所有的同伴都支持我们的决定，我们也无法确定我们的道路一定正确。
+
+
+
+但我们决定不再残害这个我们仅有的、任由我们予取予夺的世界了，我们决定保护她，直至又一个三千年结束，我们能够偿还我们的罪孽于万一。
+
+
+
+我们不是神，
+
+
+
+我们只是一群无家可归的失乡之人。
+
+
+
+[[&gt;]]
+
+—— [[span class=&quot;blur&quot;]]O5议会[[/span]]
+
+[[/&gt;]]
+
+[[/div]]
+
+
+
+[[include :ah-sandbox:module:q-w-s a=37]]
+
+
+
+[[div style=&quot;color: rgb(250, 250, 250);font-size: 1.25em;;&quot;]]
+
+= {{倘若你也厌弃了无谓的破坏，并愿意加入我们，请忘掉**梦醒的那一日**，然后——}}
+
+
+
+= {{再建新乡吧。}}
+
+[[/div]]
+
+
+
+[[include :scp-wiki-cn:component:passcode
+
+|passcode=2019-03-19
+
+|css=
+
+:root {
+
+    --text: 252 252 252;
+
+    --background: 10 10 11;
+
+    --main: 26 179 28;
+
+}
+
+#pw-field {
+
+    border-radius: 0;
+
+    background: rgb(55 55 55);
+
+}
+
+#enter-button { border-radius: 0; }
+
+]]
+
+
+
+[[div class=&quot;pass-content&quot;]]
+
+[[div class=&quot;notation&quot;]]
+
+[[include :scp-wiki:component:listusers-1 users=&quot;.&quot;]]
+
+= {{&lt;%%title%%&gt; [[span class=&quot;blinking-cursor&quot;]][[span class=&quot;log&quot;]]进入世界。[[/span]][[/span]]}}
+
+[[include :scp-wiki:component:listusers-2]]
+
+= {{&lt;Alex&gt; [[span class=&quot;blinking-cursor&quot;]][[span class=&quot;log&quot;]]进入世界。[[/span]][[/span]]}}
+
+[[include :scp-wiki:component:listusers-3]]
+
+[[/div]]
+
+[[/div]]
+
+[[/div]]
+</pre></details></article></main><footer>只读快照：2026/08/31 07:53:10 · created by piglin · 内容版权仍归原作者与 SCP 基金会 Minecraft 分部。</footer></body></html>

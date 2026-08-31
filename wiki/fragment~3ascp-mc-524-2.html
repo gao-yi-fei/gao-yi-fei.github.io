@@ -1,0 +1,850 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>C-9844采访系统 | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page=fragment:scp-mc-524-2">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">段落页面 </p><h1>C-9844采访系统</h1><p class="page-name">fragment:scp-mc-524-2</p><dl class="article-meta"><div><dt>创建者</dt><dd>ACAppleby</dd></div><div><dt>评分</dt><dd class="rating">0 <small>+0 / -0</small></dd></div><div><dt>发布时间</dt><dd>2026/02/17 15:11:08</dd></div><div><dt>最近编辑</dt><dd>2026/02/17 16:54:44</dd></div></dl><div class="tags"><span class="tag">段落</span></div></header><aside class="reader-warning">此页部分资源未归档：1 个包含组件。文本与源码仍已保留。</aside><section class="article-body"><p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p>:root {</p>
+<p>--timeScale:1;</p>
+<p>--timeDelay: 0.5s;</p>
+<p>}</p>
+<p>[[/module]]</p>
+<p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p>:root:lang(cn) {</p>
+<p>--header-title: &quot;SCP基金会MC分部&quot;;</p>
+<p>--header-subtitle: &quot;攀登•挑战•超越&quot;;</p>
+<p>--logo:</p>
+<p>url(&#x27;https://scp-wiki-mc.wdfiles.com/local--files/theme%3Ablack-highlighter-theme/mclogo2.svg&#x27;);</p>
+<p><s>header-logo: var(</s>logo);</p>
+<p>}</p>
+<p>[[/module]]</p>
+<aside class="backup-note">包含组件未归档：<code>:scp-wiki-cn:theme:basalt</code></aside>
+<p>[[html]]</p>
+<p>&lt;!DOCTYPE html&gt;</p>
+<p>&lt;html lang=&quot;zh-CN&quot;&gt;</p>
+<p>&lt;head&gt;</p>
+<p>&lt;meta charset=&quot;UTF-8&quot;&gt;</p>
+<p>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</p>
+<p>&lt;title&gt;SCP基金会 - 意识接口采访系统 :: C-9844&lt;/title&gt;</p>
+<p>&lt;style&gt;</p>
+<p>:root {</p>
+<p>--bg-primary: #0a0a12;</p>
+<p>--bg-secondary: #111122;</p>
+<p>--bg-terminal: #000011;</p>
+<p>--text-primary: #aaddff;</p>
+<p>--text-secondary: #88bbee;</p>
+<p>--accent-blue: #4fc3f7;</p>
+<p>--accent-green: #69f0ae;</p>
+<p>--border-glow: rgba(79, 195, 247, 0.5);</p>
+<p>--font-mono: &#x27;Consolas&#x27;, &#x27;Monaco&#x27;, &#x27;Courier New&#x27;, monospace;</p>
+<p>}</p>
+<p>body {</p>
+<p>background-color: var(--bg-primary);</p>
+<p>color: var(--text-primary);</p>
+<p>font-family: var(--font-mono);</p>
+<p>margin: 20px;</p>
+<p>padding: 20px;</p>
+<p>border: 1px solid var(--border-glow);</p>
+<p>box-shadow: 0 0 15px var(--border-glow);</p>
+<p>max-width: 900px;</p>
+<p>margin-left: auto;</p>
+<p>margin-right: auto;</p>
+<p>line-height: 1.6;</p>
+<p>}</p>
+<p>.header {</p>
+<p>text-align: center;</p>
+<p>border-bottom: 2px solid var(--accent-blue);</p>
+<p>padding-bottom: 10px;</p>
+<p>margin-bottom: 25px;</p>
+<p>}</p>
+<p>.header h1 {</p>
+<p>color: var(--accent-green);</p>
+<p>margin-bottom: 5px;</p>
+<p>font-size: 1.8em;</p>
+<p>}</p>
+<p>.header .subtitle {</p>
+<p>color: var(--text-secondary);</p>
+<p>font-size: 0.9em;</p>
+<p>}</p>
+<p>.system-info {</p>
+<p>background-color: var(--bg-terminal);</p>
+<p>border-left: 4px solid var(--accent-green);</p>
+<p>padding: 10px 15px;</p>
+<p>margin: 15px 0;</p>
+<p>font-size: 0.85em;</p>
+<p>color: var(--text-secondary);</p>
+<p>}</p>
+<p>.chat-container {</p>
+<p>display: flex;</p>
+<p>flex-direction: column;</p>
+<p>gap: 15px;</p>
+<p>margin: 25px 0;</p>
+<p>min-height: 300px;</p>
+<p>max-height: 500px;</p>
+<p>overflow-y: auto;</p>
+<p>padding-right: 10px;</p>
+<p>}</p>
+<p>.message {</p>
+<p>padding: 12px 15px;</p>
+<p>border-radius: 8px;</p>
+<p>max-width: 85%;</p>
+<p>word-wrap: break-word;</p>
+<p>}</p>
+<p>.researcher {</p>
+<p>align-self: flex-end;</p>
+<p>background-color: #1a237e;</p>
+<p>border: 1px solid #3949ab;</p>
+<p>color: #bbdefb;</p>
+<p>}</p>
+<p>.subject {</p>
+<p>align-self: flex-start;</p>
+<p>background-color: var(--bg-secondary);</p>
+<p>border: 1px solid #311b92;</p>
+<p>color: var(--text-primary);</p>
+<p>position: relative;</p>
+<p>}</p>
+<p>.subject::before {</p>
+<p>content: &quot;C-9844&quot;;</p>
+<p>position: absolute;</p>
+<p>top: -18px;</p>
+<p>left: 5px;</p>
+<p>font-size: 0.75em;</p>
+<p>color: var(--accent-green);</p>
+<p>}</p>
+<p>.system {</p>
+<p>align-self: center;</p>
+<p>background-color: #1a1a2e;</p>
+<p>border: 1px solid #444;</p>
+<p>color: var(--text-secondary);</p>
+<p>font-size: 0.9em;</p>
+<p>max-width: 95%;</p>
+<p>}</p>
+<p>.input-area {</p>
+<p>margin-top: 25px;</p>
+<p>border-top: 1px dashed var(--border-glow);</p>
+<p>padding-top: 20px;</p>
+<p>}</p>
+<p>#userInput {</p>
+<p>width: 100%;</p>
+<p>background-color: var(--bg-terminal);</p>
+<p>border: 1px solid var(--accent-blue);</p>
+<p>color: var(--text-primary);</p>
+<p>padding: 12px;</p>
+<p>font-family: var(--font-mono);</p>
+<p>font-size: 1em;</p>
+<p>margin-bottom: 10px;</p>
+<p>box-sizing: border-box;</p>
+<p>}</p>
+<p>#sendBtn {</p>
+<p>background-color: var(--accent-blue);</p>
+<p>color: var(--bg-primary);</p>
+<p>border: none;</p>
+<p>padding: 10px 25px;</p>
+<p>font-family: var(--font-mono);</p>
+<p>font-weight: bold;</p>
+<p>cursor: pointer;</p>
+<p>float: right;</p>
+<p>transition: background-color 0.3s;</p>
+<p>}</p>
+<p>#sendBtn:hover {</p>
+<p>background-color: var(--accent-green);</p>
+<p>color: #000;</p>
+<p>}</p>
+<p>.footer {</p>
+<p>margin-top: 40px;</p>
+<p>font-size: 0.7em;</p>
+<p>text-align: center;</p>
+<p>color: #666;</p>
+<p>border-top: 1px solid #333;</p>
+<p>padding-top: 10px;</p>
+<p>}</p>
+<p>.typing {</p>
+<p>color: var(--accent-green);</p>
+<p>font-style: italic;</p>
+<p>}</p>
+<p>.cmd-prefix {</p>
+<p>color: var(--accent-green);</p>
+<p>margin-right: 5px;</p>
+<p>}</p>
+<p>.help-text {</p>
+<p>font-size: 0.85em;</p>
+<p>color: var(--text-secondary);</p>
+<p>margin-top: 5px;</p>
+<p>padding-left: 5px;</p>
+<p>}</p>
+<p>&lt;/style&gt;</p>
+<p>&lt;/head&gt;</p>
+<p>&lt;body&gt;</p>
+<p>&lt;div class=&quot;header&quot;&gt;</p>
+<p>&lt;h1&gt;█ SCP基金会 - MC分部 █&lt;/h1&gt;</p>
+<p>&lt;div class=&quot;subtitle&quot;&gt;意识接口采访系统 v1.2.5&lt;/div&gt;</p>
+<p>&lt;div class=&quot;subtitle&quot;&gt;对象： C-9844 (前神经工程师，事件524-Δ亲历者)&lt;/div&gt;</p>
+<p>&lt;div class=&quot;subtitle&quot;&gt;接口状态：&lt;span style=&quot;color:#69f0ae;&quot;&gt; 已稳定同步&lt;/span&gt;&lt;/div&gt;</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;div class=&quot;system-info&quot;&gt;</p>
+<p>&lt;strong&gt;系统提示：&lt;/strong&gt; 本终端已通过神经接口（BCI）与对象C-9844的意识建立安全连接。对话内容基于其在SCP-MC-524（&quot;向山而生&quot;）项目中的经历。输入指令时，请使用简洁、直接的语言或关键词以获取最佳响应。&lt;br&gt;</p>
+<p>&lt;strong&gt;可用关键词示例：&lt;/strong&gt; 身份, 动机, 雪人, 测试, 路径, 蓝冰, 山顶, 意义, 影响, 忠告</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;div class=&quot;chat-container&quot; id=&quot;chatBox&quot;&gt;</p>
+<p>&lt;div class=&quot;message system&quot;&gt;</p>
+<p>&lt;span class=&quot;cmd-prefix&quot;&gt;&gt;&lt;/span&gt; 连接建立。音频/视觉数据流稳定。准备记录。</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;div class=&quot;message subject&quot;&gt;</p>
+<p>我听到了。又是一个……访客？这里的访客总是带着同样的问题。关于那座山，关于那条路。</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;div class=&quot;input-area&quot;&gt;</p>
+<p>&lt;label for=&quot;userInput&quot;&gt;&lt;span class=&quot;cmd-prefix&quot;&gt;&gt;&lt;/span&gt; 研究员输入：&lt;/label&gt;</p>
+<p>&lt;input type=&quot;text&quot; id=&quot;userInput&quot; placeholder=&quot;输入您的采访问题或关键词 (例如：登山动机、雪人、蓝冰路径、山顶所见...)&quot;&gt;</p>
+<p>&lt;button id=&quot;sendBtn&quot; onclick=&quot;sendMessage()&quot;&gt;发送 [ENTER]&lt;/button&gt;</p>
+<p>&lt;div style=&quot;clear:both;&quot;&gt;&lt;/div&gt;</p>
+<p>&lt;div class=&quot;help-text&quot;&gt;提示：请尝试使用上方列出的关键词进行提问，以获得C-9844的相关回答。&lt;/div&gt;</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;div class=&quot;footer&quot;&gt;</p>
+<p>&lt;div&gt;访问级别： 3级 | 数据源： SCP-MC-524 事件记录与附录 | 最后更新： 2026-02-16&lt;/div&gt;</p>
+<p>&lt;div&gt;注意：此为对象大脑副本之一，因scp-mc-524的影响，该副本目前仅能对部分内容进行回应。&lt;/div&gt;</p>
+<p>&lt;div&gt;&quot;佩戴上BCI设备吧……&lt;a href=&quot;http://scp-wiki-mc.wikidot.com/liveforthemountain&quot; target=&quot;_blank&quot;&gt;佩戴完毕&lt;/a&gt;&quot;&lt;/div&gt;</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;script&gt;</p>
+<p>const userInput = document.getElementById(&#x27;userInput&#x27;);</p>
+<p>const chatBox = document.getElementById(&#x27;chatBox&#x27;);</p>
+<p>const responseMap = {</p>
+<p>&quot;身份&quot;: &quot;我是C-9844。或者，用你们的话说，一个被装在维生舱里的意识，通过机器触摸过世界边缘的残躯。&quot;,</p>
+<p>&quot;你是谁&quot;: &quot;我是C-9844。或者，用你们的话说，一个被装在维生舱里的意识，通过机器触摸过世界边缘的残躯。&quot;,</p>
+<p>&quot;动机&quot;: &quot;为了看看，当一切外在依托消失，我还剩下什么。肌肉、行动、触感…都被剥夺后，‘我’的核心究竟是什么？那座山，是一个测试。&quot;,</p>
+<p>&quot;为什么登山&quot;: &quot;不是征服，是求证。求证在绝对的虚无和限制面前，意识是否还能定义自己的存在。基金会给了我接口，山给了我考场。&quot;,</p>
+<p>&quot;瘫痪&quot;: &quot;对，完全性损伤。现实中的牢笼。但在‘视界’里，在通往山的路上，那具虚拟的、笨拙的身体，反而成了最纯粹的意识载体。&quot;,</p>
+<p>&quot;雪人&quot;: &quot;雪人？不，那不是孩童的游戏。它们是…守门人，考官。它们不测试你的力气，它们直视你的灵魂深处，用你记忆的碎片和哲学的悖论筑成迷宫。&quot;,</p>
+<p>&quot;scp-mc-524-α&quot;: &quot;你说那些你们口中的雪人吗？不，那不是孩童的游戏。它们是…守门人，考官。它们不测试你的力气，它们直视你的灵魂深处，用你记忆的碎片和哲学的悖论筑成迷宫。&quot;,</p>
+<p>&quot;测试&quot;: &quot;我遇到的测试…没有悬崖，没有怪物。只有问题。关于存在与虚无，关于记忆的意义，关于在绝对的匮乏中还能创造什么。&quot;,</p>
+<p>&quot;路径&quot;: &quot;冰的路径…它不在那里，直到你认为它在那里。你的决心是它的基石，你的犹疑是它的裂痕。踩上去的感觉…不是冷，是一种清澈的‘存在感’。&quot;,</p>
+<p>&quot;蓝冰&quot;: &quot;那不是普通的冰。它像是凝固的星空，或者…思维的某种实体。你越坚定，它就越明亮，越稳固。它映照的不是你的脸，是你的意识状态。&quot;,</p>
+<p>&quot;山顶&quot;: &quot;山顶…没有奖杯，没有旗帜。只有光。一种温暖的金色光芒，和…一个影子，像是展开的翅膀。触碰它的瞬间，所有‘攀登’的概念都消失了。只剩下‘在’。&quot;,</p>
+<p>&quot;意义&quot;: &quot;生命的意义？山告诉我，不在于‘拥有’什么来对抗虚无，而在于‘成为’什么。即使载体脆弱如虚拟化身，或瘫痪的躯体，意识的选择和攀登本身，就是意义。&quot;,</p>
+<p>&quot;影响&quot;: &quot;维生舱里的身体…神经信号在活跃，超出BCI的设定。医生们很困惑。但我知道，是我的思想在山顶被‘淬炼’了。那座山改变的，是意识的‘形态’。&quot;,</p>
+<p>&quot;忠告&quot;: &quot;不要派身体强壮但思想空洞的人去。山不关心那些。派那些…即使身处绝境，也能在内心找到火光的人。派那些真正的求道者。&quot;,</p>
+<p>&quot;default&quot;: &quot;&lt;span class=&#x27;cmd-prefix&#x27;&gt;[系统提示]&lt;/span&gt; 您的问题未能匹配到C-9844的相关记忆片段。请尝试其他问题。&quot;,</p>
+<p>&quot;苹果&quot;: &quot;苹果苹果苹？&quot;,</p>
+<p>};</p>
+<p>function sendMessage() {</p>
+<p>const inputText = userInput.value.trim();</p>
+<p>if (!inputText) return;</p>
+<p>addMessage(inputText, &#x27;researcher&#x27;);</p>
+<p>userInput.value = &#x27;&#x27;;</p>
+<p>const typingIndicator = document.createElement(&#x27;div&#x27;);</p>
+<p>typingIndicator.className = &#x27;message system typing&#x27;;</p>
+<p>typingIndicator.innerHTML = &#x27;&lt;span class=&quot;cmd-prefix&quot;&gt;&gt;&lt;/span&gt; 正在解析关键词，同步意识响应...&#x27;;</p>
+<p>chatBox.appendChild(typingIndicator);</p>
+<p>setTimeout(() =&gt; {</p>
+<p>chatBox.removeChild(typingIndicator);</p>
+<p>let response = responseMap.default;</p>
+<p>const lowerInput = inputText.toLowerCase();</p>
+<p>for (const [key, value] of Object.entries(responseMap)) {</p>
+<p>if (key !== &#x27;default&#x27; &amp;&amp; lowerInput.includes(key.toLowerCase())) {</p>
+<p>response = value;</p>
+<p>break;</p>
+<p>}</p>
+<p>}</p>
+<p>addMessage(response, response === responseMap.default ? &#x27;system&#x27; : &#x27;subject&#x27;);</p>
+<p>chatBox.scrollTop = chatBox.scrollHeight;</p>
+<p>}, 800 + Math.random() * 400);</p>
+<p>}</p>
+<p>function addMessage(text, sender) {</p>
+<p>const messageDiv = document.createElement(&#x27;div&#x27;);</p>
+<p>messageDiv.className = `message ${sender}`;</p>
+<p>if (sender === &#x27;system&#x27; &amp;&amp; text.includes(&#x27;[系统提示]&#x27;)) {</p>
+<p>messageDiv.innerHTML = text;</p>
+<p>} else {</p>
+<p>messageDiv.textContent = text;</p>
+<p>}</p>
+<p>chatBox.appendChild(messageDiv);</p>
+<p>chatBox.scrollTop = chatBox.scrollHeight;</p>
+<p>}</p>
+<p>userInput.addEventListener(&#x27;keypress&#x27;, function(event) {</p>
+<p>if (event.key === &#x27;Enter&#x27;) {</p>
+<p>event.preventDefault();</p>
+<p>sendMessage();</p>
+<p>}</p>
+<p>});</p>
+<p>userInput.focus();</p>
+<p>&lt;/script&gt;</p>
+<p>&lt;/body&gt;</p>
+<p>&lt;/html&gt;</p>
+<p>[[/html]]</p>
+<div class="wiki-aligned">
+<p>= <a href="http://scp-wiki-mc.wikidot.com/scp-mc-524/offset/0" rel="noreferrer">&lt;返回文档&gt;</a></p>
+</div></section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>[[module CSS]]
+
+:root {
+
+    --timeScale:1;
+
+    --timeDelay: 0.5s;
+
+}
+
+[[/module]]
+
+
+
+[[module CSS]]
+
+
+
+:root:lang(cn) {
+
+ --header-title: &quot;SCP基金会MC分部&quot;;
+
+ --header-subtitle: &quot;攀登•挑战•超越&quot;;
+
+ --logo:
+
+url(&#x27;https://scp-wiki-mc.wdfiles.com/local--files/theme%3Ablack-highlighter-theme/mclogo2.svg&#x27;);
+
+ --header-logo: var(--logo);
+
+}
+
+[[/module]]
+
+[[include :scp-wiki-cn:theme:basalt darkmode=a|hidetitle=a]]
+
+[[html]]
+
+&lt;!DOCTYPE html&gt;
+
+&lt;html lang=&quot;zh-CN&quot;&gt;
+
+&lt;head&gt;
+
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+
+    &lt;title&gt;SCP基金会 - 意识接口采访系统 :: C-9844&lt;/title&gt;
+
+    &lt;style&gt;
+
+        :root {
+
+            --bg-primary: #0a0a12;
+
+            --bg-secondary: #111122;
+
+            --bg-terminal: #000011;
+
+            --text-primary: #aaddff;
+
+            --text-secondary: #88bbee;
+
+            --accent-blue: #4fc3f7;
+
+            --accent-green: #69f0ae;
+
+            --border-glow: rgba(79, 195, 247, 0.5);
+
+            --font-mono: &#x27;Consolas&#x27;, &#x27;Monaco&#x27;, &#x27;Courier New&#x27;, monospace;
+
+        }
+
+        body {
+
+            background-color: var(--bg-primary);
+
+            color: var(--text-primary);
+
+            font-family: var(--font-mono);
+
+            margin: 20px;
+
+            padding: 20px;
+
+            border: 1px solid var(--border-glow);
+
+            box-shadow: 0 0 15px var(--border-glow);
+
+            max-width: 900px;
+
+            margin-left: auto;
+
+            margin-right: auto;
+
+            line-height: 1.6;
+
+        }
+
+        .header {
+
+            text-align: center;
+
+            border-bottom: 2px solid var(--accent-blue);
+
+            padding-bottom: 10px;
+
+            margin-bottom: 25px;
+
+        }
+
+        .header h1 {
+
+            color: var(--accent-green);
+
+            margin-bottom: 5px;
+
+            font-size: 1.8em;
+
+        }
+
+        .header .subtitle {
+
+            color: var(--text-secondary);
+
+            font-size: 0.9em;
+
+        }
+
+        .system-info {
+
+            background-color: var(--bg-terminal);
+
+            border-left: 4px solid var(--accent-green);
+
+            padding: 10px 15px;
+
+            margin: 15px 0;
+
+            font-size: 0.85em;
+
+            color: var(--text-secondary);
+
+        }
+
+        .chat-container {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+
+            margin: 25px 0;
+
+            min-height: 300px;
+
+            max-height: 500px;
+
+            overflow-y: auto;
+
+            padding-right: 10px;
+
+        }
+
+        .message {
+
+            padding: 12px 15px;
+
+            border-radius: 8px;
+
+            max-width: 85%;
+
+            word-wrap: break-word;
+
+        }
+
+        .researcher {
+
+            align-self: flex-end;
+
+            background-color: #1a237e;
+
+            border: 1px solid #3949ab;
+
+            color: #bbdefb;
+
+        }
+
+        .subject {
+
+            align-self: flex-start;
+
+            background-color: var(--bg-secondary);
+
+            border: 1px solid #311b92;
+
+            color: var(--text-primary);
+
+            position: relative;
+
+        }
+
+        .subject::before {
+
+            content: &quot;C-9844&quot;;
+
+            position: absolute;
+
+            top: -18px;
+
+            left: 5px;
+
+            font-size: 0.75em;
+
+            color: var(--accent-green);
+
+        }
+
+        .system {
+
+            align-self: center;
+
+            background-color: #1a1a2e;
+
+            border: 1px solid #444;
+
+            color: var(--text-secondary);
+
+            font-size: 0.9em;
+
+            max-width: 95%;
+
+        }
+
+        .input-area {
+
+            margin-top: 25px;
+
+            border-top: 1px dashed var(--border-glow);
+
+            padding-top: 20px;
+
+        }
+
+        #userInput {
+
+            width: 100%;
+
+            background-color: var(--bg-terminal);
+
+            border: 1px solid var(--accent-blue);
+
+            color: var(--text-primary);
+
+            padding: 12px;
+
+            font-family: var(--font-mono);
+
+            font-size: 1em;
+
+            margin-bottom: 10px;
+
+            box-sizing: border-box;
+
+        }
+
+        #sendBtn {
+
+            background-color: var(--accent-blue);
+
+            color: var(--bg-primary);
+
+            border: none;
+
+            padding: 10px 25px;
+
+            font-family: var(--font-mono);
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            float: right;
+
+            transition: background-color 0.3s;
+
+        }
+
+        #sendBtn:hover {
+
+            background-color: var(--accent-green);
+
+            color: #000;
+
+        }
+
+        .footer {
+
+            margin-top: 40px;
+
+            font-size: 0.7em;
+
+            text-align: center;
+
+            color: #666;
+
+            border-top: 1px solid #333;
+
+            padding-top: 10px;
+
+        }
+
+        .typing {
+
+            color: var(--accent-green);
+
+            font-style: italic;
+
+        }
+
+        .cmd-prefix {
+
+            color: var(--accent-green);
+
+            margin-right: 5px;
+
+        }
+
+        .help-text {
+
+            font-size: 0.85em;
+
+            color: var(--text-secondary);
+
+            margin-top: 5px;
+
+            padding-left: 5px;
+
+        }
+
+    &lt;/style&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;div class=&quot;header&quot;&gt;
+
+        &lt;h1&gt;█ SCP基金会 - MC分部 █&lt;/h1&gt;
+
+        &lt;div class=&quot;subtitle&quot;&gt;意识接口采访系统 v1.2.5&lt;/div&gt;
+
+        &lt;div class=&quot;subtitle&quot;&gt;对象： C-9844 (前神经工程师，事件524-Δ亲历者)&lt;/div&gt;
+
+        &lt;div class=&quot;subtitle&quot;&gt;接口状态：&lt;span style=&quot;color:#69f0ae;&quot;&gt; 已稳定同步&lt;/span&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+
+
+
+    &lt;div class=&quot;system-info&quot;&gt;
+
+        &lt;strong&gt;系统提示：&lt;/strong&gt; 本终端已通过神经接口（BCI）与对象C-9844的意识建立安全连接。对话内容基于其在SCP-MC-524（&quot;向山而生&quot;）项目中的经历。输入指令时，请使用简洁、直接的语言或关键词以获取最佳响应。&lt;br&gt;
+
+        &lt;strong&gt;可用关键词示例：&lt;/strong&gt; 身份, 动机, 雪人, 测试, 路径, 蓝冰, 山顶, 意义, 影响, 忠告
+
+    &lt;/div&gt;
+
+
+
+    &lt;div class=&quot;chat-container&quot; id=&quot;chatBox&quot;&gt;
+
+        &lt;div class=&quot;message system&quot;&gt;
+
+            &lt;span class=&quot;cmd-prefix&quot;&gt;&gt;&lt;/span&gt; 连接建立。音频/视觉数据流稳定。准备记录。
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;message subject&quot;&gt;
+
+            我听到了。又是一个……访客？这里的访客总是带着同样的问题。关于那座山，关于那条路。
+
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+
+
+
+    &lt;div class=&quot;input-area&quot;&gt;
+
+        &lt;label for=&quot;userInput&quot;&gt;&lt;span class=&quot;cmd-prefix&quot;&gt;&gt;&lt;/span&gt; 研究员输入：&lt;/label&gt;
+
+        &lt;input type=&quot;text&quot; id=&quot;userInput&quot; placeholder=&quot;输入您的采访问题或关键词 (例如：登山动机、雪人、蓝冰路径、山顶所见...)&quot;&gt;
+
+        &lt;button id=&quot;sendBtn&quot; onclick=&quot;sendMessage()&quot;&gt;发送 [ENTER]&lt;/button&gt;
+
+        &lt;div style=&quot;clear:both;&quot;&gt;&lt;/div&gt;
+
+        &lt;div class=&quot;help-text&quot;&gt;提示：请尝试使用上方列出的关键词进行提问，以获得C-9844的相关回答。&lt;/div&gt;
+
+    &lt;/div&gt;
+
+
+
+    &lt;div class=&quot;footer&quot;&gt;
+
+        &lt;div&gt;访问级别： 3级 | 数据源： SCP-MC-524 事件记录与附录 | 最后更新： 2026-02-16&lt;/div&gt;
+
+        &lt;div&gt;注意：此为对象大脑副本之一，因scp-mc-524的影响，该副本目前仅能对部分内容进行回应。&lt;/div&gt;
+
+        &lt;div&gt;&quot;佩戴上BCI设备吧……&lt;a href=&quot;http://scp-wiki-mc.wikidot.com/liveforthemountain&quot; target=&quot;_blank&quot;&gt;佩戴完毕&lt;/a&gt;&quot;&lt;/div&gt;
+
+    &lt;/div&gt;
+
+
+
+    &lt;script&gt;
+
+        const userInput = document.getElementById(&#x27;userInput&#x27;);
+
+        const chatBox = document.getElementById(&#x27;chatBox&#x27;);
+
+
+
+        const responseMap = {
+
+            &quot;身份&quot;: &quot;我是C-9844。或者，用你们的话说，一个被装在维生舱里的意识，通过机器触摸过世界边缘的残躯。&quot;,
+
+            &quot;你是谁&quot;: &quot;我是C-9844。或者，用你们的话说，一个被装在维生舱里的意识，通过机器触摸过世界边缘的残躯。&quot;,
+
+            &quot;动机&quot;: &quot;为了看看，当一切外在依托消失，我还剩下什么。肌肉、行动、触感…都被剥夺后，‘我’的核心究竟是什么？那座山，是一个测试。&quot;,
+
+            &quot;为什么登山&quot;: &quot;不是征服，是求证。求证在绝对的虚无和限制面前，意识是否还能定义自己的存在。基金会给了我接口，山给了我考场。&quot;,
+
+            &quot;瘫痪&quot;: &quot;对，完全性损伤。现实中的牢笼。但在‘视界’里，在通往山的路上，那具虚拟的、笨拙的身体，反而成了最纯粹的意识载体。&quot;,
+
+            &quot;雪人&quot;: &quot;雪人？不，那不是孩童的游戏。它们是…守门人，考官。它们不测试你的力气，它们直视你的灵魂深处，用你记忆的碎片和哲学的悖论筑成迷宫。&quot;,
+
+            &quot;scp-mc-524-α&quot;: &quot;你说那些你们口中的雪人吗？不，那不是孩童的游戏。它们是…守门人，考官。它们不测试你的力气，它们直视你的灵魂深处，用你记忆的碎片和哲学的悖论筑成迷宫。&quot;,
+
+            &quot;测试&quot;: &quot;我遇到的测试…没有悬崖，没有怪物。只有问题。关于存在与虚无，关于记忆的意义，关于在绝对的匮乏中还能创造什么。&quot;,
+
+            &quot;路径&quot;: &quot;冰的路径…它不在那里，直到你认为它在那里。你的决心是它的基石，你的犹疑是它的裂痕。踩上去的感觉…不是冷，是一种清澈的‘存在感’。&quot;,
+
+            &quot;蓝冰&quot;: &quot;那不是普通的冰。它像是凝固的星空，或者…思维的某种实体。你越坚定，它就越明亮，越稳固。它映照的不是你的脸，是你的意识状态。&quot;,
+
+            &quot;山顶&quot;: &quot;山顶…没有奖杯，没有旗帜。只有光。一种温暖的金色光芒，和…一个影子，像是展开的翅膀。触碰它的瞬间，所有‘攀登’的概念都消失了。只剩下‘在’。&quot;,
+
+            &quot;意义&quot;: &quot;生命的意义？山告诉我，不在于‘拥有’什么来对抗虚无，而在于‘成为’什么。即使载体脆弱如虚拟化身，或瘫痪的躯体，意识的选择和攀登本身，就是意义。&quot;,
+
+            &quot;影响&quot;: &quot;维生舱里的身体…神经信号在活跃，超出BCI的设定。医生们很困惑。但我知道，是我的思想在山顶被‘淬炼’了。那座山改变的，是意识的‘形态’。&quot;,
+
+            &quot;忠告&quot;: &quot;不要派身体强壮但思想空洞的人去。山不关心那些。派那些…即使身处绝境，也能在内心找到火光的人。派那些真正的求道者。&quot;,
+
+            &quot;default&quot;: &quot;&lt;span class=&#x27;cmd-prefix&#x27;&gt;[系统提示]&lt;/span&gt; 您的问题未能匹配到C-9844的相关记忆片段。请尝试其他问题。&quot;,
+
+            &quot;苹果&quot;: &quot;苹果苹果苹？&quot;,
+
+        };
+
+
+
+        function sendMessage() {
+
+            const inputText = userInput.value.trim();
+
+            if (!inputText) return;
+
+
+
+            addMessage(inputText, &#x27;researcher&#x27;);
+
+            userInput.value = &#x27;&#x27;;
+
+
+
+            const typingIndicator = document.createElement(&#x27;div&#x27;);
+
+            typingIndicator.className = &#x27;message system typing&#x27;;
+
+            typingIndicator.innerHTML = &#x27;&lt;span class=&quot;cmd-prefix&quot;&gt;&gt;&lt;/span&gt; 正在解析关键词，同步意识响应...&#x27;;
+
+            chatBox.appendChild(typingIndicator);
+
+
+
+            setTimeout(() =&gt; {
+
+                chatBox.removeChild(typingIndicator);
+
+                let response = responseMap.default;
+
+                const lowerInput = inputText.toLowerCase();
+
+
+
+                for (const [key, value] of Object.entries(responseMap)) {
+
+                    if (key !== &#x27;default&#x27; &amp;&amp; lowerInput.includes(key.toLowerCase())) {
+
+                        response = value;
+
+                        break;
+
+                    }
+
+                }
+
+
+
+                addMessage(response, response === responseMap.default ? &#x27;system&#x27; : &#x27;subject&#x27;);
+
+                chatBox.scrollTop = chatBox.scrollHeight;
+
+            }, 800 + Math.random() * 400);
+
+        }
+
+
+
+        function addMessage(text, sender) {
+
+            const messageDiv = document.createElement(&#x27;div&#x27;);
+
+            messageDiv.className = `message ${sender}`;
+
+            
+
+            if (sender === &#x27;system&#x27; &amp;&amp; text.includes(&#x27;[系统提示]&#x27;)) {
+
+                messageDiv.innerHTML = text;
+
+            } else {
+
+                messageDiv.textContent = text;
+
+            }
+
+            
+
+            chatBox.appendChild(messageDiv);
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+        }
+
+
+
+        userInput.addEventListener(&#x27;keypress&#x27;, function(event) {
+
+            if (event.key === &#x27;Enter&#x27;) {
+
+                event.preventDefault();
+
+                sendMessage();
+
+            }
+
+        });
+
+
+
+        userInput.focus();
+
+    &lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+
+[[/html]]
+
+[[&gt;]]
+
+= [http://scp-wiki-mc.wikidot.com/scp-mc-524/offset/0 &lt;返回文档&gt;]
+
+[[/&gt;]]
+</pre></details></article></main><footer>只读快照：2026/08/31 07:53:10 · created by piglin · 内容版权仍归原作者与 SCP 基金会 Minecraft 分部。</footer></body></html>

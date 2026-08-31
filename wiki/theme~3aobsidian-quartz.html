@@ -1,0 +1,3180 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>黑曜石版式——石英样板 | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page=theme:obsidian-quartz">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">其他页面 </p><h1>黑曜石版式——石英样板</h1><p class="page-name">theme:obsidian-quartz</p><dl class="article-meta"><div><dt>创建者</dt><dd>A Nameless Creator</dd></div><div><dt>评分</dt><dd class="rating">+4 <small>+4 / -0</small></dd></div><div><dt>发布时间</dt><dd>2024/07/22 16:53:02</dd></div><div><dt>最近编辑</dt><dd>2025/09/29 23:53:26</dd></div></dl><div class="tags"><span class="tag">版式</span></div></header><aside class="reader-warning">此页部分资源未归档：11 个包含组件。文本与源码仍已保留。</aside><section class="article-body"><aside class="backup-note">包含组件未归档：<code>:scp-wiki-mc:theme:obsidian</code></aside>
+<p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p>/* 预设展示，偷窃并修改自平行版式 */</p>
+<p>div.setblock {</p>
+<p>position: relative;</p>
+<p>padding: 2rem 1.5rem;</p>
+<p>font-family: var(--mono-font);</p>
+<p>color: rgb(var(--block-color));</p>
+<p>background-color: rgb(var(--block-bg));</p>
+<p>border: solid var(<s>base-border-width) rgb(var(</s>block-border));</p>
+<p>min-height: 6rem;</p>
+<p>margin: 3rem 0 3rem 6rem;</p>
+<p>box-sizing: border-box;</p>
+<p>}</p>
+<p>div.setblock::before {</p>
+<p>content: &quot;&quot;;</p>
+<p>display: block;</p>
+<p>position: absolute;</p>
+<p>top: calc(var(--base-border-width)* -17);</p>
+<p>left: -5rem;</p>
+<p>width: 11rem;</p>
+<p>height: calc(79% + var(--base-border-width)* -4);</p>
+<p>background-image: var(--content-wrap-image);</p>
+<p>background-size: 180% auto, 100%, 30%;</p>
+<p>background-position: center;</p>
+<p>background-repeat: no-repeat;</p>
+<p>}</p>
+<p>@media only screen and (max-width: 1020px) {</p>
+<p>div.setblock {</p>
+<p>padding: 3rem 1.5rem;</p>
+<p>}</p>
+<p>}</p>
+<p>div.setblock.obsidian {</p>
+<p>--content-wrap-image: url(&quot;https://s21.ax1x.com/2024/07/19/pkTi3FO.jpg&quot;);</p>
+<p>--block-color: 254, 254, 254;</p>
+<p>--block-bg: 20,20,20;</p>
+<p>--block-border: 132,62,203;</p>
+<p>}</p>
+<p>div.setblock.sea {</p>
+<p>--content-wrap-image: url(&quot;https://s21.ax1x.com/2024/07/17/pkopG60.jpg&quot;);</p>
+<p>--block-color: 254, 254, 254;</p>
+<p>--block-bg: 11,27,29;</p>
+<p>--block-border: 59,238,230;</p>
+<p><s>header-color-l: var(</s>basalt-dark-element-color);</p>
+<p><s>header-color-r: var(</s>basalt-dark-element-color);</p>
+<p>}</p>
+<p>div.setblock.quartz {</p>
+<p>--content-wrap-image: url(&quot;https://s21.ax1x.com/2024/07/22/pk7cAnf.jpg&quot;);</p>
+<p>--block-color: 20, 20, 20;</p>
+<p>--block-bg: 239,239,243;</p>
+<p>--block-border: 176,196,222;</p>
+<p><s>header-color-l: var(</s>basalt-dark-element-color);</p>
+<p><s>header-color-r: var(</s>basalt-dark-element-color);</p>
+<p>}</p>
+<p>[[/module]]</p>
+<div class="wiki-aligned">
+<p><span class="module-note">评分组件已由页首快照替代</span></p>
+<p>{{<strong>郑重鸣谢：</strong>}}<span class="wiki-user">Dr.Hormress</span></p>
+<p>感谢他对<a href="/wiki/theme~3aobsidian-arc.html">旧版黑曜石版式</a>提出的修改建议和真切指导，</p>
+<p>以及被我频繁骚扰的<span class="wiki-user">Tengurthy Clotsfoot</span>。</p>
+<p>@@ @@</p>
+<p><strong>在任意页面中：</strong></p>
+<p><strong>{{@@[[backup-notice include @@[[span]]@@:scp-wiki-mc:@@[[/span]]@@theme:obsidian]]@@}}</strong></p>
+</div>
+<p>+* 信息</p>
+<p><strong>黑曜石</strong>是在<a href="http://scp-wiki-cn.wikidot.com/theme:basalt" rel="noreferrer">玄武岩</a>和<a href="http://scp-wiki-cn.wikidot.com/theme:bedrock" rel="noreferrer">基岩</a>的框架上，糅合了<a href="https://scp-wik-cni.wikidot.com/scp8000contesthub" rel="noreferrer">SCP8000竞赛中心页版式</a>以及<span class="wiki-user">Dr.Hormress</span>的<a href="https://scp-wiki-cn.wikidot.com/theme:parallel" rel="noreferrer">平行版式</a><s>制作</s>照搬的一款适应MC主题的美学版式。</p>
+<div class="wiki-block">
+<p>本页面还有<a href="/wiki/theme~3aobsidian.html">黑曜石版本</a>和<a href="/wiki/theme~3aobsidian-stealth-ender-altar.html">幽影祭坛版本</a>。</p>
+</div>
+<div class="wiki-block">
+</div>
+<p>+* 版式设置</p>
+<p>与上述提到的版式一样，你可以在 @@[[include]]@@ 模块里添加<strong>版式设置</strong>来修改黑曜石的方方面面。</p>
+<p>@@ @@</p>
+<p><strong>{{@@[[backup-notice include @@[[span]]@@:scp-wiki-mc:@@[[/span]]@@theme:obsidian @@##green|版式设置##@@]]@@}}</strong></p>
+<p><strong>{{@@[[backup-notice include @@[[span]]@@:scp-wiki-mc:@@[[/span]]@@theme:obsidian @@##green|版式设置##|##red|另一个版式设置##@@]]@@}}</strong></p>
+<p>@@ @@</p>
+<p>截至当前版本的所有版式设置有：</p>
+<h6>基本设置</h6>
+<p class="wiki-list"><strong>{{no-title-border=a}}</strong>[[span class=&quot;noclick&quot;]]@@ @@ @@ @@[[/span]]去除标题分割线</p>
+<p class="wiki-list"><strong>{{wide=a}}</strong>[[span class=&quot;noclick&quot;]]@@ @@ @@ @@[[/span]]加宽页面</p>
+<p class="wiki-list"><strong>{{hidetitle=a}}</strong>[[span class=&quot;noclick&quot;]]@@ @@ @@ @@[[/span]]去除页面标题</p>
+<p class="wiki-list"><strong>{{centertitle=a}}</strong>[[span class=&quot;noclick&quot;]]@@ @@ @@ @@[[/span]]居中页面标题</p>
+<p class="wiki-list"><strong>{{no-content-wrap-image=a}}</strong>[[span class=&quot;noclick&quot;]]@@ @@ @@ @@[[/span]]去除版头图片</p>
+<h6>主题预设</h6>
+<div class="wiki-block">
+<p>++++* 黑曜石</p>
+<p class="wiki-list">@@无需另行引用@@[[span class=&quot;noclick&quot;]]@@ @@ @@ @@[[/span]]灵感及配色来源：{{黑曜石、哭泣的黑曜石、下界传送门}}</p>
+</div>
+<div class="wiki-block">
+<p>++++* 幽影祭坛</p>
+<p class="wiki-list">@@stealth-ender-altar=*@@[[span class=&quot;noclick&quot;]]@@ @@ @@ @@[[/span]]灵感及配色来源：{{幽匿系列方块、末影之眼}}</p>
+</div>
+<div class="wiki-block">
+<p>++++* 石英</p>
+<p class="wiki-list">@@quartz=*@@[[span class=&quot;noclick&quot;]]@@ @@ @@ @@[[/span]]灵感及配色来源：{{石英、灰色混凝土、淡灰色混凝土}}</p>
+</div>
+<p>+* 页面元素</p>
+<p>关于引用块等元素和玄武岩基本一致，故不过多赘述。</p>
+<p>__打算做一些MC分部自己的备忘录，但这需要大量的LOGO和图标，所以先放在这里等待有朝一日。目前分部已有的部门LOGO主要在这里和作者的自设作品中。__</p>
+<p>@@ @@</p>
+<aside class="backup-note">包含组件未归档：<code>:scp-wiki-cn:component:image-block</code></aside>
+<p>可通过六个连字符“@@<s>-</s>-@@”创建水平分割线。若它未被放在其他部件（诸如引用块）中，则会左右延伸贯穿页面。</p>
+<p>标题可通过在一行字起始处输入 1 至 6 个加号“+”来创建。</p>
+<p>+* 1 级标题</p>
+<p>++* 2 级标题</p>
+<p>+++* 3 级标题</p>
+<p>++++* 4 级标题</p>
+<p>+++++* 5 级标题</p>
+<p>++++++* 6 级标题</p>
+<p>@@ @@</p>
+<div class="tabview">
+<section class="wiki-tab"><h2>分页</h2>
+<p>这是分页（Tab View）。</p>
+</section>
+<section class="wiki-tab"><h2>分页</h2>
+<p>嘿看，这里有更多的文本。</p>
+<p>多么精巧绝伦。</p>
+</section>
+<section class="wiki-tab"><h2>长 Tab</h2>
+<p>这是一个长的 tab，它有很多文字。</p>
+<p>这是一个长的 tab，它有很多文字。</p>
+<p>这是一个长的 tab，它有很多文字。</p>
+<p>这是一个长的 tab，它有很多文字。</p>
+<p>这是一个长的 tab，它有很多文字。</p>
+<p>这是一个长的 tab，它有很多文字。</p>
+<p>这是一个长的 tab，它有很多文字。</p>
+<p>这是一个长的 tab，它有很多文字。</p>
+<p>这是一个长的 tab，它有很多文字。</p>
+<p>这是一个长的 tab，它有很多文字。</p>
+<p>这是一个长的 tab，它有很多文字。</p>
+<p>这是一个长的 tab，它有很多文字。</p>
+</section>
+<section class="wiki-tab"><h2>这个 tab 因为某些古怪的原因而拥有一个特别特别长的名字。我想知道为什么？这真的很奇怪。</h2>
+<p>的确很奇怪。</p>
+</section>
+<section class="wiki-tab"><h2>空 Tab</h2>
+</section>
+<section class="wiki-tab"><h2>空 Tab</h2>
+</section>
+<section class="wiki-tab"><h2>空 Tab</h2>
+</section>
+<section class="wiki-tab"><h2>空 Tab</h2>
+</section>
+<section class="wiki-tab"><h2>空 Tab</h2>
+<p>我想念我们能够信任彼此的日子。</p>
+</section>
+</div>
+<p>@@ @@</p>
+<h3>样式化表格</h3>
+<table class="wiki-table"><tbody>
+<tr><th>这是</th><th>表格</th></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>你应该老早</td><td>就知道怎么</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>做这个了吧</td></tr>
+</tbody></table>
+<p>@@ @@</p>
+<p>以下样式化表格均直接copy自<a href="https://scp-wiki-cn.wikidot.com/theme:parallel" rel="noreferrer">平行版式</a></p>
+<p>@@ @@</p>
+<div class="wiki-block">
+<table class="wiki-table"><tbody>
+<tr><th>这是</th><th>暗边缘表格</th></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>把表格放进</td><td>{{@@[[div class=&quot;table dborder&quot;]]@@}}</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>来做这个</td></tr>
+</tbody></table>
+</div>
+<p>@@ @@</p>
+<div class="wiki-block">
+<table class="wiki-table"><tbody>
+<tr><th>这是</th><th>加宽表格</th></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>把表格放进</td><td>{{@@[[div class=&quot;table wide&quot;]]@@}}</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>来做这个</td></tr>
+</tbody></table>
+</div>
+<p>@@ @@</p>
+<div class="wiki-block">
+<table class="wiki-table"><tbody>
+<tr><th>这是</th><th>三线表</th></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>把表格放进</td><td>{{@@[[div class=&quot;table three-lines&quot;]]@@}}</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>来做这个</td></tr>
+</tbody></table>
+</div>
+<p>@@ @@</p>
+<p>++* 着色</p>
+<p>参考玄武岩的样式和取色于Minecraft的各项元素进行了些许调整，其样式如下：</p>
+<p>@@ @@</p>
+<div class="wiki-block">
+<div class="wiki-block">
+<table class="wiki-table"><tbody>
+<tr><th>{{.table1（草方块）}}</th></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>= 这里是文本</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>= 这里是文本</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>= 这里是文本</td></tr>
+</tbody></table>
+</div>
+<div class="wiki-block">
+<aside class="backup-note">包含组件未归档：<code>:scp-wiki-cn:component:image-block</code></aside>
+</div>
+<div class="wiki-block">
+<table class="wiki-table"><tbody>
+<tr><th>{{.table2（水）}}</th></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>= 这里是文本</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>= 这里是文本</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>= 这里是文本</td></tr>
+</tbody></table>
+</div>
+<div class="wiki-block">
+<aside class="backup-note">包含组件未归档：<code>:scp-wiki-cn:component:image-block</code></aside>
+</div>
+<div class="wiki-block">
+<table class="wiki-table"><tbody>
+<tr><th>{{.table3（金块）}}</th></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>= 这里是文本</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>= 这里是文本</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>= 这里是文本</td></tr>
+</tbody></table>
+</div>
+<div class="wiki-block">
+<aside class="backup-note">包含组件未归档：<code>:scp-wiki-cn:component:image-block</code></aside>
+</div>
+<div class="wiki-block">
+<table class="wiki-table"><tbody>
+<tr><th>{{.table4（火把）}}</th></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>= 这里是文本</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>= 这里是文本</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>= 这里是文本</td></tr>
+</tbody></table>
+</div>
+<div class="wiki-block">
+<aside class="backup-note">包含组件未归档：<code>:scp-wiki-cn:component:image-block</code></aside>
+</div>
+<div class="wiki-block">
+<table class="wiki-table"><tbody>
+<tr><th>{{.table5（垂泪藤）}}</th></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>= 这里是文本</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>= 这里是文本</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>= 这里是文本</td></tr>
+</tbody></table>
+</div>
+<div class="wiki-block">
+<aside class="backup-note">包含组件未归档：<code>:scp-wiki-cn:component:image-block</code></aside>
+</div>
+<div class="wiki-block">
+<table class="wiki-table"><tbody>
+<tr><th>{{.table6（紫水晶）}}</th></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>= 这里是文本</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>= 这里是文本</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>= 这里是文本</td></tr>
+</tbody></table>
+</div>
+<div class="wiki-block">
+<aside class="backup-note">包含组件未归档：<code>:scp-wiki-cn:component:image-block</code></aside>
+</div>
+</div>
+<p>@@ @@</p>
+<h2>最高机密水印</h2>
+<p>这个样式是从<a href="https://scp-wiki-cn.wikidot.com/old:scp-8762" rel="noreferrer">这篇文档</a>里偷来的。</p>
+<div class="wiki-block">
+<h3>文本</h3>
+<p>文本</p>
+<hr>
+<p>文本</p>
+<p>文本</p>
+<p>大量文本</p>
+<div class="wiki-block">
+<p><strong>最高机密</strong></p>
+</div>
+<div class="wiki-block">
+<p><strong>最高机密</strong></p>
+</div>
+<div class="wiki-block">
+<p>@@[[div class=&quot;document&quot;]]@@</p>
+<p>文本</p>
+<p>@@[[div class=&quot;topsecret-desktop&quot;]]@@</p>
+<p><strong>最高机密</strong></p>
+<p>@@[[/div]]@@</p>
+<p>@@[[div class=&quot;topsecret-mobile&quot;]]@@</p>
+<p><strong>最高机密</strong></p>
+<p>@@[[/div]]@@</p>
+<p>文本</p>
+<p>文本</p>
+<p>文本</p>
+<p>大量文本</p>
+<p>@@[[/div]]@@</p>
+</div>
+</div>
+<p>@@ @@</p>
+<h2>源代码</h2>
+<details class="wiki-collapsible"><summary>+ 展开</summary>
+<p>[[code type=&quot;CSS&quot;]]</p>
+<p>@import url(&#x27;https://cdn.scpwiki.com/theme/en/basalt/normalize-min.css&#x27;);</p>
+<p>@import url(&#x27;https://cdn.scpwiki.com/theme/en/basalt/basalt-bedrock-min.css&#x27;);</p>
+<p>@import url(&#x27;https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;700;900&amp;display=swap&#x27;);</p>
+<p>:root {</p>
+<p>/* 变量 */</p>
+<p>--content-wrap-image: url(&quot;https://s21.ax1x.com/2024/07/19/pkTi3FO.jpg&quot;);</p>
+<p><s>header-title: var(</s>title);</p>
+<p>--title: &quot;SCP基金会Minecraft分部&quot;;</p>
+<p><s>header-logo: var(</s>logo);</p>
+<p><s>logo: url(&quot;http://scp-wiki-mc.wikidot.com/local</s>files/main/scp-mc-logo.svg&quot;);</p>
+<p>--title-size: 0.95rem;</p>
+<p>--subtitle-size: 0.75rem;</p>
+<p>--user-button-width: 2.25rem;</p>
+<p>--side-bar-button-width: 2.25rem;</p>
+<p><s>header-title-color: var(</s>basalt-main-text-color);</p>
+<p>--basalt-primary-color: 20, 20, 20;</p>
+<p>--basalt-secondary-color: 40, 39, 38;</p>
+<p>--basalt-tertiary-color: 44, 44, 45;</p>
+<p>--basalt-main-text-color: 254, 254, 254;</p>
+<p>--basalt-overtone: 208, 182, 235;</p>
+<p>--basalt-undertone: 133, 62, 205;</p>
+<p>--basalt-bright-element-color: 136, 89, 215;</p>
+<p>--basalt-dark-element-color: 82, 41, 163;</p>
+<p>--basalt-darker-element-color: 9, 9, 14;</p>
+<p>--basalt-alternate-color: 20, 102, 184;</p>
+<p>--basalt-positive-color: 102, 183, 19;</p>
+<p>--basalt-negative-color: 255, 48, 48;</p>
+<p>--basalt-sub-text-color: 162, 154, 155;</p>
+<p><s>header-gradient: linear-gradient(var(</s>header-gradient-rotation), rgba(var(<s>header-color-l), 0.75) 0%, rgba(var(</s>header-color-r), 0.75) 100%);</p>
+<p>--header-gradient-rotation: -30deg;</p>
+<p><s>header-color-l: var(</s>basalt-dark-element-color);</p>
+<p><s>header-color-r: var(</s>basalt-darker-element-color);</p>
+<p><s>search-icon-color: var(</s>top-bar-link-color);</p>
+<p><s>top-bar-link-color: var(</s>basalt-main-text-color);</p>
+<p><s>top-bar-dropdown-link-color: var(</s>top-bar-link-color);</p>
+<p><s>general-border-color: var(</s>basalt-secondary-color);</p>
+<p>--header-drop-shadow-opacity: 0.1;</p>
+<p>--window-border-radius: 0.5rem;</p>
+<p><s>UI-title-color: var(</s>basalt-dark-element-color);</p>
+<p>--UI-title-background-color: 244, 240, 240;</p>
+<p><s>bottom-area-text-color: var(</s>basalt-dark-element-color);</p>
+<p>--bottom-area-background-color: transparent;</p>
+<p><s>rate-module-credit-color: var(</s>basalt-overtone);</p>
+<p><s>title-border-color: var(</s>basalt-tertiary-color);</p>
+<p><s>hr-color: var(</s>basalt-secondary-color);</p>
+<p><s>image-caption-background-color: var(</s>basalt-secondary-color);</p>
+<p>--side-bar-resources-background-color: inherit;</p>
+<p>--side-bar-width: 17rem;</p>
+<p>--main-content-width: 56rem;</p>
+<p>--base-border-width: .2rem;</p>
+<p>--thin-border-width: .1rem;</p>
+<p><s>blockquote-border-width: var(</s>thin-border-width);</p>
+<p><s>license-area-divider-thickness: var(</s>base-border-width);</p>
+<p><s>tab-border-width: var(</s>thin-border-width);</p>
+<p>--owindow-title-height: 2.25rem;</p>
+<p>/* 着色调整 */</p>
+<p>--one-color: 99, 158, 57; /* 草方块 */</p>
+<p>--two-color: 13, 106, 175; /* 水 */</p>
+<p>--three-color: 242, 236, 84; /* 金块 */</p>
+<p>--four-color: 236, 141, 17; /* 火把 */</p>
+<p>--five-color: 195, 50, 44; /* 垂泪藤 */</p>
+<p>--six-color: 141, 109, 203; /* 紫水晶 */</p>
+<p>/* 基础模块 */</p>
+<p><s>basalt-th-background-color: var(</s>basalt-UI-dark-palette);</p>
+<p><s>basalt-th-text-color: var(</s>basalt-light-text-color);</p>
+<p><s>image-caption-text-color: var(</s>basalt-main-text-color);</p>
+<p><s>authorbox-background-color: var(</s>basalt-primary-color);</p>
+<p><s>floatbox-background-color: var(</s>basalt-secondary-color);</p>
+<p>--document-background-color: 253, 253, 253;</p>
+<p>--darkdocument-background-color: 30, 30, 35;</p>
+<p>}</p>
+<p>/* 顶部元素 */</p>
+<p>#header {</p>
+<p>background: var(--header-gradient);</p>
+<p>border-bottom: none;</p>
+<p>box-shadow: 0px 0px 8.5px -1px rgba(0, 0, 0, var(<s>header-drop-shadow-opacity)), 0px 0px 68px -21px rgba(0, 0, 0, calc(var(</s>header-drop-shadow-opacity) * 4));</p>
+<p>backdrop-filter: blur(0.2rem);</p>
+<p>font-family: var(--header-font);</p>
+<p>grid-template-rows: var(--header-final-height);/*这是Horm找到的解决玄武岩和基岩系列版式在你分引用时出现的吃标题等版头问题的方法*/</p>
+<p>}</p>
+<p>/*感谢Horm和TC先后都找到的元素问题*/</p>
+<p>#header a.close-menu,</p>
+<p>#header-extra-div-1,</p>
+<p>#header-extra-div-2,</p>
+<p>#header-extra-div-3 {</p>
+<p>display: none;</p>
+<p>}</p>
+<p>#header h1 a {</p>
+<p>padding-left: calc(var(--base-header-height) * 0.25);</p>
+<p>padding-right: calc(var(--base-header-height) * 0.5);</p>
+<p>}</p>
+<p>#header h1 a span::before {</p>
+<p>font-weight: 900;</p>
+<p>}</p>
+<p>#header h1 a span::after {</p>
+<p>margin-bottom: 6px;</p>
+<p>letter-spacing: 2px;</p>
+<p>font-weight: 300;</p>
+<p>}</p>
+<p>#header h1 a span {</p>
+<p>align-items: unset;</p>
+<p>text-align: unset;</p>
+<p>}</p>
+<p>#header h1 a::before {</p>
+<p>width: calc(var(--base-header-height) * .925);</p>
+<p>background-position: center left;</p>
+<p>margin-right: calc(var(--base-header-height) * -0.35);</p>
+<p>mask-image: linear-gradient(to right, #000 0%, transparent 85%);</p>
+<p>mask-size: 100% 100%;</p>
+<p>mask-position: center center;</p>
+<p>mask-repeat: no-repeat;</p>
+<p>-webkit-mask-image: linear-gradient(to right, #000 0%, transparent 85%);</p>
+<p>-webkit-mask-size: 100% 100%;</p>
+<p>-webkit-mask-position: center center;</p>
+<p>-webkit-mask-repeat: no-repeat;</p>
+<p>}</p>
+<p>#search-top-box::before {</p>
+<p>background-color: rgb(var(--basalt-UI-dark-palette));</p>
+<p>}</p>
+<p>#search-top-box-input {</p>
+<p>outline: solid 0 rgb(var(--basalt-UI-dark-palette));</p>
+<p>}</p>
+<p>#top-bar div[class*=&quot;top-bar&quot;] &gt; ul &gt; li &gt; ul::before {</p>
+<p>width: var(--base-border-width);</p>
+<p>}</p>
+<p>#top-bar div[class*=&quot;top-bar&quot;] ul li ul li.sfhover ul li a:not(:hover, :focus) {</p>
+<p>color: rgb(var(--top-bar-dropdown-link-color));</p>
+<p>}</p>
+<p>div#content-wrap::before {</p>
+<p>content: &quot;&quot;;</p>
+<p>display: block;</p>
+<p>position: static;</p>
+<p>width: auto;</p>
+<p>height: 19rem;</p>
+<p>margin-top: calc(var(--header-final-height) * -1);</p>
+<p>background-image: linear-gradient(to top, rgba(var(<s>basalt-background-color), 0.6) 0%, transparent 1rem), var(</s>content-wrap-image);</p>
+<p>background-size: cover;</p>
+<p>background-position: center;</p>
+<p>}</p>
+<p>/* 评分 */</p>
+<p>div.page-rate-widget-box,</p>
+<p>div.rate-box-with-credit-button {</p>
+<p>padding: var(--base-border-width);</p>
+<p>}</p>
+<p>div.page-rate-widget-box span.btn,</p>
+<p>div.rate-box-with-credit-button .creditButton {</p>
+<p>padding: 0;</p>
+<p>height: calc(var(<s>rate-module-button-size) + var(</s>base-border-width));</p>
+<p>margin-block-end: calc(var(--base-border-width) * -1);</p>
+<p>}</p>
+<p>div.rate-box-with-credit-button .creditButton &gt; p &gt; a::before {</p>
+<p>display: none;</p>
+<p>}</p>
+<p>div.rate-box-with-credit-button .creditButton &gt; p &gt; a::after {</p>
+<p>height: calc(100% - var(--base-border-width)) !important;</p>
+<p>background-color: rgb(var(--basalt-main-text-color));</p>
+<p>padding: 0;</p>
+<p>}</p>
+<p>div.page-rate-widget-box span.btn &gt; a,</p>
+<p>div.rate-box-with-credit-button .creditButton &gt; p &gt; a {</p>
+<p>border-block-end-width: var(--base-border-width);</p>
+<p>}</p>
+<p>div.rate-box-with-credit-button .creditButton &gt; p &gt; a {</p>
+<p>border-block-end-style: solid;</p>
+<p>border-block-end-color: transparent;</p>
+<p>}</p>
+<p>div.rate-box-with-credit-button .creditButton &gt; p &gt; a:hover {</p>
+<p>border-block-end-color: rgb(var(--rate-module-credit-color));</p>
+<p>}</p>
+<p>/* 页面元素 */</p>
+<p>div#page-title,</p>
+<p>div.meta-title {</p>
+<p>border-bottom-width: var(--base-border-width);</p>
+<p>}</p>
+<p>hr {</p>
+<p>height: var(--base-border-width);</p>
+<p>}</p>
+<p>/* 分页 */</p>
+<p>.yui-navset.yui-navset-top &gt; ul.yui-nav li {</p>
+<p>position: relative;</p>
+<p>padding: 0 8px;</p>
+<p>height: 45px;</p>
+<p>background-color: transparent;</p>
+<p>border-bottom: none;</p>
+<p>clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);</p>
+<p>background-color: rgb(var(--general-border-color));</p>
+<p>margin: 0 9px;</p>
+<p>display: flex;</p>
+<p>align-items: center;</p>
+<p>justify-content: center;</p>
+<p>text-align: center;</p>
+<p>transition: background-color 0.3s;</p>
+<p>}</p>
+<p>.yui-navset.yui-navset-top &gt; ul.yui-nav li::before,</p>
+<p>.yui-navset.yui-navset-top &gt; ul.yui-nav li::after {</p>
+<p>content: &#x27;&#x27;;</p>
+<p>position: absolute;</p>
+<p>padding: 0 8px;</p>
+<p>height: 45px;</p>
+<p>clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);</p>
+<p>background-color: transparent;</p>
+<p>border: none;</p>
+<p>}</p>
+<p>.yui-navset.yui-navset-top &gt; ul.yui-nav li:hover {</p>
+<p>background-color: rgb(var(--tab-hover-background-color));</p>
+<p>}</p>
+<p>.yui-navset.yui-navset-top &gt; ul.yui-nav li.selected {</p>
+<p>background-color: rgb(var(--tab-selected-background-color));</p>
+<p>}</p>
+<p>.yui-navset.yui-navset-top &gt; ul.yui-nav li.selected::before,</p>
+<p>.yui-navset.yui-navset-top &gt; ul.yui-nav li.selected::after {</p>
+<p>display: none;</p>
+<p>}</p>
+<p>.yui-navset.yui-navset-top &gt; ul.yui-nav li a {</p>
+<p>color: rgb(var(--basalt-main-text-color));</p>
+<p>display: flex;</p>
+<p>align-items: center;</p>
+<p>justify-content: center;</p>
+<p>padding: 0 20px;</p>
+<p>height: 100%;</p>
+<p>text-decoration: none;</p>
+<p>transition: color 0.3s, background-color 0.3s;</p>
+<p>}</p>
+<p>.yui-navset.yui-navset-top .yui-content {</p>
+<p>border-top: none;</p>
+<p>}</p>
+<p>/* 表格 */</p>
+<p>:is(:where(#page-content) table:not(.form), table.wiki-content-table) :is(th, td) {</p>
+<p>border-width: var(--thin-border-width);</p>
+<p>}</p>
+<p>:is(div.table.wide, div.table.three-lines) table.wiki-content-table {</p>
+<p>width: calc(100% - var(--thin-border-width) * 2);</p>
+<p>}</p>
+<p>div.table.three-lines table.wiki-content-table {</p>
+<p>border: solid rgb(var(--basalt-UI-dark-palette));</p>
+<p>border-width: var(--base-border-width) 0;</p>
+<p>}</p>
+<p>div.table.three-lines table.wiki-content-table :is(th, td) {</p>
+<p>border: none;</p>
+<p>color: inherit;</p>
+<p>background-color: transparent;</p>
+<p>}</p>
+<p>div.table.three-lines table.wiki-content-table tr:nth-child(1) th {</p>
+<p>border-bottom: solid var(<s>thin-border-width) rgb(var(</s>basalt-UI-dark-palette));</p>
+<p>}</p>
+<p>div.table.dborder table.wiki-content-table td {</p>
+<p>border-color: rgb(var(--basalt-UI-dark-palette));</p>
+<p>}</p>
+<p>/* 着色 */</p>
+<p>.table1 {</p>
+<p><s>basalt-UI-dark-palette: var(</s>one-color);</p>
+<p><s>basalt-undertone: var(</s>one-color);</p>
+<p>}</p>
+<p>.table2 {</p>
+<p><s>basalt-UI-dark-palette: var(</s>two-color);</p>
+<p><s>basalt-undertone: var(</s>two-color);</p>
+<p>}</p>
+<p>.table3 {</p>
+<p><s>basalt-UI-dark-palette: var(</s>three-color);</p>
+<p><s>basalt-undertone: var(</s>three-color);</p>
+<p>}</p>
+<p>.table4 {</p>
+<p><s>basalt-UI-dark-palette: var(</s>four-color);</p>
+<p><s>basalt-undertone: var(</s>four-color);</p>
+<p>}</p>
+<p>.table5 {</p>
+<p><s>basalt-UI-dark-palette: var(</s>five-color);</p>
+<p><s>basalt-undertone: var(</s>five-color);</p>
+<p>}</p>
+<p>.table6 {</p>
+<p><s>basalt-UI-dark-palette: var(</s>six-color);</p>
+<p><s>basalt-undertone: var(</s>six-color);</p>
+<p>}</p>
+<p>/* 图片块 */</p>
+<p>.image-block,</p>
+<p>.scp-image-block {</p>
+<p>border-bottom-width: var(--base-border-width);</p>
+<p>}</p>
+<p>/* 标签 */</p>
+<p>#main-content &gt; .page-tags &gt; span a {</p>
+<p>padding: 5px 10px;</p>
+<p>clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);</p>
+<p>}</p>
+<p>/* 引用块及其他页面元素 */</p>
+<p>:is(div.blockquote, blockquote) {</p>
+<p>color: rgb(var(--basalt-main-text-color));</p>
+<p>overflow: auto;</p>
+<p>}</p>
+<p>:is(div.blockquote, blockquote):has(div.floatbox) {</p>
+<p>overflow: unset;</p>
+<p>}</p>
+<p>#page-content div.notation {</p>
+<p>max-width: 45rem;</p>
+<p>}</p>
+<p>div.notation {</p>
+<p>display: block;</p>
+<p>margin-inline: auto;</p>
+<p>margin-block: 1.4rem;</p>
+<p>padding-inline: 1.1rem;</p>
+<p>padding-block: 0.9rem;</p>
+<p>background-color: rgb(var(--basalt-secondary-color));</p>
+<p>border-left: solid 0.25rem rgb(var(--general-border-color));</p>
+<p>border-right: solid 0.25rem rgb(var(--general-border-color));</p>
+<p>color: rgb(var(--basalt-main-text-color));</p>
+<p>}</p>
+<p>#page-content div.modal {</p>
+<p>max-width: 57rem;</p>
+<p>}</p>
+<p>div.modal {</p>
+<p>display: block;</p>
+<p>margin-inline: auto;</p>
+<p>margin-block: 1.4rem;</p>
+<p>padding-inline: 1.5rem;</p>
+<p>padding-block: 0.5rem;</p>
+<p>background-color: rgb(var(--basalt-primary-color));</p>
+<p>border: solid 0.2rem rgb(var(--general-border-color));</p>
+<p>color: rgb(var(--basalt-main-text-color));</p>
+<p>}</p>
+<p>#page-content div.smallmodal {</p>
+<p>max-width: 47rem;</p>
+<p>}</p>
+<p>div.smallmodal {</p>
+<p>display: block;</p>
+<p>margin-inline: auto;</p>
+<p>margin-block: 1.4rem;</p>
+<p>padding-inline: 1rem;</p>
+<p>padding-block: 0.2rem;</p>
+<p>background-color: rgb(var(--basalt-primary-color));</p>
+<p>border: solid 0.15rem rgb(var(--general-border-color));</p>
+<p>color: rgb(var(--basalt-main-text-color));</p>
+<p>}</p>
+<p>#page-content div:is(.jotting, .transcript) {</p>
+<p>max-width: 42rem;</p>
+<p>}</p>
+<p>div:is(.jotting, .transcript) {</p>
+<p>display: block;</p>
+<p>margin-inline: auto;</p>
+<p>margin-block: 1.4rem;</p>
+<p>padding-inline: 1.5rem;</p>
+<p>padding-block: 0.2rem;</p>
+<p>background-color: rgb(var(--basalt-secondary-color));</p>
+<p>border: dashed 0.15rem rgb(var(--general-border-color));</p>
+<p>color: rgb(var(--basalt-main-text-color));</p>
+<p>}</p>
+<p>#page-content div.papernote {</p>
+<p>max-width: 30rem;</p>
+<p>}</p>
+<p>div.papernote {</p>
+<p>display: block;</p>
+<p>margin-inline: auto;</p>
+<p>margin-block: 1.4rem;</p>
+<p>padding: 1rem 2rem;</p>
+<p>background-color: rgb(var(--basalt-tertiary-color));</p>
+<p>color: rgb(var(--basalt-main-text-color));</p>
+<p>}</p>
+<p>#page-content div:is(.document, .darkdocument) {</p>
+<p>max-width: 45rem;</p>
+<p>}</p>
+<p>div:is(.document, .darkdocument) {</p>
+<p>display: block;</p>
+<p>margin-inline: auto;</p>
+<p>margin-block: 1.5em;</p>
+<p>padding: 1.5rem;</p>
+<p>position: relative;</p>
+<p>--posX: -20vw;</p>
+<p>}</p>
+<p>div.document {</p>
+<p>background-color: rgb(var(--document-background-color));</p>
+<p>box-shadow: 0px 1px 1.9px -4px rgba(0, 0, 0, 0.1), 0px 6px 15px -4px rgba(0, 0, 0, 0.2);</p>
+<p>color: rgb(50, 50, 53);</p>
+<p>}</p>
+<p>div.darkdocument {</p>
+<p>background-color: rgb(var(--darkdocument-background-color));</p>
+<p>box-shadow: 0px 1px 1.9px -4px rgba(0, 0, 10, 0.8), 0px 6px 15px -4px rgba(0, 0, 7, 0.9);</p>
+<p>color: rgb(195, 195, 200);</p>
+<p>}</p>
+<p>div:is(.document, .darkdocument)::before,</p>
+<p>div:is(.document, .darkdocument)::after {</p>
+<p>content: &quot;&quot;;</p>
+<p>height: 98%;</p>
+<p>position: absolute;</p>
+<p>width: 98%;</p>
+<p>z-index: -1;</p>
+<p>}</p>
+<p>div:is(.document, .darkdocument)::before {</p>
+<p>left: -5px;</p>
+<p>top: 4px;</p>
+<p>transform: rotate(-2.5deg);</p>
+<p>}</p>
+<p>div:is(.document, .darkdocument)::after {</p>
+<p>right: -3px;</p>
+<p>top: 1px;</p>
+<p>transform: rotate(1.4deg);</p>
+<p>}</p>
+<p>div:is(.document)::before,</p>
+<p>div:is(.document)::after {</p>
+<p>background-color: rgb(var(--document-background-color));</p>
+<p>}</p>
+<p>div:is(.darkdocument)::before,</p>
+<p>div:is(.darkdocument)::after {</p>
+<p>background-color: rgb(var(--darkdocument-background-color));</p>
+<p>opacity: 90%;</p>
+<p>}</p>
+<p>div.document::before {</p>
+<p>box-shadow: 0px 1px 1.9px -4px rgba(0, 0, 0, 0.1), 0px 6px 15px -4px rgba(0, 0, 0, 0.1);</p>
+<p>}</p>
+<p>div.document::after {</p>
+<p>box-shadow: 0px 1px 1.9px -4px rgba(0, 0, 0, 0.1), 0px 6px 15px -4px rgba(0, 0, 0, 0.05);</p>
+<p>}</p>
+<p>div.darkdocument::before {</p>
+<p>box-shadow: 0px 1px 1.9px -4px rgba(0, 0, 10, 0.8), 0px 6px 15px -4px rgba(0, 0, 7, 0.9);</p>
+<p>}</p>
+<p>div.darkdocument::after {</p>
+<p>box-shadow: 0px 1px 1.9px -4px rgba(0, 0, 10, 0.8), 0px 6px 15px -4px rgba(0, 0, 7, 0.05);</p>
+<p>}</p>
+<p>@media only screen and (max-width: 1020px) {</p>
+<p>div:is(.document, .darkdocument)::before,</p>
+<p>div:is(.document, .darkdocument)::after {</p>
+<p>display: none;</p>
+<p>}</p>
+<p>}</p>
+<p>#page-content div.floatbox {</p>
+<p>background-color: rgb(var(--floatbox-background-color));</p>
+<p>float: left;</p>
+<p>max-width: calc(var(--main-content-width) / 2.25);</p>
+<p>box-sizing: border-box;</p>
+<p>margin: 0.25rem 1.25rem;</p>
+<p>margin-left: clamp(calc(var(--main-content-width) / -4.5), calc((87.5vw - 95%) / -2), 0rem);</p>
+<p>padding-inline: 1.2rem;</p>
+<p>padding-block: 0.5rem;</p>
+<p>font-size: 0.9125em;</p>
+<p>border-radius: 7px;</p>
+<p>border: solid 0.12rem rgba(var(--general-border-color), 0.4);</p>
+<p>}</p>
+<p>#page-content div.floatbox.right {</p>
+<p>float: right;</p>
+<p>margin-left: 1.25rem;</p>
+<p>margin-right: clamp(calc(var(--main-content-width) / -4.5), calc((87.5vw - 95%) / -2), 0rem);</p>
+<p>}</p>
+<p>@media only screen and (max-width: 640px) {</p>
+<p>#page-content div:is(.floatbox, .floatbox.right) {</p>
+<p>float: none;</p>
+<p>margin: 0.5rem auto;</p>
+<p>width: 100%;</p>
+<p>}</p>
+<p>}</p>
+<p>/* 边框元素 */</p>
+<p>.owindow .title,</p>
+<p>#side-bar .side-block .heading,</p>
+<p>#side-bar .collapsible-block-unfolded a.collapsible-block-link,</p>
+<p>#side-bar .collapsible-block-folded a.collapsible-block-link {</p>
+<p>color: rgb(var(--UI-title-color));</p>
+<p>background-color: rgb(var(--UI-title-background-color));</p>
+<p>border-bottom: solid var(<s>base-border-width) rgb(var(</s>UI-title-color));</p>
+<p>}</p>
+<p>.owindow .title {</p>
+<p>height: var(--owindow-title-height);</p>
+<p>}</p>
+<p>.owindow .button-bar &gt; a[onclick*=&quot;cleanAll&quot;] {</p>
+<p>width: var(--owindow-title-height);</p>
+<p>height: var(--owindow-title-height);</p>
+<p>}</p>
+<p>.owindow .button-bar &gt; a[onclick*=&quot;cleanAll&quot;]::after {</p>
+<p>background-color: rgb(var(--UI-title-color));</p>
+<p>transition: background-color 125ms ease-out;</p>
+<p>}</p>
+<p>.owindow .button-bar &gt; a[onclick*=&quot;cleanAll&quot;]:hover::after {</p>
+<p>background-color: rgb(var(--UI-title-background-color));</p>
+<p>}</p>
+<p>.owindow &gt; .content.modal-body &gt; img + h1 + table {</p>
+<p>border-width: var(--thin-border-width) 0;</p>
+<p>}</p>
+<p>.owindow &gt; .content.modal-body &gt; img + h1 + table &gt; tbody &gt; tr:not(:last-child) {</p>
+<p>border-bottom-width: var(--thin-border-width);</p>
+<p>}</p>
+<p>.owindow .button-bar &gt; a:not([onclick*=&quot;cleanAll&quot;]),</p>
+<p>.owindow div[style*=&quot;margin-top&quot;] a {</p>
+<p>border-width: var(--thin-border-width);</p>
+<p>}</p>
+<p>#footer {</p>
+<p>border-top: outset var(<s>base-border-width) rgba(var(</s>general-border-color), .2);</p>
+<p>}</p>
+<p>div[id*=&quot;page-options-bottom&quot;] &gt; a {</p>
+<p>border-bottom: solid var(<s>base-border-width) rgb(var(</s>general-border-color));</p>
+<p>}</p>
+<p>div#main-content .pager .pager-no::after {</p>
+<p>height: var(--base-border-width);</p>
+<p>}</p>
+<p>#history-subarea a.action-area-close,</p>
+<p>#view-diff-div a.button,</p>
+<p>div:where(#action-area, .buttons) :is(a, input).btn {</p>
+<p>border-width: var(--thin-border-width);</p>
+<p>}</p>
+<p>#action-area &gt; h1::after,</p>
+<p>#action-area &gt; h1::before,</p>
+<p>#history-subarea &gt; h2::after,</p>
+<p>#history-subarea &gt; h2::before,</p>
+<p>#revision-list .page-history tr[id*=&quot;revision-row&quot;]::before {</p>
+<p>height: var(--thin-border-width);</p>
+<p>}</p>
+<p>#history-form-1 &gt; table.form &gt; tbody &gt; tr:first-child::before {</p>
+<p>height: var(--base-border-width);</p>
+<p>}</p>
+<p>/* 脚注 */</p>
+<p>.bibitems::before,</p>
+<p>.footnotes-footer::before {</p>
+<p>width: 100%;</p>
+<p>height: var(--base-border-width);</p>
+<p>}</p>
+<p>.bibitems .title,</p>
+<p>.footnotes-footer .title {</p>
+<p>font-size: 0.8rem;</p>
+<p>line-height: 1.5rem;</p>
+<p>height: 1.5rem;</p>
+<p>padding-block-start: 0;</p>
+<p>padding-block-end: 0;</p>
+<p>inset-block-start: calc(-1.5rem + var(--base-border-width));</p>
+<p>margin-block-end: -1rem;</p>
+<p>}</p>
+<p>.bibitems,</p>
+<p>.footnotes-footer {</p>
+<p>margin-block-start: 2rem;</p>
+<p>}</p>
+<p>.hovertip .content .footnote .f-heading,</p>
+<p>.hovertip .content .reference .r-heading {</p>
+<p>font-size: 0.8rem;</p>
+<p>line-height: 1.5rem;</p>
+<p>height: 1.5rem;</p>
+<p>padding-block-start: 0;</p>
+<p>padding-block-end: 0;</p>
+<p>inset-block-start: calc(-1.5rem + var(--base-border-width));</p>
+<p>inset-inline-start: 0;</p>
+<p>margin-block-end: -1rem;</p>
+<p>}</p>
+<p>.hovertip {</p>
+<p>border: none !important;</p>
+<p>}</p>
+<p>.hovertip .content .footnote::before,</p>
+<p>.hovertip .content .reference::before {</p>
+<p>width: 100%;</p>
+<p>height: var(--base-border-width);</p>
+<p>inset-inline-start: 0;</p>
+<p>inset-block-start: 0;</p>
+<p>}</p>
+<p>/* 最高机密 */</p>
+<p>.topsecret-desktop {</p>
+<p>position: absolute;</p>
+<p>font-size: 600%;</p>
+<p>z-index: 1;</p>
+<p>transform: translate(9.375%, -75%) rotate(-22.5deg);</p>
+<p>opacity: 0.25;</p>
+<p>color: #C40233;</p>
+<p>height: auto;</p>
+<p>}</p>
+<p>.topsecret-mobile {</p>
+<p>position: absolute;</p>
+<p>font-size: 300%;</p>
+<p>z-index: 1;</p>
+<p>transform: translate(9.375%, -75%) rotate(-22.5deg);</p>
+<p>opacity: 0.25;</p>
+<p>color: #C40233;</p>
+<p>height: 0px;</p>
+<p>overflow: hidden;</p>
+<p>}</p>
+<p>@media only screen and (max-width: 600px) {</p>
+<p>.topsecret-desktop {</p>
+<p>height: 0px;</p>
+<p>overflow: hidden;</p>
+<p>}</p>
+<p>.topsecret-mobile {</p>
+<p>height: auto;</p>
+<p>}</p>
+<p>}</p>
+<p>[[/code]]</p>
+<p>[[code type=&quot;CSS&quot;]]</p>
+<p>/*===预设：幽影祭坛===*/</p>
+<p>:root {</p>
+<p>--content-wrap-image: url(&quot;https://s21.ax1x.com/2024/07/17/pkopG60.jpg&quot;);</p>
+<p>--basalt-primary-color: 20, 20, 20;</p>
+<p>--basalt-secondary-color: 40, 39, 38;</p>
+<p>--basalt-tertiary-color: 44, 44, 45;</p>
+<p>--basalt-main-text-color: 211,217,207;</p>
+<p>--basalt-overtone: 97,153,85;</p>
+<p>--basalt-undertone: 54,215,222;</p>
+<p><s>header-color-l: var(</s>basalt-dark-element-color);</p>
+<p><s>header-color-r: var(</s>basalt-dark-element-color);</p>
+<p>--basalt-bright-element-color: 59,238,230;</p>
+<p>--basalt-dark-element-color: 26,132,135;</p>
+<p>--basalt-darker-element-color: 11,27,29;</p>
+<p>--basalt-alternate-color: 255,132,0;</p>
+<p>--basalt-sub-text-color: 155,154,162;</p>
+<p>}</p>
+<p>[[/code]]</p>
+<p>[[code type=&quot;CSS&quot;]]</p>
+<p>/*===预设：石英===*/</p>
+<p>:root {</p>
+<p>--content-wrap-image: url(&quot;https://s21.ax1x.com/2024/07/22/pk7cAnf.jpg&quot;);</p>
+<p>--basalt-primary-color: 252, 252, 252;</p>
+<p>--basalt-secondary-color: 240, 240, 244;</p>
+<p>--basalt-tertiary-color: 229, 229, 238;</p>
+<p>--basalt-main-text-color: 35, 35, 38;</p>
+<p>--basalt-overtone: 10, 10, 11;</p>
+<p><s>basalt-undertone: var(</s>basalt-bright-element-color);</p>
+<p>--header-color-l: 241,241,245;</p>
+<p>--header-color-r: 241,241,245;</p>
+<p>--basalt-bright-element-color: 176,196,222;</p>
+<p>--basalt-dark-element-color: 129,141,170;</p>
+<p>--basalt-alternate-color: 255,132,0;</p>
+<p>--basalt-sub-text-color: 155,154,162;</p>
+<p>}</p>
+<p>[[/code]]</p>
+</details></section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>[[include :scp-wiki-mc:theme:obsidian quartz=*]]
+
+
+
+[[module CSS]]
+
+/* 预设展示，偷窃并修改自平行版式 */
+
+div.setblock {
+
+    position: relative;
+
+    padding: 2rem 1.5rem;
+
+    font-family: var(--mono-font);
+
+    color: rgb(var(--block-color));
+
+    background-color: rgb(var(--block-bg));
+
+    border: solid var(--base-border-width) rgb(var(--block-border));
+
+    min-height: 6rem;
+
+    margin: 3rem 0 3rem 6rem;
+
+    box-sizing: border-box;
+
+}
+
+
+
+div.setblock::before {
+
+    content: &quot;&quot;;
+
+    display: block;
+
+    position: absolute;
+
+    top: calc(var(--base-border-width)* -17);
+
+    left: -5rem;
+
+    width: 11rem;
+
+    height: calc(79% + var(--base-border-width)* -4);
+
+    background-image: var(--content-wrap-image);
+
+    background-size: 180% auto, 100%, 30%;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+}
+
+
+
+@media only screen and (max-width: 1020px) {
+
+    div.setblock {
+
+        padding: 3rem 1.5rem;
+
+    }
+
+}
+
+
+
+div.setblock.obsidian {
+
+    --content-wrap-image: url(&quot;https://s21.ax1x.com/2024/07/19/pkTi3FO.jpg&quot;);
+
+
+
+    --block-color: 254, 254, 254;
+
+    --block-bg: 20,20,20;
+
+    --block-border: 132,62,203;
+
+}
+
+
+
+div.setblock.sea {
+
+    --content-wrap-image: url(&quot;https://s21.ax1x.com/2024/07/17/pkopG60.jpg&quot;);
+
+
+
+    --block-color: 254, 254, 254;
+
+    --block-bg: 11,27,29;
+
+    --block-border: 59,238,230;
+
+
+
+    --header-color-l: var(--basalt-dark-element-color);
+
+    --header-color-r: var(--basalt-dark-element-color);
+
+}
+
+
+
+div.setblock.quartz {
+
+    --content-wrap-image: url(&quot;https://s21.ax1x.com/2024/07/22/pk7cAnf.jpg&quot;);
+
+
+
+    --block-color: 20, 20, 20;
+
+    --block-bg: 239,239,243;
+
+    --block-border: 176,196,222;
+
+
+
+    --header-color-l: var(--basalt-dark-element-color);
+
+    --header-color-r: var(--basalt-dark-element-color);
+
+}
+
+[[/module]]
+
+
+
+[[=]]
+
+[[module Rate]]
+
+
+
+
+
+[[size 120%]]{{**郑重鸣谢：**}}[[*user Dr.Hormress]][[/size]]
+
+
+
+感谢他对[[[theme:obsidian-arc|旧版黑曜石版式]]]提出的修改建议和真切指导，
+
+
+
+以及被我频繁骚扰的[[*user Tengurthy Clotsfoot]]。
+
+
+
+@@ @@
+
+
+
+[[size 120%]]**在任意页面中：**[[/size]]
+
+[[size 160%]]**{{@@[[include @@[[span style=&quot;opacity: 70%;&quot;]]@@:scp-wiki-mc:@@[[/span]]@@theme:obsidian]]@@}}**[[/size]]
+
+[[/=]]
+
+
+
++* 信息
+
+
+
+**黑曜石**是在[http://scp-wiki-cn.wikidot.com/theme:basalt 玄武岩]和[http://scp-wiki-cn.wikidot.com/theme:bedrock 基岩]的框架上，糅合了[https://scp-wik-cni.wikidot.com/scp8000contesthub SCP8000竞赛中心页版式]以及[[*user Dr.Hormress]]的[https://scp-wiki-cn.wikidot.com/theme:parallel 平行版式]--制作--照搬的一款适应MC主题的美学版式。
+
+
+
+[[div class=&quot;floatbox right&quot;]]
+
+本页面还有[[[theme:obsidian|黑曜石版本]]]和[[[theme:obsidian-stealth-ender-altar|幽影祭坛版本]]]。
+
+[[/div]]
+
+
+
+[[div style=&quot;margin-top: 6.5rem;&quot;]]
+
+[[/div]]
+
+
+
++* 版式设置
+
+
+
+与上述提到的版式一样，你可以在 @@[[include]]@@ 模块里添加**版式设置**来修改黑曜石的方方面面。
+
+@@ @@
+
+
+
+**{{@@[[include @@[[span style=&quot;opacity: 70%;&quot;]]@@:scp-wiki-mc:@@[[/span]]@@theme:obsidian @@##green|版式设置##@@]]@@}}**
+
+
+
+**{{@@[[include @@[[span style=&quot;opacity: 70%;&quot;]]@@:scp-wiki-mc:@@[[/span]]@@theme:obsidian @@##green|版式设置##|##red|另一个版式设置##@@]]@@}}**
+
+
+
+@@ @@
+
+
+
+截至当前版本的所有版式设置有：
+
+
+
+++++++ 基本设置
+
+* **{{no-title-border=a}}**[[span class=&quot;noclick&quot;]]@@ @@ @@ @@[[/span]]去除标题分割线
+
+* **{{wide=a}}**[[span class=&quot;noclick&quot;]]@@ @@ @@ @@[[/span]]加宽页面
+
+* **{{hidetitle=a}}**[[span class=&quot;noclick&quot;]]@@ @@ @@ @@[[/span]]去除页面标题
+
+* **{{centertitle=a}}**[[span class=&quot;noclick&quot;]]@@ @@ @@ @@[[/span]]居中页面标题
+
+* **{{no-content-wrap-image=a}}**[[span class=&quot;noclick&quot;]]@@ @@ @@ @@[[/span]]去除版头图片
+
+
+
+++++++ 主题预设
+
+
+
+[[div class=&quot;setblock obsidian&quot;]]
+
+++++* 黑曜石
+
+* @@无需另行引用@@[[span class=&quot;noclick&quot;]]@@ @@ @@ @@[[/span]]灵感及配色来源：{{黑曜石、哭泣的黑曜石、下界传送门}}
+
+[[/div]]
+
+
+
+[[div class=&quot;setblock sea&quot;]]
+
+++++* 幽影祭坛
+
+* @@stealth-ender-altar=*@@[[span class=&quot;noclick&quot;]]@@ @@ @@ @@[[/span]]灵感及配色来源：{{幽匿系列方块、末影之眼}}
+
+[[/div]]
+
+
+
+[[div class=&quot;setblock quartz&quot;]]
+
+++++* 石英
+
+* @@quartz=*@@[[span class=&quot;noclick&quot;]]@@ @@ @@ @@[[/span]]灵感及配色来源：{{石英、灰色混凝土、淡灰色混凝土}}
+
+[[/div]]
+
+
+
++* 页面元素
+
+
+
+关于引用块等元素和玄武岩基本一致，故不过多赘述。
+
+
+
+__打算做一些MC分部自己的备忘录，但这需要大量的LOGO和图标，所以先放在这里等待有朝一日。目前分部已有的部门LOGO主要在[[[ytzjtzsj|这里]]]和作者的自设作品中。__
+
+
+
+@@ @@
+
+
+
+[[include :scp-wiki-cn:component:image-block name=http://scp-wiki-mc.wikidot.com/local--files/main/scp-mc-logo.svg|caption=插图方块。|width=280px]]
+
+
+
+
+
+可通过六个连字符“@@------@@”创建水平分割线。若它未被放在其他部件（诸如引用块）中，则会左右延伸贯穿页面。
+
+
+
+标题可通过在一行字起始处输入 1 至 6 个加号“+”来创建。
+
+
+
++* 1 级标题
+
+
+
+++* 2 级标题
+
+
+
++++* 3 级标题
+
+
+
+++++* 4 级标题
+
+
+
++++++* 5 级标题
+
+
+
+++++++* 6 级标题
+
+
+
+@@ @@
+
+
+
+[[tabview]]
+
+[[tab 分页]]
+
+这是分页（Tab View）。
+
+[[/tab]]
+
+[[tab 分页]]
+
+嘿看，这里有更多的文本。
+
+
+
+多么精巧绝伦。
+
+[[/tab]]
+
+[[tab 长 Tab]]
+
+这是一个长的 tab，它有很多文字。
+
+
+
+这是一个长的 tab，它有很多文字。
+
+
+
+这是一个长的 tab，它有很多文字。
+
+
+
+这是一个长的 tab，它有很多文字。
+
+
+
+这是一个长的 tab，它有很多文字。
+
+
+
+这是一个长的 tab，它有很多文字。
+
+
+
+这是一个长的 tab，它有很多文字。
+
+
+
+这是一个长的 tab，它有很多文字。
+
+
+
+这是一个长的 tab，它有很多文字。
+
+
+
+这是一个长的 tab，它有很多文字。
+
+
+
+这是一个长的 tab，它有很多文字。
+
+
+
+这是一个长的 tab，它有很多文字。
+
+[[/tab]]
+
+[[tab 这个 tab 因为某些古怪的原因而拥有一个特别特别长的名字。我想知道为什么？这真的很奇怪。]]
+
+的确很奇怪。
+
+[[/tab]]
+
+[[tab 空 Tab]]
+
+[[/tab]]
+
+[[tab 空 Tab]]
+
+[[/tab]]
+
+[[tab 空 Tab]]
+
+[[/tab]]
+
+[[tab 空 Tab]]
+
+[[/tab]]
+
+[[tab 空 Tab]]
+
+我想念我们能够信任彼此的日子。
+
+[[/tab]]
+
+[[/tabview]]
+
+
+
+@@ @@
+
+
+
+++ 样式化表格
+
+
+
+||~ 这是 ||~ 表格 ||
+
+||你应该老早 || 就知道怎么 ||
+
+||||做这个了吧 ||
+
+
+
+@@ @@
+
+以下样式化表格均直接copy自[https://scp-wiki-cn.wikidot.com/theme:parallel 平行版式]
+
+@@ @@
+
+
+
+[[div class=&quot;table dborder&quot;]]
+
+||~ 这是 ||~ 暗边缘表格 ||
+
+|| 把表格放进 || {{@@[[div class=&quot;table dborder&quot;]]@@}} ||
+
+||||来做这个 ||
+
+[[/div]]
+
+
+
+@@ @@
+
+
+
+[[div class=&quot;table wide&quot;]]
+
+||~ 这是 ||~ 加宽表格 ||
+
+|| 把表格放进 || {{@@[[div class=&quot;table wide&quot;]]@@}} ||
+
+||||来做这个 ||
+
+[[/div]]
+
+
+
+@@ @@
+
+
+
+[[div class=&quot;table three-lines&quot;]]
+
+||~ 这是 ||~ 三线表 ||
+
+|| 把表格放进 || {{@@[[div class=&quot;table three-lines&quot;]]@@}} ||
+
+||||来做这个 ||
+
+[[/div]]
+
+
+
+@@ @@
+
+
+
+++* 着色
+
+
+
+参考玄武岩的样式和取色于Minecraft的各项元素进行了些许调整，其样式如下：
+
+
+
+@@ @@
+
+
+
+[[div class=&quot;Parallel-ACS&quot; style=&quot;display: flex; flex-flow: row wrap; gap: 2.5rem;&quot;]]
+
+
+
+[[div class=&quot;table1&quot;]]
+
+||~ {{.table1（草方块）}} ||
+
+||= 这里是文本 ||
+
+||= 这里是文本 ||
+
+||= 这里是文本 ||
+
+[[/div]]
+
+
+
+[[div class=&quot;table1&quot;]]
+
+[[include :scp-wiki-cn:component:image-block name=http://scp-wiki-mc.wikidot.com/local--files/main/scp-mc-logo.svg|caption=**{{.table1}}**|width=100px]]
+
+[[/div]]
+
+
+
+[[div class=&quot;table2&quot;]]
+
+||~ {{.table2（水）}} ||
+
+||= 这里是文本 ||
+
+||= 这里是文本 ||
+
+||= 这里是文本 ||
+
+[[/div]]
+
+
+
+[[div class=&quot;table2&quot;]]
+
+[[include :scp-wiki-cn:component:image-block name=http://scp-wiki-mc.wikidot.com/local--files/main/scp-mc-logo.svg|caption=**{{.table2}}**|width=100px]]
+
+[[/div]]
+
+
+
+[[div class=&quot;table3&quot;]]
+
+||~ {{.table3（金块）}} ||
+
+||= 这里是文本 ||
+
+||= 这里是文本 ||
+
+||= 这里是文本 ||
+
+[[/div]]
+
+
+
+[[div class=&quot;table3&quot;]]
+
+[[include :scp-wiki-cn:component:image-block name=http://scp-wiki-mc.wikidot.com/local--files/main/scp-mc-logo.svg|caption=**{{.table3}}**|width=100px]]
+
+[[/div]]
+
+
+
+[[div class=&quot;table4&quot;]]
+
+||~ {{.table4（火把）}} ||
+
+||= 这里是文本 ||
+
+||= 这里是文本 ||
+
+||= 这里是文本 ||
+
+[[/div]]
+
+
+
+[[div class=&quot;table4&quot;]]
+
+[[include :scp-wiki-cn:component:image-block name=http://scp-wiki-mc.wikidot.com/local--files/main/scp-mc-logo.svg|caption=**{{.table4}}**|width=100px]]
+
+[[/div]]
+
+
+
+[[div class=&quot;table5&quot;]]
+
+||~ {{.table5（垂泪藤）}} ||
+
+||= 这里是文本 ||
+
+||= 这里是文本 ||
+
+||= 这里是文本 ||
+
+[[/div]]
+
+
+
+[[div class=&quot;table5&quot;]]
+
+[[include :scp-wiki-cn:component:image-block name=http://scp-wiki-mc.wikidot.com/local--files/main/scp-mc-logo.svg|caption=**{{.table5}}**|width=100px]]
+
+[[/div]]
+
+
+
+[[div class=&quot;table6&quot;]]
+
+||~ {{.table6（紫水晶）}} ||
+
+||= 这里是文本 ||
+
+||= 这里是文本 ||
+
+||= 这里是文本 ||
+
+[[/div]]
+
+
+
+[[div class=&quot;table6&quot;]]
+
+[[include :scp-wiki-cn:component:image-block name=http://scp-wiki-mc.wikidot.com/local--files/main/scp-mc-logo.svg|caption=**{{.table6}}**|width=100px]]
+
+[[/div]]
+
+
+
+[[/div]]
+
+
+
+@@ @@
+
+
+
++ 最高机密水印
+
+
+
+这个样式是从[https://scp-wiki-cn.wikidot.com/old:scp-8762 这篇文档]里偷来的。
+
+
+
+[[div class=&quot;document&quot;]]
+
+
+
+++ 文本
+
+
+
+
+
+文本
+
+
+
+------
+
+
+
+文本
+
+
+
+文本
+
+
+
+大量文本
+
+
+
+[[div class=&quot;topsecret-desktop&quot;]]
+
+**最高机密**
+
+[[/div]]
+
+[[div class=&quot;topsecret-mobile&quot;]]
+
+**最高机密**
+
+[[/div]]
+
+
+
+[[div class=&quot;blockquote&quot;]]
+
+@@[[div class=&quot;document&quot;]]@@
+
+文本
+
+@@[[div class=&quot;topsecret-desktop&quot;]]@@
+
+**最高机密**
+
+@@[[/div]]@@
+
+@@[[div class=&quot;topsecret-mobile&quot;]]@@
+
+**最高机密**
+
+@@[[/div]]@@
+
+文本
+
+
+
+文本
+
+
+
+文本
+
+
+
+大量文本
+
+
+
+@@[[/div]]@@
+
+[[/div]]
+
+[[/div]]
+
+
+
+@@ @@
+
+
+
++ 源代码
+
+
+
+[[collapsible show=&quot;+ 展开&quot; hide=&quot;- 收起&quot;]]
+
+[[code type=&quot;CSS&quot;]]
+
+@import url(&#x27;https://cdn.scpwiki.com/theme/en/basalt/normalize-min.css&#x27;);
+
+@import url(&#x27;https://cdn.scpwiki.com/theme/en/basalt/basalt-bedrock-min.css&#x27;);
+
+@import url(&#x27;https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;700;900&amp;display=swap&#x27;);
+
+
+
+:root {
+
+    /* 变量 */
+
+    --content-wrap-image: url(&quot;https://s21.ax1x.com/2024/07/19/pkTi3FO.jpg&quot;);
+
+
+
+    --header-title: var(--title);
+
+    --title: &quot;SCP基金会Minecraft分部&quot;;
+
+    --header-logo: var(--logo);
+
+    --logo: url(&quot;http://scp-wiki-mc.wikidot.com/local--files/main/scp-mc-logo.svg&quot;);
+
+
+
+    --title-size: 0.95rem;
+
+    --subtitle-size: 0.75rem;
+
+    --user-button-width: 2.25rem;
+
+    --side-bar-button-width: 2.25rem;
+
+
+
+    --header-title-color: var(--basalt-main-text-color);
+
+
+
+    --basalt-primary-color: 20, 20, 20;
+
+    --basalt-secondary-color: 40, 39, 38;
+
+    --basalt-tertiary-color: 44, 44, 45;
+
+    --basalt-main-text-color: 254, 254, 254;
+
+    --basalt-overtone: 208, 182, 235;
+
+    --basalt-undertone: 133, 62, 205;
+
+
+
+    --basalt-bright-element-color: 136, 89, 215;
+
+    --basalt-dark-element-color: 82, 41, 163;
+
+    --basalt-darker-element-color: 9, 9, 14;
+
+    --basalt-alternate-color: 20, 102, 184;
+
+    --basalt-positive-color: 102, 183, 19;
+
+    --basalt-negative-color: 255, 48, 48;
+
+    --basalt-sub-text-color: 162, 154, 155;
+
+
+
+    --header-gradient: linear-gradient(var(--header-gradient-rotation), rgba(var(--header-color-l), 0.75) 0%, rgba(var(--header-color-r), 0.75) 100%);
+
+    --header-gradient-rotation: -30deg;
+
+    --header-color-l: var(--basalt-dark-element-color);
+
+    --header-color-r: var(--basalt-darker-element-color);
+
+
+
+    --search-icon-color: var(--top-bar-link-color);
+
+
+
+    --top-bar-link-color: var(--basalt-main-text-color);
+
+    --top-bar-dropdown-link-color: var(--top-bar-link-color);
+
+
+
+    --general-border-color: var(--basalt-secondary-color);
+
+
+
+    --header-drop-shadow-opacity: 0.1;
+
+    --window-border-radius: 0.5rem;
+
+
+
+    --UI-title-color: var(--basalt-dark-element-color);
+
+    --UI-title-background-color: 244, 240, 240;
+
+
+
+    --bottom-area-text-color: var(--basalt-dark-element-color);
+
+    --bottom-area-background-color: transparent;
+
+
+
+    --rate-module-credit-color: var(--basalt-overtone);
+
+    --title-border-color: var(--basalt-tertiary-color);
+
+    --hr-color: var(--basalt-secondary-color);
+
+
+
+    --image-caption-background-color: var(--basalt-secondary-color);
+
+
+
+    --side-bar-resources-background-color: inherit;
+
+
+
+    --side-bar-width: 17rem;
+
+    --main-content-width: 56rem;
+
+
+
+    --base-border-width: .2rem;
+
+    --thin-border-width: .1rem;
+
+    --blockquote-border-width: var(--thin-border-width);
+
+    --license-area-divider-thickness: var(--base-border-width);
+
+    --tab-border-width: var(--thin-border-width);
+
+
+
+    --owindow-title-height: 2.25rem;
+
+
+
+    /* 着色调整 */
+
+    --one-color: 99, 158, 57; /* 草方块 */
+
+    --two-color: 13, 106, 175; /* 水 */
+
+    --three-color: 242, 236, 84; /* 金块 */
+
+    --four-color: 236, 141, 17; /* 火把 */
+
+    --five-color: 195, 50, 44; /* 垂泪藤 */
+
+    --six-color: 141, 109, 203; /* 紫水晶 */
+
+
+
+    /* 基础模块 */
+
+    --basalt-th-background-color: var(--basalt-UI-dark-palette);
+
+    --basalt-th-text-color: var(--basalt-light-text-color);
+
+    --image-caption-text-color: var(--basalt-main-text-color);
+
+    --authorbox-background-color: var(--basalt-primary-color);
+
+    --floatbox-background-color: var(--basalt-secondary-color);
+
+    --document-background-color: 253, 253, 253;
+
+    --darkdocument-background-color: 30, 30, 35;
+
+}
+
+
+
+/* 顶部元素 */
+
+#header {
+
+    background: var(--header-gradient);
+
+    border-bottom: none;
+
+    box-shadow: 0px 0px 8.5px -1px rgba(0, 0, 0, var(--header-drop-shadow-opacity)), 0px 0px 68px -21px rgba(0, 0, 0, calc(var(--header-drop-shadow-opacity) * 4));
+
+    backdrop-filter: blur(0.2rem);
+
+    font-family: var(--header-font);
+
+    grid-template-rows: var(--header-final-height);/*这是Horm找到的解决玄武岩和基岩系列版式在你分引用时出现的吃标题等版头问题的方法*/
+
+}
+
+ /*感谢Horm和TC先后都找到的元素问题*/
+
+#header a.close-menu,
+
+#header-extra-div-1,
+
+#header-extra-div-2,
+
+#header-extra-div-3 {
+
+    display: none;
+
+}
+
+
+
+#header h1 a {
+
+    padding-left: calc(var(--base-header-height) * 0.25);
+
+    padding-right: calc(var(--base-header-height) * 0.5);
+
+}
+
+
+
+#header h1 a span::before {
+
+    font-weight: 900;
+
+}
+
+
+
+#header h1 a span::after {
+
+    margin-bottom: 6px;
+
+    letter-spacing: 2px;
+
+    font-weight: 300;
+
+}
+
+
+
+#header h1 a span {
+
+    align-items: unset;
+
+    text-align: unset;
+
+}
+
+
+
+#header h1 a::before {
+
+    width: calc(var(--base-header-height) * .925);
+
+    background-position: center left;
+
+    margin-right: calc(var(--base-header-height) * -0.35);
+
+    mask-image: linear-gradient(to right, #000 0%, transparent 85%);
+
+    mask-size: 100% 100%;
+
+    mask-position: center center;
+
+    mask-repeat: no-repeat;
+
+    -webkit-mask-image: linear-gradient(to right, #000 0%, transparent 85%);
+
+    -webkit-mask-size: 100% 100%;
+
+    -webkit-mask-position: center center;
+
+    -webkit-mask-repeat: no-repeat;
+
+}
+
+
+
+#search-top-box::before {
+
+    background-color: rgb(var(--basalt-UI-dark-palette));
+
+}
+
+
+
+#search-top-box-input {
+
+    outline: solid 0 rgb(var(--basalt-UI-dark-palette));
+
+}
+
+
+
+#top-bar div[class*=&quot;top-bar&quot;] &gt; ul &gt; li &gt; ul::before {
+
+    width: var(--base-border-width);
+
+}
+
+
+
+#top-bar div[class*=&quot;top-bar&quot;] ul li ul li.sfhover ul li a:not(:hover, :focus) {
+
+    color: rgb(var(--top-bar-dropdown-link-color));
+
+}
+
+
+
+div#content-wrap::before {
+
+    content: &quot;&quot;;
+
+    display: block;
+
+    position: static;
+
+    width: auto;
+
+    height: 19rem;
+
+    margin-top: calc(var(--header-final-height) * -1);
+
+    background-image: linear-gradient(to top, rgba(var(--basalt-background-color), 0.6) 0%, transparent 1rem), var(--content-wrap-image);
+
+    background-size: cover;
+
+    background-position: center;
+
+}
+
+
+
+/* 评分 */
+
+div.page-rate-widget-box,
+
+div.rate-box-with-credit-button {
+
+    padding: var(--base-border-width);
+
+}
+
+
+
+div.page-rate-widget-box span.btn,
+
+div.rate-box-with-credit-button .creditButton {
+
+    padding: 0;
+
+    height: calc(var(--rate-module-button-size) + var(--base-border-width));
+
+    margin-block-end: calc(var(--base-border-width) * -1);
+
+}
+
+
+
+div.rate-box-with-credit-button .creditButton &gt; p &gt; a::before {
+
+    display: none;
+
+}
+
+
+
+div.rate-box-with-credit-button .creditButton &gt; p &gt; a::after {
+
+    height: calc(100% - var(--base-border-width)) !important;
+
+    background-color: rgb(var(--basalt-main-text-color));
+
+    padding: 0;
+
+}
+
+
+
+div.page-rate-widget-box span.btn &gt; a,
+
+div.rate-box-with-credit-button .creditButton &gt; p &gt; a {
+
+    border-block-end-width: var(--base-border-width);
+
+}
+
+
+
+div.rate-box-with-credit-button .creditButton &gt; p &gt; a {
+
+    border-block-end-style: solid;
+
+    border-block-end-color: transparent;
+
+}
+
+
+
+div.rate-box-with-credit-button .creditButton &gt; p &gt; a:hover {
+
+    border-block-end-color: rgb(var(--rate-module-credit-color));
+
+}
+
+
+
+/* 页面元素 */
+
+div#page-title,
+
+div.meta-title {
+
+    border-bottom-width: var(--base-border-width);
+
+}
+
+
+
+hr {
+
+    height: var(--base-border-width);
+
+}
+
+
+
+/* 分页 */
+
+.yui-navset.yui-navset-top &gt; ul.yui-nav li {
+
+    position: relative;
+
+    padding: 0 8px;
+
+    height: 45px;
+
+    background-color: transparent;
+
+    border-bottom: none;
+
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+
+    background-color: rgb(var(--general-border-color));
+
+    margin: 0 9px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    transition: background-color 0.3s;
+
+}
+
+
+
+.yui-navset.yui-navset-top &gt; ul.yui-nav li::before,
+
+.yui-navset.yui-navset-top &gt; ul.yui-nav li::after {
+
+    content: &#x27;&#x27;;
+
+    position: absolute;
+
+    padding: 0 8px;
+
+    height: 45px;
+
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+
+    background-color: transparent;
+
+    border: none;
+
+}
+
+
+
+.yui-navset.yui-navset-top &gt; ul.yui-nav li:hover {
+
+    background-color: rgb(var(--tab-hover-background-color));
+
+}
+
+
+
+.yui-navset.yui-navset-top &gt; ul.yui-nav li.selected {
+
+    background-color: rgb(var(--tab-selected-background-color));
+
+}
+
+
+
+.yui-navset.yui-navset-top &gt; ul.yui-nav li.selected::before,
+
+.yui-navset.yui-navset-top &gt; ul.yui-nav li.selected::after {
+
+    display: none;
+
+}
+
+
+
+.yui-navset.yui-navset-top &gt; ul.yui-nav li a {
+
+    color: rgb(var(--basalt-main-text-color));
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0 20px;
+
+    height: 100%;
+
+    text-decoration: none;
+
+    transition: color 0.3s, background-color 0.3s;
+
+}
+
+
+
+.yui-navset.yui-navset-top .yui-content {
+
+    border-top: none;
+
+}
+
+
+
+/* 表格 */
+
+:is(:where(#page-content) table:not(.form), table.wiki-content-table) :is(th, td) {
+
+    border-width: var(--thin-border-width);
+
+}
+
+
+
+:is(div.table.wide, div.table.three-lines) table.wiki-content-table {
+
+    width: calc(100% - var(--thin-border-width) * 2);
+
+}
+
+
+
+div.table.three-lines table.wiki-content-table {
+
+    border: solid rgb(var(--basalt-UI-dark-palette));
+
+    border-width: var(--base-border-width) 0;
+
+}
+
+
+
+div.table.three-lines table.wiki-content-table :is(th, td) {
+
+    border: none;
+
+    color: inherit;
+
+    background-color: transparent;
+
+}
+
+
+
+div.table.three-lines table.wiki-content-table tr:nth-child(1) th {
+
+    border-bottom: solid var(--thin-border-width) rgb(var(--basalt-UI-dark-palette));
+
+}
+
+
+
+div.table.dborder table.wiki-content-table td {
+
+    border-color: rgb(var(--basalt-UI-dark-palette));
+
+}
+
+
+
+/* 着色 */
+
+.table1 {
+
+    --basalt-UI-dark-palette: var(--one-color);
+
+    --basalt-undertone: var(--one-color);
+
+}
+
+
+
+.table2 {
+
+    --basalt-UI-dark-palette: var(--two-color);
+
+    --basalt-undertone: var(--two-color);
+
+}
+
+
+
+.table3 {
+
+    --basalt-UI-dark-palette: var(--three-color);
+
+    --basalt-undertone: var(--three-color);
+
+}
+
+
+
+.table4 {
+
+    --basalt-UI-dark-palette: var(--four-color);
+
+    --basalt-undertone: var(--four-color);
+
+}
+
+
+
+.table5 {
+
+    --basalt-UI-dark-palette: var(--five-color);
+
+    --basalt-undertone: var(--five-color);
+
+}
+
+
+
+.table6 {
+
+    --basalt-UI-dark-palette: var(--six-color);
+
+    --basalt-undertone: var(--six-color);
+
+}
+
+
+
+/* 图片块 */
+
+.image-block,
+
+.scp-image-block {
+
+    border-bottom-width: var(--base-border-width);
+
+}
+
+
+
+/* 标签 */
+
+#main-content &gt; .page-tags &gt; span a {
+
+    padding: 5px 10px;
+
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+
+}
+
+
+
+/* 引用块及其他页面元素 */
+
+:is(div.blockquote, blockquote) {
+
+    color: rgb(var(--basalt-main-text-color));
+
+    overflow: auto;
+
+}
+
+
+
+:is(div.blockquote, blockquote):has(div.floatbox) {
+
+    overflow: unset;
+
+}
+
+
+
+#page-content div.notation {
+
+    max-width: 45rem;
+
+}
+
+
+
+div.notation {
+
+    display: block;
+
+    margin-inline: auto;
+
+    margin-block: 1.4rem;
+
+    padding-inline: 1.1rem;
+
+    padding-block: 0.9rem;
+
+    background-color: rgb(var(--basalt-secondary-color));
+
+    border-left: solid 0.25rem rgb(var(--general-border-color));
+
+    border-right: solid 0.25rem rgb(var(--general-border-color));
+
+    color: rgb(var(--basalt-main-text-color));
+
+}
+
+
+
+#page-content div.modal {
+
+    max-width: 57rem;
+
+}
+
+
+
+div.modal {
+
+    display: block;
+
+    margin-inline: auto;
+
+    margin-block: 1.4rem;
+
+    padding-inline: 1.5rem;
+
+    padding-block: 0.5rem;
+
+    background-color: rgb(var(--basalt-primary-color));
+
+    border: solid 0.2rem rgb(var(--general-border-color));
+
+    color: rgb(var(--basalt-main-text-color));
+
+}
+
+
+
+#page-content div.smallmodal {
+
+    max-width: 47rem;
+
+}
+
+
+
+div.smallmodal {
+
+    display: block;
+
+    margin-inline: auto;
+
+    margin-block: 1.4rem;
+
+    padding-inline: 1rem;
+
+    padding-block: 0.2rem;
+
+    background-color: rgb(var(--basalt-primary-color));
+
+    border: solid 0.15rem rgb(var(--general-border-color));
+
+    color: rgb(var(--basalt-main-text-color));
+
+}
+
+
+
+#page-content div:is(.jotting, .transcript) {
+
+    max-width: 42rem;
+
+}
+
+
+
+div:is(.jotting, .transcript) {
+
+    display: block;
+
+    margin-inline: auto;
+
+    margin-block: 1.4rem;
+
+    padding-inline: 1.5rem;
+
+    padding-block: 0.2rem;
+
+    background-color: rgb(var(--basalt-secondary-color));
+
+    border: dashed 0.15rem rgb(var(--general-border-color));
+
+    color: rgb(var(--basalt-main-text-color));
+
+}
+
+
+
+#page-content div.papernote {
+
+    max-width: 30rem;
+
+}
+
+
+
+div.papernote {
+
+    display: block;
+
+    margin-inline: auto;
+
+    margin-block: 1.4rem;
+
+    padding: 1rem 2rem;
+
+    background-color: rgb(var(--basalt-tertiary-color));
+
+    color: rgb(var(--basalt-main-text-color));
+
+}
+
+
+
+#page-content div:is(.document, .darkdocument) {
+
+    max-width: 45rem;
+
+}
+
+
+
+div:is(.document, .darkdocument) {
+
+    display: block;
+
+    margin-inline: auto;
+
+    margin-block: 1.5em;
+
+    padding: 1.5rem;
+
+    position: relative;
+
+    --posX: -20vw;
+
+}
+
+
+
+div.document {
+
+    background-color: rgb(var(--document-background-color));
+
+    box-shadow: 0px 1px 1.9px -4px rgba(0, 0, 0, 0.1), 0px 6px 15px -4px rgba(0, 0, 0, 0.2);
+
+    color: rgb(50, 50, 53);
+
+}
+
+
+
+div.darkdocument {
+
+    background-color: rgb(var(--darkdocument-background-color));
+
+    box-shadow: 0px 1px 1.9px -4px rgba(0, 0, 10, 0.8), 0px 6px 15px -4px rgba(0, 0, 7, 0.9);
+
+    color: rgb(195, 195, 200);
+
+}
+
+
+
+div:is(.document, .darkdocument)::before,
+
+div:is(.document, .darkdocument)::after {
+
+    content: &quot;&quot;;
+
+    height: 98%;
+
+    position: absolute;
+
+    width: 98%;
+
+    z-index: -1;
+
+}
+
+
+
+div:is(.document, .darkdocument)::before {
+
+    left: -5px;
+
+    top: 4px;
+
+    transform: rotate(-2.5deg);
+
+}
+
+
+
+div:is(.document, .darkdocument)::after {
+
+    right: -3px;
+
+    top: 1px;
+
+    transform: rotate(1.4deg);
+
+}
+
+
+
+div:is(.document)::before,
+
+div:is(.document)::after {
+
+    background-color: rgb(var(--document-background-color));
+
+}
+
+
+
+div:is(.darkdocument)::before,
+
+div:is(.darkdocument)::after {
+
+    background-color: rgb(var(--darkdocument-background-color));
+
+    opacity: 90%;
+
+}
+
+
+
+div.document::before {
+
+    box-shadow: 0px 1px 1.9px -4px rgba(0, 0, 0, 0.1), 0px 6px 15px -4px rgba(0, 0, 0, 0.1);
+
+}
+
+
+
+div.document::after {
+
+    box-shadow: 0px 1px 1.9px -4px rgba(0, 0, 0, 0.1), 0px 6px 15px -4px rgba(0, 0, 0, 0.05);
+
+}
+
+
+
+div.darkdocument::before {
+
+    box-shadow: 0px 1px 1.9px -4px rgba(0, 0, 10, 0.8), 0px 6px 15px -4px rgba(0, 0, 7, 0.9);
+
+}
+
+
+
+div.darkdocument::after {
+
+    box-shadow: 0px 1px 1.9px -4px rgba(0, 0, 10, 0.8), 0px 6px 15px -4px rgba(0, 0, 7, 0.05);
+
+}
+
+
+
+@media only screen and (max-width: 1020px) {
+
+    div:is(.document, .darkdocument)::before,
+
+    div:is(.document, .darkdocument)::after {
+
+        display: none;
+
+    }
+
+}
+
+
+
+#page-content div.floatbox {
+
+    background-color: rgb(var(--floatbox-background-color));
+
+    float: left;
+
+    max-width: calc(var(--main-content-width) / 2.25);
+
+    box-sizing: border-box;
+
+    margin: 0.25rem 1.25rem;
+
+    margin-left: clamp(calc(var(--main-content-width) / -4.5), calc((87.5vw - 95%) / -2), 0rem);
+
+    padding-inline: 1.2rem;
+
+    padding-block: 0.5rem;
+
+    font-size: 0.9125em;
+
+    border-radius: 7px;
+
+    border: solid 0.12rem rgba(var(--general-border-color), 0.4);
+
+}
+
+
+
+#page-content div.floatbox.right {
+
+    float: right;
+
+    margin-left: 1.25rem;
+
+    margin-right: clamp(calc(var(--main-content-width) / -4.5), calc((87.5vw - 95%) / -2), 0rem);
+
+}
+
+
+
+@media only screen and (max-width: 640px) {
+
+    #page-content div:is(.floatbox, .floatbox.right) {
+
+        float: none;
+
+        margin: 0.5rem auto;
+
+        width: 100%;
+
+    }
+
+}
+
+
+
+/* 边框元素 */
+
+.owindow .title,
+
+#side-bar .side-block .heading,
+
+#side-bar .collapsible-block-unfolded a.collapsible-block-link,
+
+#side-bar .collapsible-block-folded a.collapsible-block-link {
+
+    color: rgb(var(--UI-title-color));
+
+    background-color: rgb(var(--UI-title-background-color));
+
+    border-bottom: solid var(--base-border-width) rgb(var(--UI-title-color));
+
+}
+
+
+
+.owindow .title {
+
+    height: var(--owindow-title-height);
+
+}
+
+
+
+.owindow .button-bar &gt; a[onclick*=&quot;cleanAll&quot;] {
+
+    width: var(--owindow-title-height);
+
+    height: var(--owindow-title-height);
+
+}
+
+
+
+.owindow .button-bar &gt; a[onclick*=&quot;cleanAll&quot;]::after {
+
+    background-color: rgb(var(--UI-title-color));
+
+    transition: background-color 125ms ease-out;
+
+}
+
+
+
+.owindow .button-bar &gt; a[onclick*=&quot;cleanAll&quot;]:hover::after {
+
+    background-color: rgb(var(--UI-title-background-color));
+
+}
+
+
+
+.owindow &gt; .content.modal-body &gt; img + h1 + table {
+
+    border-width: var(--thin-border-width) 0;
+
+}
+
+
+
+.owindow &gt; .content.modal-body &gt; img + h1 + table &gt; tbody &gt; tr:not(:last-child) {
+
+    border-bottom-width: var(--thin-border-width);
+
+}
+
+
+
+.owindow .button-bar &gt; a:not([onclick*=&quot;cleanAll&quot;]),
+
+.owindow div[style*=&quot;margin-top&quot;] a {
+
+    border-width: var(--thin-border-width);
+
+}
+
+
+
+#footer {
+
+    border-top: outset var(--base-border-width) rgba(var(--general-border-color), .2);
+
+}
+
+
+
+div[id*=&quot;page-options-bottom&quot;] &gt; a {
+
+    border-bottom: solid var(--base-border-width) rgb(var(--general-border-color));
+
+}
+
+
+
+div#main-content .pager .pager-no::after {
+
+    height: var(--base-border-width);
+
+}
+
+
+
+#history-subarea a.action-area-close,
+
+#view-diff-div a.button,
+
+div:where(#action-area, .buttons) :is(a, input).btn {
+
+    border-width: var(--thin-border-width);
+
+}
+
+
+
+#action-area &gt; h1::after,
+
+#action-area &gt; h1::before,
+
+#history-subarea &gt; h2::after,
+
+#history-subarea &gt; h2::before,
+
+#revision-list .page-history tr[id*=&quot;revision-row&quot;]::before {
+
+    height: var(--thin-border-width);
+
+}
+
+
+
+#history-form-1 &gt; table.form &gt; tbody &gt; tr:first-child::before {
+
+    height: var(--base-border-width);
+
+}
+
+
+
+/* 脚注 */
+
+.bibitems::before,
+
+.footnotes-footer::before {
+
+    width: 100%;
+
+    height: var(--base-border-width);
+
+}
+
+
+
+.bibitems .title,
+
+.footnotes-footer .title {
+
+    font-size: 0.8rem;
+
+    line-height: 1.5rem;
+
+    height: 1.5rem;
+
+    padding-block-start: 0;
+
+    padding-block-end: 0;
+
+    inset-block-start: calc(-1.5rem + var(--base-border-width));
+
+    margin-block-end: -1rem;
+
+}
+
+
+
+.bibitems,
+
+.footnotes-footer {
+
+    margin-block-start: 2rem;
+
+}
+
+
+
+.hovertip .content .footnote .f-heading,
+
+.hovertip .content .reference .r-heading {
+
+    font-size: 0.8rem;
+
+    line-height: 1.5rem;
+
+    height: 1.5rem;
+
+    padding-block-start: 0;
+
+    padding-block-end: 0;
+
+    inset-block-start: calc(-1.5rem + var(--base-border-width));
+
+    inset-inline-start: 0;
+
+    margin-block-end: -1rem;
+
+}
+
+
+
+.hovertip {
+
+    border: none !important;
+
+}
+
+
+
+.hovertip .content .footnote::before,
+
+.hovertip .content .reference::before {
+
+    width: 100%;
+
+    height: var(--base-border-width);
+
+    inset-inline-start: 0;
+
+    inset-block-start: 0;
+
+}
+
+
+
+/* 最高机密 */
+
+.topsecret-desktop {
+
+    position: absolute;
+
+    font-size: 600%;
+
+    z-index: 1;
+
+    transform: translate(9.375%, -75%) rotate(-22.5deg);
+
+    opacity: 0.25;
+
+    color: #C40233;
+
+    height: auto;
+
+}
+
+
+
+.topsecret-mobile {
+
+    position: absolute;
+
+    font-size: 300%;
+
+    z-index: 1;
+
+    transform: translate(9.375%, -75%) rotate(-22.5deg);
+
+    opacity: 0.25;
+
+    color: #C40233;
+
+    height: 0px;
+
+    overflow: hidden;
+
+}
+
+
+
+@media only screen and (max-width: 600px) {
+
+    .topsecret-desktop {
+
+        height: 0px;
+
+        overflow: hidden;
+
+    }
+
+
+
+    .topsecret-mobile {
+
+        height: auto;
+
+    }
+
+}
+
+[[/code]]
+
+
+
+[[code type=&quot;CSS&quot;]]
+
+/*===预设：幽影祭坛===*/
+
+
+
+:root {
+
+    --content-wrap-image: url(&quot;https://s21.ax1x.com/2024/07/17/pkopG60.jpg&quot;);
+
+
+
+    --basalt-primary-color: 20, 20, 20;
+
+    --basalt-secondary-color: 40, 39, 38;
+
+    --basalt-tertiary-color: 44, 44, 45;
+
+    --basalt-main-text-color: 211,217,207;
+
+    --basalt-overtone: 97,153,85;
+
+    --basalt-undertone: 54,215,222;
+
+
+
+    --header-color-l: var(--basalt-dark-element-color);
+
+    --header-color-r: var(--basalt-dark-element-color);
+
+ 
+
+    --basalt-bright-element-color: 59,238,230;
+
+    --basalt-dark-element-color: 26,132,135;
+
+    --basalt-darker-element-color: 11,27,29;
+
+    --basalt-alternate-color: 255,132,0;
+
+    --basalt-sub-text-color: 155,154,162;
+
+}
+
+[[/code]]
+
+
+
+[[code type=&quot;CSS&quot;]]
+
+/*===预设：石英===*/
+
+
+
+:root {
+
+    --content-wrap-image: url(&quot;https://s21.ax1x.com/2024/07/22/pk7cAnf.jpg&quot;);
+
+
+
+    --basalt-primary-color: 252, 252, 252;
+
+    --basalt-secondary-color: 240, 240, 244;
+
+    --basalt-tertiary-color: 229, 229, 238;
+
+    --basalt-main-text-color: 35, 35, 38;
+
+    --basalt-overtone: 10, 10, 11;
+
+    --basalt-undertone: var(--basalt-bright-element-color);
+
+
+
+    --header-color-l: 241,241,245;
+
+    --header-color-r: 241,241,245;
+
+
+
+    --basalt-bright-element-color: 176,196,222;
+
+    --basalt-dark-element-color: 129,141,170;
+
+    --basalt-alternate-color: 255,132,0;
+
+    --basalt-sub-text-color: 155,154,162;
+
+}
+
+[[/code]]
+
+[[/collapsible]]
+</pre></details></article></main><footer>只读快照：2026/08/31 07:53:10 · created by piglin · 内容版权仍归原作者与 SCP 基金会 Minecraft 分部。</footer></body></html>

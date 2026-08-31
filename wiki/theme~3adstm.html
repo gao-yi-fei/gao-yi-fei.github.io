@@ -1,0 +1,1020 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>月之暗面 版式 | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page=theme:dstm">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">翻译页面 </p><h1>月之暗面 版式</h1><p class="page-name">theme:dstm</p><dl class="article-meta"><div><dt>创建者</dt><dd>GREAT-GUIDA</dd></div><div><dt>评分</dt><dd class="rating">0 <small>+0 / -0</small></dd></div><div><dt>发布时间</dt><dd>2023/08/28 17:05:52</dd></div><div><dt>最近编辑</dt><dd>2025/02/21 11:48:33</dd></div></dl><div class="tags"><span class="tag">mscp</span><span class="tag">月之暗面</span><span class="tag">版式</span><span class="tag">翻译</span></div></header><aside class="reader-warning">此页部分资源未归档：4 个包含组件。文本与源码仍已保留。</aside><section class="article-body"><aside class="backup-note">包含组件未归档：<code>:scp-wiki:theme:black-highlighter-theme</code></aside>
+<aside class="backup-note">包含组件未归档：<code>:scp-wiki:component:collapsible-sidebar</code></aside>
+<aside class="backup-note">包含组件未归档：<code>:scp-wiki:component:acs-animation</code></aside>
+<aside class="backup-note">包含组件未归档：<code>:scp-wiki:component:centered-header-bhl</code></aside>
+<p>[!<s> Theme built off of the SCP Offices Theme: https://scp-wiki.wikidot.com/theme:scp-offices-theme. </s>]</p>
+<p>[!<s> Header image came from the Timepiece Theme: https://scp-wiki.wikidot.com/theme:clock-tower. </s>]</p>
+<p>[!<s> Logo made by TheMetalAddict </s>]</p>
+<p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p>div#header h1 a:before {</p>
+<p>content: &quot;月  　  之   　 暗  　  面&quot;;</p>
+<p>}</p>
+<p>@supports(display: grid) {</p>
+<p>:root {</p>
+<p>/* S-CSS-P Integration */</p>
+<p>/* If you&#x27;re making a new CSS theme, please include the following three variables at minimum. */</p>
+<p>--theme-base: &quot;black-highlighter&quot;;</p>
+<p>/* must be either &quot;black-highlighter&quot; or &quot;sigma9&quot; */</p>
+<p>--theme-id: &quot;dstm-theme&quot;;</p>
+<p>/* set this to the URL of your theme&#x27;s page - eg for &quot;component:ar-theme&quot;, set it to &quot;ar-theme&quot; */</p>
+<p>--theme-name: &quot;Dark Side of the Moon Theme&quot;;</p>
+<p>/* set this to your theme&#x27;s full name */</p>
+<p>/* Standard Colors */</p>
+<p>--white-monochrome: 220,220,220;</p>
+<p>--pale-gray-monochrome: 192,192,192;</p>
+<p>--light-gray-monochrome: 105,105,105;</p>
+<p>--gray-monochrome: 127, 127, 127;</p>
+<p>--dark-gray-monochrome: 101, 101, 101;</p>
+<p>--black-monochrome: 25, 20, 16;</p>
+<p>--bright-accent: 255,255,224;</p>
+<p>--medium-accent: 145, 179, 153;</p>
+<p>--dark-accent: 102,102,153;</p>
+<p>--newpage-color: 204, 5, 166;</p>
+<p><s>swatch-text-general: var(</s>swatch-text-dark);</p>
+<p>--logo-image: url(&quot;https://x.imgs.ovh/x/2023/08/28/64ec63396308e.png&quot;);</p>
+<p>--header-title: &quot;月  　  之  　  暗  　  面&quot;;</p>
+<p>--header-subtitle: &quot;收 容 神 性&quot;;</p>
+<p>--background-gradient-color: 215, 215, 215;</p>
+<p>--background-gradient-distance: 40rem;</p>
+<p>/* Link Colors */</p>
+<p><s>link-color: var(</s>bright-accent);</p>
+<p><s>visited-link-color: var(</s>dark-accent);</p>
+<p><s>hover-link-color: var(</s>dark-accent);</p>
+<p>--newpage-color: 221, 102, 17;</p>
+<p>}</p>
+<p>#container-wrap-wrap {</p>
+<p>background-image:</p>
+<p>repeating-linear-gradient(180deg,</p>
+<p>hsla(0, 0%, 100%, 0),</p>
+<p>hsla(0, 0%, 100%, 0) 0.25vh,</p>
+<p>rgba(88, 88, 88, 0.1) 0.35vh,</p>
+<p>rgba(88, 88, 88, 0.2) 0.5vh),</p>
+<p>linear-gradient(to bottom,</p>
+<p>rgba(var(<s>black-monochrome), 1) var(</s>header-height-on-desktop),</p>
+<p>rgba(var(<s>gray-monochrome), 1) calc(var(</s>header-height-on-desktop) + 0.125rem),</p>
+<p>rgba(var(--gray-monochrome), 1) calc(100% - 0.125rem),</p>
+<p>rgba(var(--gray-monochrome), 1) calc(100% - 0.125rem),</p>
+<p>rgba(var(--black-monochrome), 1) 100%);</p>
+<p>background-repeat: no-repeat;</p>
+<p>background-size:</p>
+<p>100% var(--header-height-on-desktop),</p>
+<p>100% var(--final-header-height-on-desktop);</p>
+<p>}</p>
+<p>a {</p>
+<p>--wght: 900;</p>
+<p>font-weight: 900;</p>
+<p>}</p>
+<p>#header h2 span::before {</p>
+<p>color: rgb(var(--bright-accent));</p>
+<p>}</p>
+<p>#header h1 *,</p>
+<p>#top-bar *,</p>
+<p>#page-title * {</p>
+<p>will-change: opacity;</p>
+<p>transition: opacity 0.2s ease-in-out;</p>
+<p>}</p>
+<p>#header h1 a:hover::before,</p>
+<p>#header h1 a:hover::after,</p>
+<p>#top-bar a:hover,</p>
+<p>#page-title:hover,</p>
+<p>#search-top-box-form input[type=&quot;submit&quot;]:hover,</p>
+<p>#search-top-box-form input[type=&quot;submit&quot;]:focus {</p>
+<p>-webkit-animation: flicker 20s linear infinite;</p>
+<p>animation: flicker 20s linear infinite;</p>
+<p>}</p>
+<p>#extra-div-4 {</p>
+<p>background-image: url(https://x.imgs.ovh/x/2023/08/28/64ec6c9abe8b0.jpg);</p>
+<p>background-size: calc(var(--header-height-on-desktop) * 4);</p>
+<p>}</p>
+<p>#extra-div-1 {</p>
+<p>height: var(--header-height-on-desktop);</p>
+<p>width: 100%;</p>
+<p>position: absolute;</p>
+<p>top: 0;</p>
+<p>left: 0;</p>
+<p>pointer-events: none;</p>
+<p>background-image: url(https://x.imgs.ovh/x/2023/08/28/64ec6c9abe8b0.jpg);</p>
+<p>background-size: calc(var(--header-height-on-desktop) * 4);</p>
+<p>}</p>
+<p>#side-bar .collapsible-block-unfolded {</p>
+<p>background: unset;</p>
+<p>}</p>
+<p>#side-bar div.menu-item a.collapsible-block-link,</p>
+<p>#side-bar .side-block&gt;.collapsible-block a.collapsible-block-link {</p>
+<p>background: rgba(var(--medium-accent), 0.5);</p>
+<p>}</p>
+<p>#side-bar .close-menu::before {</p>
+<p>line-height: 0.85em !important;</p>
+<p>}</p>
+<p>#interwiki .heading p,</p>
+<p>#side-bar .heading p,</p>
+<p>#side-bar .collapsible-block .collapsible-block-link {</p>
+<p>color: rgb(var(--swatch-primary-darkest))</p>
+<p>}</p>
+<p>#interwiki div.menu-item a,</p>
+<p>#side-bar div.menu-item a,</p>
+<p>#side-bar div.menu-item .text {</p>
+<p>--wght: 900;</p>
+<p>font-weight: 900;</p>
+<p>}</p>
+<p>#interwiki div.menu-item a:hover,</p>
+<p>#interwiki div.menu-item a:active,</p>
+<p>#side-bar div.menu-item a:hover,</p>
+<p>#side-bar div.menu-item a:active {</p>
+<p>-webkit-animation: flicker 20s linear infinite;</p>
+<p>animation: flicker 20s linear infinite;</p>
+<p>color: rgb(var(--swatch-text-tertiary-color));</p>
+<p>}</p>
+<p>#interwiki div.menu-item a:focus-within,</p>
+<p>#side-bar div.menu-item a:focus-within {</p>
+<p>-webkit-animation: flicker 20s linear infinite;</p>
+<p>animation: flicker 20s linear infinite;</p>
+<p>color: rgb(var(--swatch-text-tertiary-color));</p>
+<p>}</p>
+<p>.info-container .collapsible-block-folded,</p>
+<p>.info-container .collapsible-block-unfolded-link {</p>
+<p>background: rgb(var(--bright-accent)) !important;</p>
+<p>}</p>
+<p>div[id*=&quot;page-options-bottom&quot;] {</p>
+<p>--ui-wght: 600;</p>
+<p>--ui-hvr-wght: 600;</p>
+<p>font-size: calc(var(--base-font-size) * 0.75);</p>
+<p>}</p>
+<p>@media only screen and (max-width: 56.25rem) {</p>
+<p>#header {</p>
+<p>background-repeat: no-repeat, repeat;</p>
+<p>background-position: left calc(5vw + 5.5rem - 10.4rem) top calc(4% - var(--offset-from-page-top) / 2), top center;</p>
+<p>background-size: calc(8.75rem + var(<s>offset-from-page-top)), 100% var(</s>header-height-on-desktop);</p>
+<p>}</p>
+<p>}</p>
+<p>@-webkit-keyframes flicker {</p>
+<p>0% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>5% {</p>
+<p>opacity: .9;</p>
+<p>}</p>
+<p>6% {</p>
+<p>opacity: .8;</p>
+<p>}</p>
+<p>11% {</p>
+<p>opacity: .4;</p>
+<p>}</p>
+<p>11.25% {</p>
+<p>opacity: .6;</p>
+<p>}</p>
+<p>11.5% {</p>
+<p>opacity: .4;</p>
+<p>}</p>
+<p>18% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>18.5% {</p>
+<p>opacity: .9;</p>
+<p>}</p>
+<p>22% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>38.5% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>39% {</p>
+<p>opacity: .8;</p>
+<p>}</p>
+<p>42% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>60% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>60.5% {</p>
+<p>opacity: 0;</p>
+<p>}</p>
+<p>62% {</p>
+<p>opacity: 0;</p>
+<p>}</p>
+<p>63% {</p>
+<p>opacity: .2;</p>
+<p>}</p>
+<p>63.25% {</p>
+<p>opacity: 0;</p>
+<p>}</p>
+<p>65% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>73% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>75% {</p>
+<p>opacity: .8;</p>
+<p>}</p>
+<p>79% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>100% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>}</p>
+<p>@keyframes flicker {</p>
+<p>0% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>5% {</p>
+<p>opacity: .9;</p>
+<p>}</p>
+<p>6% {</p>
+<p>opacity: .8;</p>
+<p>}</p>
+<p>11% {</p>
+<p>opacity: .4;</p>
+<p>}</p>
+<p>11.25% {</p>
+<p>opacity: .6;</p>
+<p>}</p>
+<p>11.5% {</p>
+<p>opacity: .4;</p>
+<p>}</p>
+<p>18% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>18.5% {</p>
+<p>opacity: .9;</p>
+<p>}</p>
+<p>22% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>38.5% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>39% {</p>
+<p>opacity: .8;</p>
+<p>}</p>
+<p>42% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>60% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>60.5% {</p>
+<p>opacity: 0;</p>
+<p>}</p>
+<p>62% {</p>
+<p>opacity: 0;</p>
+<p>}</p>
+<p>63% {</p>
+<p>opacity: .2;</p>
+<p>}</p>
+<p>63.25% {</p>
+<p>opacity: 0;</p>
+<p>}</p>
+<p>65% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>73% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>75% {</p>
+<p>opacity: .8;</p>
+<p>}</p>
+<p>79% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>100% {</p>
+<p>opacity: 1;</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+<p>[[/module]]</p></section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>[[include :scp-wiki:theme:black-highlighter-theme]]
+
+[[include :scp-wiki:component:collapsible-sidebar]]
+
+[[include :scp-wiki:component:acs-animation]]
+
+[[include :scp-wiki:component:centered-header-bhl]]
+
+
+
+[!-- Theme built off of the SCP Offices Theme: https://scp-wiki.wikidot.com/theme:scp-offices-theme. --]
+
+
+
+[!-- Header image came from the Timepiece Theme: https://scp-wiki.wikidot.com/theme:clock-tower. --]
+
+
+
+[!-- Logo made by TheMetalAddict --]
+
+
+
+[[module CSS]]
+
+
+
+
+
+div#header h1 a:before {
+
+    content: &quot;月  　  之   　 暗  　  面&quot;;
+
+}
+
+
+
+@supports(display: grid) {
+
+ 
+
+    :root {
+
+        /* S-CSS-P Integration */
+
+        /* If you&#x27;re making a new CSS theme, please include the following three variables at minimum. */
+
+        --theme-base: &quot;black-highlighter&quot;;
+
+        /* must be either &quot;black-highlighter&quot; or &quot;sigma9&quot; */
+
+        --theme-id: &quot;dstm-theme&quot;;
+
+        /* set this to the URL of your theme&#x27;s page - eg for &quot;component:ar-theme&quot;, set it to &quot;ar-theme&quot; */
+
+        --theme-name: &quot;Dark Side of the Moon Theme&quot;;
+
+        /* set this to your theme&#x27;s full name */
+
+ 
+
+
+
+ 
+
+        /* Standard Colors */
+
+ 
+
+        --white-monochrome: 220,220,220;
+
+        --pale-gray-monochrome: 192,192,192;
+
+        --light-gray-monochrome: 105,105,105;
+
+        --gray-monochrome: 127, 127, 127;
+
+        --dark-gray-monochrome: 101, 101, 101;
+
+        --black-monochrome: 25, 20, 16;
+
+        --bright-accent: 255,255,224;
+
+        --medium-accent: 145, 179, 153;
+
+        --dark-accent: 102,102,153;
+
+        --newpage-color: 204, 5, 166;
+
+ 
+
+        --swatch-text-general: var(--swatch-text-dark);
+
+ 
+
+        --logo-image: url(&quot;https://x.imgs.ovh/x/2023/08/28/64ec63396308e.png&quot;);
+
+ 
+
+        --header-title: &quot;月  　  之  　  暗  　  面&quot;;
+
+        --header-subtitle: &quot;收 容 神 性&quot;;
+
+
+
+        --background-gradient-color: 215, 215, 215;
+
+        --background-gradient-distance: 40rem;
+
+ 
+
+        /* Link Colors */
+
+        --link-color: var(--bright-accent);
+
+        --visited-link-color: var(--dark-accent);
+
+        --hover-link-color: var(--dark-accent);
+
+        --newpage-color: 221, 102, 17;
+
+    }
+
+ 
+
+    #container-wrap-wrap {
+
+        background-image:
+
+            repeating-linear-gradient(180deg,
+
+                hsla(0, 0%, 100%, 0),
+
+                hsla(0, 0%, 100%, 0) 0.25vh,
+
+                rgba(88, 88, 88, 0.1) 0.35vh,
+
+                rgba(88, 88, 88, 0.2) 0.5vh),
+
+ 
+
+            linear-gradient(to bottom,
+
+                rgba(var(--black-monochrome), 1) var(--header-height-on-desktop),
+
+                rgba(var(--gray-monochrome), 1) calc(var(--header-height-on-desktop) + 0.125rem),
+
+                rgba(var(--gray-monochrome), 1) calc(100% - 0.125rem),
+
+                rgba(var(--gray-monochrome), 1) calc(100% - 0.125rem),
+
+                rgba(var(--black-monochrome), 1) 100%);
+
+        background-repeat: no-repeat;
+
+        background-size:
+
+            100% var(--header-height-on-desktop),
+
+            100% var(--final-header-height-on-desktop);
+
+    }
+
+ 
+
+    a {
+
+        --wght: 900;
+
+        font-weight: 900;
+
+    }
+
+ 
+
+    #header h2 span::before {
+
+        color: rgb(var(--bright-accent));
+
+    }
+
+ 
+
+    #header h1 *,
+
+    #top-bar *,
+
+    #page-title * {
+
+        will-change: opacity;
+
+        transition: opacity 0.2s ease-in-out;
+
+    }
+
+ 
+
+    #header h1 a:hover::before,
+
+    #header h1 a:hover::after,
+
+    #top-bar a:hover,
+
+    #page-title:hover,
+
+    #search-top-box-form input[type=&quot;submit&quot;]:hover,
+
+    #search-top-box-form input[type=&quot;submit&quot;]:focus {
+
+        -webkit-animation: flicker 20s linear infinite;
+
+        animation: flicker 20s linear infinite;
+
+    }
+
+ 
+
+#extra-div-4 {
+
+    background-image: url(https://x.imgs.ovh/x/2023/08/28/64ec6c9abe8b0.jpg);
+
+ background-size: calc(var(--header-height-on-desktop) * 4);
+
+}
+
+
+
+ #extra-div-1 {
+
+    height: var(--header-height-on-desktop);
+
+    width: 100%;
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    pointer-events: none;
+
+    background-image: url(https://x.imgs.ovh/x/2023/08/28/64ec6c9abe8b0.jpg);
+
+    background-size: calc(var(--header-height-on-desktop) * 4);
+
+}
+
+
+
+    #side-bar .collapsible-block-unfolded {
+
+        background: unset;
+
+    }
+
+ 
+
+    #side-bar div.menu-item a.collapsible-block-link,
+
+    #side-bar .side-block&gt;.collapsible-block a.collapsible-block-link {
+
+        background: rgba(var(--medium-accent), 0.5);
+
+    }
+
+ 
+
+    #side-bar .close-menu::before {
+
+        line-height: 0.85em !important;
+
+    }
+
+ 
+
+    #interwiki .heading p,
+
+    #side-bar .heading p,
+
+    #side-bar .collapsible-block .collapsible-block-link {
+
+        color: rgb(var(--swatch-primary-darkest))
+
+    }
+
+ 
+
+    #interwiki div.menu-item a,
+
+    #side-bar div.menu-item a,
+
+    #side-bar div.menu-item .text {
+
+        --wght: 900;
+
+        font-weight: 900;
+
+    }
+
+ 
+
+    #interwiki div.menu-item a:hover,
+
+    #interwiki div.menu-item a:active,
+
+    #side-bar div.menu-item a:hover,
+
+    #side-bar div.menu-item a:active {
+
+        -webkit-animation: flicker 20s linear infinite;
+
+        animation: flicker 20s linear infinite;
+
+        color: rgb(var(--swatch-text-tertiary-color));
+
+    }
+
+ 
+
+    #interwiki div.menu-item a:focus-within,
+
+    #side-bar div.menu-item a:focus-within {
+
+        -webkit-animation: flicker 20s linear infinite;
+
+        animation: flicker 20s linear infinite;
+
+        color: rgb(var(--swatch-text-tertiary-color));
+
+    }
+
+ 
+
+    .info-container .collapsible-block-folded,
+
+    .info-container .collapsible-block-unfolded-link {
+
+        background: rgb(var(--bright-accent)) !important;
+
+    }
+
+ 
+
+    div[id*=&quot;page-options-bottom&quot;] {
+
+        --ui-wght: 600;
+
+        --ui-hvr-wght: 600;
+
+        font-size: calc(var(--base-font-size) * 0.75);
+
+    }
+
+ 
+
+    @media only screen and (max-width: 56.25rem) {
+
+        #header {
+
+            background-repeat: no-repeat, repeat;
+
+            background-position: left calc(5vw + 5.5rem - 10.4rem) top calc(4% - var(--offset-from-page-top) / 2), top center;
+
+            background-size: calc(8.75rem + var(--offset-from-page-top)), 100% var(--header-height-on-desktop);
+
+        }
+
+    }
+
+ 
+
+    @-webkit-keyframes flicker {
+
+        0% {
+
+            opacity: 1;
+
+        }
+
+ 
+
+        5% {
+
+            opacity: .9;
+
+        }
+
+ 
+
+        6% {
+
+            opacity: .8;
+
+        }
+
+ 
+
+        11% {
+
+            opacity: .4;
+
+        }
+
+ 
+
+        11.25% {
+
+            opacity: .6;
+
+        }
+
+ 
+
+        11.5% {
+
+            opacity: .4;
+
+        }
+
+ 
+
+        18% {
+
+            opacity: 1;
+
+        }
+
+ 
+
+        18.5% {
+
+            opacity: .9;
+
+        }
+
+ 
+
+        22% {
+
+            opacity: 1;
+
+        }
+
+ 
+
+        38.5% {
+
+            opacity: 1;
+
+        }
+
+ 
+
+        39% {
+
+            opacity: .8;
+
+        }
+
+ 
+
+        42% {
+
+            opacity: 1;
+
+        }
+
+ 
+
+        60% {
+
+            opacity: 1;
+
+        }
+
+ 
+
+        60.5% {
+
+            opacity: 0;
+
+        }
+
+ 
+
+        62% {
+
+            opacity: 0;
+
+        }
+
+ 
+
+        63% {
+
+            opacity: .2;
+
+        }
+
+ 
+
+        63.25% {
+
+            opacity: 0;
+
+        }
+
+ 
+
+        65% {
+
+            opacity: 1;
+
+        }
+
+ 
+
+        73% {
+
+            opacity: 1;
+
+        }
+
+ 
+
+        75% {
+
+            opacity: .8;
+
+        }
+
+ 
+
+        79% {
+
+            opacity: 1;
+
+        }
+
+ 
+
+        100% {
+
+            opacity: 1;
+
+        }
+
+    }
+
+ 
+
+    @keyframes flicker {
+
+        0% {
+
+            opacity: 1;
+
+        }
+
+ 
+
+        5% {
+
+            opacity: .9;
+
+        }
+
+ 
+
+        6% {
+
+            opacity: .8;
+
+        }
+
+ 
+
+        11% {
+
+            opacity: .4;
+
+        }
+
+ 
+
+        11.25% {
+
+            opacity: .6;
+
+        }
+
+ 
+
+        11.5% {
+
+            opacity: .4;
+
+        }
+
+ 
+
+        18% {
+
+            opacity: 1;
+
+        }
+
+ 
+
+        18.5% {
+
+            opacity: .9;
+
+        }
+
+ 
+
+        22% {
+
+            opacity: 1;
+
+        }
+
+ 
+
+        38.5% {
+
+            opacity: 1;
+
+        }
+
+ 
+
+        39% {
+
+            opacity: .8;
+
+        }
+
+ 
+
+        42% {
+
+            opacity: 1;
+
+        }
+
+ 
+
+        60% {
+
+            opacity: 1;
+
+        }
+
+ 
+
+        60.5% {
+
+            opacity: 0;
+
+        }
+
+ 
+
+        62% {
+
+            opacity: 0;
+
+        }
+
+ 
+
+        63% {
+
+            opacity: .2;
+
+        }
+
+ 
+
+        63.25% {
+
+            opacity: 0;
+
+        }
+
+ 
+
+        65% {
+
+            opacity: 1;
+
+        }
+
+ 
+
+        73% {
+
+            opacity: 1;
+
+        }
+
+ 
+
+        75% {
+
+            opacity: .8;
+
+        }
+
+ 
+
+        79% {
+
+            opacity: 1;
+
+        }
+
+ 
+
+        100% {
+
+            opacity: 1;
+
+        }
+
+    }
+
+}
+
+
+
+[[/module]]
+</pre></details></article></main><footer>只读快照：2026/08/31 07:53:10 · created by piglin · 内容版权仍归原作者与 SCP 基金会 Minecraft 分部。</footer></body></html>

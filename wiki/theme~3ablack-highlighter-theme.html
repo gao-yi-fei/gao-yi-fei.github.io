@@ -1,0 +1,1196 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>黑色标记笔版式（Minecraft） | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page=theme:black-highlighter-theme">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">原创页面 </p><h1>黑色标记笔版式（Minecraft）</h1><p class="page-name">theme:black-highlighter-theme</p><dl class="article-meta"><div><dt>创建者</dt><dd>Dr Hormress</dd></div><div><dt>评分</dt><dd class="rating">+10 <small>+11 / -1</small></dd></div><div><dt>发布时间</dt><dd>2021/02/08 10:26:02</dd></div><div><dt>最近编辑</dt><dd>2023/05/12 23:42:36</dd></div></dl><div class="tags"><span class="tag">原创</span><span class="tag">版式</span></div></header><aside class="reader-warning">此页部分资源未归档：3 个包含组件、1 个附件。文本与源码仍已保留。</aside><section class="article-body"><p>[!<s> 版式代码 </s>]</p>
+<p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p>@import url(&quot;https://cdn.jsdelivr.net/gh/Nu-SCPTheme/Black-Highlighter@gh-pages/css/min/normalize.min.css&quot;);</p>
+<p>@import url(&quot;https://cdn.jsdelivr.net/gh/Nu-SCPTheme/Black-Highlighter@gh-pages/css/min/black-highlighter.min.css&quot;);</p>
+<p>@import url(&quot;https://fonts.font.im/css?family=Play|Cairo|Raleway|PT+Mono&quot;);</p>
+<p>/* <s>-</s><s>-</s>-- */</p>
+<p>:root {</p>
+<p>--black: 0, 0, 0;</p>
+<p>--dark-blue: 0, 0, 170;</p>
+<p>--dark-green: 0, 170, 0;</p>
+<p>--dark-aqua: 0, 170, 170;</p>
+<p>--dark-red: 170, 0, 0;</p>
+<p>--dark-purple: 170, 0, 170;</p>
+<p>--gold: 255, 170, 0;</p>
+<p>--grey: 170, 170, 170;</p>
+<p>--dark-grey: 85, 85 ,85;</p>
+<p>--blue: 85, 85, 255;</p>
+<p>--green: 85, 255, 85;</p>
+<p>--aqua: 85, 255, 255;</p>
+<p>--red: 255, 85, 85;</p>
+<p>--light-purple: 255, 85, 255;</p>
+<p>--yellow: 255, 255, 85;</p>
+<p>--white: 255, 255, 255;</p>
+<p>/* Minecraft十六色（RGB版本） */</p>
+<p>--minecoin-gold: 221, 214, 5;</p>
+<p>/* Minecoin金色（RGB版本） */</p>
+<p>--light-grey: 215, 215, 215;</p>
+<p>/* 增补颜色 */</p>
+<p>}</p>
+<p>/* <s>-</s><s>-</s>-- */</p>
+<p>:root:lang(cn) {</p>
+<p>--theme-base: &quot;黑色标记笔&quot;;</p>
+<p>--theme-id: &quot;_404&quot;;</p>
+<p>--theme-name: &quot;Minecraft BHL&quot;;</p>
+<p>/* 以上的东西没有实际用处 */</p>
+<p>--header-title: &quot;Minecraft SCP&quot;;</p>
+<p>--header-subtitle: &quot;控制，收容，保护&quot;;</p>
+<p><s>logo-image: url(&#x27;http://scp-wiki-mc.wikidot.com/local</s>files/theme:black-highlighter-theme/mclogo2.svg&#x27;);</p>
+<p>/* 主题颜色 */</p>
+<p><s>white-monochrome: var(</s>white);</p>
+<p><s>pale-gray-monochrome: var(</s>light-grey);</p>
+<p><s>light-pale-gray-monochrome: var(</s>light-grey);</p>
+<p><s>very-light-gray-monochrome: var(</s>light-grey);</p>
+<p><s>light-gray-monochrome: var(</s>grey);</p>
+<p><s>gray-monochrome: var(</s>dark-grey);</p>
+<p><s>dark-gray-monochrome: var(</s>dark-grey);</p>
+<p><s>black-monochrome: var(</s>black);</p>
+<p><s>pale-accent: var(</s>red);</p>
+<p><s>bright-accent: var(</s>red);</p>
+<p><s>medium-accent: var(</s>dark-red);</p>
+<p><s>dark-accent: var(</s>dark-red);</p>
+<p><s>alt-accent: var(</s>gold);</p>
+<p><s>gradient-header: linear-gradient(to top, rgb(var(</s>black)), rgb(var(--black)));</p>
+<p><s>swatch-topmenu-border-color: var(</s>black-monochrome);</p>
+<p><s>swatch-topmenu-bg-color: var(</s>dark-green);</p>
+<p>--header-font: &quot;Play&quot;, sans-serif;</p>
+<p>--title-font: &quot;Cairo&quot;, sans-serif;</p>
+<p>--body-font: &quot;Raleway&quot;, sans-serif;</p>
+<p>--mono-font: &quot;PT Mono&quot;, monospace;</p>
+<p>}</p>
+<p>:root, :root *, * {</p>
+<p>image-rendering: crisp-edges;</p>
+<p>image-rendering: pixelated;</p>
+<p>}</p>
+<p>#header h1 a:before {</p>
+<p>content: var(--header-title) !important;</p>
+<p>}</p>
+<p>#header h2 span:before {</p>
+<p>content: var(--header-subtitle) !important;</p>
+<p>}</p>
+<p>#main-content .btn {</p>
+<p>border-radius: 0 !important;</p>
+<p>}</p>
+<p>blockquote, div.blockquote,</p>
+<p>div[class*=&quot;blockquote&quot;] {</p>
+<p>border: solid 16px !important;</p>
+<p>border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/blockquote_bg.png&quot;) !important;</p>
+<p>border-image-slice: 8 8 8 8 fill !important;</p>
+<p>background-color: transparent !important;</p>
+<p>box-shadow: none !important;</p>
+<p>}</p>
+<p>/* Div Blocks */</p>
+<p>div.sign {</p>
+<p>background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign.png&quot;);</p>
+<p>background-repeat: repeat;</p>
+<p>background-size: 7.2em 3.6em;</p>
+<p>background-position: 0 0;</p>
+<p>padding: 1em;</p>
+<p>font-size: 1em;</p>
+<p>line-height: 120%;</p>
+<p>margin-top: 6px;</p>
+<p>margin-bottom: 6px;</p>
+<p>box-shadow: 1px 1px 2px var(--grey);</p>
+<p>}</p>
+<p>div.sign p:nth-child(1) {</p>
+<p>margin-top: 0 !important;</p>
+<p>}</p>
+<p>div.sign p:nth-last-child(1) {</p>
+<p>margin-bottom: 0 !important;</p>
+<p>}</p>
+<p>div.sign.birch {</p>
+<p>background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_birch.png&quot;);</p>
+<p>}</p>
+<p>div.sign.spruce {</p>
+<p>background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_spruce.png&quot;);</p>
+<p>}</p>
+<p>div.sign.acacia {</p>
+<p>background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_acacia.png&quot;);</p>
+<p>}</p>
+<p>div.sign.jungle {</p>
+<p>background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_jungle.png&quot;);</p>
+<p>}</p>
+<p>div.sign.darkoak {</p>
+<p>background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_darkoak.png&quot;);</p>
+<p>}</p>
+<p>div.sign.crimson {</p>
+<p>background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_crimson.png&quot;);</p>
+<p>}</p>
+<p>div.sign.warped {</p>
+<p>background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_warped.png&quot;);</p>
+<p>}</p>
+<p>/* FIX */</p>
+<p>@media (min-width: 768px) {</p>
+<p>div.sign {</p>
+<p>margin-left: 50px;</p>
+<p>margin-right: 50px;</p>
+<p>}</p>
+<p>}</p>
+<p>[[/module]]</p>
+<p>[!<s> 版式页内容部分 </s>]</p>
+<p>[[iftags +版式]]</p>
+<p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p>.status {</p>
+<p>font-family: var(--title-font);</p>
+<p>font-weight: 900;</p>
+<p>font-size: 200%;</p>
+<p>display: flex:</p>
+<p>align-content: center;</p>
+<p>justify-items: center;</p>
+<p>text-align: center;</p>
+<p>}</p>
+<p>.status span.active {</p>
+<p>color: rgb(var(--white-monochrome));</p>
+<p>-webkit-box-shadow:</p>
+<p>inset 100vw 0 0 0 rgb(var(--rating-module-button-plus-color)),</p>
+<p>0.25rem 0.25rem 0 rgb(var(--rating-module-button-plus-color)),</p>
+<p>-0.25rem -0.25rem 0 rgb(var(--rating-module-button-plus-color)),</p>
+<p>-0.25rem 0.25rem 0 rgb(var(--rating-module-button-plus-color)),</p>
+<p>0.25rem -0.25rem 0 rgb(var(--rating-module-button-plus-color));</p>
+<p>-moz-box-shadow:</p>
+<p>inset 100vw 0 0 0 rgb(var(--rating-module-button-plus-color)),</p>
+<p>0.25rem 0.25rem 0 rgb(var(--rating-module-button-plus-color)),</p>
+<p>-0.25rem -0.25rem 0 rgb(var(--rating-module-button-plus-color)),</p>
+<p>-0.25rem 0.25rem 0 rgb(var(--rating-module-button-plus-color)),</p>
+<p>0.25rem -0.25rem 0 rgb(var(--rating-module-button-plus-color));</p>
+<p>box-shadow:</p>
+<p>inset 100vw 0 0 0 rgb(var(--rating-module-button-plus-color)),</p>
+<p>0.25rem 0.25rem 0 rgb(var(--rating-module-button-plus-color)),</p>
+<p>-0.25rem -0.25rem 0 rgb(var(--rating-module-button-plus-color)),</p>
+<p>-0.25rem 0.25rem 0 rgb(var(--rating-module-button-plus-color)),</p>
+<p>0.25rem -0.25rem 0 rgb(var(--rating-module-button-plus-color));</p>
+<p>}</p>
+<p>[[/module]]</p>
+<div class="wiki-aligned">
+<p><span class="module-note">评分组件已由页首快照替代</span></p>
+</div>
+<p><span class="missing-resource">图片附件未归档：http://scp-wiki.wdfiles.com/local--files/theme%3Ablack-highlighter-theme/black-highlighter-logo.svg</span></p>
+<div class="wiki-aligned">
+<div class="wiki-block">
+<p>此组件目前 [[span class=&quot;active&quot;]]已启用[[/span]]</p>
+</div>
+</div>
+<p>_</p>
+<div class="wiki-block">
+<h2>使用方法</h2>
+<p>在任何维基网站上：</p>
+<div class="wiki-block">
+<p>@@[[backup-notice include :scp-wiki-mc:theme:black-highlighter-theme]]@@</p>
+</div>
+<p>你可以直接使用<a href="/wiki/theme~3abetter-minecraft-theme.html">优化Minecraft版式</a>提供的Div方块，而无需单独引入优化Minecraft版式。</p>
+</div>
+<hr>
+<div class="wiki-aligned">
+<h2>主题颜色</h2>
+</div>
+<aside class="backup-note">包含组件未归档：<code>:scp-wiki:component:theme-squares</code></aside>
+<h2>示例</h2>
+<aside class="backup-note">包含组件未归档：<code>component:image-block</code></aside>
+<p>可通过五个连字符“@@<s>-</s>@@”创建水平分割线。若它未被放在其他部件（诸如引用块）中，则会左右延伸贯穿页面。这种将文件分割为多个部分的线就是分割线。</p>
+<hr>
+<p>标题可通过在一行字起始处输入1至6个加号“+”来创建</p>
+<details class="wiki-collapsible"><summary>+ 标题</summary>
+<h2>1 级标题</h2>
+<h3>2 级标题</h3>
+<h4>3 级标题</h4>
+<h5>4 级标题</h5>
+<h6>5 级标题</h6>
+<h6>6 级标题</h6>
+</details>
+<p>@@ @@</p>
+<div class="tabview">
+<section class="wiki-tab"><h2>分页</h2>
+<p>此为分页（tab view）。</p>
+</section>
+<section class="wiki-tab"><h2>分页</h2>
+<p>看，这有更多文字。</p>
+<p>多么精巧绝伦。</p>
+</section>
+<section class="wiki-tab"><h2>长Tab</h2>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+</section>
+<section class="wiki-tab"><h2>由于一些奇怪的原因，这个空tab有一个很长的名字。我想知道为什么？这很奇怪。</h2>
+</section>
+<section class="wiki-tab"><h2>空tab</h2>
+</section>
+<section class="wiki-tab"><h2>空tab</h2>
+</section>
+<section class="wiki-tab"><h2>空tab</h2>
+</section>
+<section class="wiki-tab"><h2>空tab</h2>
+</section>
+<section class="wiki-tab"><h2>版式特性（必读）</h2>
+<p>因技术原因，本版式暂未引入Minecraft风格Tabview。</p>
+<p><strong>标准颜色</strong>：</p>
+<p>[[code]]</p>
+<p>--black: 0, 0, 0;</p>
+<p>--dark-blue: 0, 0, 170;</p>
+<p>--dark-green: 0, 170, 0;</p>
+<p>--dark-aqua: 0, 170, 170;</p>
+<p>--dark-red: 170, 0, 0;</p>
+<p>--dark-purple: 170, 0, 170;</p>
+<p>--gold: 255, 170, 0;</p>
+<p>--grey: 170, 170, 170;</p>
+<p>--dark-grey: 85, 85 ,85;</p>
+<p>--blue: 85, 85, 255;</p>
+<p>--green: 85, 255, 85;</p>
+<p>--aqua: 85, 255, 255;</p>
+<p>--red: 255, 85, 85;</p>
+<p>--light-purple: 255, 85, 255;</p>
+<p>--yellow: 255, 255, 85;</p>
+<p>--white: 255, 255, 255;</p>
+<p>/* Minecraft十六色（RGB版本） */</p>
+<p>--minecoin-gold: 221, 214, 5;</p>
+<p>/* Minecoin金色（RGB版本） */</p>
+<p>[[/code]]</p>
+<p>要在这一版式下使用这些颜色，需要如下代码：</p>
+<p>= @@##rgb(颜色变量)|文本##@@</p>
+<p>变量的格式是var(变量名)，上方代码块中冒号前的部分便是变量名。例如金色文本便是：</p>
+<p>= @@##rgb(var(--gold))|金色文本##@@</p>
+<div class="wiki-block">
+<p>@@[[div class=&quot;sign&quot;]]@@</p>
+<p>一个告示牌方块。</p>
+<p>为了对齐行线，分段时请使用@@@@@@@@来正确换行。</p>
+<p>这个方块能使你的文章看起来更Minecraft。</p>
+<p>更多行文字也被支持。</p>
+<p>还有更多——</p>
+<p>##rgb(var(--white))|如果你觉得文字颜色难以识别，试着使用上方提供的Minecraft文字标准颜色。##</p>
+<p>@@[[/div]]@@</p>
+</div>
+<div class="wiki-block">
+<p>@@[[div class=&quot;sign birch&quot;]]@@</p>
+<p>白桦木版本。</p>
+<p>@@[[/div]]@@</p>
+</div>
+<div class="wiki-block">
+<p>@@[[div class=&quot;sign spruce&quot;]]@@</p>
+<p>云杉木版本。（建议使用白色文字。）</p>
+<p>@@[[/div]]@@</p>
+</div>
+<div class="wiki-block">
+<p>@@[[div class=&quot;sign acacia&quot;]]@@</p>
+<p>金合欢木版本。</p>
+<p>@@[[/div]]@@</p>
+</div>
+<div class="wiki-block">
+<p>@@[[div class=&quot;sign jungle&quot;]]@@</p>
+<p>丛林木版本。</p>
+<p>@@[[/div]]@@</p>
+</div>
+<div class="wiki-block">
+<p>@@[[div class=&quot;sign darkoak&quot;]]@@</p>
+<p>黑橡木版本。（建议使用白色文字。）</p>
+<p>@@[[/div]]@@</p>
+</div>
+<div class="wiki-block">
+<p>@@[[div class=&quot;sign crimson&quot;]]@@</p>
+<p>绯红菌版本。（建议使用白色文字。）</p>
+<p>@@[[/div]]@@</p>
+</div>
+<div class="wiki-block">
+<p>@@[[div class=&quot;sign warped&quot;]]@@</p>
+<p>诡异菌版本。（建议使用白色文字。）</p>
+<p>@@[[/div]]@@</p>
+</div>
+</section>
+</div>
+<blockquote>这是一个引用块，在一行字的起始处加上“&gt; ”来创建。</blockquote>
+<p>&gt;</p>
+<blockquote>更多文字</blockquote>
+<blockquote><s>-</s></blockquote>
+<blockquote>一条分割线</blockquote>
+<p>&gt;</p>
+<p>&gt;&gt; 嵌套引用块</p>
+<table class="wiki-table"><tbody>
+<tr><th>这是</th><th>表格</th></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>你应该老早</td><td>就知道怎么</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>做这个了吧</td></tr>
+</tbody></table>
+<p>[[/iftags]]</p></section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>[!-- 版式代码 --]
+
+[[module ThemePreviewer noUi=&quot;true&quot; theme_url=&quot;http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--theme/base/css/style.css&quot;]]
+
+[[module CSS]]
+
+@import url(&quot;https://cdn.jsdelivr.net/gh/Nu-SCPTheme/Black-Highlighter@gh-pages/css/min/normalize.min.css&quot;);
+
+@import url(&quot;https://cdn.jsdelivr.net/gh/Nu-SCPTheme/Black-Highlighter@gh-pages/css/min/black-highlighter.min.css&quot;);
+
+@import url(&quot;https://fonts.font.im/css?family=Play|Cairo|Raleway|PT+Mono&quot;);
+
+
+
+/* ------------ */
+
+
+
+:root {
+
+    --black: 0, 0, 0;
+
+    --dark-blue: 0, 0, 170;
+
+    --dark-green: 0, 170, 0;
+
+    --dark-aqua: 0, 170, 170;
+
+    --dark-red: 170, 0, 0;
+
+    --dark-purple: 170, 0, 170;
+
+    --gold: 255, 170, 0;
+
+    --grey: 170, 170, 170;
+
+    --dark-grey: 85, 85 ,85;
+
+    --blue: 85, 85, 255;
+
+    --green: 85, 255, 85;
+
+    --aqua: 85, 255, 255;
+
+    --red: 255, 85, 85;
+
+    --light-purple: 255, 85, 255;
+
+    --yellow: 255, 255, 85;
+
+    --white: 255, 255, 255;
+
+    /* Minecraft十六色（RGB版本） */
+
+    --minecoin-gold: 221, 214, 5;
+
+    /* Minecoin金色（RGB版本） */
+
+    --light-grey: 215, 215, 215;
+
+    /* 增补颜色 */
+
+}
+
+
+
+/* ------------ */
+
+
+
+:root:lang(cn) {
+
+    --theme-base: &quot;黑色标记笔&quot;;
+
+    --theme-id: &quot;_404&quot;;
+
+    --theme-name: &quot;Minecraft BHL&quot;;
+
+    /* 以上的东西没有实际用处 */
+
+    --header-title: &quot;Minecraft SCP&quot;;
+
+    --header-subtitle: &quot;控制，收容，保护&quot;;
+
+    --logo-image: url(&#x27;http://scp-wiki-mc.wikidot.com/local--files/theme:black-highlighter-theme/mclogo2.svg&#x27;);
+
+    /* 主题颜色 */
+
+    --white-monochrome: var(--white);
+
+    --pale-gray-monochrome: var(--light-grey);
+
+    --light-pale-gray-monochrome: var(--light-grey);
+
+    --very-light-gray-monochrome: var(--light-grey);
+
+    --light-gray-monochrome: var(--grey);
+
+    --gray-monochrome: var(--dark-grey);
+
+    --dark-gray-monochrome: var(--dark-grey);
+
+    --black-monochrome: var(--black);
+
+    --pale-accent: var(--red);
+
+    --bright-accent: var(--red);
+
+    --medium-accent: var(--dark-red);
+
+    --dark-accent: var(--dark-red);
+
+    --alt-accent: var(--gold);
+
+    --gradient-header: linear-gradient(to top, rgb(var(--black)), rgb(var(--black)));
+
+    --swatch-topmenu-border-color: var(--black-monochrome);
+
+    --swatch-topmenu-bg-color: var(--dark-green);
+
+    --header-font: &quot;Play&quot;, sans-serif;
+
+    --title-font: &quot;Cairo&quot;, sans-serif;
+
+    --body-font: &quot;Raleway&quot;, sans-serif;
+
+    --mono-font: &quot;PT Mono&quot;, monospace;
+
+}
+
+
+
+:root, :root *, * {
+
+    image-rendering: crisp-edges;
+
+    image-rendering: pixelated;
+
+}
+
+
+
+#header h1 a:before {
+
+    content: var(--header-title) !important;
+
+}
+
+
+
+#header h2 span:before {
+
+    content: var(--header-subtitle) !important;
+
+}
+
+
+
+#main-content .btn {
+
+    border-radius: 0 !important;
+
+}
+
+
+
+blockquote, div.blockquote,
+
+div[class*=&quot;blockquote&quot;] {
+
+    border: solid 16px !important;
+
+    border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/blockquote_bg.png&quot;) !important;
+
+    border-image-slice: 8 8 8 8 fill !important;
+
+    background-color: transparent !important;
+
+    box-shadow: none !important;
+
+}
+
+
+
+/* Div Blocks */
+
+
+
+div.sign {
+
+    background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign.png&quot;);
+
+    background-repeat: repeat;
+
+    background-size: 7.2em 3.6em;
+
+    background-position: 0 0;
+
+    padding: 1em;
+
+    font-size: 1em;
+
+    line-height: 120%;
+
+    margin-top: 6px;
+
+    margin-bottom: 6px;
+
+    box-shadow: 1px 1px 2px var(--grey);
+
+}
+
+
+
+div.sign p:nth-child(1) {
+
+    margin-top: 0 !important;
+
+}
+
+
+
+div.sign p:nth-last-child(1) {
+
+    margin-bottom: 0 !important;
+
+}
+
+
+
+div.sign.birch {
+
+    background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_birch.png&quot;);
+
+}
+
+
+
+div.sign.spruce {
+
+    background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_spruce.png&quot;);
+
+}
+
+
+
+div.sign.acacia {
+
+    background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_acacia.png&quot;);
+
+}
+
+
+
+div.sign.jungle {
+
+    background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_jungle.png&quot;);
+
+}
+
+
+
+div.sign.darkoak {
+
+    background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_darkoak.png&quot;);
+
+}
+
+
+
+div.sign.crimson {
+
+    background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_crimson.png&quot;);
+
+}
+
+
+
+div.sign.warped {
+
+    background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_warped.png&quot;);
+
+}
+
+
+
+/* FIX */
+
+@media (min-width: 768px) {
+
+div.sign {
+
+    margin-left: 50px;
+
+    margin-right: 50px;
+
+}
+
+}
+
+
+
+[[/module]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[!-- 版式页内容部分 --]
+
+[[iftags +版式]]
+
+[[module CSS]]
+
+.status {
+
+    font-family: var(--title-font);
+
+    font-weight: 900;
+
+    font-size: 200%;
+
+    display: flex:
+
+    align-content: center;
+
+    justify-items: center;
+
+    text-align: center;
+
+}
+
+
+
+.status span.active {
+
+    color: rgb(var(--white-monochrome));
+
+    -webkit-box-shadow:
+
+        inset 100vw 0 0 0 rgb(var(--rating-module-button-plus-color)),
+
+        0.25rem 0.25rem 0 rgb(var(--rating-module-button-plus-color)),
+
+        -0.25rem -0.25rem 0 rgb(var(--rating-module-button-plus-color)),
+
+        -0.25rem 0.25rem 0 rgb(var(--rating-module-button-plus-color)),
+
+        0.25rem -0.25rem 0 rgb(var(--rating-module-button-plus-color));
+
+        -moz-box-shadow:
+
+            inset 100vw 0 0 0 rgb(var(--rating-module-button-plus-color)),
+
+            0.25rem 0.25rem 0 rgb(var(--rating-module-button-plus-color)),
+
+            -0.25rem -0.25rem 0 rgb(var(--rating-module-button-plus-color)),
+
+            -0.25rem 0.25rem 0 rgb(var(--rating-module-button-plus-color)),
+
+            0.25rem -0.25rem 0 rgb(var(--rating-module-button-plus-color));
+
+                box-shadow:
+
+                    inset 100vw 0 0 0 rgb(var(--rating-module-button-plus-color)),
+
+                    0.25rem 0.25rem 0 rgb(var(--rating-module-button-plus-color)),
+
+                    -0.25rem -0.25rem 0 rgb(var(--rating-module-button-plus-color)),
+
+                    -0.25rem 0.25rem 0 rgb(var(--rating-module-button-plus-color)),
+
+                    0.25rem -0.25rem 0 rgb(var(--rating-module-button-plus-color));
+
+}
+
+[[/module]]
+
+
+
+[[&gt;]]
+
+[[module rate]]
+
+[[/&gt;]]
+
+
+
+[[image http://scp-wiki.wdfiles.com/local--files/theme%3Ablack-highlighter-theme/black-highlighter-logo.svg]]
+
+
+
+[[=]]
+
+[[div_ class=&quot;status&quot;]]
+
+此组件目前 [[span class=&quot;active&quot;]]已启用[[/span]]
+
+[[/div]]
+
+[[/=]]
+
+ _
+
+[[div style=&quot;border: 1px solid #ddd; padding: 1em;&quot;]]
+
+
+
++ 使用方法
+
+
+
+在任何维基网站上：
+
+
+
+[[div class=&quot;code&quot;]]
+
+@@[[include :scp-wiki-mc:theme:black-highlighter-theme]]@@
+
+[[/div]]
+
+
+
+你可以直接使用[[[theme:better-minecraft-theme|优化Minecraft版式]]]提供的Div方块，而无需单独引入优化Minecraft版式。
+
+
+
+[[/div]]
+
+
+
+-----
+
+
+
+[[=]]
+
++ 主题颜色
+
+[[/=]]
+
+
+
+[[include :scp-wiki:component:theme-squares -=-
+
+| color1-name=Payne&#x27;s Grey
+
+| color1-variable=--gray-monochrome
+
+| color1-info=(66, 66, 72)
+
+| color1-has-light-text=1
+
+| color2-name=Rosewood
+
+| color2-variable=--bright-accent
+
+| color2-info=(133, 0, 5)
+
+| color2-has-light-text=1
+
+| subcolor1-name=Alto
+
+| subcolor1-variable=--very-light-gray-monochrome
+
+| subcolor1-info=(215, 215, 215)
+
+| subcolor2-name=White Smoke
+
+| subcolor2-variable=--pale-gray-monochrome
+
+| subcolor2-info=(244, 244, 244)
+
+| subcolor3-name=Bastille
+
+| subcolor3-variable=--dark-gray-monochrome
+
+| subcolor3-info=(48, 48, 52)
+
+| subcolor3-has-light-text=1
+
+| subcolor4-name=Buccaneer
+
+| subcolor4-variable=--medium-accent
+
+| subcolor4-info=(100, 46, 44)
+
+| subcolor4-has-light-text=1
+
+| subcolor5-name=Maroon
+
+| subcolor5-variable=--dark-accent
+
+| subcolor5-info=(100, 3, 15)
+
+| subcolor5-has-light-text=1
+
+| subcolor6-name=Mango Tango
+
+| subcolor6-variable=--newpage-color
+
+| subcolor6-info=(221, 102, 17)
+
+]]
+
+
+
++ 示例
+
+
+
+[[include component:image-block name=https://scp-wiki-mc.wikidot.com/local--files/theme:black-highlighter-theme/mclogo2.svg|caption=一张图片|width=200px]]
+
+
+
+可通过五个连字符“@@-----@@”创建水平分割线。若它未被放在其他部件（诸如引用块）中，则会左右延伸贯穿页面。这种将文件分割为多个部分的线就是分割线。
+
+
+
+-----
+
+
+
+标题可通过在一行字起始处输入1至6个加号“+”来创建
+
+
+
+[[collapsible show=&quot;+ 标题&quot; hide=&quot;- 标题&quot;]]
+
++ 1 级标题
+
+
+
+++ 2 级标题
+
+
+
++++ 3 级标题
+
+
+
+++++ 4 级标题
+
+
+
++++++ 5 级标题
+
+
+
+++++++ 6 级标题
+
+[[/collapsible]]
+
+
+
+@@ @@
+
+
+
+[[tabview]]
+
+[[tab 分页]]
+
+此为分页（tab view）。
+
+[[/tab]]
+
+[[tab 分页]]
+
+看，这有更多文字。
+
+
+
+多么精巧绝伦。
+
+[[/tab]]
+
+[[tab 长Tab]]
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+[[/tab]]
+
+[[tab 由于一些奇怪的原因，这个空tab有一个很长的名字。我想知道为什么？这很奇怪。]]
+
+[[/tab]]
+
+[[tab 空tab]]
+
+[[/tab]]
+
+[[tab 空tab]]
+
+[[/tab]]
+
+[[tab 空tab]]
+
+[[/tab]]
+
+[[tab 空tab]]
+
+[[/tab]]
+
+[[tab 版式特性（必读）]]
+
+
+
+因技术原因，本版式暂未引入Minecraft风格Tabview。
+
+
+
+**标准颜色**：
+
+
+
+[[code]]
+
+    --black: 0, 0, 0;
+
+    --dark-blue: 0, 0, 170;
+
+    --dark-green: 0, 170, 0;
+
+    --dark-aqua: 0, 170, 170;
+
+    --dark-red: 170, 0, 0;
+
+    --dark-purple: 170, 0, 170;
+
+    --gold: 255, 170, 0;
+
+    --grey: 170, 170, 170;
+
+    --dark-grey: 85, 85 ,85;
+
+    --blue: 85, 85, 255;
+
+    --green: 85, 255, 85;
+
+    --aqua: 85, 255, 255;
+
+    --red: 255, 85, 85;
+
+    --light-purple: 255, 85, 255;
+
+    --yellow: 255, 255, 85;
+
+    --white: 255, 255, 255;
+
+    /* Minecraft十六色（RGB版本） */
+
+    --minecoin-gold: 221, 214, 5;
+
+    /* Minecoin金色（RGB版本） */
+
+[[/code]]
+
+
+
+要在这一版式下使用这些颜色，需要如下代码：
+
+
+
+= @@##rgb(颜色变量)|文本##@@
+
+
+
+变量的格式是var(变量名)，上方代码块中冒号前的部分便是变量名。例如金色文本便是：
+
+
+
+= @@##rgb(var(--gold))|金色文本##@@
+
+
+
+[[div class=&quot;sign&quot;]]
+
+@@[[div class=&quot;sign&quot;]]@@
+
+一个告示牌方块。
+
+@@@@
+
+为了对齐行线，分段时请使用@@@@@@@@来正确换行。
+
+@@@@
+
+这个方块能使你的文章看起来更Minecraft。
+
+更多行文字也被支持。
+
+@@@@
+
+还有更多——
+
+##rgb(var(--white))|如果你觉得文字颜色难以识别，试着使用上方提供的Minecraft文字标准颜色。##
+
+@@[[/div]]@@
+
+[[/div]]
+
+
+
+[[div class=&quot;sign birch&quot;]]
+
+@@[[div class=&quot;sign birch&quot;]]@@
+
+白桦木版本。
+
+@@[[/div]]@@
+
+[[/div]]
+
+
+
+[[div class=&quot;sign spruce&quot; style=&quot;color: rgb(var(--white));&quot;]]
+
+@@[[div class=&quot;sign spruce&quot;]]@@
+
+云杉木版本。（建议使用白色文字。）
+
+@@[[/div]]@@
+
+[[/div]]
+
+
+
+[[div class=&quot;sign acacia&quot;]]
+
+@@[[div class=&quot;sign acacia&quot;]]@@
+
+金合欢木版本。
+
+@@[[/div]]@@
+
+[[/div]]
+
+
+
+[[div class=&quot;sign jungle&quot;]]
+
+@@[[div class=&quot;sign jungle&quot;]]@@
+
+丛林木版本。
+
+@@[[/div]]@@
+
+[[/div]]
+
+
+
+[[div class=&quot;sign darkoak&quot; style=&quot;color: rgb(var(--white));&quot;]]
+
+@@[[div class=&quot;sign darkoak&quot;]]@@
+
+黑橡木版本。（建议使用白色文字。）
+
+@@[[/div]]@@
+
+[[/div]]
+
+
+
+[[div class=&quot;sign crimson&quot; style=&quot;color: rgb(var(--white))&quot;]]
+
+@@[[div class=&quot;sign crimson&quot;]]@@
+
+绯红菌版本。（建议使用白色文字。）
+
+@@[[/div]]@@
+
+[[/div]]
+
+
+
+[[div class=&quot;sign warped&quot; style=&quot;color: rgb(var(--white));&quot;]]
+
+@@[[div class=&quot;sign warped&quot;]]@@
+
+诡异菌版本。（建议使用白色文字。）
+
+@@[[/div]]@@
+
+[[/div]]
+
+
+
+[[/tab]]
+
+[[/tabview]]
+
+
+
+&gt; 这是一个引用块，在一行字的起始处加上“&gt; ”来创建。
+
+&gt; 
+
+&gt; 更多文字
+
+&gt; -----
+
+&gt; 一条分割线
+
+&gt; 
+
+&gt;&gt; 嵌套引用块
+
+
+
+||~ 这是 ||~ 表格 ||
+
+||你应该老早 || 就知道怎么 ||
+
+||||做这个了吧 ||
+
+[[/iftags]]
+</pre></details></article></main><footer>只读快照：2026/08/31 07:53:10 · created by piglin · 内容版权仍归原作者与 SCP 基金会 Minecraft 分部。</footer></body></html>

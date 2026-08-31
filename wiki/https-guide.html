@@ -1,0 +1,191 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>HTTPS 转换指导 | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page=https-guide">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">其他页面 </p><h1>HTTPS 转换指导</h1><p class="page-name">https-guide</p><dl class="article-meta"><div><dt>创建者</dt><dd>Tengurthy Clotsfoot</dd></div><div><dt>评分</dt><dd class="rating">+3 <small>+3 / -0</small></dd></div><div><dt>发布时间</dt><dd>2024/10/16 13:47:22</dd></div><div><dt>最近编辑</dt><dd>2024/10/16 13:55:45</dd></div></dl><div class="tags"><span class="tag">指导</span></div></header><aside class="reader-warning">此页部分资源未归档：2 个附件。文本与源码仍已保留。</aside><section class="article-body"><p>[[f&lt;toc]]</p>
+<p>~~~~</p>
+<p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p>code, tt {</p>
+<p>padding: .2em .4em;</p>
+<p>line-height: 1.8em;</p>
+<p>background-color: rgba(182, 186, 192, 0.4);</p>
+<p>border-radius: 6px;</p>
+<p>}</p>
+<p>[[/module]]</p>
+<p>依据<a href="https://scp-wiki-cn.wikidot.com/technical-content-policy" rel="noreferrer">技术内容守则</a>，网站上的所有链接均应使用 HTTPS，且允许修复此种链接的编辑操作，与修复错别字相同。然而，由于 Wikidot 的限制，你有可能会意外地创建一些无效的链接，导致别人在遇到这些链接的时候出现糟糕的用户体验。同时，当你自己创造一个http开头的链接时，你也可能会因为http导致的页面错误，诸如加载缓慢、版式崩溃、无法与页面内容互动、编辑框无法保存等多种问题而难以进行相应的活动。这篇指导旨在详解链接究竟该如何被 HTTPS 化。</p>
+<h3>域名</h3>
+<p>SCP基金会Minecraft分部的唯一域名是 Wikidot 的域名，{{@@https://scp-wiki-mc.wikidot.com/@@}}。在您向外宣传或发布您的作品页面链接时，您最好使用以上域名打头的链接（即{{@@https://@@}}开头），以便他人更简单地访问此链接。</p>
+<p>本分部的沙盒站同样启用了 HTTPS 链接，即{{@@https://scp-mc-sandbox-pro.wikidot.com/@@}}。下述系列问题同样适用于本分部附属沙盒网址链接。</p>
+<h3>链接</h3>
+<p>讨厌的是，Wikidot 拥有两种类型的链接：</p>
+<p><a href="https://scp-wiki-cn.wikidot.com/wiki-syntax#toc19" rel="noreferrer">三括号链接</a>允许仅通过其网址后缀指定一个本站页面。其格式为{{@@链接显示内容@@}}，然而，如果你需要显示的内容与网址后缀相同，那么你只需指定标签。举例：{{@@SCP-1000@@}}，或者{{@@Chat Guide@@}}。<strong>对于主网站上的页面应首先考虑使用这些本站链接。</strong>只有这种链接才会显示在反向链接中，且能保持当前网站域名和协议不变。</p>
+<p><a href="https://scp-wiki-cn.wikidot.com/wiki-syntax#toc20" rel="noreferrer">单括号链接</a>在需要绝对链接，比如论坛链接、带参数的页面（例如迭代页面），其它 Wikidot 网站，或者网络上的其它地方的时候使用。其形式为{{@@<a href="https://zh.minecraft.wiki/" rel="noreferrer">中文Minecraft Wiki</a>@@}}。（注意链接与标签之间没有竖杠。）</p>
+<p>后者在同站点中也能使用相对链接，只需去除链接中的域名部分就可以了。比如一个迭代链接（例如{{@@https://scp-wiki-mc.wikidot.com/larryzip-s-proposal/offset/1@@}}）能被简单地表示为{{@@/larryzip-s-proposal/offset/1@@}}。论坛讨论串亦是如此：{{@@/forum/t-16932148@@}}。</p>
+<p>所以是这样子的：</p>
+<p class="wiki-list">链接{{@@<a href="https://scp-wiki-mc.wikidot.com/larryzip-s-proposal/offset/1" rel="noreferrer">下一迭代</a>@@}}将变成{{@@[/larryzip-s-proposal/offset/1 下一迭代]@@}}.</p>
+<p class="wiki-list">链接{{@@<a href="http://scp-wiki-cn.wikidot.com/forum/t-16932148/" rel="noreferrer">通告</a>@@}}将变成{{@@[/forum/t-16932148 通告]@@}}.</p>
+<h3>文件</h3>
+<p>与链接类似，文件的链接也需要转换。这一点尤其重要，因为如果你在使用 HTTPS 连接的话，很多浏览器都会警告或拦截通过 HTTP 加载的资源，<strong>这将导致你的页面上的图片有可能在别人的浏览器上无法加载</strong>。幸好，所有的 {{wdfiles.com}}（也就是 Wikidot 存储文件的地方）链接都支持 HTTPS，即使主站点并未开启 HTTPS 也是如此。</p>
+<p>最简单获得正确的（wdfiles.com）链接的方法就是在一个新标签页里打开它，然后复制你重定向到的网页链接，然后确保它是 HTTPS 的。这种 URL 的例子有 https://bettersandbox.wdfiles.com/local--files/tengurthy/SCP-MC-921（注意是 {{wdfiles.com}} 的域名）。</p>
+<h3>警告语</h3>
+<p>某些链接，尽管它是 HTTPS 的，但是它们<strong>不可用</strong>。请注意不要创建这些链接，因为它们<strong>没有用</strong>而且读者的浏览器会给它们显示一个非常可怕的警告。</p>
+<p class="wiki-list">{{@@https://www.scp-wiki-mc.wikidot.com@@}} ❌</p>
+<p>只有 {{@@scp-wiki-mc.wikidot.com@@}}（没有www）才能用在 HTTPS 上。</p>
+<p>如果你看到页面上有出现这些不可用的链接，请更换它们。</p>
+<h3>转换至 HTTPS</h3>
+<p>看到一条链接之后，你应该问自己以下问题：</p>
+<p class="wiki-list">这条链接能不能被表达为本站的三括号链接？（例如到达 SCP-MC-001 的链接）</p>
+<p class="wiki-list">这条链接能不能被表达为一条相对链接？（例如到达迭代页面或者论坛讨论串的链接）</p>
+<p class="wiki-list">这条链接是到达不同的 Wikidot 站点的吗？如果是这种情况的话你可能得让它维持原样。（例如到达 中文分站 的链接）</p>
+<p class="wiki-list">如果这是一条外部链接，那么它是 HTTPS 的吗？现在的所有现代网站都支持 HTTPS 了。（例如到达Minecraft Wiki的链接）</p>
+<p>有了这些做背景知识，以下是不推荐的输入的参考例子，且列出了需用于替换的链接示例。</p>
+<table class="wiki-table"><tbody>
+<tr><th>原始</th><th>替换</th></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>{{@@<a href="http://scp-wiki-cn.wikidot.com/forum/c-7540493/" rel="noreferrer">论坛-建议与政策</a>@@}}</td><td>{{@@[/forum/c-7540493/ 论坛-建议与政策]@@}}</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>{{@@<span class="missing-resource">图片附件未归档：http://bettersandbox.wdfiles.com/local--files/tengurthy/SCP-MC-921</span>@@}}</td><td>{{@@<span class="missing-resource">图片附件未归档：https://bettersandbox.wdfiles.com/local--files/tengurthy/SCP-MC-921</span>@@}}</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>{{@@http://scp-wiki-mc.wikidot.com/some-page/code/2@@}}</td><td>{{@@https://scp-wiki-mc.wdfiles.com/local--code/some-page/2@@}}</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>{{@@<a href="http://zh.minecraft.wiki/" rel="noreferrer">中文Minecraft大百科</a>@@}}</td><td>{{@@<a href="https://zh.minecraft.wiki/" rel="noreferrer">中文Minecraft大百科</a>@@}}</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>{{@@<a href="https://scp-wiki-cn.wikidot.com/" rel="noreferrer">SCP基金会中国分部</a>@@}}</td><td>维持原样（其它网站）</td></tr>
+</tbody></table>
+<p>[!<s>你也可以用<a href="https://acg.kr/aEIat9" rel="noreferrer">这个替换工具</a>来帮你替换链接。</s>]</p></section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>[[f&lt;toc]]
+
+~~~~
+
+
+
+[[module CSS]]
+
+code, tt {
+
+    padding: .2em .4em;
+
+    line-height: 1.8em;
+
+    background-color: rgba(182, 186, 192, 0.4);
+
+    border-radius: 6px;
+
+}
+
+[[/module]]
+
+
+
+依据[https://scp-wiki-cn.wikidot.com/technical-content-policy 技术内容守则]，网站上的所有链接均应使用 HTTPS，且允许修复此种链接的编辑操作，与修复错别字相同。然而，由于 Wikidot 的限制，你有可能会意外地创建一些无效的链接，导致别人在遇到这些链接的时候出现糟糕的用户体验。同时，当你自己创造一个http开头的链接时，你也可能会因为http导致的页面错误，诸如加载缓慢、版式崩溃、无法与页面内容互动、编辑框无法保存等多种问题而难以进行相应的活动。这篇指导旨在详解链接究竟该如何被 HTTPS 化。
+
+
+
+++ 域名
+
+
+
+SCP基金会Minecraft分部的唯一域名是 Wikidot 的域名，{{@@https://scp-wiki-mc.wikidot.com/@@}}。在您向外宣传或发布您的作品页面链接时，您最好使用以上域名打头的链接（即{{@@https://@@}}开头），以便他人更简单地访问此链接。
+
+
+
+本分部的沙盒站同样启用了 HTTPS 链接，即{{@@https://scp-mc-sandbox-pro.wikidot.com/@@}}。下述系列问题同样适用于本分部附属沙盒网址链接。
+
+
+
+++ 链接
+
+
+
+讨厌的是，Wikidot 拥有两种类型的链接：
+
+
+
+[https://scp-wiki-cn.wikidot.com/wiki-syntax#toc19 三括号链接]允许仅通过其网址后缀指定一个本站页面。其格式为{{@@[[[page-slug-name|链接显示内容]]]@@}}，然而，如果你需要显示的内容与网址后缀相同，那么你只需指定标签。举例：{{@@[[[SCP-1000]]]@@}}，或者{{@@[[[Chat Guide]]]@@}}。**对于主网站上的页面应首先考虑使用这些本站链接。**只有这种链接才会显示在反向链接中，且能保持当前网站域名和协议不变。
+
+
+
+[https://scp-wiki-cn.wikidot.com/wiki-syntax#toc20 单括号链接]在需要绝对链接，比如论坛链接、带参数的页面（例如迭代页面），其它 Wikidot 网站，或者网络上的其它地方的时候使用。其形式为{{@@[https://zh.minecraft.wiki/ 中文Minecraft Wiki]@@}}。（注意链接与标签之间没有竖杠。）
+
+
+
+后者在同站点中也能使用相对链接，只需去除链接中的域名部分就可以了。比如一个迭代链接（例如{{@@https://scp-wiki-mc.wikidot.com/larryzip-s-proposal/offset/1@@}}）能被简单地表示为{{@@/larryzip-s-proposal/offset/1@@}}。论坛讨论串亦是如此：{{@@/forum/t-16932148@@}}。
+
+
+
+所以是这样子的：
+
+* 链接{{@@[https://scp-wiki-mc.wikidot.com/larryzip-s-proposal/offset/1 下一迭代]@@}}将变成{{@@[/larryzip-s-proposal/offset/1 下一迭代]@@}}.
+
+* 链接{{@@[http://scp-wiki-cn.wikidot.com/forum/t-16932148/ 通告]@@}}将变成{{@@[/forum/t-16932148 通告]@@}}.
+
+
+
+++ 文件
+
+
+
+与链接类似，文件的链接也需要转换。这一点尤其重要，因为如果你在使用 HTTPS 连接的话，很多浏览器都会警告或拦截通过 HTTP 加载的资源，**这将导致你的页面上的图片有可能在别人的浏览器上无法加载**。幸好，所有的 {{wdfiles.com}}（也就是 Wikidot 存储文件的地方）链接都支持 HTTPS，即使主站点并未开启 HTTPS 也是如此。
+
+
+
+最简单获得正确的（wdfiles.com）链接的方法就是在一个新标签页里打开它，然后复制你重定向到的网页链接，然后确保它是 HTTPS 的。这种 URL 的例子有 https://bettersandbox.wdfiles.com/local--files/tengurthy/SCP-MC-921（注意是 {{wdfiles.com}} 的域名）。
+
+
+
+++ 警告语
+
+
+
+某些链接，尽管它是 HTTPS 的，但是它们**不可用**。请注意不要创建这些链接，因为它们**没有用**而且读者的浏览器会给它们显示一个非常可怕的警告。
+
+
+
+* {{@@https://www.scp-wiki-mc.wikidot.com@@}} ❌
+
+
+
+只有 {{@@scp-wiki-mc.wikidot.com@@}}（没有www）才能用在 HTTPS 上。
+
+
+
+如果你看到页面上有出现这些不可用的链接，请更换它们。
+
+
+
+++ 转换至 HTTPS
+
+
+
+看到一条链接之后，你应该问自己以下问题：
+
+* 这条链接能不能被表达为本站的三括号链接？（例如到达 SCP-MC-001 的链接）
+
+* 这条链接能不能被表达为一条相对链接？（例如到达迭代页面或者论坛讨论串的链接）
+
+* 这条链接是到达不同的 Wikidot 站点的吗？如果是这种情况的话你可能得让它维持原样。（例如到达 中文分站 的链接）
+
+* 如果这是一条外部链接，那么它是 HTTPS 的吗？现在的所有现代网站都支持 HTTPS 了。（例如到达Minecraft Wiki的链接）
+
+
+
+有了这些做背景知识，以下是不推荐的输入的参考例子，且列出了需用于替换的链接示例。
+
+
+
+||~ 原始 ||~ 替换 ||
+
+|| {{@@[http://scp-wiki-cn.wikidot.com/forum/c-7540493/ 论坛-建议与政策]@@}} || {{@@[/forum/c-7540493/ 论坛-建议与政策]@@}} ||
+
+|| {{@@[[image http://bettersandbox.wdfiles.com/local--files/tengurthy/SCP-MC-921]]@@}} || {{@@[[image https://bettersandbox.wdfiles.com/local--files/tengurthy/SCP-MC-921]]@@}} ||
+
+|| {{@@http://scp-wiki-mc.wikidot.com/some-page/code/2@@}} || {{@@https://scp-wiki-mc.wdfiles.com/local--code/some-page/2@@}} ||
+
+|| {{@@[http://zh.minecraft.wiki/ 中文Minecraft大百科]@@}} || {{@@[https://zh.minecraft.wiki/ 中文Minecraft大百科]@@}} ||
+
+|| {{@@[https://scp-wiki-cn.wikidot.com/ SCP基金会中国分部]@@}} || 维持原样（其它网站） ||
+
+
+
+[!--你也可以用[https://acg.kr/aEIat9 这个替换工具]来帮你替换链接。--]
+</pre></details></article></main><footer>只读快照：2026/08/31 07:53:10 · created by piglin · 内容版权仍归原作者与 SCP 基金会 Minecraft 分部。</footer></body></html>

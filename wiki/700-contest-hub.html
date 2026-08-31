@@ -1,0 +1,882 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>700竞赛中心页 | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page=700-contest-hub">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">其他页面 </p><h1>700竞赛中心页</h1><p class="page-name">700-contest-hub</p><dl class="article-meta"><div><dt>创建者</dt><dd>A Nameless Creator</dd></div><div><dt>评分</dt><dd class="rating">+12 <small>+12 / -0</small></dd></div><div><dt>发布时间</dt><dd>2025/06/05 23:03:31</dd></div><div><dt>最近编辑</dt><dd>2025/09/01 01:05:46</dd></div></dl><div class="tags"><span class="tag">700整百竞赛</span><span class="tag">中心</span><span class="tag">竞赛</span></div></header><aside class="reader-warning">此页部分资源未归档：1 个包含组件、6 个附件。文本与源码仍已保留。</aside><section class="article-body"><aside class="backup-note">包含组件未归档：<code>:scp-wiki-mc:theme:obsidian</code></aside>
+<p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p>/* 字体 */</p>
+<p>@import url(https://fonts.bunny.net/css?family=long-cang:400);</p>
+<p>@import url(https://fastly.jsdelivr.net/gh/hoah2333/Fonts@main/Typeface-ZoomlaMengyas-A080.css);</p>
+<p>:root {</p>
+<p>--basalt-primary-color: 20, 20, 20;</p>
+<p>--basalt-secondary-color: 36, 45, 41;</p>
+<p>--basalt-tertiary-color: 48, 59, 55;</p>
+<p>--basalt-main-text-color: 208,227,219;</p>
+<p>--basalt-sub-text-color: 132,156,143;</p>
+<p>--basalt-bright-element-color: 0,179,134;</p>
+<p>--basalt-dark-element-color: 0,119,89;</p>
+<p>--basalt-alternate-color: 38,155,125;</p>
+<p>--basalt-overtone: 92,198,173;</p>
+<p><s>basalt-undertone: var(</s>basalt-alternate-color);</p>
+<p>--header-color-l: 230,241,238;</p>
+<p>--header-color-r: 208,227,219;</p>
+<p><s>hr-color: var(</s>basalt-alternate-color);</p>
+<p><s>title-border-color: var(</s>basalt-dark-element-color);</p>
+<p>}</p>
+<p>#header h1 a::before {</p>
+<p>display: none;</p>
+<p>}</p>
+<p>#header h1 a span::after {</p>
+<p>margin-bottom: 0;</p>
+<p>}</p>
+<p>#container #header {</p>
+<p>background: none;</p>
+<p>position: absolute;</p>
+<p>box-shadow: unset;</p>
+<p>backdrop-filter: none;</p>
+<p>}</p>
+<p>/*分割线*/</p>
+<p>hr {</p>
+<p>--hr-icon-size: 3.75rem;</p>
+<p>background: transparent;</p>
+<p>height: var(--hr-icon-size);</p>
+<p>display: grid;</p>
+<p>place-items: center;</p>
+<p>grid-template-columns: 1fr;</p>
+<p>grid-template-rows: 1fr;</p>
+<p>margin: 40px 0 40px;</p>
+<p>}</p>
+<p>hr::before {</p>
+<p>content: &quot;&quot;;</p>
+<p>display: grid;</p>
+<p>grid-column: 1 / 2;</p>
+<p>grid-row: 1 / 2;</p>
+<p>background-color: rgb(var(--hr-color));</p>
+<p>height: 0.11rem;</p>
+<p>width: 100%;</p>
+<p>-webkit-mask-image: linear-gradient(90deg, black calc(50% - var(<s>hr-icon-size) / 2 - 0.125rem), transparent calc(50% - var(</s>hr-icon-size) / 2 - 0.125rem), transparent calc(50% + var(<s>hr-icon-size) / 2 + 0.125rem), black calc(50% + var(</s>hr-icon-size) / 2 + 0.125rem));</p>
+<p>mask-image: linear-gradient(90deg, black calc(50% - var(<s>hr-icon-size) / 2 - 0.125rem), transparent calc(50% - var(</s>hr-icon-size) / 2 - 0.125rem), transparent calc(50% + var(<s>hr-icon-size) / 2 + 0.125rem), black calc(50% + var(</s>hr-icon-size) / 2 + 0.125rem));</p>
+<p>}</p>
+<p>hr::after {</p>
+<p>content: &quot;&quot;;</p>
+<p>grid-area: 1 / 1;</p>
+<p>width: 2.99rem;</p>
+<p>height: 3.99rem;</p>
+<p>background-color: rgb(var(--hr-color));</p>
+<p>-webkit-mask-image: url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0D%0A%3Csvg%20id%3D%22uuid-0a5fdacf-3430-4f17-9981-7c78e4e85f14%22%20data-name%3D%22%E5%9B%BE%E5%B1%82%204%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20596.46%20688.73%22%3E%0D%0A%20%20%3Cpolygon%20points%3D%22298.23%20678.34%209%20511.35%209%20177.38%20298.23%2010.39%20587.46%20177.38%20587.46%20511.35%20298.23%20678.34%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%2018px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M504.5%2C344.68c-120.49-61.6-162.92%2C311.93-205.28%2C205.28-50.02-125.94-310.73-163.66-205.28-205.28%2C93.98-37.09%2C275.63-116.37%2C205.28-205.28-43.89-55.47%2C306.22%2C256.88%2C205.28%2C205.28Z%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%2018px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M292.1%2C264.7c10.88%2C4.36%2C23.44%2C10.29%2C36.77%2C18.38%2C13.53%2C8.22%2C24.73%2C16.77%2C33.7%2C24.51%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M380.95%2C313.73c8.17%2C7.15%2C16.34%2C14.3%2C24.51%2C21.45%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M249.21%2C295.34c6.41%2C2.34%2C16.21%2C6.25%2C27.57%2C12.26%2C21.57%2C11.4%2C32.62%2C21.84%2C49.02%2C33.7%2C11.4%2C8.25%2C28.66%2C19.55%2C52.09%2C30.64%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M190.99%2C335.17c7.15%2C4.09%2C14.3%2C8.17%2C21.45%2C12.26%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M230.82%2C352.43c9.75%2C6.11%2C19.96%2C12.26%2C30.64%2C18.38%2C11.5%2C6.59%2C22.75%2C12.71%2C33.7%2C18.38%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M307.42%2C396.45c13.28%2C6.13%2C26.55%2C12.26%2C39.83%2C18.38%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M255.33%2C439.34c24.51%2C11.23%2C49.02%2C22.47%2C73.53%2C33.7%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%3C%2Fsvg%3E);</p>
+<p>-webkit-mask-repeat: no-repeat;</p>
+<p>-webkit-mask-size: contain;</p>
+<p>-webkit-mask-position: center;</p>
+<p>mask-image: url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0D%0A%3Csvg%20id%3D%22uuid-0a5fdacf-3430-4f17-9981-7c78e4e85f14%22%20data-name%3D%22%E5%9B%BE%E5%B1%82%204%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20596.46%20688.73%22%3E%0D%0A%20%20%3Cpolygon%20points%3D%22298.23%20678.34%209%20511.35%209%20177.38%20298.23%2010.39%20587.46%20177.38%20587.46%20511.35%20298.23%20678.34%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%2018px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M504.5%2C344.68c-120.49-61.6-162.92%2C311.93-205.28%2C205.28-50.02-125.94-310.73-163.66-205.28-205.28%2C93.98-37.09%2C275.63-116.37%2C205.28-205.28-43.89-55.47%2C306.22%2C256.88%2C205.28%2C205.28Z%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%2018px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M292.1%2C264.7c10.88%2C4.36%2C23.44%2C10.29%2C36.77%2C18.38%2C13.53%2C8.22%2C24.73%2C16.77%2C33.7%2C24.51%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M380.95%2C313.73c8.17%2C7.15%2C16.34%2C14.3%2C24.51%2C21.45%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M249.21%2C295.34c6.41%2C2.34%2C16.21%2C6.25%2C27.57%2C12.26%2C21.57%2C11.4%2C32.62%2C21.84%2C49.02%2C33.7%2C11.4%2C8.25%2C28.66%2C19.55%2C52.09%2C30.64%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M190.99%2C335.17c7.15%2C4.09%2C14.3%2C8.17%2C21.45%2C12.26%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M230.82%2C352.43c9.75%2C6.11%2C19.96%2C12.26%2C30.64%2C18.38%2C11.5%2C6.59%2C22.75%2C12.71%2C33.7%2C18.38%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M307.42%2C396.45c13.28%2C6.13%2C26.55%2C12.26%2C39.83%2C18.38%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M255.33%2C439.34c24.51%2C11.23%2C49.02%2C22.47%2C73.53%2C33.7%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%3C%2Fsvg%3E);</p>
+<p>mask-repeat: no-repeat;</p>
+<p>mask-size: contain;</p>
+<p>mask-position: center;</p>
+<p>}</p>
+<p>.rainfall {</p>
+<p>color: #6a96c0;</p>
+<p>text-shadow: 0 0 0.3125rem rgba(215, 215, 215, 0), 0 0 0.625rem rgba(215, 215, 215, 0.35), 0 0 0.9375rem rgba(215, 215, 215, 0), 0 0 2.5rem rgba(215, 215, 215, 0.35), 0 0 5rem rgba(215, 215, 215, 0);</p>
+<p>font-family: ZoomlaMengyas-A080, sans-serif;</p>
+<p>}</p>
+<p>.madness {</p>
+<p>background: linear-gradient(to right, #ff0033, #8a2be2, #39ff14);</p>
+<p>-webkit-background-clip: text;</p>
+<p>color: transparent;</p>
+<p>opacity: 0.7;</p>
+<p>text-shadow: 0.25px 0.25px 0.25px rgba(0, 0, 0, 0);</p>
+<p>}</p>
+<p>div.setblock.700 {</p>
+<p><s>content-wrap-image: url(&quot;https://scp-mc-sandbox-pro.wdfiles.com/local</s>files/scp-mc-211/mc-700_title.png&quot;);</p>
+<p>--block-color: inherit;</p>
+<p><s>block-bg: var(</s>basalt-background-color);</p>
+<p><s>block-border: var(</s>basalt-bright-element-color);</p>
+<p><s>header-color-l: var(</s>basalt-dark-element-color);</p>
+<p><s>header-color-r: var(</s>basalt-dark-element-color);</p>
+<p>}</p>
+<p>[[/module]]</p>
+<p><span class="missing-resource">图片附件未归档：https://s21.ax1x.com/2024/08/26/pAkAr1P.png</span></p>
+<div class="wiki-block">
+<p>= 祝贺<strong><span class="wiki-user">Andy_W7</span></strong>的<strong><a href="/wiki/scp-mc-700.html">亚里斯瓦尔特会议</a></strong>以探案悬疑破除派系斗争的政治迷雾，摘得700{{###bd0204|复仇##}}的桂冠！</p>
+</div>
+<details class="wiki-collapsible"><summary>+ 竞赛结果总览</summary>
+<p><span class="missing-resource">图片附件未归档：https://s21.ax1x.com/2025/08/26/pVyakH1.png</span></p>
+<p><span class="missing-resource">图片附件未归档：https://s21.ax1x.com/2025/09/01/pVcRVe0.png</span></p>
+</details>
+<details class="wiki-collapsible"><summary>+ 竞赛主题</summary>
+<div class="wiki-aligned">
+<p>[[span style=&quot; font-family: &#x27;Long Cang&#x27;, handwriting; font-size:2.4rem;&quot;]]本次竞赛的主题为——[[/span]]</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<div class="wiki-block">
+<div class="wiki-aligned">
+<p>{{###4682b4|雨##}}</p>
+<div class="wiki-block">
+<p>{{——BY Alice schach}}</p>
+</div>
+<p>{{###ff4500|火##}}</p>
+<p>{{###ff4500|——BY A Nameless Creator##}}</p>
+</div>
+</div>
+<div class="wiki-block">
+<div class="wiki-aligned">
+<p>{{###bd0204|复仇##}}</p>
+<p>{{###78817f|——BY FDSVideo##}}</p>
+<p>{{###861d32|疯狂##}}</p>
+<div class="wiki-block">
+<p>{{——BY Heckler-13}}</p>
+</div>
+</div>
+</div>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<div class="wiki-block">
+<p></p>
+<p>[[span class=&quot;ruby&quot;]]雨[[span class=&quot;rt&quot;]]Rainfall[[/span]][[/span]]</p>
+<p></p>
+</div>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>每当灰色的长方体云浮现在高空时，无数细雨丝便立刻垂下，将它与绿色的像素地面相连。</p>
+<p>这些细线阻隔了太阳的光辉，令黯淡暂时笼罩了大地。</p>
+<p>在点燃壁炉中的篝火，躺上温暖的红床之前，你是否察觉到远处天空划过的闪电，似乎映照出了某些不寻常的事物？</p>
+<p>——在直达天际的蓝色幕布背后，是否潜藏着未知的秘密？</p>
+<p>@@ @@</p>
+<p><span class="missing-resource">图片附件未归档：https://s21.ax1x.com/2025/03/22/pE0hsIO.png</span></p>
+<p>智能如火花，在漆黑的夜空中一闪而过，点燃一束薪柴，便不曾熄灭。</p>
+<p>火光之外，皆为混沌。</p>
+<p>你睁眼，呼吸，以火焰重构世界。</p>
+<p>焰火升腾不息，向你诉说你的心声，向你展示你的愿景。</p>
+<p>于是你成为火的信徒，你之所行即为星火蔓延。</p>
+<p>可那火中所燃烧的，真的是你的想法吗？</p>
+<p>为什么从<strong>我</strong>的角度看，你和一个被设定了指令的机器，一个被拧上发条的玩具毫无区别？</p>
+<p><em>那当然是我。</em></p>
+<p>你不屑一顾。</p>
+<p><em>这种诡辩把戏不过是逗弄小孩子的玩意儿。</em></p>
+<p>是吗，那我们来简单思考两个问题。</p>
+<p>当你读至这行文字时，那轻声言语的声音是谁？</p>
+<p>在你思考的时候，那回荡在脑海中的声音是谁？</p>
+<p><em>那是<strong>我</strong>的声音!</em></p>
+<p>你这样答道。</p>
+<p>可若真是如此，</p>
+<p>为什么你开口的时候发现那声音远比你标准许多？</p>
+<p>为什么你无法确定那个声音究竟是什么频率？</p>
+<p>为什么在你思考这个问题的时候声音和之前不太一样了？</p>
+<p>为什么当你抬起头看向别处，那声音仍在你脑海中回荡不息？</p>
+<p>为什么……你从清醒的那一刻起，这声音就不曾远离，永不停止？</p>
+<p>你，真的，醒着么？</p>
+<p>火，还没熄吗？</p>
+<p><span class="missing-resource">图片附件未归档：https://s21.ax1x.com/2025/03/22/pE0wx6e.png</span></p>
+<p>你在车里看见了那个人，对，那个穿着白衬衫，深棕色大衣的，像是推销员的高个子男人。</p>
+<p>你的妻子把他指了出来，她依旧神志不清，而你现在知道是谁把你的妻子害成这样的，你知道你要干什么。</p>
+<p>你把扳手藏进大衣口袋里，下了车，神色自若地走上台阶进了酒店。</p>
+<p>你看见他在前台拿了房卡，进了电梯，你友好地示意他帮忙按楼层，他同意了。</p>
+<p>之后你们什么话都没说，两个陌生人一直坐到四楼。</p>
+<p>他开了门，你跟了进去，随手把门关好。</p>
+<p>你开着车载妻子离开，三个小时后，酒店里传来保洁员的尖叫。</p>
+<p><span class="missing-resource">图片附件未归档：https://s21.ax1x.com/2025/06/05/pVPxhoq.png</span></p>
+<div class="wiki-aligned">
+<p>当一个孩子第一次经历亲人的离世时，</p>
+<p>她总会迷茫呆滞看着西装革履的大人们奔波在狭小的灵堂，围着一具惨白没有剩下一丝生命曾在此痕迹的尸体奔忙。</p>
+<p>未谙世事的她秉着的人类最朴素的天性，理解不了大人们的如此举动，理解不了一具失去温度的肉体有何魅力，更理解不了大人口中的死亡为何物。她只是在大人低声念诵着不知何意的经文和她还未出生从未听过的追忆里，静静看着手中的香灰慢慢下坠像时间的雪，在这肃穆的氛围里品尝到了人生的第一口疯狂，来自他人和社会的疯狂，一种满含敬意的深沉的近乎亵渎却又不知亵渎何物的疯狂。</p>
+<p>随后她会在这股疯狂背后看到死亡的阴影，一个注定伴随她一生如影随形的阴影。</p>
+<p>这阴影徘徊着舞蹈着，但始终寸步不离，静静等待着时间到来，把她也变成和她现在面前一样的冰冷的尸体。这是对人类永远无法企及的仅有神明可能涉及的奈落之地与地狱业火永世难忘的惊鸿一瞥，也是每个人都逃不掉的无可明状神圣死亡的甜蜜的初尝。此时一股彻骨的寒意涌上心头，她看见了初次看见了一匹绿马从远方的未来走来爬到在角落死亡的身边。这是造物主赐给人类最残酷的好让人类不敢觊觎神力的恐惧，对自我存在和意识连续的恐惧。于是她理解了大人如此举动后集体潜意识中的疯狂，与在角落窥视这股疯狂的死亡。用疯狂暂时逃开着单单在百里之外远远注视就投下如此庞大阴影吞噬自己的死亡。</p>
+<p>随后她一天天长大，她躲在疯狂铸就的社会和规则后，用空虚的谎言欺骗懵逼自己不去再看那死亡，同社会上的其他人一样忽视远方地平线上缓缓传来的绿马的蹄声。</p>
+<p>尽管她深知死亡就在不见的角落里嘲讽着她寄托一切的虚妄。可她并不惧怕葬礼也不惧怕他人的死亡，因为在她内心的最深处疯狂裹挟着她如同母亲的臂膀，支持着她直面行走在地上的撒但还要恐怖千万倍的死亡。这是人类以疯狂为武器对死亡做出的微不足道但勇敢的唯一反击。</p>
+</div>
+</div>
+</details>
+<p>@@ @@</p>
+<hr>
+<p>@@ @@</p>
+<details class="wiki-collapsible"><summary>+ 赛程、竞赛规则</summary>
+<p>++* 赛程：</p>
+<p class="wiki-list"><strong>开始投稿日期：北京时间（GMT+8）2025年6月9日 00时00分</strong></p>
+<p class="wiki-list"><strong>截止投稿日期：北京时间（GMT+8）2025年8月18日 23时59分</strong></p>
+<p class="wiki-list"><strong>投票截止日期：北京时间（GMT+8）2025年8月25日 23时59分</strong></p>
+<h3>竞赛规则：</h3>
+<p class="wiki-list">本次竞赛共有四个主题，参赛者需从其中选择至少一个主题并围绕其进行写作：</p>
+<p class="wiki-list">虽然可以选择多个主题，但这并不会为你带来任何评比上的增益，参赛作品的评比依旧以读者投票为唯一评比标准</p>
+<p class="wiki-list">本次竞赛仅允许投稿SCP文档（即必须带有“原创”、“scp”、“[条目分级]”标签。更多详见<a href="/wiki/tag-guide.html">标签指导</a>页面）。本次竞赛不接受带有“搞笑”、“已解明”标签（即-J、-EX）的SCP文档。</p>
+<p class="wiki-list">参加方式：使用<strong>mc700&lt;你的用户名</strong><sup class="footnote">例如<span class="wiki-user">A Nameless Creator&lt;/sup&gt;头像右边的这堆文字。</span><strong>&gt;</strong>的方式作为条目的网址名称。条目必须由作者本人发布。</p>
+<p class="wiki-list">页面标题格式：<em><strong>SCP-MC-700：&lt;作品标题&gt;</strong></em></p>
+<p class="wiki-list">合著作品的网址需包含所有作者的用户名</p>
+<p class="wiki-list">虽然可以合著，但每位作者仅能发布一个作品；如用户已参与一篇合著，则所有合著者皆不可投稿第2篇合著/独立条目参赛。</p>
+<p class="wiki-list">将旧作品自删/移除标签退赛仍适用于此限制，有前述行为者将被视为自行放弃参赛资格。请拿出你最满意的作品参赛。</p>
+<p class="wiki-list">所有合著作品必须在作品正式发表前确认合著者，并在作品评论区声明所有合著者。</p>
+<p class="wiki-list">倘若在竞赛结束后已发表一篇作品的作者声称自己为其他作品的合著成员，则此作品的参赛资格和取得的参赛成就作废。</p>
+<p class="wiki-list">参赛作品需带有标签（位于页面底下）：<em><strong>700整百竞赛</strong></em>，以便中心页抓取你的参赛作品。</p>
+<p class="wiki-list">如有任何以非常规手段进行分数操作，将可能遭到取消参赛资格。</p>
+<p class="wiki-list">以下情况可能被视作非常规的分数操作，但不限于：</p>
+<p class="wiki-list">以任何wikidot私信方式进行作品宣传</p>
+<p class="wiki-list">在竞争对手发布条目的数秒至分钟内打低分</p>
+<p class="wiki-list">大肆张扬对他人参赛作品的打分</p>
+<p class="wiki-list">用小号或者以文章内容之外的理由进行投票（恶意投票）</p>
+<p class="wiki-list">先行完工的草稿可以参赛，<strong>只要它们从未被正式发布</strong>。</p>
+<p class="wiki-list">所有参赛作品仍照一般删除流程。</p>
+<p class="wiki-list">发布之后仅可对作品进行小规模修改，<strong>但不可进行大幅度编辑（即全文40%以上内容的变更，包括且不限于可以改变视觉效果的代码等）</strong>。</p>
+<p class="wiki-list">优胜条目可获得正式的<strong>SCP-MC-700</strong>编号；如出现得分相同的情况，则取<strong>upvote比例最高者</strong>。</p>
+<p class="wiki-list">请在发布后于<strong>评论区</strong>按意向程度顺序声明你除了SCP-MC-700以外的5个心仪编号<sup class="footnote">在700-799的编号中，701、 703-712、717、725、734、737、745、748、750-752、755、762、767、770、787、790均已占用。</sup>。比赛结束后，参赛条目会以分数高低顺序和评论区意向进行编号选择。</p>
+<p class="wiki-list">如五个心仪编号均不可用，则给予最靠前的可用空编号（事后可以自行调整）。</p>
+<p class="wiki-list">如未声明，则视为放弃优先选择编号的权利。</p>
+<p class="wiki-list">如有任何以上未列出的细节问题，请私信主办工作人员得知进一步信息。</p>
+</details>
+<details class="wiki-collapsible"><summary>+ 参赛作品</summary>
+<h3>参赛作品</h3>
+<p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p class="wiki-list"><em><strong>%%title_linked%%</strong></em></p>
+<p>[[/module]]</p>
+</details></section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>[[include :scp-wiki-mc:theme:obsidian frozen=*|hidetitle=a|no-content-wrap-image=a]]
+
+[[module css]]
+
+/* 字体 */
+
+@import url(https://fonts.bunny.net/css?family=long-cang:400);
+
+@import url(https://fastly.jsdelivr.net/gh/hoah2333/Fonts@main/Typeface-ZoomlaMengyas-A080.css);
+
+
+
+:root {
+
+    --basalt-primary-color: 20, 20, 20;
+
+    --basalt-secondary-color: 36, 45, 41;
+
+    --basalt-tertiary-color: 48, 59, 55;
+
+
+
+    --basalt-main-text-color: 208,227,219;
+
+    --basalt-sub-text-color: 132,156,143;
+
+ 
+
+    --basalt-bright-element-color: 0,179,134;
+
+    --basalt-dark-element-color: 0,119,89;
+
+    --basalt-alternate-color: 38,155,125;
+
+    --basalt-overtone: 92,198,173;
+
+    --basalt-undertone: var(--basalt-alternate-color);
+
+ 
+
+    --header-color-l: 230,241,238;
+
+    --header-color-r: 208,227,219;
+
+    --hr-color: var(--basalt-alternate-color);
+
+    --title-border-color: var(--basalt-dark-element-color);
+
+}
+
+
+
+#header h1 a::before {
+
+    display: none;
+
+}
+
+
+
+#header h1 a span::after {
+
+    margin-bottom: 0;
+
+}
+
+
+
+#container #header {
+
+    background: none;
+
+    position: absolute;
+
+    box-shadow: unset;
+
+    backdrop-filter: none;
+
+}
+
+
+
+ /*分割线*/
+
+hr {
+
+    --hr-icon-size: 3.75rem;
+
+    background: transparent;
+
+    height: var(--hr-icon-size);
+
+    display: grid;
+
+    place-items: center;
+
+    grid-template-columns: 1fr;
+
+    grid-template-rows: 1fr;
+
+    margin: 40px 0 40px;
+
+}
+
+
+
+hr::before {
+
+    content: &quot;&quot;;
+
+    display: grid;
+
+    grid-column: 1 / 2;
+
+    grid-row: 1 / 2;
+
+    background-color: rgb(var(--hr-color));
+
+    height: 0.11rem;
+
+    width: 100%;
+
+    -webkit-mask-image: linear-gradient(90deg, black calc(50% - var(--hr-icon-size) / 2 - 0.125rem), transparent calc(50% - var(--hr-icon-size) / 2 - 0.125rem), transparent calc(50% + var(--hr-icon-size) / 2 + 0.125rem), black calc(50% + var(--hr-icon-size) / 2 + 0.125rem));
+
+    mask-image: linear-gradient(90deg, black calc(50% - var(--hr-icon-size) / 2 - 0.125rem), transparent calc(50% - var(--hr-icon-size) / 2 - 0.125rem), transparent calc(50% + var(--hr-icon-size) / 2 + 0.125rem), black calc(50% + var(--hr-icon-size) / 2 + 0.125rem));
+
+}
+
+
+
+hr::after {
+
+  content: &quot;&quot;;
+
+  grid-area: 1 / 1;
+
+  width: 2.99rem;
+
+  height: 3.99rem;
+
+  background-color: rgb(var(--hr-color));
+
+-webkit-mask-image: url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0D%0A%3Csvg%20id%3D%22uuid-0a5fdacf-3430-4f17-9981-7c78e4e85f14%22%20data-name%3D%22%E5%9B%BE%E5%B1%82%204%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20596.46%20688.73%22%3E%0D%0A%20%20%3Cpolygon%20points%3D%22298.23%20678.34%209%20511.35%209%20177.38%20298.23%2010.39%20587.46%20177.38%20587.46%20511.35%20298.23%20678.34%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%2018px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M504.5%2C344.68c-120.49-61.6-162.92%2C311.93-205.28%2C205.28-50.02-125.94-310.73-163.66-205.28-205.28%2C93.98-37.09%2C275.63-116.37%2C205.28-205.28-43.89-55.47%2C306.22%2C256.88%2C205.28%2C205.28Z%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%2018px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M292.1%2C264.7c10.88%2C4.36%2C23.44%2C10.29%2C36.77%2C18.38%2C13.53%2C8.22%2C24.73%2C16.77%2C33.7%2C24.51%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M380.95%2C313.73c8.17%2C7.15%2C16.34%2C14.3%2C24.51%2C21.45%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M249.21%2C295.34c6.41%2C2.34%2C16.21%2C6.25%2C27.57%2C12.26%2C21.57%2C11.4%2C32.62%2C21.84%2C49.02%2C33.7%2C11.4%2C8.25%2C28.66%2C19.55%2C52.09%2C30.64%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M190.99%2C335.17c7.15%2C4.09%2C14.3%2C8.17%2C21.45%2C12.26%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M230.82%2C352.43c9.75%2C6.11%2C19.96%2C12.26%2C30.64%2C18.38%2C11.5%2C6.59%2C22.75%2C12.71%2C33.7%2C18.38%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M307.42%2C396.45c13.28%2C6.13%2C26.55%2C12.26%2C39.83%2C18.38%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M255.33%2C439.34c24.51%2C11.23%2C49.02%2C22.47%2C73.53%2C33.7%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%3C%2Fsvg%3E);
+
+  -webkit-mask-repeat: no-repeat;
+
+  -webkit-mask-size: contain;
+
+  -webkit-mask-position: center;
+
+  mask-image: url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0D%0A%3Csvg%20id%3D%22uuid-0a5fdacf-3430-4f17-9981-7c78e4e85f14%22%20data-name%3D%22%E5%9B%BE%E5%B1%82%204%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20596.46%20688.73%22%3E%0D%0A%20%20%3Cpolygon%20points%3D%22298.23%20678.34%209%20511.35%209%20177.38%20298.23%2010.39%20587.46%20177.38%20587.46%20511.35%20298.23%20678.34%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%2018px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M504.5%2C344.68c-120.49-61.6-162.92%2C311.93-205.28%2C205.28-50.02-125.94-310.73-163.66-205.28-205.28%2C93.98-37.09%2C275.63-116.37%2C205.28-205.28-43.89-55.47%2C306.22%2C256.88%2C205.28%2C205.28Z%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%2018px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M292.1%2C264.7c10.88%2C4.36%2C23.44%2C10.29%2C36.77%2C18.38%2C13.53%2C8.22%2C24.73%2C16.77%2C33.7%2C24.51%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M380.95%2C313.73c8.17%2C7.15%2C16.34%2C14.3%2C24.51%2C21.45%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M249.21%2C295.34c6.41%2C2.34%2C16.21%2C6.25%2C27.57%2C12.26%2C21.57%2C11.4%2C32.62%2C21.84%2C49.02%2C33.7%2C11.4%2C8.25%2C28.66%2C19.55%2C52.09%2C30.64%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M190.99%2C335.17c7.15%2C4.09%2C14.3%2C8.17%2C21.45%2C12.26%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M230.82%2C352.43c9.75%2C6.11%2C19.96%2C12.26%2C30.64%2C18.38%2C11.5%2C6.59%2C22.75%2C12.71%2C33.7%2C18.38%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M307.42%2C396.45c13.28%2C6.13%2C26.55%2C12.26%2C39.83%2C18.38%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%20%20%3Cpath%20d%3D%22M255.33%2C439.34c24.51%2C11.23%2C49.02%2C22.47%2C73.53%2C33.7%22%20style%3D%22fill%3A%20none%3B%20stroke%3A%20%23000%3B%20stroke-miterlimit%3A%2010%3B%20stroke-width%3A%208px%3B%22%2F%3E%0D%0A%3C%2Fsvg%3E);
+
+  mask-repeat: no-repeat;
+
+  mask-size: contain;
+
+  mask-position: center;
+
+}
+
+
+
+.rainfall {
+
+    color: #6a96c0;
+
+    text-shadow: 0 0 0.3125rem rgba(215, 215, 215, 0), 0 0 0.625rem rgba(215, 215, 215, 0.35), 0 0 0.9375rem rgba(215, 215, 215, 0), 0 0 2.5rem rgba(215, 215, 215, 0.35), 0 0 5rem rgba(215, 215, 215, 0);
+
+    font-family: ZoomlaMengyas-A080, sans-serif;
+
+}
+
+
+
+.madness {
+
+background: linear-gradient(to right, #ff0033, #8a2be2, #39ff14);
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+
+    opacity: 0.7;
+
+    text-shadow: 0.25px 0.25px 0.25px rgba(0, 0, 0, 0);
+
+}
+
+
+
+div.setblock.700 {
+
+    --content-wrap-image: url(&quot;https://scp-mc-sandbox-pro.wdfiles.com/local--files/scp-mc-211/mc-700_title.png&quot;);
+
+
+
+    --block-color: inherit;
+
+    --block-bg: var(--basalt-background-color);
+
+    --block-border: var(--basalt-bright-element-color);
+
+
+
+    --header-color-l: var(--basalt-dark-element-color);
+
+    --header-color-r: var(--basalt-dark-element-color);
+
+}
+
+[[/module]]
+
+
+
+
+
+
+
+[[image https://s21.ax1x.com/2024/08/26/pAkAr1P.png]]
+
+
+
+[[div class=&quot;setblock 700&quot;]]
+
+
+
+= 祝贺**[[*user Andy_W7]]**的**[[[scp-mc-700|亚里斯瓦尔特会议]]]**以探案悬疑破除派系斗争的政治迷雾，摘得700{{###bd0204|复仇##}}的桂冠！
+
+
+
+[[/div]]
+
+[[collapsible show=&quot;+ 竞赛结果总览&quot; hide=&quot;- 竞赛结果总览&quot;]]
+
+[[image https://s21.ax1x.com/2025/08/26/pVyakH1.png]]
+
+
+
+[[image https://s21.ax1x.com/2025/09/01/pVcRVe0.png]]
+
+[[/collapsible]]
+
+
+
+[[collapsible show=&quot;+ 竞赛主题&quot; hide=&quot;- 竞赛主题&quot;]]
+
+[[=]]
+
+[[span style=&quot; font-family: &#x27;Long Cang&#x27;, handwriting; font-size:2.4rem;&quot;]]本次竞赛的主题为——[[/span]]
+
+
+
+@@ @@
+
+
+
+@@ @@
+
+
+
+[[div style=&quot;float:left; width: 40%; padding: 0 2%&quot;]]
+
+[[=]]
+
+[[size 150%]]{{###4682b4|雨##}}[[/size]]
+
+[[div class=&quot;rainfall&quot;]]
+
+[[size 75%]]{{——BY Alice schach}}[[/size]]
+
+[[/div]]
+
+
+
+
+
+[[size 150%]]{{###ff4500|火##}}[[/size]]
+
+
+
+[[size 75%]]{{###ff4500|——BY A Nameless Creator##}}[[/size]]
+
+[[/=]]
+
+[[/div]]
+
+
+
+[[div style=&quot;float:right; width: 40%; padding: 0 2%&quot;]]
+
+[[=]]
+
+[[size 150%]]{{###bd0204|复仇##}}[[/size]]
+
+
+
+[[size 75%]]{{###78817f|——BY FDSVideo##}}[[/size]]
+
+
+
+[[size 150%]]{{###861d32|疯狂##}}[[/size]]
+
+[[div class=&quot;madness&quot; style=&quot;font-size: 75%;&quot;]]
+
+{{——BY Heckler-13}}
+
+[[/div]]
+
+[[/=]]
+
+[[/div]]
+
+
+
+@@ @@
+
+
+
+@@ @@
+
+
+
+@@ @@
+
+
+
+@@ @@
+
+
+
+@@ @@
+
+
+
+@@ @@
+
+
+
+@@ @@
+
+
+
+@@ @@
+
+[[div class=&quot;rainfall&quot;]]
+
+[[size 1000%]]
+
+[[span class=&quot;ruby&quot;]]雨[[span class=&quot;rt&quot;]]Rainfall[[/span]][[/span]]
+
+[[/size]]
+
+[[/div]]
+
+
+
+@@ @@
+
+@@ @@
+
+
+
+每当灰色的长方体云浮现在高空时，无数细雨丝便立刻垂下，将它与绿色的像素地面相连。
+
+
+
+这些细线阻隔了太阳的光辉，令黯淡暂时笼罩了大地。
+
+
+
+在点燃壁炉中的篝火，躺上温暖的红床之前，你是否察觉到远处天空划过的闪电，似乎映照出了某些不寻常的事物？
+
+
+
+——在直达天际的蓝色幕布背后，是否潜藏着未知的秘密？
+
+
+
+@@ @@
+
+
+
+[[image https://s21.ax1x.com/2025/03/22/pE0hsIO.png width=&quot;60%&quot;]]
+
+
+
+智能如火花，在漆黑的夜空中一闪而过，点燃一束薪柴，便不曾熄灭。
+
+
+
+火光之外，皆为混沌。
+
+
+
+你睁眼，呼吸，以火焰重构世界。 
+
+
+
+焰火升腾不息，向你诉说你的心声，向你展示你的愿景。
+
+
+
+于是你成为火的信徒，你之所行即为星火蔓延。
+
+
+
+可那火中所燃烧的，真的是你的想法吗？
+
+
+
+为什么从**我**的角度看，你和一个被设定了指令的机器，一个被拧上发条的玩具毫无区别？
+
+
+
+//那当然是我。//
+
+
+
+你不屑一顾。
+
+
+
+//这种诡辩把戏不过是逗弄小孩子的玩意儿。//
+
+
+
+是吗，那我们来简单思考两个问题。
+
+
+
+当你读至这行文字时，那轻声言语的声音是谁？
+
+
+
+在你思考的时候，那回荡在脑海中的声音是谁？
+
+
+
+//那是**我**的声音!//
+
+
+
+你这样答道。
+
+
+
+可若真是如此，
+
+
+
+为什么你开口的时候发现那声音远比你标准许多？
+
+
+
+为什么你无法确定那个声音究竟是什么频率？
+
+
+
+为什么在你思考这个问题的时候声音和之前不太一样了？
+
+
+
+为什么当你抬起头看向别处，那声音仍在你脑海中回荡不息？
+
+
+
+为什么……你从清醒的那一刻起，这声音就不曾远离，永不停止？
+
+
+
+你，真的，醒着么？
+
+
+
+火，还没熄吗？
+
+
+
+[[image https://s21.ax1x.com/2025/03/22/pE0wx6e.png width=&quot;60%&quot;]]
+
+
+
+你在车里看见了那个人，对，那个穿着白衬衫，深棕色大衣的，像是推销员的高个子男人。
+
+
+
+你的妻子把他指了出来，她依旧神志不清，而你现在知道是谁把你的妻子害成这样的，你知道你要干什么。
+
+
+
+你把扳手藏进大衣口袋里，下了车，神色自若地走上台阶进了酒店。
+
+
+
+你看见他在前台拿了房卡，进了电梯，你友好地示意他帮忙按楼层，他同意了。
+
+
+
+之后你们什么话都没说，两个陌生人一直坐到四楼。
+
+
+
+他开了门，你跟了进去，随手把门关好。
+
+
+
+你开着车载妻子离开，三个小时后，酒店里传来保洁员的尖叫。
+
+
+
+[[image https://s21.ax1x.com/2025/06/05/pVPxhoq.png width=&quot;60%&quot;]]
+
+
+
+[[&lt;]]
+
+当一个孩子第一次经历亲人的离世时，
+
+
+
+她总会迷茫呆滞看着西装革履的大人们奔波在狭小的灵堂，围着一具惨白没有剩下一丝生命曾在此痕迹的尸体奔忙。
+
+
+
+未谙世事的她秉着的人类最朴素的天性，理解不了大人们的如此举动，理解不了一具失去温度的肉体有何魅力，更理解不了大人口中的死亡为何物。她只是在大人低声念诵着不知何意的经文和她还未出生从未听过的追忆里，静静看着手中的香灰慢慢下坠像时间的雪，在这肃穆的氛围里品尝到了人生的第一口疯狂，来自他人和社会的疯狂，一种满含敬意的深沉的近乎亵渎却又不知亵渎何物的疯狂。
+
+
+
+随后她会在这股疯狂背后看到死亡的阴影，一个注定伴随她一生如影随形的阴影。
+
+
+
+这阴影徘徊着舞蹈着，但始终寸步不离，静静等待着时间到来，把她也变成和她现在面前一样的冰冷的尸体。这是对人类永远无法企及的仅有神明可能涉及的奈落之地与地狱业火永世难忘的惊鸿一瞥，也是每个人都逃不掉的无可明状神圣死亡的甜蜜的初尝。此时一股彻骨的寒意涌上心头，她看见了初次看见了一匹绿马从远方的未来走来爬到在角落死亡的身边。这是造物主赐给人类最残酷的好让人类不敢觊觎神力的恐惧，对自我存在和意识连续的恐惧。于是她理解了大人如此举动后集体潜意识中的疯狂，与在角落窥视这股疯狂的死亡。用疯狂暂时逃开着单单在百里之外远远注视就投下如此庞大阴影吞噬自己的死亡。
+
+
+
+随后她一天天长大，她躲在疯狂铸就的社会和规则后，用空虚的谎言欺骗懵逼自己不去再看那死亡，同社会上的其他人一样忽视远方地平线上缓缓传来的绿马的蹄声。
+
+
+
+尽管她深知死亡就在不见的角落里嘲讽着她寄托一切的虚妄。可她并不惧怕葬礼也不惧怕他人的死亡，因为在她内心的最深处疯狂裹挟着她如同母亲的臂膀，支持着她直面行走在地上的撒但还要恐怖千万倍的死亡。这是人类以疯狂为武器对死亡做出的微不足道但勇敢的唯一反击。
+
+[[/&lt;]]
+
+[[/=]]
+
+[[/collapsible]]
+
+@@ @@
+
+
+
+------
+
+
+
+@@ @@
+
+[[collapsible show=&quot;+ 赛程、竞赛规则&quot; hide=&quot;- 赛程、竞赛规则&quot;]]
+
+++* 赛程：
+
+* **开始投稿日期：北京时间（GMT+8）2025年6月9日 00时00分**
+
+* **截止投稿日期：北京时间（GMT+8）2025年8月18日 23时59分**
+
+* **投票截止日期：北京时间（GMT+8）2025年8月25日 23时59分**
+
+
+
+@@@@
+
+@@@@
+
+@@@@
+
+
+
+++ 竞赛规则：
+
+
+
+# 本次竞赛共有四个主题，参赛者需从其中选择至少一个主题并围绕其进行写作：
+
+ * 虽然可以选择多个主题，但这并不会为你带来任何评比上的增益，参赛作品的评比依旧以读者投票为唯一评比标准
+
+# 本次竞赛仅允许投稿SCP文档（即必须带有“原创”、“scp”、“[条目分级]”标签。更多详见[[[tag-guide|标签指导]]]页面）。本次竞赛不接受带有“搞笑”、“已解明”标签（即-J、-EX）的SCP文档。
+
+# 参加方式：使用**mc700&lt;你的用户名**[[footnote]]例如[[*user A Nameless Creator]]头像右边的这堆文字。[[/footnote]]**&gt;**的方式作为条目的网址名称。条目必须由作者本人发布。
+
+ * 页面标题格式：//**SCP-MC-700：&lt;作品标题&gt;**//
+
+ * 合著作品的网址需包含所有作者的用户名
+
+  * 虽然可以合著，但每位作者仅能发布一个作品；如用户已参与一篇合著，则所有合著者皆不可投稿第2篇合著/独立条目参赛。
+
+  * 将旧作品自删/移除标签退赛仍适用于此限制，有前述行为者将被视为自行放弃参赛资格。请拿出你最满意的作品参赛。
+
+  * 所有合著作品必须在作品正式发表前确认合著者，并在作品评论区声明所有合著者。
+
+  * 倘若在竞赛结束后已发表一篇作品的作者声称自己为其他作品的合著成员，则此作品的参赛资格和取得的参赛成就作废。
+
+# 参赛作品需带有标签（位于页面底下）：//**700整百竞赛**//，以便中心页抓取你的参赛作品。
+
+# 如有任何以非常规手段进行分数操作，将可能遭到取消参赛资格。
+
+ * 以下情况可能被视作非常规的分数操作，但不限于：
+
+  * 以任何wikidot私信方式进行作品宣传
+
+  * 在竞争对手发布条目的数秒至分钟内打低分
+
+  * 大肆张扬对他人参赛作品的打分
+
+  * 用小号或者以文章内容之外的理由进行投票（恶意投票）
+
+# 先行完工的草稿可以参赛，**只要它们从未被正式发布**。
+
+# 所有参赛作品仍照一般删除流程。
+
+# 发布之后仅可对作品进行小规模修改，**但不可进行大幅度编辑（即全文40%以上内容的变更，包括且不限于可以改变视觉效果的代码等）**。
+
+# 优胜条目可获得正式的**SCP-MC-700**编号；如出现得分相同的情况，则取**upvote比例最高者**。
+
+# 请在发布后于**评论区**按意向程度顺序声明你除了SCP-MC-700以外的5个心仪编号[[footnote]] 在700-799的编号中，701、 703-712、717、725、734、737、745、748、750-752、755、762、767、770、787、790均已占用。[[/footnote]]。比赛结束后，参赛条目会以分数高低顺序和评论区意向进行编号选择。
+
+# 如五个心仪编号均不可用，则给予最靠前的可用空编号（事后可以自行调整）。
+
+# 如未声明，则视为放弃优先选择编号的权利。
+
+# 如有任何以上未列出的细节问题，请私信主办工作人员得知进一步信息。
+
+[[/collapsible]]
+
+@@@@
+
+@@@@
+
+@@@@
+
+[[collapsible show=&quot;+ 参赛作品&quot; hide=&quot;- 参赛作品&quot;]]
+
+++ 参赛作品
+
+
+
+[[module ListPages separate=&quot;no&quot; category=&quot;*&quot; tags=&quot;+700整百竞赛 -中心&quot; perPage=&quot;100&quot; order=&quot;random&quot;]]
+
+* //**%%title_linked%%**//
+
+[[/module]]
+
+[[/collapsible]]
+</pre></details></article></main><footer>只读快照：2026/08/31 07:53:10 · created by piglin · 内容版权仍归原作者与 SCP 基金会 Minecraft 分部。</footer></body></html>

@@ -1,0 +1,339 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Page Tags | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page=system:page-tags">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">其他页面 </p><h1>Page Tags</h1><p class="page-name">system:page-tags</p><dl class="article-meta"><div><dt>创建者</dt><dd>GREAT-GUIDA</dd></div><div><dt>评分</dt><dd class="rating">+3 <small>+7 / -4</small></dd></div><div><dt>发布时间</dt><dd>2020/03/25 13:00:45</dd></div><div><dt>最近编辑</dt><dd>2025/08/14 22:52:29</dd></div></dl><div class="tags"><span class="muted">无</span></div></header><section class="article-body"><p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p>#page-title {</p>
+<p>display: none;</p>
+<p>}</p>
+<p>.content-panel p {</p>
+<p>padding: 0 0.75em;</p>
+<p>}</p>
+<p>#tagged-pages-list {</p>
+<p>margin-bottom: 2.25rem;</p>
+<p>column-width: 12rem;</p>
+<p>column-gap: 1.25rem;</p>
+<p>column-rule: 1px solid #888;</p>
+<p>counter-reset: index;</p>
+<p>}</p>
+<p>.list-pages-box ol {</p>
+<p>margin-bottom: 2.25rem;</p>
+<p>column-width: 12rem;</p>
+<p>column-gap: 1.25rem;</p>
+<p>column-rule: 1px solid #888;</p>
+<p>counter-reset: index;</p>
+<p>}</p>
+<p>.list-pages-box li {</p>
+<p>margin-left: 40px;</p>
+<p>}</p>
+<p>.pages-list-item {</p>
+<p>margin-bottom: 0.675em;</p>
+<p>line-height: 1.125;</p>
+<p>display: flex;</p>
+<p>align-items: baseline;</p>
+<p>gap: .175rem;</p>
+<p>}</p>
+<p>.pages-list-item::before {</p>
+<p>counter-increment: index;</p>
+<p>content: counter(index) &quot;.&quot;;</p>
+<p>font-size: .625em;</p>
+<p>text-align: end;</p>
+<p>font-feature-settings: &#x27;case&#x27;,&#x27;ss01&#x27;,&#x27;ss04&#x27;,&#x27;tnum&#x27;;</p>
+<p>}</p>
+<p>.pages-tag-cloud-box {</p>
+<p>margin-top: -0.125rem;</p>
+<p>display: flex;</p>
+<p>flex-wrap: wrap;</p>
+<p>grid-gap: 0.185rem;</p>
+<p>align-items: center;</p>
+<p>justify-content: space-between;</p>
+<p>margin-block: 1.5rem;</p>
+<p>}</p>
+<p>#u-hidden .pages-tag-cloud-box a:not([href^=&quot;/system:page-tags/tag/_&quot;]) {</p>
+<p>display: none;</p>
+<p>}</p>
+<p>[[/module]]</p>
+<p><a href="/wiki/tag-guide.html">什么是标签以及怎么添加它们</a></p>
+<hr>
+<p><strong>*排序默认为页面发布时间（最新→最早）</strong></p>
+<p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p class="wiki-list">%%title_linked%%</p>
+<p>[[/module]]</p>
+<hr>
+<p>= 更多搜索</p>
+<p>[[html]]</p>
+<p>&lt;body&gt;</p>
+<p>&lt;div style=&quot;text-align:center&quot;&gt;</p>
+<p>&lt;p&gt;&lt;span id=&quot;url-pre&quot; style=&quot;font-family:Consolas;font-size: 12.8px;color: #333;&quot;&gt;请输入需要检索的标签（仅支持单一标签）&lt;/span&gt;</p>
+<p>&lt;input type=&quot;text&quot; id=&quot;tag&quot; name=&quot;tag&quot; placeholder=&quot;添加查找标签&quot; size=&quot;25&quot; &gt;&lt;/p&gt;</p>
+<p>&lt;p&gt;&lt;span id=&quot;url-pre&quot; style=&quot;font-family:Consolas;font-size: 12.8px;color: #333;&quot;&gt;选择排序顺序&lt;/span&gt;</p>
+<p>&lt;input type=&quot;radio&quot; name=&quot;order&quot; value=&quot;rating%20desc&quot; checked=&quot;checked&quot;&gt;分数由高到低&lt;input type=&quot;radio&quot; name=&quot;order&quot; value=&quot;rating%20desc%20desc&quot;&gt;分数由低到高&lt;input type=&quot;radio&quot; name=&quot;order&quot; value=&quot;created_at%desc&quot;&gt;最新发布&lt;input type=&quot;radio&quot; name=&quot;order&quot; value=&quot;created_at&quot;&gt;最早发布&lt;input type=&quot;radio&quot; name=&quot;order&quot; value=&quot;updated_at%20desc&quot;&gt;最近编辑&lt;/p&gt;</p>
+<p>&lt;p&gt;</p>
+<p>&lt;button onclick=&quot;Go1()&quot;&gt;查看相关页面&lt;/button&gt;</p>
+<p>&lt;/p&gt;</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;/body&gt;</p>
+<p>&lt;script language=&quot;javascript&quot;&gt;</p>
+<p>var keyWord1;</p>
+<p>var keyWord2;</p>
+<p>function Go1(){</p>
+<p>keyWord1=document.getElementById(&quot;tag&quot;).value;</p>
+<p>let selectedValue;</p>
+<p>selectedValue=document.querySelector(&#x27;input[name=&quot;order&quot;]:checked&#x27;);</p>
+<p>keyWord2 = selectedValue.value;</p>
+<p>if (keyWord1 != &quot;&quot;) {</p>
+<p>var result=&#x27;https://scp-wiki-mc.wikidot.com/system:page-tags/tag/&#x27; + keyWord1 + &#x27;/order/&#x27; + keyWord2;</p>
+<p>window.open(result);</p>
+<p>}</p>
+<p>}</p>
+<p>&lt;/script&gt;</p>
+<p>[[/html]]</p>
+<hr>
+<p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<hr>
+<div class="wiki-block">
+<p><span class="module-note">动态模块在只读备份中已省略</span></p>
+</div>
+<p>[!--</p>
+<p>You can edit parameters of the TagCloud module as described in http://www.wikidot.com/doc:tagcloud-module</p>
+<p>But if you want to keep the tag functionality working - do not remove these modules.</p>
+<p>--]</p></section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>[[module CSS]]
+
+#page-title {
+
+    display: none;
+
+}
+
+
+
+.content-panel p {
+
+    padding: 0 0.75em;
+
+}
+
+
+
+#tagged-pages-list {
+
+    margin-bottom: 2.25rem;
+
+    column-width: 12rem;
+
+    column-gap: 1.25rem;
+
+    column-rule: 1px solid #888;
+
+    counter-reset: index;
+
+}
+
+
+
+.list-pages-box ol {
+
+    margin-bottom: 2.25rem;
+
+    column-width: 12rem;
+
+    column-gap: 1.25rem;
+
+    column-rule: 1px solid #888;
+
+    counter-reset: index;
+
+}
+
+
+
+.list-pages-box li {
+
+    margin-left: 40px;
+
+}
+
+
+
+.pages-list-item {
+
+    margin-bottom: 0.675em;
+
+    line-height: 1.125;
+
+    display: flex;
+
+    align-items: baseline;
+
+    gap: .175rem;
+
+}
+
+.pages-list-item::before {
+
+    counter-increment: index;
+
+    content: counter(index) &quot;.&quot;;
+
+    font-size: .625em;
+
+    text-align: end;
+
+    font-feature-settings: &#x27;case&#x27;,&#x27;ss01&#x27;,&#x27;ss04&#x27;,&#x27;tnum&#x27;;
+
+}
+
+
+
+.pages-tag-cloud-box {
+
+    margin-top: -0.125rem;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    grid-gap: 0.185rem;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-block: 1.5rem;
+
+}
+
+
+
+#u-hidden .pages-tag-cloud-box a:not([href^=&quot;/system:page-tags/tag/_&quot;]) {
+
+    display: none;
+
+}
+
+[[/module]]
+
+[[[tag-guide|什么是标签以及怎么添加它们]]]
+
+-----
+
+***排序默认为页面发布时间（最新→最早）**
+
+[[module ListPages tag=&quot;@URL|error&quot; order=&quot;@URL|rating%20desc&quot; separate=&quot;false&quot; category=&quot;*&quot; limit=&quot;2000&quot; perPage=&quot;100&quot;]]
+
+# %%title_linked%%
+
+[[/module]]
+
+-----
+
+@@@@
+
+@@@@
+
+@@@@
+
+@@@@
+
+= [[size 120%]]更多搜索[[/size]]
+
+[[html]]
+
+
+
+&lt;body&gt;
+
+    &lt;div style=&quot;text-align:center&quot;&gt;
+
+        &lt;p&gt;&lt;span id=&quot;url-pre&quot; style=&quot;font-family:Consolas;font-size: 12.8px;color: #333;&quot;&gt;请输入需要检索的标签（仅支持单一标签）&lt;/span&gt;
+
+        &lt;input type=&quot;text&quot; id=&quot;tag&quot; name=&quot;tag&quot; placeholder=&quot;添加查找标签&quot; size=&quot;25&quot; &gt;&lt;/p&gt;
+
+        &lt;p&gt;&lt;span id=&quot;url-pre&quot; style=&quot;font-family:Consolas;font-size: 12.8px;color: #333;&quot;&gt;选择排序顺序&lt;/span&gt;
+
+        &lt;input type=&quot;radio&quot; name=&quot;order&quot; value=&quot;rating%20desc&quot; checked=&quot;checked&quot;&gt;分数由高到低&lt;input type=&quot;radio&quot; name=&quot;order&quot; value=&quot;rating%20desc%20desc&quot;&gt;分数由低到高&lt;input type=&quot;radio&quot; name=&quot;order&quot; value=&quot;created_at%desc&quot;&gt;最新发布&lt;input type=&quot;radio&quot; name=&quot;order&quot; value=&quot;created_at&quot;&gt;最早发布&lt;input type=&quot;radio&quot; name=&quot;order&quot; value=&quot;updated_at%20desc&quot;&gt;最近编辑&lt;/p&gt;
+
+        &lt;p&gt;
+
+            &lt;button onclick=&quot;Go1()&quot;&gt;查看相关页面&lt;/button&gt;
+
+        &lt;/p&gt;
+
+    &lt;/div&gt;
+
+&lt;/body&gt;
+
+
+
+&lt;script language=&quot;javascript&quot;&gt;
+
+
+
+    var keyWord1;
+
+    var keyWord2;
+
+
+
+function Go1(){
+
+keyWord1=document.getElementById(&quot;tag&quot;).value;
+
+let selectedValue;
+
+selectedValue=document.querySelector(&#x27;input[name=&quot;order&quot;]:checked&#x27;);
+
+keyWord2 = selectedValue.value;
+
+if (keyWord1 != &quot;&quot;) {
+
+  var result=&#x27;https://scp-wiki-mc.wikidot.com/system:page-tags/tag/&#x27; + keyWord1 + &#x27;/order/&#x27; + keyWord2;
+
+  window.open(result);
+
+}
+
+}
+
+&lt;/script&gt;
+
+
+
+[[/html]]
+
+
+
+@@@@
+
+@@@@
+
+@@@@
+
+@@@@
+
+-----
+
+[[module TagCloud limit=&quot;2000&quot; target=&quot;system:page-tags&quot; minColor=&quot;128,128,192&quot; maxColor=&quot;153,0,17&quot;]]
+
+
+
+-----
+
+
+
+[[div id=&quot;hidden&quot;]]
+
+[[module TagCloud limit=&quot;2000&quot; target=&quot;system:page-tags&quot; showHidden=&quot;true&quot; minColor=&quot;128,128,192&quot; maxColor=&quot;153,0,17&quot;]]
+
+[[/div]]
+
+
+
+[!--
+
+
+
+You can edit parameters of the TagCloud module as described in http://www.wikidot.com/doc:tagcloud-module
+
+But if you want to keep the tag functionality working - do not remove these modules.
+
+
+
+--]
+</pre></details></article></main><footer>只读快照：2026/08/31 07:53:10 · created by piglin · 内容版权仍归原作者与 SCP 基金会 Minecraft 分部。</footer></body></html>

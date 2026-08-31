@@ -1,0 +1,50 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>避水游荡 | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page=water-avoiding-random-stroll-goal">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">原创页面 </p><h1>避水游荡</h1><p class="page-name">water-avoiding-random-stroll-goal</p><dl class="article-meta"><div><dt>创建者</dt><dd>xuyifan_exe</dd></div><div><dt>评分</dt><dd class="rating">+1 <small>+1 / -0</small></dd></div><div><dt>发布时间</dt><dd>2020/04/03 09:53:59</dd></div><div><dt>最近编辑</dt><dd>2020/04/06 09:01:07</dd></div></dl><div class="tags"><span class="tag">分部现实百科</span><span class="tag">原创</span></div></header><section class="article-body"><p class="wiki-list"><strong>继承：</strong><a href="http://scp-wiki-mc.wikidot.com/random-stroll-goal" rel="noreferrer">游荡</a></p>
+<p class="wiki-list"><strong>类名：</strong>WaterAvoidingRandomStrollGoal</p>
+<p class="wiki-list"><strong>数据</strong></p>
+<p class="wiki-list"><strong>float 可能性：</strong>在陆地上不考虑水的可能性。即可能性越大，越容易从陆地上走到水里。默认为0.1%</p>
+<p class="wiki-list"><strong>获得游荡终点的位置</strong></p>
+<p class="wiki-list"><strong>不继承</strong></p>
+<p class="wiki-list"><strong>如果寻路者在水里或气泡柱里</strong></p>
+<p class="wiki-list"><strong>尝试在以寻路者位置为中心的15x7x15范围内寻找一个地面位置</strong></p>
+<p class="wiki-list"><strong>若失败</strong></p>
+<p class="wiki-list"><strong>从上级任务目的“游荡”获得游荡终点的位置，结束</strong></p>
+<p class="wiki-list"><strong>若成功</strong></p>
+<p class="wiki-list"><strong>选定这个地面位置，结束</strong></p>
+<p class="wiki-list"><strong>如果满足概率（100% - 可能性）</strong></p>
+<p class="wiki-list"><strong>尝试在以寻路者位置为中心的15x7x15范围内寻找一个地面位置，结束</strong></p>
+<p class="wiki-list"><strong>否则从上级任务目的“游荡”获得游荡终点的位置</strong></p></section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>* **继承：**[http://scp-wiki-mc.wikidot.com/random-stroll-goal 游荡]
+
+
+
+* **类名：**WaterAvoidingRandomStrollGoal
+
+
+
+* **数据**
+
+ * **float 可能性：**在陆地上不考虑水的可能性。即可能性越大，越容易从陆地上走到水里。默认为0.1%
+
+
+
+* **获得游荡终点的位置**
+
+ * **不继承**
+
+ * **如果寻路者在水里或气泡柱里**
+
+  * **尝试在以寻路者位置为中心的15x7x15范围内寻找一个地面位置**
+
+   * **若失败**
+
+    * **从上级任务目的“游荡”获得游荡终点的位置，结束**
+
+   * **若成功**
+
+    * **选定这个地面位置，结束**
+
+ * **如果满足概率（100% - 可能性）**
+
+  * **尝试在以寻路者位置为中心的15x7x15范围内寻找一个地面位置，结束**
+
+ * **否则从上级任务目的“游荡”获得游荡终点的位置**
+</pre></details></article></main><footer>只读快照：2026/08/31 07:53:10 · created by piglin · 内容版权仍归原作者与 SCP 基金会 Minecraft 分部。</footer></body></html>

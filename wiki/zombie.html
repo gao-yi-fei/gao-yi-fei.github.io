@@ -1,0 +1,744 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>僵尸 | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page=zombie">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">原创页面 </p><h1>僵尸</h1><p class="page-name">zombie</p><dl class="article-meta"><div><dt>创建者</dt><dd>xuyifan_exe</dd></div><div><dt>评分</dt><dd class="rating">+8 <small>+8 / -0</small></dd></div><div><dt>发布时间</dt><dd>2020/03/17 22:49:21</dd></div><div><dt>最近编辑</dt><dd>2021/02/24 18:18:23</dd></div></dl><div class="tags"><span class="tag">分部现实百科</span><span class="tag">原创</span></div></header><section class="article-body"><p class="wiki-list"><strong>继承：</strong>怪物</p>
+<p class="wiki-list"><strong>类名：</strong>Zombie</p>
+<p class="wiki-list"><strong>ID：</strong>minecraft:zombie</p>
+<p class="wiki-list"><strong>类型：</strong>亡灵</p>
+<p class="wiki-list"><strong>经验值：</strong>若为幼年，则变为2.5倍</p>
+<p class="wiki-list"><strong>环境音效：</strong>僵尸环境音效</p>
+<p class="wiki-list"><strong>受伤音效：</strong>僵尸受伤音效</p>
+<p class="wiki-list"><strong>死亡音效：</strong>僵尸死亡音效</p>
+<p class="wiki-list"><strong>脚步音效：</strong>僵尸脚步音效</p>
+<p class="wiki-list"><strong>眼部高度</strong></p>
+<p class="wiki-list"><strong>幼年：</strong>0.93m</p>
+<p class="wiki-list"><strong>成年：</strong>1.74m</p>
+<p class="wiki-list"><strong>乘骑高度</strong></p>
+<p class="wiki-list"><strong>幼年：</strong>0m</p>
+<p class="wiki-list"><strong>成年：</strong>-0.45m</p>
+<p class="wiki-list"><strong>属性</strong></p>
+<p class="wiki-list"><strong>跟踪距离：</strong>35m</p>
+<p class="wiki-list"><strong>移速：</strong>0.23</p>
+<p class="wiki-list"><strong>若为幼年，则添加幼年僵尸加速修饰符，数值为0.5，运算为基乘</strong></p>
+<p class="wiki-list"><strong>普通模式攻击伤害：</strong>3</p>
+<p class="wiki-list"><strong>护甲：</strong>2</p>
+<p class="wiki-list"><strong>僵尸增援概率：</strong>0% ~ 10%</p>
+<p class="wiki-list"><strong>是否支持破门目的任务：</strong>是</p>
+<p class="wiki-list"><strong>是否对阳光敏感：</strong>是</p>
+<p class="wiki-list"><strong>能否拾起特定物品</strong></p>
+<p class="wiki-list"><strong>特别地，正在乘骑的幼年僵尸不能拾起鸡蛋</strong></p>
+<p class="wiki-list"><strong>头颅物品：</strong>僵尸的头颅</p>
+<p class="wiki-list"><strong>攻击时</strong></p>
+<p class="wiki-list"><strong>点燃目标条件</strong></p>
+<p class="wiki-list"><strong>造成伤害</strong></p>
+<p class="wiki-list"><strong>自身主手无物品</strong></p>
+<p class="wiki-list"><strong>自身燃烧</strong></p>
+<p class="wiki-list"><strong>满足概率：</strong>区域难度x30%</p>
+<p class="wiki-list"><strong>点燃目标时长：</strong>区域难度向下取整x2s</p>
+<p class="wiki-list"><strong>受伤时</strong></p>
+<p class="wiki-list"><strong>设增援对象为自己的攻击目标</strong></p>
+<p class="wiki-list"><strong>若无</strong></p>
+<p class="wiki-list"><strong>设增援对象为伤害自己的生物</strong></p>
+<p class="wiki-list"><strong>如果存在增援对象、难度为困难、游戏规则允许生物生成</strong></p>
+<p class="wiki-list"><strong>概率：</strong>自身的僵尸增援概率</p>
+<p class="wiki-list"><strong>新建僵尸</strong></p>
+<p class="wiki-list"><strong>循环50次</strong></p>
+<p class="wiki-list"><strong>根据自身位置取整坐标</strong></p>
+<p class="wiki-list"><strong>X：</strong>随机偏移-7 ~ -40或7 ~ 40</p>
+<p class="wiki-list"><strong>Y：</strong>随机偏移-7 ~ -40或7 ~ 40</p>
+<p class="wiki-list"><strong>Z：</strong>随机偏移-7 ~ -40或7 ~ 40</p>
+<p class="wiki-list"><strong>如果此坐标能使新建僵尸站立且亮度小于10</strong></p>
+<p class="wiki-list"><strong>把新建僵尸的位置设为此整坐标</strong></p>
+<p class="wiki-list"><strong>如果此坐标附近没有活玩家、新建僵尸无阻挡并无碰撞、新建僵尸碰撞箱内没有流体</strong></p>
+<p class="wiki-list"><strong>将新建僵尸正式加入世界</strong></p>
+<p class="wiki-list"><strong>将新建僵尸的攻击目标设为增援对象</strong></p>
+<p class="wiki-list"><strong>自身的僵尸增援概率属性新增一个僵尸增援呼叫者代价修饰符，数值为-5%，运算为加</strong></p>
+<p class="wiki-list"><strong>新建僵尸的僵尸增援概率属性新增一个僵尸增援响应者代价修饰符，数值为-5%，运算为加</strong></p>
+<p class="wiki-list"><strong>中断循环</strong></p>
+<p class="wiki-list"><strong>完成自然生成时</strong></p>
+<p class="wiki-list"><strong>可能设置可捡起掉落物</strong></p>
+<p class="wiki-list"><strong>概率：</strong>特殊难度乘数x55%</p>
+<p class="wiki-list"><strong>可能设置幼年</strong></p>
+<p class="wiki-list"><strong>概率：</strong>5%</p>
+<p class="wiki-list"><strong>如果是幼年</strong></p>
+<p class="wiki-list"><strong>如果满足概率5%</strong></p>
+<p class="wiki-list"><strong>搜寻一只鸡</strong></p>
+<p class="wiki-list"><strong>范围</strong></p>
+<p class="wiki-list"><strong>自身碰撞箱</strong></p>
+<p class="wiki-list"><strong>X：</strong>正负方向各扩大5m</p>
+<p class="wiki-list"><strong>Y：</strong>正负方向各扩大3m</p>
+<p class="wiki-list"><strong>Z：</strong>正负方向各扩大5m</p>
+<p class="wiki-list"><strong>条件：</strong>未被乘骑</p>
+<p class="wiki-list"><strong>如果搜寻到</strong></p>
+<p class="wiki-list"><strong>将鸡设为鸡骑士坐骑</strong></p>
+<p class="wiki-list"><strong>骑在鸡上</strong></p>
+<p class="wiki-list"><strong>否则如果又满足概率5%</strong></p>
+<p class="wiki-list"><strong>生成一只鸡</strong></p>
+<p class="wiki-list"><strong>复制性质</strong></p>
+<p class="wiki-list"><strong>位置</strong></p>
+<p class="wiki-list"><strong>水平角度</strong></p>
+<p class="wiki-list"><strong>将鸡设置为鸡骑士坐骑</strong></p>
+<p class="wiki-list"><strong>骑在鸡上</strong></p>
+<p class="wiki-list"><strong>如果支持破门目的任务，可能</strong></p>
+<p class="wiki-list"><strong>概率：</strong>特殊难度乘数x10%</p>
+<p class="wiki-list"><strong>设置允许破门</strong></p>
+<p class="wiki-list"><strong>填充装备槽位</strong></p>
+<p class="wiki-list"><strong>填充装备附魔</strong></p>
+<p class="wiki-list"><strong>如果头部无物品且系统日期为10月31日，可能</strong></p>
+<p class="wiki-list"><strong>概率：</strong>25%</p>
+<p class="wiki-list"><strong>设置头部物品</strong></p>
+<p class="wiki-list"><strong>10%：</strong>南瓜灯</p>
+<p class="wiki-list"><strong>90%：</strong>雕刻过的南瓜</p>
+<p class="wiki-list"><strong>处理属性</strong></p>
+<p class="wiki-list"><strong>填充装备槽位时</strong></p>
+<p class="wiki-list"><strong>可能填充主手装备</strong></p>
+<p class="wiki-list"><strong>概率</strong></p>
+<p class="wiki-list"><strong>困难难度：</strong>5%</p>
+<p class="wiki-list"><strong>其他难度：</strong>1%</p>
+<p class="wiki-list"><strong>1/3：</strong>铁剑</p>
+<p class="wiki-list"><strong>2/3：</strong>铁锹</p>
+<p class="wiki-list"><strong>处理属性时</strong></p>
+<p class="wiki-list"><strong>自身的击退抗性属性新增一个随机生成奖励修饰符，数值为0.05，运算为加</strong></p>
+<p class="wiki-list"><strong>设随机数a = 特殊难度乘数x(0 ~ 1.5)</strong></p>
+<p class="wiki-list"><strong>如果a &gt; 1</strong></p>
+<p class="wiki-list"><strong>自身的跟踪距离属性新增一个随机僵尸生成奖励修饰符，数值为a，运算为幂乘</strong></p>
+<p class="wiki-list"><strong>如果满足概率5%</strong></p>
+<p class="wiki-list"><strong>自身的僵尸增援概率属性新增一个领袖僵尸奖励修饰符，数值为0.5 ~ 0.75，运算为加</strong></p>
+<p class="wiki-list"><strong>自身的最大生命值属性新增一个领袖僵尸奖励修饰符，数值为1 ~ 4，运算为幂乘</strong></p>
+<p class="wiki-list"><strong>如果支持破门目的任务</strong></p>
+<p class="wiki-list"><strong>设置允许破门</strong></p>
+<p class="wiki-list"><strong>目的任务</strong></p>
+<p class="wiki-list"><strong>不继承</strong></p>
+<p class="wiki-list"><strong>破门</strong></p>
+<p class="wiki-list"><strong>仅当自身允许破门时存在</strong></p>
+<p class="wiki-list"><strong>优先级：</strong>1</p>
+<p class="wiki-list"><strong><a href="http://scp-wiki-mc.wikidot.com/zombie-attack-goal" rel="noreferrer">僵尸式近战</a></strong></p>
+<p class="wiki-list"><strong>优先级：</strong>2</p>
+<p class="wiki-list"><strong>相对移速：</strong>1</p>
+<p class="wiki-list"><strong>透视跟踪：</strong>否</p>
+<p class="wiki-list"><strong><a href="http://scp-wiki-mc.wikidot.com/zombie-attack-turtle-egg-goal" rel="noreferrer">僵尸式攻击海龟蛋</a></strong></p>
+<p class="wiki-list"><strong>优先级：</strong>4</p>
+<p class="wiki-list"><strong>相对移速：</strong>1</p>
+<p class="wiki-list"><strong>搜索范围：</strong>3m</p>
+<p class="wiki-list"><strong>穿越村庄移动</strong></p>
+<p class="wiki-list"><strong>优先级：</strong>6</p>
+<p class="wiki-list"><strong>相对移速：</strong>1</p>
+<p class="wiki-list"><strong>仅夜晚：</strong>是</p>
+<p class="wiki-list"><strong>Poi距离：</strong>4m</p>
+<p class="wiki-list"><strong>是否考虑门：</strong>根据自身是否允许破门</p>
+<p class="wiki-list"><strong><a href="http://scp-wiki-mc.wikidot.com/water-avoiding-random-stroll-goal" rel="noreferrer">避水游荡</a></strong></p>
+<p class="wiki-list"><strong>优先级：</strong>7</p>
+<p class="wiki-list"><strong>相对移速：</strong>1</p>
+<p class="wiki-list"><strong>看生物</strong></p>
+<p class="wiki-list"><strong>优先级：</strong>8</p>
+<p class="wiki-list"><strong>目标类型：</strong>玩家</p>
+<p class="wiki-list"><strong>范围：</strong>8m</p>
+<p class="wiki-list"><strong>看四周</strong></p>
+<p class="wiki-list"><strong>优先级：</strong>8</p>
+<p class="wiki-list"><strong>攻击目标</strong></p>
+<p class="wiki-list"><strong>不继承</strong></p>
+<p class="wiki-list"><strong>反击</strong></p>
+<p class="wiki-list"><strong>优先级：</strong>1</p>
+<p class="wiki-list"><strong>忽略生物：</strong>无</p>
+<p class="wiki-list"><strong>不召集生物：</strong>僵尸猪灵</p>
+<p class="wiki-list"><strong>最近可攻击生物</strong></p>
+<p class="wiki-list"><strong>优先级：</strong>2</p>
+<p class="wiki-list"><strong>生物种类：</strong>玩家</p>
+<p class="wiki-list"><strong>必须看见：</strong>是</p>
+<p class="wiki-list"><strong>最近可攻击生物</strong></p>
+<p class="wiki-list"><strong>优先级：</strong>3</p>
+<p class="wiki-list"><strong>生物种类：</strong>村民（抽象）</p>
+<p class="wiki-list"><strong>必须看见：</strong>否</p>
+<p class="wiki-list"><strong>最近可攻击生物：</strong></p>
+<p class="wiki-list"><strong>优先级：</strong>3</p>
+<p class="wiki-list"><strong>生物种类：</strong>铁傀儡</p>
+<p class="wiki-list"><strong>必须看见：</strong>是</p>
+<p class="wiki-list"><strong>最近可攻击生物：</strong></p>
+<p class="wiki-list"><strong>优先级：</strong>5</p>
+<p class="wiki-list"><strong>生物种类：</strong>海龟</p>
+<p class="wiki-list"><strong>必须看见：</strong>是</p>
+<p class="wiki-list"><strong>必须可至：</strong>否</p>
+<p class="wiki-list"><strong>条件：</strong>地上的幼年海龟</p>
+<p class="wiki-list"><strong>被阳光点燃时</strong></p>
+<p class="wiki-list"><strong>如果对阳光敏感</strong></p>
+<p class="wiki-list"><strong>头部盔甲耐久降低直到损毁：</strong>0 ~ 1</p>
+<p class="wiki-list"><strong>若损毁</strong></p>
+<p class="wiki-list"><strong>播放物品损毁音效：</strong>头部</p>
+<p class="wiki-list"><strong>设置自身燃烧时间：</strong>8s</p>
+<p class="wiki-list"><strong>是否允许水下转变：</strong>是</p>
+<p class="wiki-list"><strong>允许水下转变且在水下时间连续达到30s时：</strong>开始水下转变，设置剩余时间为15s</p>
+<p class="wiki-list"><strong>剩余水下转变时间归零时：</strong>完成水下转变</p>
+<p class="wiki-list"><strong>完成水下转变时</strong></p>
+<p class="wiki-list"><strong>转为：</strong>溺尸</p>
+<p class="wiki-list"><strong>播放音效：</strong>僵尸转化为溺尸</p>
+<p class="wiki-list"><strong>转为某生物时：</strong></p>
+<p class="wiki-list"><strong>生成该种生物</strong></p>
+<p class="wiki-list"><strong>复制性质</strong></p>
+<p class="wiki-list"><strong>位置</strong></p>
+<p class="wiki-list"><strong>能否捡起掉落物</strong></p>
+<p class="wiki-list"><strong>如果该种生物允许支持破门目的任务</strong></p>
+<p class="wiki-list"><strong>能否破门</strong></p>
+<p class="wiki-list"><strong>是否幼年</strong></p>
+<p class="wiki-list"><strong>是否不具AI</strong></p>
+<p class="wiki-list"><strong>物品及其掉落概率</strong></p>
+<p class="wiki-list"><strong>名字</strong></p>
+<p class="wiki-list"><strong>是否不会消失</strong></p>
+<p class="wiki-list"><strong>是否无敌</strong></p>
+<p class="wiki-list"><strong>移除自身</strong></p>
+<p class="wiki-list"><strong>杀死生物时</strong></p>
+<p class="wiki-list"><strong>若是村民</strong></p>
+<p class="wiki-list"><strong>可能进行如下步骤</strong></p>
+<p class="wiki-list"><strong>概率</strong></p>
+<p class="wiki-list"><strong>简单难度：</strong>0%</p>
+<p class="wiki-list"><strong>普通难度：</strong>50%</p>
+<p class="wiki-list"><strong>困难难度：</strong>100%</p>
+<p class="wiki-list"><strong>生成僵尸村民</strong></p>
+<p class="wiki-list"><strong>从村民到僵尸村民复制性质</strong></p>
+<p class="wiki-list"><strong>位置</strong></p>
+<p class="wiki-list"><strong>村民数据</strong></p>
+<p class="wiki-list"><strong>言论</strong></p>
+<p class="wiki-list"><strong>交易</strong></p>
+<p class="wiki-list"><strong>村民经验值</strong></p>
+<p class="wiki-list"><strong>是否幼年</strong></p>
+<p class="wiki-list"><strong>是否不具AI</strong></p>
+<p class="wiki-list"><strong>名字</strong></p>
+<p class="wiki-list"><strong>是否不会消失</strong></p>
+<p class="wiki-list"><strong>是否无敌</strong></p>
+<p class="wiki-list"><strong>移除村民</strong></p>
+<p class="wiki-list"><strong>播放音效：</strong>感染村民</p>
+<p class="wiki-list"><strong>死亡掉落战利品时</strong></p>
+<p class="wiki-list"><strong>如果死于苦力怕且此苦力怕能使头颅掉落</strong></p>
+<p class="wiki-list"><strong>增加此苦力怕已使掉落的头颅计数</strong></p>
+<p class="wiki-list"><strong>在自身的位置生成自身的头颅物品</strong></p>
+<p class="wiki-list"><strong>读取储存数据</strong></p>
+<p class="wiki-list"><strong>如果复合标签里的boolean值IsBaby为true</strong></p>
+<p class="wiki-list"><strong>设置自身为幼年</strong></p>
+<p class="wiki-list"><strong>根据复合标签里的boolean值CanBreakDoors，设置自身允许破门与否</strong></p>
+<p class="wiki-list"><strong>根据复合标签里的int值InWaterTime，设置自身的在水下时间，单位为刻</strong></p>
+<p class="wiki-list"><strong>如果复合标签里有int值DrownedConversationTime且大于-1，开始水下转变，设置剩余时间为此值，单位为刻</strong></p>
+<p class="wiki-list"><strong>写入储存数据</strong></p>
+<p class="wiki-list"><strong>如果自身为幼年</strong></p>
+<p class="wiki-list"><strong>设置复合标签里的boolean值IsBaby为true</strong></p>
+<p class="wiki-list"><strong>根据自身允许破门与否，设置复合标签里的boolean值CanBreakDoors</strong></p>
+<p class="wiki-list"><strong>如果自身在水中</strong></p>
+<p class="wiki-list"><strong>根据自身的在水下时间，设置复合标签里的int值InWaterTime，单位为刻</strong></p>
+<p class="wiki-list"><strong>否则</strong></p>
+<p class="wiki-list"><strong>设置复合标签里的int值InWaterTime为-1</strong></p>
+<p class="wiki-list"><strong>如果自身正在水下转变</strong></p>
+<p class="wiki-list"><strong>根据自身的水下转变剩余时间，设置复合标签里的int值DrownedConversationTime，单位为刻</strong></p>
+<p class="wiki-list"><strong>否则</strong></p>
+<p class="wiki-list"><strong>设置复合标签里的int值DrownedConversationTime为-1</strong></p></section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>* **继承：**怪物
+
+
+
+* **类名：**Zombie
+
+
+
+* **ID：**minecraft:zombie
+
+
+
+* **类型：**亡灵
+
+
+
+* **经验值：**若为幼年，则变为2.5倍
+
+
+
+* **环境音效：**僵尸环境音效
+
+
+
+* **受伤音效：**僵尸受伤音效
+
+
+
+* **死亡音效：**僵尸死亡音效
+
+
+
+* **脚步音效：**僵尸脚步音效
+
+
+
+* **眼部高度**
+
+ * **幼年：**0.93m
+
+ * **成年：**1.74m
+
+
+
+* **乘骑高度**
+
+ * **幼年：**0m
+
+ * **成年：**-0.45m
+
+
+
+* **属性**
+
+ * **跟踪距离：**35m
+
+ * **移速：**0.23
+
+  * **若为幼年，则添加幼年僵尸加速修饰符，数值为0.5，运算为基乘**
+
+ * **普通模式攻击伤害：**3
+
+ * **护甲：**2
+
+ * **僵尸增援概率：**0% ~ 10%
+
+
+
+* **是否支持破门目的任务：**是
+
+
+
+* **是否对阳光敏感：**是
+
+
+
+* **能否拾起特定物品**
+
+ * **特别地，正在乘骑的幼年僵尸不能拾起鸡蛋**
+
+
+
+* **头颅物品：**僵尸的头颅
+
+
+
+* **攻击时**
+
+ * **点燃目标条件**
+
+  * **造成伤害**
+
+  * **自身主手无物品**
+
+  * **自身燃烧**
+
+  * **满足概率：**区域难度x30%
+
+ * **点燃目标时长：**区域难度向下取整x2s
+
+
+
+* **受伤时**
+
+ * **设增援对象为自己的攻击目标**
+
+  * **若无**
+
+   * **设增援对象为伤害自己的生物**
+
+ * **如果存在增援对象、难度为困难、游戏规则允许生物生成**
+
+  * **概率：**自身的僵尸增援概率
+
+  * **新建僵尸**
+
+  * **循环50次**
+
+   * **根据自身位置取整坐标**
+
+    * **X：**随机偏移-7 ~ -40或7 ~ 40
+
+    * **Y：**随机偏移-7 ~ -40或7 ~ 40
+
+    * **Z：**随机偏移-7 ~ -40或7 ~ 40
+
+   * **如果此坐标能使新建僵尸站立且亮度小于10**
+
+    * **把新建僵尸的位置设为此整坐标**
+
+    * **如果此坐标附近没有活玩家、新建僵尸无阻挡并无碰撞、新建僵尸碰撞箱内没有流体**
+
+     * **将新建僵尸正式加入世界**
+
+     * **将新建僵尸的攻击目标设为增援对象**
+
+     * **自身的僵尸增援概率属性新增一个僵尸增援呼叫者代价修饰符，数值为-5%，运算为加**
+
+     * **新建僵尸的僵尸增援概率属性新增一个僵尸增援响应者代价修饰符，数值为-5%，运算为加**
+
+     * **中断循环**
+
+
+
+* **完成自然生成时**
+
+ * **可能设置可捡起掉落物**
+
+  * **概率：**特殊难度乘数x55%
+
+ * **可能设置幼年**
+
+  * **概率：**5%
+
+ * **如果是幼年**
+
+  * **如果满足概率5%**
+
+   * **搜寻一只鸡**
+
+    * **范围**
+
+     * **自身碰撞箱**
+
+      * **X：**正负方向各扩大5m
+
+      * **Y：**正负方向各扩大3m
+
+      * **Z：**正负方向各扩大5m
+
+    * **条件：**未被乘骑
+
+    * **如果搜寻到**
+
+     * **将鸡设为鸡骑士坐骑**
+
+     * **骑在鸡上**
+
+  * **否则如果又满足概率5%**
+
+   * **生成一只鸡**
+
+   * **复制性质**
+
+    * **位置**
+
+    * **水平角度**
+
+   * **将鸡设置为鸡骑士坐骑**
+
+   * **骑在鸡上**
+
+ * **如果支持破门目的任务，可能**
+
+  * **概率：**特殊难度乘数x10%
+
+  * **设置允许破门**
+
+ * **填充装备槽位**
+
+ * **填充装备附魔**
+
+ * **如果头部无物品且系统日期为10月31日，可能**
+
+  * **概率：**25%
+
+  * **设置头部物品**
+
+   * **10%：**南瓜灯
+
+   * **90%：**雕刻过的南瓜
+
+ * **处理属性**
+
+
+
+* **填充装备槽位时**
+
+ * **可能填充主手装备**
+
+  * **概率**
+
+   * **困难难度：**5%
+
+   * **其他难度：**1%
+
+  * **1/3：**铁剑
+
+  * **2/3：**铁锹
+
+
+
+* **处理属性时**
+
+ * **自身的击退抗性属性新增一个随机生成奖励修饰符，数值为0.05，运算为加**
+
+ * **设随机数a = 特殊难度乘数x(0 ~ 1.5)**
+
+ * **如果a &gt; 1**
+
+  * **自身的跟踪距离属性新增一个随机僵尸生成奖励修饰符，数值为a，运算为幂乘**
+
+ * **如果满足概率5%**
+
+  * **自身的僵尸增援概率属性新增一个领袖僵尸奖励修饰符，数值为0.5 ~ 0.75，运算为加**
+
+  * **自身的最大生命值属性新增一个领袖僵尸奖励修饰符，数值为1 ~ 4，运算为幂乘**
+
+  * **如果支持破门目的任务**
+
+   * **设置允许破门**
+
+
+
+* **目的任务**
+
+ * **不继承**
+
+ * **破门**
+
+  * **仅当自身允许破门时存在**
+
+  * **优先级：**1
+
+ * **[http://scp-wiki-mc.wikidot.com/zombie-attack-goal 僵尸式近战]**
+
+  * **优先级：**2
+
+  * **相对移速：**1
+
+  * **透视跟踪：**否
+
+ * **[http://scp-wiki-mc.wikidot.com/zombie-attack-turtle-egg-goal 僵尸式攻击海龟蛋]**
+
+  * **优先级：**4
+
+  * **相对移速：**1
+
+  * **搜索范围：**3m
+
+ * **穿越村庄移动**
+
+  * **优先级：**6
+
+  * **相对移速：**1
+
+  * **仅夜晚：**是
+
+  * **Poi距离：**4m
+
+  * **是否考虑门：**根据自身是否允许破门
+
+ * **[http://scp-wiki-mc.wikidot.com/water-avoiding-random-stroll-goal 避水游荡]**
+
+  * **优先级：**7
+
+  * **相对移速：**1
+
+ * **看生物**
+
+  * **优先级：**8
+
+  * **目标类型：**玩家
+
+  * **范围：**8m
+
+ * **看四周**
+
+  * **优先级：**8
+
+
+
+* **攻击目标**
+
+ * **不继承**
+
+ * **反击**
+
+  * **优先级：**1
+
+  * **忽略生物：**无
+
+  * **不召集生物：**僵尸猪灵
+
+ * **最近可攻击生物**
+
+  * **优先级：**2
+
+  * **生物种类：**玩家
+
+  * **必须看见：**是
+
+ * **最近可攻击生物**
+
+  * **优先级：**3
+
+  * **生物种类：**村民（抽象）
+
+  * **必须看见：**否
+
+ * **最近可攻击生物：**
+
+  * **优先级：**3
+
+  * **生物种类：**铁傀儡
+
+  * **必须看见：**是
+
+ * **最近可攻击生物：**
+
+  * **优先级：**5
+
+  * **生物种类：**海龟
+
+  * **必须看见：**是
+
+  * **必须可至：**否
+
+  * **条件：**地上的幼年海龟
+
+
+
+* **被阳光点燃时**
+
+ * **如果对阳光敏感**
+
+  * **头部盔甲耐久降低直到损毁：**0 ~ 1
+
+  * **若损毁**
+
+   * **播放物品损毁音效：**头部
+
+  * **设置自身燃烧时间：**8s
+
+
+
+* **是否允许水下转变：**是
+
+
+
+* **允许水下转变且在水下时间连续达到30s时：**开始水下转变，设置剩余时间为15s
+
+
+
+* **剩余水下转变时间归零时：**完成水下转变
+
+
+
+* **完成水下转变时**
+
+ * **转为：**溺尸
+
+ * **播放音效：**僵尸转化为溺尸
+
+
+
+* **转为某生物时：**
+
+ * **生成该种生物**
+
+ * **复制性质**
+
+  * **位置**
+
+  * **能否捡起掉落物**
+
+  * **如果该种生物允许支持破门目的任务**
+
+   * **能否破门**
+
+  * **是否幼年**
+
+  * **是否不具AI**
+
+  * **物品及其掉落概率**
+
+  * **名字**
+
+  * **是否不会消失**
+
+  * **是否无敌**
+
+ * **移除自身**
+
+
+
+* **杀死生物时**
+
+ * **若是村民**
+
+  * **可能进行如下步骤**
+
+   * **概率**
+
+    * **简单难度：**0%
+
+    * **普通难度：**50%
+
+    * **困难难度：**100%
+
+   * **生成僵尸村民**
+
+   * **从村民到僵尸村民复制性质**
+
+    * **位置**
+
+    * **村民数据**
+
+    * **言论**
+
+    * **交易**
+
+    * **村民经验值**
+
+    * **是否幼年**
+
+    * **是否不具AI**
+
+    * **名字**
+
+    * **是否不会消失**
+
+    * **是否无敌**
+
+   * **移除村民**
+
+   * **播放音效：**感染村民
+
+
+
+* **死亡掉落战利品时**
+
+ * **如果死于苦力怕且此苦力怕能使头颅掉落**
+
+  * **增加此苦力怕已使掉落的头颅计数**
+
+  * **在自身的位置生成自身的头颅物品**
+
+
+
+* **读取储存数据**
+
+ * **如果复合标签里的boolean值IsBaby为true**
+
+  * **设置自身为幼年**
+
+ * **根据复合标签里的boolean值CanBreakDoors，设置自身允许破门与否**
+
+ * **根据复合标签里的int值InWaterTime，设置自身的在水下时间，单位为刻**
+
+ * **如果复合标签里有int值DrownedConversationTime且大于-1，开始水下转变，设置剩余时间为此值，单位为刻**
+
+
+
+* **写入储存数据**
+
+ * **如果自身为幼年**
+
+  * **设置复合标签里的boolean值IsBaby为true**
+
+ * **根据自身允许破门与否，设置复合标签里的boolean值CanBreakDoors**
+
+ * **如果自身在水中**
+
+  * **根据自身的在水下时间，设置复合标签里的int值InWaterTime，单位为刻**
+
+ * **否则**
+
+  * **设置复合标签里的int值InWaterTime为-1**
+
+ * **如果自身正在水下转变**
+
+  * **根据自身的水下转变剩余时间，设置复合标签里的int值DrownedConversationTime，单位为刻**
+
+ * **否则**
+
+  * **设置复合标签里的int值DrownedConversationTime为-1**
+</pre></details></article></main><footer>只读快照：2026/08/31 07:53:10 · created by piglin · 内容版权仍归原作者与 SCP 基金会 Minecraft 分部。</footer></body></html>

@@ -1,0 +1,1708 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>优化Minecraft版式 | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page=theme:better-minecraft-theme">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">原创页面 </p><h1>优化Minecraft版式</h1><p class="page-name">theme:better-minecraft-theme</p><dl class="article-meta"><div><dt>创建者</dt><dd>Dr Hormress</dd></div><div><dt>评分</dt><dd class="rating">+20 <small>+20 / -0</small></dd></div><div><dt>发布时间</dt><dd>2021/01/02 17:57:09</dd></div><div><dt>最近编辑</dt><dd>2022/08/09 19:29:12</dd></div></dl><div class="tags"><span class="tag">原创</span><span class="tag">版式</span></div></header><aside class="reader-warning">此页部分资源未归档：3 个包含组件。文本与源码仍已保留。</aside><section class="article-body"><p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p>/*</p>
+<p>无论如何，MC分目前的CSS代码质量太迫真了。</p>
+<p>请记住，CSS制作器有点bug，当你想建站的时候最好不要依赖它。</p>
+<p>========</p>
+<p>CSS Designed by Xuyifan_exe</p>
+<p>Created by Dr Hormress</p>
+<p>*/</p>
+<p>@import url(&quot;http://scp-wiki-cn.wikidot.com/component:theme/code/1&quot;);</p>
+<p>@import url(&quot;https://fonts.font.im/css?family=Play|Cairo|Roboto|Roboto+Mono&quot;);</p>
+<p>/* 变量控制 */</p>
+<p>:root {</p>
+<p><s>main-accent: var(</s>dark-green);</p>
+<p>/* 标准主题颜色（Minecraft深绿） */</p>
+<p><s>light-accent: var(</s>green);</p>
+<p>/* 较亮主题颜色（Minecraft浅绿） */</p>
+<p>--black: #000;</p>
+<p>--dark-blue: #00A;</p>
+<p>--dark-green: #0A0;</p>
+<p>--dark-aqua: #0AA;</p>
+<p>--dark-red: #A00;</p>
+<p>--dark-purple: #A0A;</p>
+<p>--gold: #FA0;</p>
+<p>--grey: #AAA;</p>
+<p>--dark-grey: #555;</p>
+<p>--blue: #55F;</p>
+<p>--green: #5F5;</p>
+<p>--aqua: #5FF;</p>
+<p>--red: #F55;</p>
+<p>--light-purple: #F5F;</p>
+<p>--yellow: #FF5;</p>
+<p>--white: #FFF;</p>
+<p>/* Minecraft十六色 */</p>
+<p>--minecoin-gold: #DDD605;</p>
+<p>/* Minecoin金色 */</p>
+<p>--title-font: &quot;Play&quot;, sans-serif;</p>
+<p>--subtitle-font: &quot;Cairo&quot;, sans-serif;</p>
+<p>--body-font: &quot;Roboto&quot;, sans-serif;</p>
+<p>--mono-font: &quot;Roboto Mono&quot;, monospace;</p>
+<p>/* 字体 */</p>
+<p>}</p>
+<p>/* 页面排版 */</p>
+<p>#header {</p>
+<p>background-image: url(http://scp-wiki-mc.wikidot.com/local--files/main/scp-mc-logo.svg);</p>
+<p>}</p>
+<p>div#container-wrap {</p>
+<p>background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, var(<s>black)), to(var(</s>black))), -webkit-gradient(linear, left top, left bottom, color-stop(0, var(<s>dark-green)), to(var(</s>dark-green)));</p>
+<p>background-image: -webkit-linear-gradient(top, var(<s>black) 0, var(</s>black) 100%), -webkit-linear-gradient(top, var(<s>dark-green) 0, var(</s>dark-green) 100%);</p>
+<p>background-image: -moz-linear-gradient(top, var(<s>black) 0, var(</s>black) 100%), -moz-linear-gradient(top, var(<s>dark-green) 0, var(</s>dark-green) 100%);</p>
+<p>background-image: -o-linear-gradient(top, var(<s>black) 0, var(</s>black) 100%), -o-linear-gradient(top, var(<s>dark-green) 0, var(</s>dark-green) 100%);</p>
+<p>background-image: linear-gradient(to bottom, var(<s>black) 0, var(</s>black) 100%), linear-gradient(to bottom, var(<s>dark-green) 0, var(</s>dark-green) 100%);</p>
+<p>-webkit-background-size: 100% 140px, 100% 21px;</p>
+<p>-moz-background-size: 100% 140px, 100% 21px;</p>
+<p>-o-background-size: 100% 140px, 100% 21px;</p>
+<p>background-size: 100% 140px, 100% 21px;</p>
+<p>background-position: center top, center 140px;</p>
+<p>}</p>
+<p>#header h1 a span {</p>
+<p>display: none;</p>
+<p>}</p>
+<p>#header h1 a::before {</p>
+<p>content: &quot;Minecraft SCP&quot; !important;</p>
+<p>/* 这是为了使顶栏显示更为舒适 */</p>
+<p>color: var(--white);</p>
+<p>font-family: var(--title-font);</p>
+<p>}</p>
+<p>#header h2 span {</p>
+<p>color: var(--yellow);</p>
+<p>font-family: var(--subtitle-font);</p>
+<p>}</p>
+<p>#top-bar &gt; div &gt; ul &gt; li {</p>
+<p>border: none;</p>
+<p>}</p>
+<p>/* 细部搭配 */</p>
+<p>:root, :root *, * {</p>
+<p>image-rendering: crisp-edges;</p>
+<p>-ms-interpolation-mode: nearest-neighbor;</p>
+<p>image-rendering: -webkit-optimize-contrast;</p>
+<p>image-rendering: -moz-crisp-edges;</p>
+<p>image-rendering: -o-pixelated;</p>
+<p>image-rendering: pixelated;</p>
+<p>}</p>
+<p>body {</p>
+<p>background-color: var(--white);</p>
+<p>color: var(--black);</p>
+<p>font-family: var(--body-font);</p>
+<p>}</p>
+<p>tt {</p>
+<p>font-family: var(--mono-font);</p>
+<p>}</p>
+<p>#page-title, h1 {</p>
+<p>color: var(--dark-red);</p>
+<p>font-weight: bold;</p>
+<p>}</p>
+<p>.page-rate-widget-box {</p>
+<p>-webkit-border-radius: 0 !important;</p>
+<p>-moz-border-radius: 0 !important;</p>
+<p>border-radius: 0 !important;</p>
+<p>background-color: var(--dark-red);</p>
+<p>-webkit-box-shadow: none;</p>
+<p>-moz-box-shadow: none;</p>
+<p>box-shadow: none;</p>
+<p>margin: 0 !important;</p>
+<p>}</p>
+<p>.page-rate-widget-box * {</p>
+<p>border: none !important;</p>
+<p>background: none !important;</p>
+<p>color: var(--white) !important;</p>
+<p>}</p>
+<p>.page-rate-widget-box .rate-points {</p>
+<p>background-color: var(--dark-red) !important;</p>
+<p>}</p>
+<p>#search-top-box {</p>
+<p>position: absolute;</p>
+<p>top: 79px;</p>
+<p>right: 9px;</p>
+<p>width: 250px;</p>
+<p>text-align: right;</p>
+<p>}</p>
+<p>#search-top-box-form * {</p>
+<p>-webkit-border-radius: 0 !important;</p>
+<p>-moz-border-radius: 0 !important;</p>
+<p>border-radius: 0 !important;</p>
+<p>background-color: var(--dark-red) !important;</p>
+<p>color: var(--grey) !important;</p>
+<p>border-color: var(--grey) !important;</p>
+<p>background-image: none !important;</p>
+<p>}</p>
+<p>#search-top-box-form *:hover,</p>
+<p>#search-top-box-form *:focus {</p>
+<p>color: var(--white) !important;</p>
+<p>border-color: var(--white) !important;</p>
+<p>}</p>
+<p>a,</p>
+<p>a:link,</p>
+<p>a:hover,</p>
+<p>a:focus,</p>
+<p>a:active,</p>
+<p>a.newpage {</p>
+<p>color: var(--red);</p>
+<p>}</p>
+<p>/* 侧栏 */</p>
+<p>#side-bar a {</p>
+<p>color: var(--dark-red) !important;</p>
+<p>}</p>
+<p>#side-bar .side-block {</p>
+<p>-webkit-border-radius: 0 !important;</p>
+<p>-moz-border-radius: 0 !important;</p>
+<p>border-radius: 0 !important;</p>
+<p>background-color: var(--white) !important;</p>
+<p>border-color: var(--dark-red);</p>
+<p>}</p>
+<p>#side-bar .heading,</p>
+<p>#side-bar .collapsible-block-unfolded-link {</p>
+<p>color: var(--red) !important;</p>
+<p>border-color: var(--red) !important;</p>
+<p>}</p>
+<p>#edit-page-title {</p>
+<p>width: 100%;</p>
+<p>}</p>
+<p>/* 隐去原装侧栏按钮 */</p>
+<p>/* .open-menu {</p>
+<p>display: none !important;</p>
+<p>} */</p>
+<p>/* 移动版侧栏修复 */</p>
+<p>/* 其实是重写了侧栏按钮 */</p>
+<p>/* 现在侧栏页面已经修复，那么就不需要了 */</p>
+<p>@media (max-width: 767px) {</p>
+<p>#top-bar .open-menu a {</p>
+<p>content: &quot;≡&quot;;</p>
+<p>display: block;</p>
+<p>position: fixed;</p>
+<p>top: 0.5em;</p>
+<p>left: 0.5em;</p>
+<p>z-index: -1 !important;</p>
+<p>font-family: &#x27;Nanum Gothic&#x27;, san-serif;</p>
+<p>font-size: 30px;</p>
+<p>font-weight: 700;</p>
+<p>width: 30px;</p>
+<p>height: 30px;</p>
+<p>line-height: 0.9em;</p>
+<p>text-align: center;</p>
+<p>border: 0.2em solid var(--grey);</p>
+<p>background-color: var(--white);</p>
+<p>-webkit-border-radius: 0;</p>
+<p>-moz-border-radius: 0;</p>
+<p>border-radius: 0;</p>
+<p>color: var(--grey);</p>
+<p>}</p>
+<p>#side-bar {</p>
+<p>background-color: var(--dark-green);</p>
+<p>}</p>
+<p>.close-menu {</p>
+<p>opacity: 0;</p>
+<p>}</p>
+<p>}</p>
+<p>/* FIX */</p>
+<p>@media (min-width: 768px) {</p>
+<p>#header {</p>
+<p>-webkit-background-size: 105px 105px;</p>
+<p>-moz-background-size: 105px;</p>
+<p>-o-background-size: 105px;</p>
+<p>background-size: 105px;</p>
+<p>}</p>
+<p>div.sign {</p>
+<p>margin-left: 50px;</p>
+<p>margin-right: 50px;</p>
+<p>}</p>
+<p>}</p>
+<p>/* 一些神奇的Div方块调整 */</p>
+<p>blockquote, div.blockquote {</p>
+<p>border: solid 16px;</p>
+<p>-webkit-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/blockquote_bg.png&quot;);</p>
+<p>-moz-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/blockquote_bg.png&quot;);</p>
+<p>-o-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/blockquote_bg.png&quot;);</p>
+<p>border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/blockquote_bg.png&quot;);</p>
+<p>border-image-slice: 8 8 8 8 fill;</p>
+<p>background-color: transparent;</p>
+<p>}</p>
+<p>div.sign {</p>
+<p>background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign.png&quot;);</p>
+<p>background-repeat: repeat;</p>
+<p>-webkit-background-size: 96px 48px;</p>
+<p>-moz-background-size: 96px 48px;</p>
+<p>-o-background-size: 96px 48px;</p>
+<p>background-size: 96px 48px;</p>
+<p>background-position: 0 -4px;</p>
+<p>padding: 1em;</p>
+<p>font-size: 12px;</p>
+<p>line-height: 16px;</p>
+<p>margin-top: 6px;</p>
+<p>margin-bottom: 6px;</p>
+<p>-webkit-box-shadow: 1px 1px 2px var(--grey);</p>
+<p>-moz-box-shadow: 1px 1px 2px var(--grey);</p>
+<p>box-shadow: 1px 1px 2px var(--grey);</p>
+<p>}</p>
+<p>div.sign p {</p>
+<p>line-height: 16px;</p>
+<p>}</p>
+<p>div.sign p:nth-child(1) {</p>
+<p>margin-top: 0 !important;</p>
+<p>}</p>
+<p>div.sign p:nth-last-child(1) {</p>
+<p>margin-bottom: 0 !important;</p>
+<p>}</p>
+<p>div.sign.birch {</p>
+<p>background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_birch.png&quot;);</p>
+<p>}</p>
+<p>div.sign.spruce {</p>
+<p>background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_spruce.png&quot;);</p>
+<p>}</p>
+<p>div.sign.acacia {</p>
+<p>background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_acacia.png&quot;);</p>
+<p>}</p>
+<p>div.sign.jungle {</p>
+<p>background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_jungle.png&quot;);</p>
+<p>}</p>
+<p>div.sign.darkoak {</p>
+<p>background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_darkoak.png&quot;);</p>
+<p>}</p>
+<p>div.sign.crimson {</p>
+<p>background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_crimson.png&quot;);</p>
+<p>}</p>
+<p>div.sign.warped {</p>
+<p>background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_warped.png&quot;);</p>
+<p>}</p>
+<p>/* YUI Tabview */</p>
+<p>.yui-navset .yui-content {</p>
+<p>border: solid 16px;</p>
+<p>-webkit-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_bg.png&quot;);</p>
+<p>-moz-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_bg.png&quot;);</p>
+<p>-o-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_bg.png&quot;);</p>
+<p>border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_bg.png&quot;);</p>
+<p>border-image-slice: 8 8 8 8 fill;</p>
+<p>background-color: transparent;</p>
+<p>}</p>
+<p>.yui-navset .yui-nav .selected {</p>
+<p>border: solid 16px;</p>
+<p>-webkit-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_btn_bg_1.png&quot;);</p>
+<p>-moz-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_btn_bg_1.png&quot;);</p>
+<p>-o-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_btn_bg_1.png&quot;);</p>
+<p>border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_btn_bg_1.png&quot;);</p>
+<p>border-image-slice: 8 8 8 8 fill;</p>
+<p>background-color: transparent;</p>
+<p>padding: -14px;</p>
+<p>}</p>
+<p>.yui-navset .yui-nav li {</p>
+<p>border: solid 16px;</p>
+<p>-webkit-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_btn_bg_2.png&quot;);</p>
+<p>-moz-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_btn_bg_2.png&quot;);</p>
+<p>-o-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_btn_bg_2.png&quot;);</p>
+<p>border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_btn_bg_2.png&quot;);</p>
+<p>border-image-slice: 8 8 8 8 fill;</p>
+<p>background-color: transparent;</p>
+<p>padding: -14px;</p>
+<p>}</p>
+<p>.yui-navset ul {</p>
+<p>border: none !important;</p>
+<p>}</p>
+<p>.yui-navset .yui-nav .selected,</p>
+<p>.yui-navset .yui-nav li {</p>
+<p>margin: 0;</p>
+<p>}</p>
+<p>.yui-navset .yui-nav .selected a,</p>
+<p>.yui-navset .yui-nav .selected a:focus, /* no focus effect for selected */</p>
+<p>.yui-navset .yui-nav .selected a:hover,</p>
+<p>.yui-navset .yui-nav a,</p>
+<p>.yui-navset .yui-nav a:hover,</p>
+<p>.yui-navset .yui-nav a:focus,</p>
+<p>.yui-navset .yui-navset-top .yui-nav a {</p>
+<p>background-image: none !important;</p>
+<p>background: none !important;</p>
+<p>border: none !important;</p>
+<p>}</p>
+<p>.yui-navset li *, .yui-navset .selected * {</p>
+<p>border: none !important;</p>
+<p>}</p>
+<p>.yui-navset li a, .yui-navset .selected a {</p>
+<p>margin: -14px !important;</p>
+<p>}</p>
+<p>.yui-navset li a {</p>
+<p>color: var(--dark-grey) !important;</p>
+<p>background-image: none !important;</p>
+<p>}</p>
+<p>.yui-navset .yui-nav .selected {</p>
+<p>margin-bottom: -6px;</p>
+<p>padding-bottom: 6px;</p>
+<p>}</p>
+<p>[[/module]]</p>
+<p>[[iftags +版式]]</p>
+<div class="wiki-aligned">
+<p>[[span style=&quot;margin-right: 2em;&quot;]]<strong>评分：</strong>[[/span]]</p>
+<p><span class="module-note">评分组件已由页首快照替代</span></p>
+</div>
+<div class="wiki-aligned">
+<p>[[span style=&quot;margin-right: 2em;&quot;]]<strong>评分模块与著作信息模块：</strong>[[/span]]</p>
+<p>[尚不支持]</p>
+</div>
+<hr>
+<p>通过这段代码来引入此版式：{{@@[[backup-notice include :scp-wiki-mc:theme:better-minecraft-theme]]@@}}</p>
+<p><s>通过这段代码来引入此版式的最新开发版本：{{@@[[backup-notice include :ah-sandbox:theme:better-minecraft-theme]]@@}}</s> 也许我最近会直接在这个页面更新</p>
+<p>这是<span class="wiki-user">dr-hormress</span>创作的优化版Minecraft版式，原版Minecraft版式由<span class="wiki-user">xuyifan-exe</span>设计。</p>
+<p>此版式提供了一些额外选择的Div方块，并将大部分主题颜色调整为Minecraft颜色。</p>
+<p><strong>更新日志</strong>：</p>
+<p>优化Minecraft版式Alpha 1.16.210</p>
+<p class="wiki-list">修复了链接颜色问题</p>
+<p class="wiki-list">略微修改了顶栏样式</p>
+<p class="wiki-list">移除了Herobrine</p>
+<p>版式尚处于Alpha测试阶段，请于讨论页向<s>Mojang Studios</s> <span class="wiki-user">dr-hormress</span>反馈问题。</p>
+<p>请确认您遇到的问题是漏洞而非特性。</p>
+<hr>
+<p>示例部分复制自超形上学部版式。</p>
+<p><strong>标准示例</strong>：</p>
+<details class="wiki-collapsible"><summary>+ 展开</summary>
+<aside class="backup-note">包含组件未归档：<code>component:image-block</code></aside>
+<h2>1 级标题</h2>
+<h3>2 级标题</h3>
+<h4>3 级标题</h4>
+<h5>4 级标题</h5>
+<h6>5 级标题</h6>
+<h6>6 级标题</h6>
+<p><strong>粗体</strong> | <em>斜体</em> | __下划线__ | <s>删除线</s> | {{teletype text}} ^^上标^^,,下标,,</p>
+<hr>
+<table class="wiki-table"><tbody>
+<tr><th>标题</th><th>标题</th><th>标题</th><th>标题</th><th>标题</th><th>标题</th></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>子内容</td><td>子内容</td><td>子内容</td><td>子内容</td><td>子内容</td><td>子内容</td></tr>
+</tbody></table>
+</details>
+<p><strong>Div方块</strong>：素材均来自/修改自Minecraft基岩版Vanilla素材包。</p>
+<blockquote>引用（缺点是无法改变背景颜色，因此稍后会更新几种不同的引用方块。）</blockquote>
+<blockquote>另一个引用以及</blockquote>
+<p>&gt;&gt; 嵌套引用块。</p>
+<div class="wiki-block">
+<p>@@[[div class=&quot;sign&quot;]]@@</p>
+<p>一个告示牌方块。</p>
+<p>为了对齐行线，分段时请使用@@@@@@@@来正确换行。</p>
+<p>这个方块能使你的文章看起来更Minecraft。</p>
+<p>更多行文字也被支持。</p>
+<p>还有更多——</p>
+<p>##var(--white)|如果你觉得文字颜色难以识别，试着使用下方提供的Minecraft文字标准颜色。##</p>
+<p>@@[[/div]]@@</p>
+</div>
+<div class="wiki-block">
+<p>@@[[div class=&quot;sign birch&quot;]]@@</p>
+<p>白桦木版本。</p>
+<p>@@[[/div]]@@</p>
+</div>
+<div class="wiki-block">
+<p>@@[[div class=&quot;sign spruce&quot;]]@@</p>
+<p>云杉木版本。（建议使用白色文字。）</p>
+<p>@@[[/div]]@@</p>
+</div>
+<div class="wiki-block">
+<p>@@[[div class=&quot;sign acacia&quot;]]@@</p>
+<p>金合欢木版本。</p>
+<p>@@[[/div]]@@</p>
+</div>
+<div class="wiki-block">
+<p>@@[[div class=&quot;sign jungle&quot;]]@@</p>
+<p>丛林木版本。</p>
+<p>@@[[/div]]@@</p>
+</div>
+<div class="wiki-block">
+<p>@@[[div class=&quot;sign darkoak&quot;]]@@</p>
+<p>黑橡木版本。（建议使用白色文字。）</p>
+<p>@@[[/div]]@@</p>
+</div>
+<div class="wiki-block">
+<p>@@[[div class=&quot;sign crimson&quot;]]@@</p>
+<p>绯红菌版本。（建议使用白色文字。）</p>
+<p>@@[[/div]]@@</p>
+</div>
+<div class="wiki-block">
+<p>@@[[div class=&quot;sign warped&quot;]]@@</p>
+<p>诡异菌版本。（建议使用白色文字。）</p>
+<p>@@[[/div]]@@</p>
+</div>
+<div class="tabview">
+<section class="wiki-tab"><h2>标签 1</h2>
+<p>打算做成Minecraft样式的Tab。</p>
+</section>
+<section class="wiki-tab"><h2>标签 2</h2>
+<p>一个Tab。</p>
+</section>
+<section class="wiki-tab"><h2>标签 3</h2>
+<p>另一个Tab。</p>
+</section>
+<section class="wiki-tab"><h2>标签 4</h2>
+<p>一个长Tab。这里有许多文字。</p>
+<p>一个长Tab。这里有许多文字。</p>
+<p>一个长Tab。这里有许多文字。</p>
+<p>一个长Tab。这里有许多文字。</p>
+<p>一个长Tab。这里有许多文字。</p>
+<p>一个长Tab。这里有许多文字。</p>
+<p>一个长Tab。这里有许多文字。</p>
+<p>一个长Tab。这里有许多文字。</p>
+<p>一个长Tab。这里有许多文字。</p>
+<p>一个长Tab。这里有许多文字。</p>
+<p>一个长Tab。这里有许多文字。</p>
+<p>一个长Tab。这里有许多文字。</p>
+<p>一个长Tab。这里有许多文字。</p>
+<p>一个长Tab。这里有许多文字。</p>
+<p>一个长Tab。这里有许多文字。</p>
+</section>
+<section class="wiki-tab"><h2>标签 5 有很长的标题，但没有内容。这是为什么？</h2>
+</section>
+</div>
+<p><strong>标准颜色</strong>：</p>
+<p>[[code type=&quot;CSS&quot;]]</p>
+<p>--black: #000;</p>
+<p>--dark-blue: #00A;</p>
+<p>--dark-green: #0A0;</p>
+<p>--dark-aqua: #0AA;</p>
+<p>--dark-red: #A00;</p>
+<p>--dark-purple: #A0A;</p>
+<p>--gold: #FA0;</p>
+<p>--grey: #AAA;</p>
+<p>--dark-grey: #555;</p>
+<p>--blue: #55F;</p>
+<p>--green: #5F5;</p>
+<p>--aqua: #5FF;</p>
+<p>--red: #F55;</p>
+<p>--light-purple: #F5F;</p>
+<p>--yellow: #FF5;</p>
+<p>--white: #FFF;</p>
+<p>/* Minecraft十六色 */</p>
+<p>--minecoin-gold: #DDD605;</p>
+<p>/* Minecoin金色 */</p>
+<p>[[/code]]</p>
+<p>这是Minecraft的十六种标准颜色 + Minecoin金色，在游戏中是使用§0 ~ §f的16进制数与§g调用的。</p>
+<p>要在这一版式下使用这些颜色，需要如下代码：</p>
+<p>= @@##颜色变量|文本##@@</p>
+<p>变量的格式是var(变量名)，上方代码块中冒号前的部分便是变量名。例如金色文本便是：</p>
+<p>= @@##var(--gold)|金色文本##@@</p>
+<hr>
+<p>使用“查看源代码”获取版式的源代码。</p>
+<p>[[/iftags]]</p></section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>[[module CSS]]
+
+/* 
+
+无论如何，MC分目前的CSS代码质量太迫真了。
+
+请记住，CSS制作器有点bug，当你想建站的时候最好不要依赖它。
+
+========
+
+CSS Designed by Xuyifan_exe
+
+Created by Dr Hormress
+
+ */
+
+@import url(&quot;http://scp-wiki-cn.wikidot.com/component:theme/code/1&quot;);
+
+@import url(&quot;https://fonts.font.im/css?family=Play|Cairo|Roboto|Roboto+Mono&quot;);
+
+
+
+/* 变量控制 */
+
+
+
+:root {
+
+    --main-accent: var(--dark-green);
+
+    /* 标准主题颜色（Minecraft深绿） */
+
+    --light-accent: var(--green);
+
+    /* 较亮主题颜色（Minecraft浅绿） */
+
+
+
+    --black: #000;
+
+    --dark-blue: #00A;
+
+    --dark-green: #0A0;
+
+    --dark-aqua: #0AA;
+
+    --dark-red: #A00;
+
+    --dark-purple: #A0A;
+
+    --gold: #FA0;
+
+    --grey: #AAA;
+
+    --dark-grey: #555;
+
+    --blue: #55F;
+
+    --green: #5F5;
+
+    --aqua: #5FF;
+
+    --red: #F55;
+
+    --light-purple: #F5F;
+
+    --yellow: #FF5;
+
+    --white: #FFF;
+
+    /* Minecraft十六色 */
+
+    --minecoin-gold: #DDD605;
+
+    /* Minecoin金色 */
+
+
+
+    --title-font: &quot;Play&quot;, sans-serif;
+
+    --subtitle-font: &quot;Cairo&quot;, sans-serif;
+
+    --body-font: &quot;Roboto&quot;, sans-serif;
+
+    --mono-font: &quot;Roboto Mono&quot;, monospace;
+
+    /* 字体 */
+
+}
+
+
+
+/* 页面排版 */
+
+
+
+#header {
+
+    background-image: url(http://scp-wiki-mc.wikidot.com/local--files/main/scp-mc-logo.svg);
+
+}
+
+
+
+div#container-wrap {
+
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, var(--black)), to(var(--black))), -webkit-gradient(linear, left top, left bottom, color-stop(0, var(--dark-green)), to(var(--dark-green)));
+
+    background-image: -webkit-linear-gradient(top, var(--black) 0, var(--black) 100%), -webkit-linear-gradient(top, var(--dark-green) 0, var(--dark-green) 100%);
+
+    background-image: -moz-linear-gradient(top, var(--black) 0, var(--black) 100%), -moz-linear-gradient(top, var(--dark-green) 0, var(--dark-green) 100%);
+
+    background-image: -o-linear-gradient(top, var(--black) 0, var(--black) 100%), -o-linear-gradient(top, var(--dark-green) 0, var(--dark-green) 100%);
+
+    background-image: linear-gradient(to bottom, var(--black) 0, var(--black) 100%), linear-gradient(to bottom, var(--dark-green) 0, var(--dark-green) 100%);
+
+    -webkit-background-size: 100% 140px, 100% 21px;
+
+       -moz-background-size: 100% 140px, 100% 21px;
+
+         -o-background-size: 100% 140px, 100% 21px;
+
+            background-size: 100% 140px, 100% 21px;
+
+    background-position: center top, center 140px;
+
+}
+
+
+
+#header h1 a span {
+
+    display: none;
+
+}
+
+
+
+#header h1 a::before {
+
+    content: &quot;Minecraft SCP&quot; !important;
+
+    /* 这是为了使顶栏显示更为舒适 */
+
+    color: var(--white);
+
+    font-family: var(--title-font);
+
+}
+
+
+
+#header h2 span {
+
+    color: var(--yellow);
+
+    font-family: var(--subtitle-font);
+
+}
+
+
+
+#top-bar &gt; div &gt; ul &gt; li {
+
+    border: none;
+
+}
+
+
+
+/* 细部搭配 */
+
+
+
+:root, :root *, * {
+
+    image-rendering: crisp-edges;
+
+    -ms-interpolation-mode: nearest-neighbor;
+
+        image-rendering: -webkit-optimize-contrast;
+
+        image-rendering: -moz-crisp-edges;
+
+        image-rendering: -o-pixelated;
+
+        image-rendering: pixelated;
+
+}
+
+
+
+body {
+
+    background-color: var(--white);
+
+    color: var(--black);
+
+    font-family: var(--body-font);
+
+}
+
+
+
+tt {
+
+    font-family: var(--mono-font);
+
+}
+
+
+
+#page-title, h1 {
+
+    color: var(--dark-red);
+
+    font-weight: bold;
+
+}
+
+
+
+.page-rate-widget-box {
+
+    -webkit-border-radius: 0 !important;
+
+       -moz-border-radius: 0 !important;
+
+            border-radius: 0 !important;
+
+    background-color: var(--dark-red);
+
+    -webkit-box-shadow: none;
+
+       -moz-box-shadow: none;
+
+            box-shadow: none;
+
+    margin: 0 !important;
+
+}
+
+
+
+.page-rate-widget-box * {
+
+    border: none !important;
+
+    background: none !important;
+
+    color: var(--white) !important;
+
+}
+
+
+
+.page-rate-widget-box .rate-points {
+
+    background-color: var(--dark-red) !important;
+
+}
+
+
+
+#search-top-box {
+
+    position: absolute;
+
+    top: 79px;
+
+    right: 9px;
+
+    width: 250px;
+
+    text-align: right;
+
+}
+
+
+
+#search-top-box-form * {
+
+    -webkit-border-radius: 0 !important;
+
+       -moz-border-radius: 0 !important;
+
+            border-radius: 0 !important;
+
+    background-color: var(--dark-red) !important;
+
+    color: var(--grey) !important;
+
+    border-color: var(--grey) !important;
+
+    background-image: none !important;
+
+}
+
+
+
+#search-top-box-form *:hover,
+
+#search-top-box-form *:focus {
+
+    color: var(--white) !important;
+
+    border-color: var(--white) !important;
+
+}
+
+
+
+a, 
+
+a:link,
+
+a:hover,
+
+a:focus,
+
+a:active,
+
+a.newpage {
+
+    color: var(--red);
+
+}
+
+
+
+/* 侧栏 */
+
+
+
+#side-bar a {
+
+    color: var(--dark-red) !important;
+
+}
+
+
+
+#side-bar .side-block {
+
+    -webkit-border-radius: 0 !important;
+
+       -moz-border-radius: 0 !important;
+
+            border-radius: 0 !important;
+
+    background-color: var(--white) !important;
+
+    border-color: var(--dark-red);
+
+}
+
+
+
+#side-bar .heading,
+
+#side-bar .collapsible-block-unfolded-link {
+
+    color: var(--red) !important;
+
+    border-color: var(--red) !important;
+
+}
+
+
+
+#edit-page-title {
+
+    width: 100%;
+
+}
+
+
+
+/* 隐去原装侧栏按钮 */
+
+
+
+/* .open-menu {
+
+    display: none !important;
+
+} */
+
+
+
+/* 移动版侧栏修复 */
+
+/* 其实是重写了侧栏按钮 */
+
+/* 现在侧栏页面已经修复，那么就不需要了 */
+
+
+
+@media (max-width: 767px) {
+
+    #top-bar .open-menu a {
+
+        content: &quot;≡&quot;;
+
+        display: block;
+
+        position: fixed;
+
+        top: 0.5em;
+
+        left: 0.5em;
+
+        z-index: -1 !important;
+
+        font-family: &#x27;Nanum Gothic&#x27;, san-serif;
+
+        font-size: 30px;
+
+        font-weight: 700;
+
+        width: 30px;
+
+        height: 30px;
+
+        line-height: 0.9em;
+
+        text-align: center;
+
+        border: 0.2em solid var(--grey);
+
+        background-color: var(--white);
+
+        -webkit-border-radius: 0;
+
+           -moz-border-radius: 0;
+
+                border-radius: 0;
+
+        color: var(--grey);
+
+    }
+
+
+
+    #side-bar {
+
+        background-color: var(--dark-green);
+
+    }
+
+
+
+    .close-menu {
+
+        opacity: 0;
+
+    }
+
+}
+
+
+
+/* FIX */
+
+@media (min-width: 768px) {
+
+#header {
+
+    -webkit-background-size: 105px 105px;
+
+       -moz-background-size: 105px;
+
+         -o-background-size: 105px;
+
+            background-size: 105px;
+
+}
+
+
+
+div.sign {
+
+    margin-left: 50px;
+
+    margin-right: 50px;
+
+}
+
+}
+
+
+
+/* 一些神奇的Div方块调整 */
+
+
+
+blockquote, div.blockquote {
+
+    border: solid 16px;
+
+    -webkit-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/blockquote_bg.png&quot;);
+
+       -moz-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/blockquote_bg.png&quot;);
+
+         -o-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/blockquote_bg.png&quot;);
+
+            border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/blockquote_bg.png&quot;);
+
+    border-image-slice: 8 8 8 8 fill;
+
+    background-color: transparent;
+
+}
+
+
+
+div.sign {
+
+    background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign.png&quot;);
+
+    background-repeat: repeat;
+
+    -webkit-background-size: 96px 48px;
+
+       -moz-background-size: 96px 48px;
+
+         -o-background-size: 96px 48px;
+
+            background-size: 96px 48px;
+
+    background-position: 0 -4px;
+
+    padding: 1em;
+
+    font-size: 12px;
+
+    line-height: 16px;
+
+    margin-top: 6px;
+
+    margin-bottom: 6px;
+
+    -webkit-box-shadow: 1px 1px 2px var(--grey);
+
+       -moz-box-shadow: 1px 1px 2px var(--grey);
+
+            box-shadow: 1px 1px 2px var(--grey);
+
+}
+
+
+
+div.sign p {
+
+    line-height: 16px;
+
+}
+
+
+
+div.sign p:nth-child(1) {
+
+    margin-top: 0 !important;
+
+}
+
+
+
+div.sign p:nth-last-child(1) {
+
+    margin-bottom: 0 !important;
+
+}
+
+
+
+div.sign.birch {
+
+    background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_birch.png&quot;);
+
+}
+
+
+
+div.sign.spruce {
+
+    background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_spruce.png&quot;);
+
+}
+
+
+
+div.sign.acacia {
+
+    background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_acacia.png&quot;);
+
+}
+
+
+
+div.sign.jungle {
+
+    background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_jungle.png&quot;);
+
+}
+
+
+
+div.sign.darkoak {
+
+    background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_darkoak.png&quot;);
+
+}
+
+
+
+div.sign.crimson {
+
+    background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_crimson.png&quot;);
+
+}
+
+
+
+div.sign.warped {
+
+    background-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/sign_warped.png&quot;);
+
+}
+
+
+
+/* YUI Tabview */
+
+
+
+.yui-navset .yui-content {
+
+    border: solid 16px;
+
+    -webkit-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_bg.png&quot;);
+
+       -moz-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_bg.png&quot;);
+
+         -o-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_bg.png&quot;);
+
+            border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_bg.png&quot;);
+
+    border-image-slice: 8 8 8 8 fill;
+
+    background-color: transparent;
+
+}
+
+
+
+.yui-navset .yui-nav .selected {
+
+    border: solid 16px;
+
+    -webkit-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_btn_bg_1.png&quot;);
+
+       -moz-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_btn_bg_1.png&quot;);
+
+         -o-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_btn_bg_1.png&quot;);
+
+            border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_btn_bg_1.png&quot;);
+
+    border-image-slice: 8 8 8 8 fill;
+
+    background-color: transparent;
+
+    padding: -14px;
+
+}
+
+
+
+.yui-navset .yui-nav li {
+
+    border: solid 16px;
+
+    -webkit-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_btn_bg_2.png&quot;);
+
+       -moz-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_btn_bg_2.png&quot;);
+
+         -o-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_btn_bg_2.png&quot;);
+
+            border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/tabview_btn_bg_2.png&quot;);
+
+    border-image-slice: 8 8 8 8 fill;
+
+    background-color: transparent;
+
+    padding: -14px;
+
+}
+
+
+
+.yui-navset ul {
+
+    border: none !important;
+
+}
+
+
+
+.yui-navset .yui-nav .selected,
+
+.yui-navset .yui-nav li {
+
+    margin: 0;
+
+}
+
+
+
+.yui-navset .yui-nav .selected a,
+
+.yui-navset .yui-nav .selected a:focus, /* no focus effect for selected */
+
+.yui-navset .yui-nav .selected a:hover,
+
+.yui-navset .yui-nav a,
+
+.yui-navset .yui-nav a:hover,
+
+.yui-navset .yui-nav a:focus,
+
+.yui-navset .yui-navset-top .yui-nav a {
+
+    background-image: none !important;
+
+    background: none !important;
+
+    border: none !important;
+
+}
+
+
+
+.yui-navset li *, .yui-navset .selected * {
+
+    border: none !important;
+
+}
+
+
+
+.yui-navset li a, .yui-navset .selected a {
+
+    margin: -14px !important;
+
+}
+
+
+
+.yui-navset li a {
+
+    color: var(--dark-grey) !important;
+
+    background-image: none !important;
+
+}
+
+
+
+.yui-navset .yui-nav .selected {
+
+    margin-bottom: -6px;
+
+    padding-bottom: 6px;
+
+}
+
+[[/module]]
+
+[[iftags +版式]]
+
+[[&gt;]]
+
+[[span style=&quot;margin-right: 2em;&quot;]]**评分：**[[/span]]
+
+[[module Rate]]
+
+[[/&gt;]]
+
+
+
+[[&gt;]]
+
+[[span style=&quot;margin-right: 2em;&quot;]]**评分模块与著作信息模块：**[[/span]]
+
+[尚不支持]
+
+[[/&gt;]]
+
+
+
+----
+
+
+
+通过这段代码来引入此版式：{{@@[[include :scp-wiki-mc:theme:better-minecraft-theme]]@@}}
+
+
+
+--通过这段代码来引入此版式的最新开发版本：{{@@[[include :ah-sandbox:theme:better-minecraft-theme]]@@}}-- 也许我最近会直接在这个页面更新
+
+
+
+这是[[*user dr-hormress]]创作的优化版Minecraft版式，原版Minecraft版式由[[*user xuyifan-exe]]设计。
+
+
+
+此版式提供了一些额外选择的Div方块，并将大部分主题颜色调整为Minecraft颜色。
+
+
+
+**更新日志**：
+
+
+
+优化Minecraft版式Alpha 1.16.210
+
+
+
+* 修复了链接颜色问题
+
+
+
+* 略微修改了顶栏样式
+
+
+
+* 移除了Herobrine
+
+
+
+版式尚处于Alpha测试阶段，请于讨论页向--Mojang Studios-- [[user dr-hormress]]反馈问题。
+
+
+
+请确认您遇到的问题是漏洞而非特性。
+
+
+
+----
+
+
+
+示例部分复制自超形上学部版式。
+
+
+
+**标准示例**：
+
+
+
+[[collapsible show=&quot;+ 展开&quot; hide=&quot;- 收合&quot;]]
+
+
+
+[[include component:image-block
+
+|width=100px
+
+|name=http://scp-wiki.wdfiles.com/local--files/theme:pataphysics/pata-logo.png
+
+|caption=插图方块
+
+这个超形上学部标志有明显的像素颗粒感，这是此版式的特性
+
+]]
+
+
+
++ 1 级标题
+
+
+
+++ 2 级标题
+
+
+
++++ 3 级标题
+
+
+
+++++ 4 级标题
+
+
+
++++++ 5 级标题
+
+
+
+++++++ 6 级标题
+
+
+
+**粗体** | //斜体// | __下划线__ | --删除线-- | {{teletype text}} ^^上标^^,,下标,,
+
+
+
+----
+
+
+
+||~ 标题 ||~ 标题 ||~ 标题 ||~ 标题 ||~ 标题 ||~ 标题 ||
+
+|| 子内容 || 子内容 || 子内容 || 子内容 || 子内容 || 子内容 ||
+
+
+
+[[toc]]
+
+
+
+[[/collapsible]]
+
+
+
+**Div方块**：素材均来自/修改自Minecraft基岩版Vanilla素材包。
+
+
+
+&gt; 引用（缺点是无法改变背景颜色，因此稍后会更新几种不同的引用方块。）
+
+
+
+&gt; 另一个引用以及
+
+&gt;&gt; 嵌套引用块。
+
+
+
+[[div class=&quot;sign&quot;]]
+
+@@[[div class=&quot;sign&quot;]]@@
+
+一个告示牌方块。
+
+@@@@
+
+为了对齐行线，分段时请使用@@@@@@@@来正确换行。
+
+@@@@
+
+这个方块能使你的文章看起来更Minecraft。
+
+更多行文字也被支持。
+
+@@@@
+
+还有更多——
+
+##var(--white)|如果你觉得文字颜色难以识别，试着使用下方提供的Minecraft文字标准颜色。##
+
+@@[[/div]]@@
+
+[[/div]]
+
+
+
+[[div class=&quot;sign birch&quot;]]
+
+@@[[div class=&quot;sign birch&quot;]]@@
+
+白桦木版本。
+
+@@[[/div]]@@
+
+[[/div]]
+
+
+
+[[div class=&quot;sign spruce&quot; style=&quot;color: var(--white);&quot;]]
+
+@@[[div class=&quot;sign spruce&quot;]]@@
+
+云杉木版本。（建议使用白色文字。）
+
+@@[[/div]]@@
+
+[[/div]]
+
+
+
+[[div class=&quot;sign acacia&quot;]]
+
+@@[[div class=&quot;sign acacia&quot;]]@@
+
+金合欢木版本。
+
+@@[[/div]]@@
+
+[[/div]]
+
+
+
+[[div class=&quot;sign jungle&quot;]]
+
+@@[[div class=&quot;sign jungle&quot;]]@@
+
+丛林木版本。
+
+@@[[/div]]@@
+
+[[/div]]
+
+
+
+[[div class=&quot;sign darkoak&quot; style=&quot;color: var(--white);&quot;]]
+
+@@[[div class=&quot;sign darkoak&quot;]]@@
+
+黑橡木版本。（建议使用白色文字。）
+
+@@[[/div]]@@
+
+[[/div]]
+
+
+
+[[div class=&quot;sign crimson&quot; style=&quot;color: var(--white)&quot;]]
+
+@@[[div class=&quot;sign crimson&quot;]]@@
+
+绯红菌版本。（建议使用白色文字。）
+
+@@[[/div]]@@
+
+[[/div]]
+
+
+
+[[div class=&quot;sign warped&quot; style=&quot;color: var(--white);&quot;]]
+
+@@[[div class=&quot;sign warped&quot;]]@@
+
+诡异菌版本。（建议使用白色文字。）
+
+@@[[/div]]@@
+
+[[/div]]
+
+
+
+
+
+[[tabview]]
+
+
+
+[[tab 标签 1]]
+
+打算做成Minecraft样式的Tab。
+
+[[/tab]]
+
+
+
+[[tab 标签 2]]
+
+一个Tab。
+
+[[/tab]]
+
+
+
+[[tab 标签 3]]
+
+另一个Tab。
+
+[[/tab]]
+
+
+
+[[tab 标签 4]]
+
+一个长Tab。这里有许多文字。
+
+
+
+一个长Tab。这里有许多文字。
+
+
+
+一个长Tab。这里有许多文字。
+
+
+
+一个长Tab。这里有许多文字。
+
+
+
+一个长Tab。这里有许多文字。
+
+
+
+一个长Tab。这里有许多文字。
+
+
+
+一个长Tab。这里有许多文字。
+
+
+
+一个长Tab。这里有许多文字。
+
+
+
+一个长Tab。这里有许多文字。
+
+
+
+一个长Tab。这里有许多文字。
+
+
+
+一个长Tab。这里有许多文字。
+
+
+
+一个长Tab。这里有许多文字。
+
+
+
+一个长Tab。这里有许多文字。
+
+
+
+一个长Tab。这里有许多文字。
+
+
+
+一个长Tab。这里有许多文字。
+
+[[/tab]]
+
+
+
+[[tab 标签 5 有很长的标题，但没有内容。这是为什么？]]
+
+
+
+[[/tab]]
+
+
+
+[[/tabview]]
+
+
+
+**标准颜色**：
+
+
+
+[[code type=&quot;CSS&quot;]]
+
+    --black: #000;
+
+    --dark-blue: #00A;
+
+    --dark-green: #0A0;
+
+    --dark-aqua: #0AA;
+
+    --dark-red: #A00;
+
+    --dark-purple: #A0A;
+
+    --gold: #FA0;
+
+    --grey: #AAA;
+
+    --dark-grey: #555;
+
+    --blue: #55F;
+
+    --green: #5F5;
+
+    --aqua: #5FF;
+
+    --red: #F55;
+
+    --light-purple: #F5F;
+
+    --yellow: #FF5;
+
+    --white: #FFF;
+
+    /* Minecraft十六色 */
+
+    --minecoin-gold: #DDD605;
+
+    /* Minecoin金色 */
+
+[[/code]]
+
+
+
+这是Minecraft的十六种标准颜色 + Minecoin金色，在游戏中是使用§0 ~ §f的16进制数与§g调用的。
+
+
+
+要在这一版式下使用这些颜色，需要如下代码：
+
+
+
+= @@##颜色变量|文本##@@
+
+
+
+变量的格式是var(变量名)，上方代码块中冒号前的部分便是变量名。例如金色文本便是：
+
+
+
+= @@##var(--gold)|金色文本##@@
+
+----
+
+
+
+使用“查看源代码”获取版式的源代码。
+
+[[/iftags]]
+</pre></details></article></main><footer>只读快照：2026/08/31 07:53:10 · created by piglin · 内容版权仍归原作者与 SCP 基金会 Minecraft 分部。</footer></body></html>

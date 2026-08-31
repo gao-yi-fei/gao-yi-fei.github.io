@@ -1,0 +1,1095 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>黑暗教会 版式 | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page=component:ministryofdarknesstheme">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">其他页面 </p><h1>黑暗教会 版式</h1><p class="page-name">component:ministryofdarknesstheme</p><dl class="article-meta"><div><dt>创建者</dt><dd>guzl</dd></div><div><dt>评分</dt><dd class="rating">+1 <small>+1 / -0</small></dd></div><div><dt>发布时间</dt><dd>2020/05/06 17:03:56</dd></div><div><dt>最近编辑</dt><dd>2023/09/08 23:30:21</dd></div></dl><div class="tags"><span class="tag">版式</span><span class="tag">黑暗教会</span></div></header><section class="article-body"><p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p>@import url(http://scp-wiki-mc.wikidot.com/component:ministryofdarknesstheme/code/1);</p>
+<p>[[/module]]</p>
+<p>这是为GOI<a href="/wiki/ministry-of-darkness.html">黑暗教会</a>所制作的版式。</p>
+<p>在你的作品开头添加如下语法以应用此版式：</p>
+<blockquote>@@<span class="module-note">动态模块在只读备份中已省略</span>@@</blockquote>
+<blockquote>@@@import url(http://scp-wiki-mc.wikidot.com/component:ministryofdarknesstheme/code/1);@@</blockquote>
+<blockquote>@@[[/module]]@@</blockquote>
+<p>背景图由</p>
+<h2>示例</h2>
+<p>可通过五个连字符“@@<s>-</s>@@”创建水平分割线。若它未被放在其他部件（诸如引用块）中，则会左右延伸贯穿页面。这种将文件分割为多个部分的线就是分割线。</p>
+<hr>
+<p>标题可通过在一行字起始处输入1至6个加号“+”来创建</p>
+<details class="wiki-collapsible"><summary>+ 标题</summary>
+<h2>1 级标题</h2>
+<h3>2 级标题</h3>
+<h4>3 级标题</h4>
+<h5>4 级标题</h5>
+<h6>5 级标题</h6>
+<h6>6 级标题</h6>
+</details>
+<p>@@ @@</p>
+<div class="tabview">
+<section class="wiki-tab"><h2>分页</h2>
+<p>此为分页（tab view）。</p>
+</section>
+<section class="wiki-tab"><h2>分页</h2>
+<p>看，这有更多文字。</p>
+<p>多么精巧绝伦。</p>
+</section>
+<section class="wiki-tab"><h2>长Tab</h2>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+<p>这是一个长的tab，它有很多文字。</p>
+</section>
+<section class="wiki-tab"><h2>空tab</h2>
+</section>
+<section class="wiki-tab"><h2>空tab</h2>
+</section>
+<section class="wiki-tab"><h2>空tab</h2>
+</section>
+<section class="wiki-tab"><h2>空tab</h2>
+</section>
+<section class="wiki-tab"><h2>空tab</h2>
+</section>
+<section class="wiki-tab"><h2>空tab</h2>
+</section>
+</div>
+<blockquote>这是一个引用块，在一行字的起始处加上“&gt; ”来创建。</blockquote>
+<p>&gt;</p>
+<blockquote>更多文字</blockquote>
+<blockquote><s>-</s></blockquote>
+<blockquote>一条分割线</blockquote>
+<p>&gt;</p>
+<p>&gt;&gt; 嵌套引用块</p>
+<table class="wiki-table"><tbody>
+<tr><th>这是</th><th>表格</th></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>你应该老早</td><td>就知道怎么</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>做这个了吧</td></tr>
+</tbody></table>
+<hr>
+<p>源代码：</p>
+<p>[[code type=&quot;css&quot;]]</p>
+<p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p>/*</p>
+<p>黑暗教会版式</p>
+<p>作者guzl</p>
+<p>*/</p>
+<p>a:visited {</p>
+<p>color: rgb(207, 171, 5);</p>
+<p>}</p>
+<p>/* HEADER */</p>
+<p>#header {</p>
+<p>height: 140px;</p>
+<p>position: relative;</p>
+<p>z-index: 10;</p>
+<p>padding-bottom: 30px; /* FOR MENU */</p>
+<p>background: url() 10px 35px no-repeat;</p>
+<p>}</p>
+<p>#header h1 a {</p>
+<p>content: &quot;黑暗教会&quot;;</p>
+<p>}</p>
+<p>#header h1 a::before {</p>
+<p>content: &quot;黑暗教会&quot;;</p>
+<p>color: rgba(212, 0, 0, 1);</p>
+<p>text-shadow: 3px 3px 5px #242424;</p>
+<p>}</p>
+<p>#header h1 a span{</p>
+<p>display: block;</p>
+<p>content: &quot;&quot;;</p>
+<p>visibility: hidden;</p>
+<p>}</p>
+<p>#header h2 {</p>
+<p>margin-left: 120px;</p>
+<p>padding: 0;</p>
+<p>clear: left;</p>
+<p>float: left;</p>
+<p>font-size: 105%;</p>
+<p>max-height: 38px;</p>
+<p>}</p>
+<p>#header h2 span {</p>
+<p>display: block;</p>
+<p>margin: 0;</p>
+<p>padding: 19px 0;</p>
+<p>line-height: 0px;</p>
+<p>max-height: 0px;</p>
+<p>font-weight: bold;</p>
+<p>color: transparent;</p>
+<p>text-shadow: none;</p>
+<p>}</p>
+<p>#header h2 span::before {</p>
+<p>content: &quot; H.I.M. &quot;;</p>
+<p>display: block;</p>
+<p>margin: 0;</p>
+<p>padding: 0px 0;</p>
+<p>line-height: 0px;</p>
+<p>max-height: 0px;</p>
+<p>font-weight: bold;</p>
+<p>color: #ffffff;</p>
+<p>text-shadow: 1px 1px 1px #000;</p>
+<p>text-shadow: 1px 1px 1px rgba(0,0,0,.8);</p>
+<p>}</p>
+<p>div#container-wrap {</p>
+<p>background-image: url(http://guzl-tupian.wikidot.com/local--files/start/background.png);</p>
+<p>}</p>
+<p>/* SIDEBAR */</p>
+<p>#side-bar .side-block {</p>
+<p>border-color: rgba(255,0,51,1);</p>
+<p>box-shadow: 0 2px 6px rgba(0,0,51,0.3);</p>
+<p>}</p>
+<p>#side-bar .heading {</p>
+<p>color: rgba(255, 0, 0, 1);</p>
+<p>border-bottom: solid 1px #0e7dcd;</p>
+<p>}</p>
+<p>#side-bar div.menu-item.inactive a {</p>
+<p>color: rgba(255, 0, 0, 1);</p>
+<p>}</p>
+<p>#side-bar a:visited {</p>
+<p>color: rgb(207, 171, 5);</p>
+<p>}</p>
+<p>#side-bar div.menu-item .sub-text {</p>
+<p>color: rgba(255, 0, 0, 1);</p>
+<p>}</p>
+<p>#side-bar .collapsible-block-folded {</p>
+<p>background-image: none;</p>
+<p>}</p>
+<p>#side-bar .collapsible-block-unfolded-link {</p>
+<p>border-bottom: solid 1px rgba(255, 0, 0, 0.5);</p>
+<p>}</p>
+<p>#side-bar .collapsible-block-unfolded-link .collapsible-block-link {</p>
+<p>color: rgba(255, 0, 0, 0.5);</p>
+<p>}</p>
+<p>.interwiki_title {</p>
+<p>color: rgba(255, 0, 0, 0.5);</p>
+<p>}</p>
+<p>.interwiki_entry a {</p>
+<p>color: rgba(255, 0, 0, 0.5);</p>
+<p>}</p>
+<p>/* BODY */</p>
+<p>body {</p>
+<p>background: rgb(0, 0, 0);</p>
+<p>color: rgb(255, 255, 255);</p>
+<p>}</p>
+<p>a,a:visited {</p>
+<p>color: rgb(207, 171, 5);</p>
+<p>}</p>
+<p>blockquote, div.blockquote {</p>
+<p>border: solid 16px;</p>
+<p>border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/blockquote_bg.png&quot;);</p>
+<p>border-image-slice: 8 8 8 8 fill;</p>
+<p>background-color: transparent;</p>
+<p>}</p>
+<p>div.yui-navset div.yui-content {</p>
+<p>background: rgb(61, 61, 61);</p>
+<p>}</p>
+<p>div.yui-navset ul.yui-nav a,</p>
+<p>div.yui-navset div.yui-navset-top ul.yui-nav a {</p>
+<p>background: rgb(175, 175, 175);</p>
+<p>color: rgb(255, 0, 0);</p>
+<p>}</p>
+<p>div.yui-navset ul.yui-nav a:hover,</p>
+<p>div.yui-navset ul.yui-nav a:focus {</p>
+<p>background: rgb(175, 175, 175);</p>
+<p>color: rgb(255, 0, 0);</p>
+<p>}</p>
+<p>div.yui-navset ul.yui-nav .selected a,</p>
+<p>div.yui-navset ul.yui-nav .selected a:focus,</p>
+<p>div.yui-navset ul.yui-nav .selected a:hover {</p>
+<p>background: rgb(175, 175, 175);</p>
+<p>color: rgb(255, 0, 0);</p>
+<p>}</p>
+<p>div.page-rate-widget-box,</p>
+<p>div.page-rate-widget-box span.rate-points,</p>
+<p>div.page-rate-widget-box span.cancel {</p>
+<p>background-color: rgb(175, 175, 175)!important;</p>
+<p>border: solid rgb(175, 175, 175) 1px!important;</p>
+<p>}</p>
+<p>div.page-rate-widget-box span.rateup,</p>
+<p>div.page-rate-widget-box span.ratedown {</p>
+<p>border: solid rgb(175, 175, 175)!important;</p>
+<p>border-width: 1px 0!important;</p>
+<p>}</p>
+<p>div.page-rate-widget-box span.rate-points,</p>
+<p>div.page-rate-widget-box span.cancel a,</p>
+<p>div.page-rate-widget-box span.cancel a:hover {</p>
+<p>color: rgb(255, 0, 0);</p>
+<p>}</p>
+<p>div.page-rate-widget-box span.rateup,</p>
+<p>div.page-rate-widget-box span.ratedown {</p>
+<p>background-color: rgba(0, 0, 0, 0.74)!important;</p>
+<p>}</p>
+<p>div.page-rate-widget-box span.rateup a,</p>
+<p>div.page-rate-widget-box span.ratedown a {</p>
+<p>color: rgb(255, 0, 0)!important;</p>
+<p>}</p>
+<p>div.page-rate-widget-box span.cancel a:hover,</p>
+<p>div.page-rate-widget-box span.rateup a:hover,</p>
+<p>div.page-rate-widget-box span.ratedown a:hover {</p>
+<p>background: transparent!important;</p>
+<p>color: transparent!important;</p>
+<p>}</p>
+<p>div.open-menu a {</p>
+<p>color: rgb(255, 0, 0)!important;</p>
+<p>border-color: rgb(255, 0, 0)!important;</p>
+<p>}</p>
+<p>/* LINKS</p>
+<p>a {</p>
+<p>color: rgba(255, 0, 0, 1);</p>
+<p>text-decoration: none;</p>
+<p>background: transparent;</p>
+<p>}</p>
+<p>a.newpage {</p>
+<p>color: rgba(255, 0, 0, 1);</p>
+<p>text-decoration: none;</p>
+<p>background: transparent;</p>
+<p>}</p>
+<p>*/</p>
+<p>/* PAGE TITLEs */</p>
+<p>h1, #page-title {</p>
+<p>color: rgba(255, 255, 255, 255);</p>
+<p>}</p>
+<p>/* NAV DROPDOWN */</p>
+<p>#top-bar ul li.sfhover a,</p>
+<p>#top-bar ul li:hover a {</p>
+<p>color: rgba(255, 0, 0, 1);</p>
+<p>}</p>
+<p>/* SEARCH BAR */</p>
+<p>#search-top-box-input {</p>
+<p>border: solid 1px rgba(255, 0, 0, 0);</p>
+<p>background-color: rgba(255, 0, 0, 0.3);</p>
+<p>}</p>
+<p>#search-top-box-input:hover,</p>
+<p>#search-top-box-input:focus {</p>
+<p>border: solid 1px rgba(255, 0, 0, 1);</p>
+<p>background-color: rgba(255, 0, 0, 0.3);</p>
+<p>}</p>
+<p>#search-top-box-form input[type=submit] {</p>
+<p>border: solid 1px rgba(255, 0, 0, 1);</p>
+<p>background-color: rgba(255, 0, 0, 0.3);</p>
+<p>color: rgba(255, 255, 255, 255);</p>
+<p>background: linear-gradient(to bottom, rgba(255, 0, 0, 0.9),rgba(232, 0, 0, 0.9),rgba(232, 0, 0, 0.3));</p>
+<p>}</p>
+<p>#search-top-box-form input[type=submit]:hover,</p>
+<p>#search-top-box-form input[type=submit]:focus {</p>
+<p>border: solid 1px rgba(255, 0, 0, 0.4);</p>
+<p>color: rgba(255, 255, 255, 255);</p>
+<p>background-color: rgba(255, 0, 0, 0.1);</p>
+<p>background: linear-gradient(to bottom, rgba(255, 0, 0, 0.3),rgba(232, 0, 0, 0.9),rgba(232, 0, 0, 0.9);</p>
+<p>}</p>
+<p>.scpnet-interwiki-frame{</p>
+<p>filter: hue-rotate(260deg) brightness(150%);</p>
+<p>}</p>
+<p>/* LOGIN STATUS */</p>
+<p>#login-status ul a {</p>
+<p>color: rgba(255, 0, 0, 0.3);</p>
+<p>}</p>
+<p>/* Changes background for collapsed sidebar */</p>
+<p>@media (max-width: 767px) {</p>
+<p>#side-bar{background-color: rgba(255, 0, 0, 0.5)}</p>
+<p>}</p>
+<p>/* footer */</p>
+<p>#footer, #license-area {</p>
+<p>background: var(--fg-accent);</p>
+<p>color: #111;</p>
+<p>}</p>
+<p>#license-area {</p>
+<p>background: var(--fg-accent-dark);</p>
+<p>}</p>
+<p>#footer a, #license-area a {</p>
+<p>color: #fff;</p>
+<p>}</p>
+<p>/* code highlighter stuff */</p>
+<p>.hl-identifier, .hl-code, .hl-brackets {</p>
+<p>color: var(--fg);</p>
+<p>}</p>
+<p>.hl-var {</p>
+<p>color: #21ff00;</p>
+<p>}</p>
+<p>.hl-special {</p>
+<p>color: #ffff00;</p>
+<p>}</p>
+<p>.hl-reserved {</p>
+<p>color: #00b2ff;</p>
+<p>}</p>
+<p>.hl-number, .hl-string {</p>
+<p>color: #ff0020;</p>
+<p>}</p>
+<p>[[/module]]</p>
+<p>[[/code]]</p></section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>[[module CSS]]
+
+@import url(http://scp-wiki-mc.wikidot.com/component:ministryofdarknesstheme/code/1);
+
+[[/module]]
+
+这是为GOI[[[ministry-of-darkness|黑暗教会]]]所制作的版式。
+
+
+
+在你的作品开头添加如下语法以应用此版式：
+
+
+
+&gt; @@[[module CSS]]@@
+
+&gt; @@@import url(http://scp-wiki-mc.wikidot.com/component:ministryofdarknesstheme/code/1);@@
+
+&gt; @@[[/module]]@@
+
+
+
+背景图由 
+
+
+
++ 示例
+
+
+
+可通过五个连字符“@@-----@@”创建水平分割线。若它未被放在其他部件（诸如引用块）中，则会左右延伸贯穿页面。这种将文件分割为多个部分的线就是分割线。
+
+
+
+-----
+
+
+
+标题可通过在一行字起始处输入1至6个加号“+”来创建
+
+
+
+[[collapsible show=&quot;+ 标题&quot; hide=&quot;- 标题&quot;]]
+
++ 1 级标题
+
+
+
+++ 2 级标题
+
+
+
++++ 3 级标题
+
+
+
+++++ 4 级标题
+
+
+
++++++ 5 级标题
+
+
+
+++++++ 6 级标题
+
+[[/collapsible]]
+
+
+
+@@ @@
+
+
+
+[[tabview]]
+
+[[tab 分页]]
+
+此为分页（tab view）。
+
+[[/tab]]
+
+[[tab 分页]]
+
+看，这有更多文字。
+
+
+
+多么精巧绝伦。
+
+[[/tab]]
+
+[[tab 长Tab]]
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+
+
+这是一个长的tab，它有很多文字。
+
+[[/tab]]
+
+[[tab 空tab]]
+
+[[/tab]]
+
+[[tab 空tab]]
+
+[[/tab]]
+
+[[tab 空tab]]
+
+[[/tab]]
+
+[[tab 空tab]]
+
+[[/tab]]
+
+[[tab 空tab]]
+
+[[/tab]]
+
+[[tab 空tab]]
+
+[[/tab]]
+
+[[/tabview]]
+
+
+
+&gt; 这是一个引用块，在一行字的起始处加上“&gt; ”来创建。
+
+&gt;
+
+&gt; 更多文字
+
+&gt; -----
+
+&gt; 一条分割线
+
+&gt;
+
+&gt;&gt; 嵌套引用块
+
+
+
+||~ 这是 ||~ 表格 ||
+
+||你应该老早 || 就知道怎么 ||
+
+||||做这个了吧 ||
+
+
+
+-----
+
+
+
+源代码：
+
+[[code type=&quot;css&quot;]]
+
+[[module CSS]]
+
+/*
+
+黑暗教会版式
+
+作者guzl
+
+
+
+*/
+
+ 
+
+a:visited {
+
+    color: rgb(207, 171, 5);
+
+}
+
+ 
+
+/* HEADER */
+
+
+
+#header {
+
+    height: 140px;
+
+    position: relative;
+
+    z-index: 10;
+
+    padding-bottom: 30px; /* FOR MENU */
+
+    background: url() 10px 35px no-repeat;
+
+}
+
+
+
+#header h1 a {
+
+    content: &quot;黑暗教会&quot;;
+
+}
+
+ 
+
+#header h1 a::before {
+
+    content: &quot;黑暗教会&quot;;
+
+    color: rgba(212, 0, 0, 1);
+
+    text-shadow: 3px 3px 5px #242424;
+
+}
+
+ 
+
+#header h1 a span{
+
+    display: block;
+
+    content: &quot;&quot;;
+
+    visibility: hidden;
+
+}
+
+ 
+
+#header h2 {
+
+    margin-left: 120px;
+
+    padding: 0;
+
+    clear: left;
+
+    float: left;
+
+    font-size: 105%;
+
+    max-height: 38px;
+
+}
+
+#header h2 span {
+
+    display: block;
+
+    margin: 0;
+
+    padding: 19px 0;
+
+    line-height: 0px;
+
+    max-height: 0px;
+
+    font-weight: bold;
+
+    color: transparent;
+
+    text-shadow: none;
+
+}
+
+#header h2 span::before {
+
+    content: &quot; H.I.M. &quot;;
+
+    display: block;
+
+    margin: 0;
+
+    padding: 0px 0;
+
+    line-height: 0px;
+
+    max-height: 0px;
+
+    font-weight: bold;
+
+    color: #ffffff;
+
+    text-shadow: 1px 1px 1px #000;
+
+    text-shadow: 1px 1px 1px rgba(0,0,0,.8);
+
+}
+
+ 
+
+div#container-wrap {
+
+    background-image: url(http://guzl-tupian.wikidot.com/local--files/start/background.png);
+
+}
+
+ 
+
+ 
+
+/* SIDEBAR */
+
+#side-bar .side-block {
+
+    border-color: rgba(255,0,51,1);
+
+    box-shadow: 0 2px 6px rgba(0,0,51,0.3);
+
+}
+
+ 
+
+#side-bar .heading {
+
+    color: rgba(255, 0, 0, 1);
+
+    border-bottom: solid 1px #0e7dcd;
+
+}
+
+ 
+
+#side-bar div.menu-item.inactive a {
+
+    color: rgba(255, 0, 0, 1);
+
+}
+
+ 
+
+#side-bar a:visited {
+
+    color: rgb(207, 171, 5);
+
+}
+
+ 
+
+#side-bar div.menu-item .sub-text {
+
+    color: rgba(255, 0, 0, 1);
+
+}
+
+ 
+
+#side-bar .collapsible-block-folded {
+
+    background-image: none;
+
+}
+
+#side-bar .collapsible-block-unfolded-link {
+
+    border-bottom: solid 1px rgba(255, 0, 0, 0.5);
+
+}
+
+#side-bar .collapsible-block-unfolded-link .collapsible-block-link {
+
+    color: rgba(255, 0, 0, 0.5);
+
+}
+
+ 
+
+.interwiki_title {
+
+    color: rgba(255, 0, 0, 0.5);
+
+}
+
+ 
+
+.interwiki_entry a {
+
+    color: rgba(255, 0, 0, 0.5);
+
+}
+
+ 
+
+/* BODY */
+
+body {
+
+    background: rgb(0, 0, 0);
+
+    color: rgb(255, 255, 255);
+
+}
+
+a,a:visited {
+
+    color: rgb(207, 171, 5);
+
+}
+
+blockquote, div.blockquote {
+
+    border: solid 16px;
+
+    border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/blockquote_bg.png&quot;);
+
+    border-image-slice: 8 8 8 8 fill;
+
+    background-color: transparent;
+
+}
+
+div.yui-navset div.yui-content {
+
+    background: rgb(61, 61, 61);
+
+}
+
+div.yui-navset ul.yui-nav a,
+
+div.yui-navset div.yui-navset-top ul.yui-nav a {
+
+    background: rgb(175, 175, 175);
+
+    color: rgb(255, 0, 0);
+
+}
+
+div.yui-navset ul.yui-nav a:hover,
+
+div.yui-navset ul.yui-nav a:focus {
+
+    background: rgb(175, 175, 175);
+
+    color: rgb(255, 0, 0);
+
+}
+
+div.yui-navset ul.yui-nav .selected a,
+
+div.yui-navset ul.yui-nav .selected a:focus,
+
+div.yui-navset ul.yui-nav .selected a:hover {
+
+    background: rgb(175, 175, 175);
+
+    color: rgb(255, 0, 0);
+
+}
+
+div.page-rate-widget-box,
+
+div.page-rate-widget-box span.rate-points,
+
+div.page-rate-widget-box span.cancel {
+
+    background-color: rgb(175, 175, 175)!important;
+
+    border: solid rgb(175, 175, 175) 1px!important;
+
+}
+
+div.page-rate-widget-box span.rateup,
+
+div.page-rate-widget-box span.ratedown {
+
+    border: solid rgb(175, 175, 175)!important;
+
+    border-width: 1px 0!important;
+
+}
+
+div.page-rate-widget-box span.rate-points,
+
+div.page-rate-widget-box span.cancel a,
+
+div.page-rate-widget-box span.cancel a:hover {
+
+    color: rgb(255, 0, 0);
+
+}
+
+div.page-rate-widget-box span.rateup,
+
+div.page-rate-widget-box span.ratedown {
+
+    background-color: rgba(0, 0, 0, 0.74)!important;
+
+}
+
+div.page-rate-widget-box span.rateup a,
+
+div.page-rate-widget-box span.ratedown a {
+
+    color: rgb(255, 0, 0)!important;
+
+}
+
+div.page-rate-widget-box span.cancel a:hover,
+
+div.page-rate-widget-box span.rateup a:hover,
+
+div.page-rate-widget-box span.ratedown a:hover {
+
+    background: transparent!important;
+
+    color: transparent!important;
+
+}
+
+div.open-menu a {
+
+    color: rgb(255, 0, 0)!important;
+
+    border-color: rgb(255, 0, 0)!important;
+
+}
+
+/* LINKS
+
+ 
+
+a {
+
+    color: rgba(255, 0, 0, 1);
+
+    text-decoration: none;
+
+    background: transparent;
+
+}
+
+a.newpage {
+
+    color: rgba(255, 0, 0, 1);
+
+    text-decoration: none;
+
+    background: transparent;
+
+}
+
+  */
+
+ 
+
+/* PAGE TITLEs */
+
+h1, #page-title {
+
+    color: rgba(255, 255, 255, 255);
+
+}
+
+ 
+
+/* NAV DROPDOWN */
+
+ 
+
+#top-bar ul li.sfhover a,
+
+#top-bar ul li:hover a {
+
+    color: rgba(255, 0, 0, 1);
+
+}
+
+ 
+
+/* SEARCH BAR */
+
+#search-top-box-input {
+
+    border: solid 1px rgba(255, 0, 0, 0);
+
+    background-color: rgba(255, 0, 0, 0.3);
+
+}
+
+ 
+
+#search-top-box-input:hover,
+
+#search-top-box-input:focus {
+
+    border: solid 1px rgba(255, 0, 0, 1);
+
+    background-color: rgba(255, 0, 0, 0.3);
+
+}
+
+ 
+
+#search-top-box-form input[type=submit] {
+
+    border: solid 1px rgba(255, 0, 0, 1);
+
+    background-color: rgba(255, 0, 0, 0.3);
+
+    color: rgba(255, 255, 255, 255);
+
+    background: linear-gradient(to bottom, rgba(255, 0, 0, 0.9),rgba(232, 0, 0, 0.9),rgba(232, 0, 0, 0.3));
+
+}
+
+ 
+
+#search-top-box-form input[type=submit]:hover,
+
+#search-top-box-form input[type=submit]:focus {
+
+    border: solid 1px rgba(255, 0, 0, 0.4);
+
+    color: rgba(255, 255, 255, 255);
+
+    background-color: rgba(255, 0, 0, 0.1);
+
+    background: linear-gradient(to bottom, rgba(255, 0, 0, 0.3),rgba(232, 0, 0, 0.9),rgba(232, 0, 0, 0.9);
+
+}
+
+ 
+
+.scpnet-interwiki-frame{
+
+     filter: hue-rotate(260deg) brightness(150%);
+
+}
+
+ 
+
+/* LOGIN STATUS */
+
+#login-status ul a {
+
+    color: rgba(255, 0, 0, 0.3);
+
+}
+
+ 
+
+/* Changes background for collapsed sidebar */
+
+@media (max-width: 767px) {
+
+#side-bar{background-color: rgba(255, 0, 0, 0.5)}
+
+}
+
+/* footer */
+
+ 
+
+#footer, #license-area {
+
+    background: var(--fg-accent);
+
+    color: #111;
+
+}
+
+ 
+
+#license-area {
+
+    background: var(--fg-accent-dark);
+
+}
+
+ 
+
+#footer a, #license-area a {
+
+    color: #fff;
+
+}
+
+ 
+
+/* code highlighter stuff */
+
+ 
+
+.hl-identifier, .hl-code, .hl-brackets {
+
+    color: var(--fg);
+
+}
+
+ 
+
+.hl-var {
+
+    color: #21ff00;
+
+}
+
+ 
+
+.hl-special {
+
+    color: #ffff00;
+
+}
+
+ 
+
+.hl-reserved {
+
+    color: #00b2ff;
+
+}
+
+ 
+
+.hl-number, .hl-string {
+
+    color: #ff0020;
+
+}
+
+[[/module]]
+
+
+
+[[/code]]
+</pre></details></article></main><footer>只读快照：2026/08/31 07:53:10 · created by piglin · 内容版权仍归原作者与 SCP 基金会 Minecraft 分部。</footer></body></html>

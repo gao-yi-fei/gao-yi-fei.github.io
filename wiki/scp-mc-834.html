@@ -1,0 +1,763 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>SCP-MC-834 | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page=scp-mc-834">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">原创页面 </p><h1>SCP-MC-834</h1><p class="page-name">scp-mc-834</p><dl class="article-meta"><div><dt>创建者</dt><dd>GREAT-GUIDA</dd></div><div><dt>评分</dt><dd class="rating">+1 <small>+7 / -6</small></dd></div><div><dt>发布时间</dt><dd>2022/08/23 18:52:23</dd></div><div><dt>最近编辑</dt><dd>2023/06/13 18:10:29</dd></div></dl><div class="tags"><span class="tag">euclid</span><span class="tag">scp</span><span class="tag">原创</span><span class="tag">友好生物</span><span class="tag">易变物体</span></div></header><aside class="reader-warning">此页部分资源未归档：2 个包含组件。文本与源码仍已保留。</aside><section class="article-body"><aside class="backup-note">包含组件未归档：<code>:scp-wiki-mc:theme:black-highlighter-theme</code></aside>
+<p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p>div.page-rate-widget-box .rate-points {</p>
+<p>border: none !important;</p>
+<p>}</p>
+<p>[[/module]]</p>
+<div class="wiki-aligned">
+<p><span class="module-note">评分组件已由页首快照替代</span></p>
+</div>
+<p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p>.email-example .collapsible-block-folded a.collapsible-block-link {</p>
+<p>animation: blink 0.8s ease-in-out infinite alternate;</p>
+<p>}</p>
+<p>@keyframes blink {</p>
+<p>0% { color: transparent; }</p>
+<p>50%, 100% { color: #b01; }</p>
+<p>}</p>
+<p>.email {border: solid 2px #000000; width: 88%; padding: 1px 15px; margin: 10px; box-shadow: 0 1px 3px rgba(0,0,0,.5)}</p>
+<p>.email-example a.collapsible-block-link {font-weight: bold;}</p>
+<p>.tofrom {margin-left: 10px; margin-top: 5px; padding: 1px 15px; border-left: solid 3px maroon}</p>
+<p>[[/module]]</p>
+<p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p>div.terminal{</p>
+<p>border: 1px solid black;</p>
+<p>border: solid 3px #BBBBBB;</p>
+<p>border-radius: 16px;</p>
+<p>background-color: #131;</p>
+<p>/* 终端上方的黑色阴影 */</p>
+<p>background-image:</p>
+<p>radial-gradient(ellipse 1000% 100% at 50% 90%, transparent, #121);</p>
+<p>background-position: center;</p>
+<p>display: block;</p>
+<p>/* 终端周围的阴影 */</p>
+<p>box-shadow: inset 0 0 10em 1em rgba(0,0,0,0.5);</p>
+<p>/* 防止扫描条产生滚动条 */</p>
+<p>overflow:hidden;</p>
+<p>}</p>
+<p>div.terminal blockquote {</p>
+<p>background-color: black;</p>
+<p>border: double 3px #80FF80</p>
+<p>}</p>
+<p>div.scanline{</p>
+<p>margin-top: -40%;</p>
+<p>width: 100%;</p>
+<p>height: 60px;</p>
+<p>position: relative;</p>
+<p>pointer-events: none;</p>
+<p>/* Safari 4.0 - 8.0 */</p>
+<p>-webkit-animation: scan 12s linear 0s infinite; /* 你可能需要修改这个。如果扫描条走得太快了，添加5秒。 */</p>
+<p>animation: scan 12s linear 0s infinite; /* 同上 */</p>
+<p>background: linear-gradient(to bottom, rgba(56, 112, 82,0), rgba(56, 112, 82,0.1)) !important;</p>
+<p>}</p>
+<p>div.text{</p>
+<p>color: rgba(128,255,128,0.8);</p>
+<p>padding-left: 2em;</p>
+<p>padding-top: 40%;</p>
+<p>font-family: monospace;</p>
+<p>font-size: 1.2em;</p>
+<p>}</p>
+<p>/* Safari 4.0 - 8.0 */</p>
+<p>@-webkit-keyframes scan{</p>
+<p>from{ transform: translateY(-10%);}</p>
+<p>to{  transform: translateY(5000%);} /* 你可能需要根据你终端的长短修改这个。如果扫描条走到一半停止了，增大第二个数字。 */</p>
+<p>}</p>
+<p>@keyframes scan{</p>
+<p>from{ transform: translateY(-10%);}</p>
+<p>to{  transform: translateY(5000%);} /* 同上。 */</p>
+<p>}</p>
+<p>div.text a {</p>
+<p>color: #90EE90;</p>
+<p>text-decoration: none;</p>
+<p>background: transparent;</p>
+<p>}</p>
+<p>div.text a.newpage {</p>
+<p>color: #90EE90;</p>
+<p>text-decoration: none;</p>
+<p>background: transparent;</p>
+<p>}</p>
+<p>div.text a:hover {</p>
+<p>color: #131;</p>
+<p>text-decoration: underline;</p>
+<p>background-color: #80FF80;</p>
+<p>padding: 1px;</p>
+<p>}</p>
+<p>div.text a:hover::before{</p>
+<p>content: &quot;&gt; &quot;;</p>
+<p>}</p>
+<p>[[/module]]</p>
+<aside class="backup-note">包含组件未归档：<code>:scp-wiki-cn:component:anomaly-class-bar-source</code></aside>
+<p><strong>特殊收容措施：</strong>SCP-MC-834被收容于[已编辑]的一座小岛上，下方铺有黑曜石地基以防部分小猫掉入虚空，派遣专人建立设施进行喂养，同时提供适量的苦力怕以供小猫娱乐。设施常备瞬间治疗，抗性猫药以防小猫死亡。</p>
+<p>O5议会成员派遣专人特别监视SCP-MC-834-1至13，紧急情况下使用“逗猫棒”<sup class="footnote">一种区块更新自发动装置。</sup>遏制其行动。</p>
+<p><strong>描述：</strong>SCP-MC-834是[已编辑]个异常小猫，来自相关组织“糖果聚会”。大部分情况下，小猫对人是友善的。</p>
+<p>SCP-MC-834中13名具有异常能力的小猫发挥统领作用，被特别编号为SCP-MC-834-1至13。</p>
+<table class="wiki-table"><tbody>
+<tr><td><strong>编号</strong></td><td><strong>描述</strong></td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>SCP-MC-834-1 “激光猫”</td><td>小猫拥有快速摧毁其视线中的恒久物体程度的能力。</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>SCP-MC-834-2 “钻石猫”</td><td>小猫具有类似恒久物体的刚性碰撞箱，无法被击退。</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>SCP-MC-834-3 “弹跳猫”</td><td>小猫能够跳跃极高且不会受到摔落伤害。</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>SCP-MC-834-4 “冲撞猫”</td><td>小猫能够撞碎任何恒久物体。</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>SCP-MC-834-5 “液体猫”</td><td>小猫具有流体的性质，可以蔓延，与水接触生成猫块，与岩浆接触生成熟猫块。可以用桶装成猫桶，倒进炼药锅，装猫瓶，炼猫药。</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>SCP-MC-834-6 “苦力怕猫”</td><td>小猫能够骑乘苦力怕。</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>SCP-MC-834-7 “猫猫”</td><td>小猫能够骑乘小猫。</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>SCP-MC-834-8 “黄油猫”</td><td>小猫永远不会落地。</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>SCP-MC-834-9 “魔神猫”</td><td>当小猫说出“卡特·V·布塔尼亚，在此下令，赐你一死！”时，周围的小猫会试图使用最近的猫砂将自己打晕。</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>SCP-MC-834-10 “斯克兰顿现实稳定猫”</td><td>小猫能够提高周围现实的休谟。</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>SCP-MC-834-11 “杀手皇后猫”</td><td>小猫能够将接触的物体变成炸弹。</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>SCP-MC-834-12 “白蛇猫”</td><td>小猫能够夺取其他猫的能力。</td></tr>
+</tbody></table>
+<table class="wiki-table"><tbody>
+<tr><td>SCP-MC-834-13 “恶行易施猫”</td><td>小猫能够从平行宇宙拉取小猫。</td></tr>
+</tbody></table>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<details class="wiki-collapsible"><summary>+ 以下信息仅允许5级成员查看</summary>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<div class="wiki-block">
+<div class="wiki-block">
+</div>
+<div class="wiki-block">
+<p>+* <strong>铭记我们的宗旨</strong></p>
+</div>
+<div class="wiki-block">
+<p>_</p>
+<p>+* <strong>控制，收容，保护，永续人类文明，至死方休</strong></p>
+<p>+* <strong>SCP基金会Minecraft分部</strong></p>
+</div>
+</div>
+<p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p>.orderwrapper {position: relative;width: auto;text-align: center;}.council1 {position: relative;top: 0;bottom: 0;left: 0;right: 0;width: 295px;height: 295px;margin: auto;background-image: url( &quot;http://kaktuskontainer.wdfiles.com/local--files/format-hell/scp_trans.png&quot; );background-size: 295px 295px;background-repeat: no-repeat;background-position: center;}.ordertitle {position: absolute;left: 0;right: 0;top: 38px;}.ordertitle h1 {font-size: 220%;color: #555;}.orderdescription {position: absolute;left: 0;right: 0;top: 85px;width: 100%;}.orderdescription p {font-size: 90%;color: #555;}.orderdescription h1 {font-size: 120%;color: #555;}.itemno {position: absolute;left: 0;right: 0;bottom: 27px;}.itemno h1 {font-size: 170%;color: #555;}</p>
+<p>[[/module]]</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<div class="wiki-block">
+<div class="wiki-block">
+</div>
+<div class="wiki-block">
+<div class="wiki-aligned">
+<p>小猫圣战</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@<s>-</s>-@@</p>
+<p>保密等级：6级</p>
+<p>计划负责人：全体“守门人”</p>
+<p>O5委员会投票记录：##green|13## / ##red|0## / ##grey|0## ##green|全票通过##</p>
+<p>@@<s>-</s>-@@</p>
+<p>@@.@@</p>
+<p>@@.@@</p>
+<p>@@.@@</p>
+<p>@@.@@</p>
+<p>@@.@@</p>
+<p>@@.@@</p>
+<p>@@.@@</p>
+<p>@@.@@</p>
+<p>@@.@@</p>
+<p>@@.@@</p>
+<p>@@.@@</p>
+<p>@@.@@</p>
+<p>@@.@@</p>
+<p>@@.@@</p>
+<p>@@.@@</p>
+<p>@@.@@</p>
+</div>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p><strong>日期：</strong>星环纪元2142年7月11日</p>
+<p><strong>地点：</strong>东卡特大小猫堂，或称小猫会议厅</p>
+<p>*未经注明均为汉语（时称东卡特小猫语）</p>
+<p><strong>*文本整理员：</strong>那位伟大的小猫大人</p>
+<p><strong>[记录开始]</strong></p>
+<hr>
+<p><strong>SCP-MC-834-13：</strong>“喵喵喵喵喵喵喵喵喵喵喵喵。”</p>
+<p><strong>SCP-MC-834-6：</strong>“喵喵喵？”</p>
+<p><strong>SCP-MC-834-2：</strong>“喵喵？”</p>
+<p><strong>SCP-MC-834-3：</strong>“喵喵？”</p>
+<p>.......</p>
+<p><strong>[记录结束]</strong></p>
+</div>
+</div>
+</details>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<p>@@ @@</p>
+<div class="wiki-block">
+<div class="wiki-aligned">
+<p>&lt;&lt; SCP-MC-833 | SCP-MC-834 | SCP-MC-835 &gt;&gt;</p>
+</div>
+</div></section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>[[include :scp-wiki-mc:theme:black-highlighter-theme]]
+
+[[module CSS]]
+
+div.page-rate-widget-box .rate-points {
+
+   border: none !important;
+
+}
+
+[[/module]]
+
+[[&gt;]]
+
+[[module Rate]]
+
+[[/&gt;]]
+
+[[module CSS]]
+
+.email-example .collapsible-block-folded a.collapsible-block-link {
+
+    animation: blink 0.8s ease-in-out infinite alternate;
+
+}
+
+@keyframes blink {
+
+    0% { color: transparent; }
+
+    50%, 100% { color: #b01; }
+
+}
+
+.email {border: solid 2px #000000; width: 88%; padding: 1px 15px; margin: 10px; box-shadow: 0 1px 3px rgba(0,0,0,.5)}
+
+.email-example a.collapsible-block-link {font-weight: bold;}
+
+.tofrom {margin-left: 10px; margin-top: 5px; padding: 1px 15px; border-left: solid 3px maroon}
+
+[[/module]]
+
+
+
+[[module CSS]]
+
+
+
+div.terminal{
+
+    border: 1px solid black;
+
+    border: solid 3px #BBBBBB;
+
+    border-radius: 16px;
+
+    background-color: #131;
+
+/* 终端上方的黑色阴影 */
+
+    background-image:
+
+        radial-gradient(ellipse 1000% 100% at 50% 90%, transparent, #121);
+
+    background-position: center;
+
+    display: block;
+
+/* 终端周围的阴影 */
+
+    box-shadow: inset 0 0 10em 1em rgba(0,0,0,0.5);
+
+/* 防止扫描条产生滚动条 */
+
+    overflow:hidden;
+
+}
+
+div.terminal blockquote {
+
+    background-color: black;
+
+    border: double 3px #80FF80
+
+}
+
+div.scanline{
+
+    margin-top: -40%;
+
+    width: 100%;
+
+    height: 60px;
+
+    position: relative;
+
+    pointer-events: none;
+
+/* Safari 4.0 - 8.0 */
+
+    -webkit-animation: scan 12s linear 0s infinite; /* 你可能需要修改这个。如果扫描条走得太快了，添加5秒。 */
+
+    animation: scan 12s linear 0s infinite; /* 同上 */
+
+    background: linear-gradient(to bottom, rgba(56, 112, 82,0), rgba(56, 112, 82,0.1)) !important;
+
+}
+
+
+
+div.text{
+
+    color: rgba(128,255,128,0.8);
+
+    padding-left: 2em;
+
+    padding-top: 40%;
+
+    font-family: monospace;
+
+    font-size: 1.2em;
+
+    }
+
+
+
+/* Safari 4.0 - 8.0 */
+
+@-webkit-keyframes scan{
+
+    from{ transform: translateY(-10%);}
+
+    to{  transform: translateY(5000%);} /* 你可能需要根据你终端的长短修改这个。如果扫描条走到一半停止了，增大第二个数字。 */
+
+}
+
+
+
+@keyframes scan{
+
+    from{ transform: translateY(-10%);}
+
+    to{  transform: translateY(5000%);} /* 同上。 */
+
+}
+
+
+
+div.text a {
+
+    color: #90EE90;
+
+    text-decoration: none;
+
+    background: transparent;
+
+}
+
+div.text a.newpage {
+
+    color: #90EE90;
+
+    text-decoration: none;
+
+    background: transparent;
+
+}
+
+div.text a:hover {
+
+    color: #131;
+
+    text-decoration: underline;
+
+    background-color: #80FF80;
+
+    padding: 1px;
+
+}
+
+div.text a:hover::before{
+
+content: &quot;&gt; &quot;;
+
+}
+
+[[/module]]
+
+
+
+[[include :scp-wiki-cn:component:anomaly-class-bar-source
+
+|lang= cn
+
+|item-number= MC-834
+
+|clearance= 3
+
+|container-class= euclid
+
+|secondary-class= none
+
+|disruption-class= vlam
+
+|risk-class= 需谨慎
+
+]]
+
+**特殊收容措施：**SCP-MC-834被收容于[已编辑]的一座小岛上，下方铺有黑曜石地基以防部分小猫掉入虚空，派遣专人建立设施进行喂养，同时提供适量的苦力怕以供小猫娱乐。设施常备瞬间治疗，抗性猫药以防小猫死亡。
+
+
+
+O5议会成员派遣专人特别监视SCP-MC-834-1至13，紧急情况下使用“逗猫棒”[[footnote]] 一种区块更新自发动装置。 [[/footnote]]遏制其行动。
+
+
+
+**描述：**SCP-MC-834是[已编辑]个异常小猫，来自相关组织“糖果聚会”。大部分情况下，小猫对人是友善的。
+
+
+
+SCP-MC-834中13名具有异常能力的小猫发挥统领作用，被特别编号为SCP-MC-834-1至13。
+
+
+
+|| **编号** || **描述** ||
+
+|| SCP-MC-834-1 “激光猫” || 小猫拥有快速摧毁其视线中的恒久物体程度的能力。 ||
+
+|| SCP-MC-834-2 “钻石猫” || 小猫具有类似恒久物体的刚性碰撞箱，无法被击退。 ||
+
+|| SCP-MC-834-3 “弹跳猫” || 小猫能够跳跃极高且不会受到摔落伤害。 ||
+
+|| SCP-MC-834-4 “冲撞猫” || 小猫能够撞碎任何恒久物体。 ||
+
+|| SCP-MC-834-5 “液体猫” || 小猫具有流体的性质，可以蔓延，与水接触生成猫块，与岩浆接触生成熟猫块。可以用桶装成猫桶，倒进炼药锅，装猫瓶，炼猫药。 ||
+
+|| SCP-MC-834-6 “苦力怕猫” || 小猫能够骑乘苦力怕。 ||
+
+|| SCP-MC-834-7 “猫猫” || 小猫能够骑乘小猫。 ||
+
+|| SCP-MC-834-8 “黄油猫” || 小猫永远不会落地。 ||
+
+|| SCP-MC-834-9 “魔神猫” || 当小猫说出“卡特·V·布塔尼亚，在此下令，赐你一死！”时，周围的小猫会试图使用最近的猫砂将自己打晕。 ||
+
+|| SCP-MC-834-10 “斯克兰顿现实稳定猫” || 小猫能够提高周围现实的休谟。 ||
+
+|| SCP-MC-834-11 “杀手皇后猫” || 小猫能够将接触的物体变成炸弹。 ||
+
+|| SCP-MC-834-12 “白蛇猫” || 小猫能够夺取其他猫的能力。 ||
+
+|| SCP-MC-834-13 “恶行易施猫” || 小猫能够从平行宇宙拉取小猫。 ||
+
+
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+
+
+[[collapsible show=&quot;+ 以下信息仅允许5级成员查看&quot; hide=&quot;- 忽怠协议：第145任小猫王战争宣言&quot;]]
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+[[div class=&quot;orderwrapper&quot;]]
+
+[[div class=&quot;council1&quot;]]
+
+[[/div]]
+
+[[div class=&quot;ordertitle&quot;]]
+
++* **铭记我们的宗旨**
+
+[[/div]]
+
+[[div class=&quot;orderdescription&quot;]]
+
+ _
+
++* **控制，收容，保护，永续人类文明，至死方休**
+
+
+
+
+
++* **SCP基金会Minecraft分部**
+
+[[/div]]
+
+[[/div]]
+
+
+
+[[module CSS]]
+
+.orderwrapper {position: relative;width: auto;text-align: center;}.council1 {position: relative;top: 0;bottom: 0;left: 0;right: 0;width: 295px;height: 295px;margin: auto;background-image: url( &quot;http://kaktuskontainer.wdfiles.com/local--files/format-hell/scp_trans.png&quot; );background-size: 295px 295px;background-repeat: no-repeat;background-position: center;}.ordertitle {position: absolute;left: 0;right: 0;top: 38px;}.ordertitle h1 {font-size: 220%;color: #555;}.orderdescription {position: absolute;left: 0;right: 0;top: 85px;width: 100%;}.orderdescription p {font-size: 90%;color: #555;}.orderdescription h1 {font-size: 120%;color: #555;}.itemno {position: absolute;left: 0;right: 0;bottom: 27px;}.itemno h1 {font-size: 170%;color: #555;}
+
+[[/module]]
+
+
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+[[div class=&quot;terminal&quot;]]
+
+[[div class=&quot;scanline&quot;]]
+
+[[/div]]
+
+[[div class=&quot;text&quot;]]
+
+[[=]]
+
+[[size 150%]]小猫圣战[[/size]]
+
+@@ @@
+
+@@ @@
+
+@@------@@
+
+保密等级：6级
+
+计划负责人：全体“守门人”
+
+O5委员会投票记录：##green|13## / ##red|0## / ##grey|0## ##green|全票通过##
+
+@@------@@
+
+@@.@@
+
+@@.@@
+
+@@.@@
+
+@@.@@
+
+@@.@@
+
+@@.@@
+
+@@.@@
+
+@@.@@
+
+@@.@@
+
+@@.@@
+
+@@.@@
+
+@@.@@
+
+@@.@@
+
+@@.@@
+
+@@.@@
+
+@@.@@
+
+[[/=]]
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+
+
+**日期：**星环纪元2142年7月11日
+
+
+
+**地点：**东卡特大小猫堂，或称小猫会议厅
+
+
+
+*未经注明均为汉语（时称东卡特小猫语）
+
+
+
+***文本整理员：**那位伟大的小猫大人
+
+
+
+**[记录开始]**
+
+
+
+------
+
+
+
+**SCP-MC-834-13：**“喵喵喵喵喵喵喵喵喵喵喵喵。”
+
+
+
+**SCP-MC-834-6：**“喵喵喵？”
+
+
+
+**SCP-MC-834-2：**“喵喵？”
+
+
+
+**SCP-MC-834-3：**“喵喵？”
+
+
+
+.......
+
+
+
+**[记录结束]**
+
+@@@@
+
+@@@@
+
+@@@@
+
+@@@@
+
+@@@@
+
+@@@@
+
+@@@@
+
+@@@@
+
+@@@@
+
+@@@@
+
+
+
+[[/div]]
+
+[[/div]]
+
+
+
+
+
+[[/collapsible]]
+
+
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+@@ @@
+
+[[footnoteblock]]
+
+@@@@
+
+[[div class=&quot;footer-wikiwalk-nav&quot;]]
+
+[[=]]
+
+&lt;&lt; [[[SCP-MC-833]]] | SCP-MC-834 | [[[SCP-MC-835]]] &gt;&gt;
+
+[[/=]]
+
+[[/div]]
+</pre></details></article></main><footer>只读快照：2026/08/31 07:53:10 · created by piglin · 内容版权仍归原作者与 SCP 基金会 Minecraft 分部。</footer></body></html>

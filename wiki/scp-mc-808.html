@@ -1,0 +1,848 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>SCP-MC-808 | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page=scp-mc-808">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">原创页面 </p><h1>SCP-MC-808</h1><p class="page-name">scp-mc-808</p><dl class="article-meta"><div><dt>创建者</dt><dd>FDSVideo</dd></div><div><dt>评分</dt><dd class="rating">+3 <small>+3 / -0</small></dd></div><div><dt>发布时间</dt><dd>2025/03/27 17:29:01</dd></div><div><dt>最近编辑</dt><dd>2025/10/25 23:12:21</dd></div></dl><div class="tags"><span class="tag">euclid</span><span class="tag">scp</span><span class="tag">site-mc-69</span><span class="tag">人形生物</span><span class="tag">传送</span><span class="tag">原创</span><span class="tag">易变物体</span><span class="tag">智能</span><span class="tag">黑暗教会</span></div></header><aside class="reader-warning">此页部分资源未归档：3 个包含组件。文本与源码仍已保留。</aside><section class="article-body"><aside class="backup-note">包含组件未归档：<code>:scp-wiki-cn:theme:foxtrot</code></aside>
+<aside class="backup-note">包含组件未归档：<code>:etinjat:typeface-cn</code></aside>
+<p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p>:root:lang(cn) {</p>
+<p>--header-title: &quot;S.C.P. Minecraft&quot;;</p>
+<p>--header-subtitle: &quot;控制 收容 保护&quot;;</p>
+<p>--logo-img:</p>
+<p>url(&#x27;https://scp-wiki-mc.wdfiles.com/local--files/theme%3Ablack-highlighter-theme/mclogo2.svg&#x27;);</p>
+<p>}</p>
+<p>[[/module]]</p>
+<p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<p>@import url(&#x27;https://fonts.googleapis.com/css2?family=Noto+Serif+SC&amp;display=swap&#x27;);</p>
+<p>@import url(&#x27;https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap&#x27;);</p>
+<p>#page-content {</p>
+<p>font-size:1em;</p>
+<p>}</p>
+<p>.a {</p>
+<p>font-family: &#x27;Noto Serif SC&#x27;, sans-serif;</p>
+<p>font-size: 1.2em;</p>
+<p>}</p>
+<p>.gui {</p>
+<p>border: solid 16px;</p>
+<p>-webkit-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/blockquote_bg.png&quot;);</p>
+<p>-moz-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/blockquote_bg.png&quot;);</p>
+<p>-o-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/blockquote_bg.png&quot;);</p>
+<p>border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/blockquote_bg.png&quot;);</p>
+<p>border-image-slice: 8 8 8 8 fill;</p>
+<p>background-color: transparent;</p>
+<p>padding:0 1em;</p>
+<p>padding-bottom: 20px;</p>
+<p>margin: 0 1em;</p>
+<p>}</p>
+<p>.gui p{</p>
+<p>font-family: &quot;Minecraft&quot;,&#x27;Unifont&#x27;,&quot;VonwaonBitmap 12px&quot;;</p>
+<p>color: black;</p>
+<p>}</p>
+<p>@media (min-width: 767px) {</p>
+<p>.io {</p>
+<p>background-image: url(&#x27;https://s21.ax1x.com/2024/11/16/pA2X8Wq.png&#x27;);</p>
+<p>margin: 0 2em;</p>
+<p>padding: 0.1em 1em;</p>
+<p>background-repeat: repeat;</p>
+<p>}</p>
+<p>}</p>
+<p>@media (max-width: 767px) {</p>
+<p>.io {</p>
+<p>background-image: url(&#x27;https://s21.ax1x.com/2024/11/16/pA2XfTH.png&#x27;);</p>
+<p>margin: 0 1em;</p>
+<p>padding: 0.1em 1em;</p>
+<p>background-repeat: repeat;</p>
+<p>}</p>
+<p>div.jotting {</p>
+<p>margin: 1em 0em;</p>
+<p>}</p>
+<p>div.modal {</p>
+<p>margin: 1em 1.5em;</p>
+<p>}</p>
+<p>}</p>
+<p>.io p{</p>
+<p>font-family: &quot;Minecraft&quot;,&#x27;Unifont&#x27;, &quot;VonwaonBitmap 12px&quot;;</p>
+<p>color: #ededed;</p>
+<p>}</p>
+<p>@font-face {</p>
+<p>font-family: &#x27;Minecraft&#x27;;</p>
+<p>src: url(&#x27;https://minecraft.fandom.com/media/hydra/fonts/minecraft.woff&#x27;) format(&#x27;woff&#x27;);</p>
+<p>}</p>
+<p>/*备选：https://unifoundry.com/pub/unifont/unifont-16.0.01/font-builds/unifont-16.0.01.otf */</p>
+<p>@font-face {</p>
+<p>font-family: &#x27;unifont&#x27;;</p>
+<p>src: url(&#x27;https://raw.githubusercontent.com/sTorYTeLler12138/Fonts/main/Unifont-mono.ttf&#x27;) format(&#x27;ttf&#x27;);</p>
+<p>}</p>
+<p>/* UNDER LICENSE GPL-2 , follow CC BY-SA 3.0 */</p>
+<p>#u-blink-bar p:last-child::after {</p>
+<p>content: &quot;_&quot;;</p>
+<p>animation: blink 1.5s infinite;</p>
+<p>position: relative;</p>
+<p>left: 1px;</p>
+<p>}</p>
+<p>@keyframes blink{</p>
+<p>50% {</p>
+<p>opacity: .0;</p>
+<p>}</p>
+<p>}</p>
+<p>/* 主题色：#fc4545 */</p>
+<p>[[/module]]</p>
+<p><span class="module-note">动态模块在只读备份中已省略</span></p>
+<div class="wiki-aligned">
+<p><span class="module-note">评分组件已由页首快照替代</span></p>
+</div>
+<aside class="backup-note">包含组件未归档：<code>component:image-block</code></aside>
+<p><strong>项目编号：</strong>SCP-MC-808</p>
+<p><strong>项目等级：</strong>Euclid</p>
+<p><strong>特殊收容措施：</strong>项目应被置于一间经过加高处理（至少4标准格高）的人形异常收容室内，收容室墙壁厚度应大于2标准格；在任何情况下，任何人员都不能直接与项目对视，因此，在项目需要与其他人员沟通时，必须佩戴可以遮盖其眼部的护具（如雕刻南瓜，眼罩，墨镜，夜视头盔等）；在得到许可，且至少有一名安保人员陪同的情况下，项目可以在Site-MC-69内自由行动。</p>
+<p>在得到许可的情况下，项目可以被MTF-Steve-8征用为特遣队员，期间项目的收容状况，行为后果由特遣队全权负责。</p>
+<p><strong>描述：</strong>SCP-MC-808是一个人形异常实体，外观类似人类（其是否曾是人类仍然未知），具有近似成年人的智能水平。SCP-MC-808高2.51标准格，肤色为古铜色（类似于总部世界东南亚肤色），发色纯黑，瞳色紫，眼球疑似被替换为末影之眼。</p>
+<p>SCP-MC-808的异常性质表现为：能携带非生物实体进行传送，具体表现见下。</p>
+<div class="wiki-block">
+<p class="wiki-list">传送自身（距离在半径25标准格以内，传送终点剩余空间至少大于或等于两格，无法穿透两格或以上宽度的墙）；</p>
+<p class="wiki-list">携带护具，背包内物品进行传送（如上）；</p>
+<p class="wiki-list">在遭受飞行道具攻击时会被动地进行随机传送，并完全避免此次伤害。</p>
+</div>
+<p>SCP-MC-808需要注意的其余异常性质：</p>
+<div class="wiki-block">
+<p class="wiki-list">不可接触纯水（包括水方块，雨滴；不包括汤类食物，药水，牛奶），一旦接触纯水，项目会感到刺痛，接触到水的肢体将会受到类似烫伤的伤害。</p>
+<p class="wiki-list">不可与其对视（特指双方可以产生眼神交流的观察行为；不包含通过绘画，照片或视频，通过单向玻璃的观察），一旦与其对视，项目将会失去理智，并开始对与其对视者进行攻击，直到对方的双目被挖出，或对方离开其索敌范围（一般指项目目视范围，即半径25标准格以内，之间不存在障碍物的空间），或者项目被暴力制服。</p>
+<p class="wiki-list">异常的攻击力：空手状况下，单次攻击造成的伤害为10.5；携带工具的情况下，攻击力在10.5的基础上按武器数值向上增加（携带钻石剑的情况下，攻击力为10.5+7=17.5，以此类推）；暴击的情况，施加异常效果的情况同；</p>
+<p class="wiki-list">异常的感知能力：在眼部被蒙住的情况下，依旧可以感知周围的物体，生物的位置与形状。</p>
+</div>
+<p>大部分情况下，项目会保持温顺，和平的态度，对社交与合作保持高度的热情；目前，项目对基金会保持长期忠诚。</p>
+<p><strong>附录1—收容过程概述：</strong></p>
+<p>项目被发现于一处黑暗教会窝点的牢房内。此前，MTF-Steve-8对该窝点进行了突袭，并在窝点牢房内发现大量受困人类，部分人形异常；另发现大量手术用具，奇术道具，残留人体组织；以上证据已作为教会罪证提交至监督委员会。</p>
+<p>项目由于其异常的外观与现实度，被认定为人形异常进行收容。项目在收容过程中一直保持配合，无特别情况发生。</p>
+<p><strong>附录2—采访记录：</strong></p>
+<div class="wiki-block">
+<p><strong>受访者：</strong>[SCP-MC-808]</p>
+<p><strong>采访者：</strong>[Dr.Clovers]</p>
+<p><strong>前言：</strong>[此次记录是自SCP-MC-808被收容后的第一次采访记录，由69站研究主管Dr.Clovers负责进行]</p>
+<p><strong>&lt;记录开始&gt;</strong></p>
+<p>（SCP-MC-808把头埋在双臂内，似乎是听到Dr.Clovers进入房间，SCP-MC-808的后脊明显绷紧）</p>
+<p><strong>Dr.Clovers：</strong>你好？</p>
+<p><strong>SCP-MC-808：</strong>（沉默）</p>
+<p><strong>Dr.Clovers：</strong>我能请你把头抬起来吗？</p>
+<p><strong>SCP-MC-808：</strong>不……不能抬头。</p>
+<p><strong>Dr.Clovers：</strong>我能问一下是为什么吗？</p>
+<p><strong>SCP-MC-808：</strong>那些教会里的人，他们强迫我和人对视，每次我发现别人在看我，我就——无法控制自己，每当我醒来时，我都会发现周围是别人的尸体……</p>
+<p><strong>Dr.Clovers：</strong>你的意思是，一旦你与他人对视，你就会失控。</p>
+<p><strong>SCP-MC-808：</strong>我不想伤害任何人，所以请不要……（抽泣）</p>
+<p><strong>Dr.Clovers：</strong>我明白了，我们不会强迫你抬头的——你能介绍一下你自己吗？你叫什么名字？</p>
+<p><strong>SCP-MC-808：</strong>我……我应该叫Ande。</p>
+<p><strong>Dr.Clovers：</strong>安德……听起来就像末影人。</p>
+<p><strong>SCP-MC-808：</strong>我想是的……我是个怪物，不是吗？</p>
+<p><strong>Dr.Clovers：</strong>我想这一点我们还有待观察……你是什么时候被抓的，还有你被抓之前的住址，你还记得吗？我想我们能帮你找到你的父母。</p>
+<p><strong>SCP-MC-808：</strong>（痛苦地）不……我想我不记得了，尽管我很想记起来，但是我的大脑里一片空白……我一点都不喜欢这样。</p>
+<p><strong>Dr.Clovers：</strong>你还记得那些教徒是怎么对你们施加暴力的吗？</p>
+<p><strong>SCP-MC-808：</strong>我记得……不会忘……但是，我并不想回忆它。</p>
+<p><strong>Dr.Clovers：</strong>你说的话将会作为他们的罪证，让我们更好地惩治他们。（指着录音设备）</p>
+<p><strong>SCP-MC-808：</strong>我明白了……他们……他们会把我们分成不同组，分别关押，不同组之间是隔离的，所以我只能说我们这组的情况。</p>
+<p><strong>SCP-MC-808：</strong>我们这一组接受的是“绑定”……他们是这么叫的，他们把各种附过魔的物体移植到我们身上，从炸药，书本到下界之星——可怜的格罗姆，在绑定的瞬间他就死了，下界之星产生的爆炸差点把整个地牢掀翻——当然还有我的，是一双末影之眼。</p>
+<p><strong>Dr.Clovers：</strong>绑定会疼吗？</p>
+<p><strong>SCP-MC-808：</strong>会疼，当然会疼，超乎想象的疼，我想我的记忆就是那时候失去的——那时候我的整个身体都在痉挛，他们挖走了我的眼睛，然后又放上一双新的……</p>
+<p><strong>Dr.Clovers：</strong>听上去可怕极了，但是看起来绑定是成功的。</p>
+<p><strong>SCP-MC-808：</strong>我觉得还是在那时就死掉更好——除了我，伙伴们没有一个活下来的。</p>
+<p><strong>Dr.Clovers：</strong>我很抱歉。</p>
+<p><strong>SCP-MC-808：</strong>没事。</p>
+<p><strong>&lt;记录结束&gt;</strong></p>
+<p><strong>批注：</strong>[本次采访视频语音记录已经送交管理层。]</p>
+</div>
+<p><strong>附录3—采访记录：</strong></p>
+<div class="wiki-block">
+<p><strong>受访者：</strong>[SCP-MC-808]</p>
+<p><strong>采访者：</strong>[Dr.Candle]</p>
+<p><strong>前言：</strong>[此次记录是自SCP-MC-808被收容后的第二次采访记录，由69站驻站心理咨询师，心理学研究员Dr.Candle负责进行]</p>
+<p><strong>&lt;记录开始&gt;</strong></p>
+<p>（Dr.Candle带着一杯牛奶，一个蛋糕，一盘曲奇进入房间）</p>
+<p><strong>Dr.Candle：</strong>你好？你还好吗？你有哪里不舒服吗？</p>
+<p><strong>SCP-MC-808：</strong>不……没有（别过头去）</p>
+<p><strong>Dr.Candle：</strong>放松，好吗？这里没有人会伤害你的，我们只是想了解你，如果你有哪里不舒服，就告诉我们，我们会找到办法的。</p>
+<p>（Dr.Candle把食物轻放在桌上，坐下）</p>
+<p><strong>Dr.Candle：</strong>吃点东西吧？</p>
+<p>（沉默）</p>
+<p>（项目闭着眼抬起头，拿手指向桌上的食物）</p>
+<p><strong>SCP-MC-808：</strong>这些，我都可以吃吗？</p>
+<p><strong>Dr.Candle：</strong>（拿起一块蛋糕，推到项目面前）你不想吃这些的话，你把喜欢的食物和我说，我们会给你做。</p>
+<p>（项目再度沉默了近半分钟，最终咬下蛋糕的一角）</p>
+<p>（项目开始大快朵颐）</p>
+<p>（当项目准备喝牛奶的时候，项目先用手指伸进牛奶杯进行了试探，似乎在确认里面的液体是否是水，随后喝下）</p>
+<p>（大约用了一分钟，项目把所有食物吃完）</p>
+<p><strong>Dr.Candle：</strong>我来介绍一下自己，我的名字叫红烛照，红色的红，蜡烛的烛，照明的照，你叫安德，是吗？</p>
+<p><strong>SCP-MC-808：</strong>说实话，我并不确定，我记得我有父母，在我被那些人抓走之前，我的确记得他们会用某个名字来呼唤我，但是那个词我记不得了——“安德”只是同样被抓的那些伙伴给我取的名字。</p>
+<p><strong>Dr.Candle：</strong>你喜欢这个名字吗？</p>
+<p><strong>SCP-MC-808：</strong>我说不上来……不过，你瞧，名字本来只是一种代号，不是吗？你们叫我安德（Ender）就好了，我不会太介意的。</p>
+<p><strong>Dr.Candle：</strong>（掩嘴笑）想不到你还挺哲学的，安德。</p>
+<p><strong>SCP-MC-808：</strong>是……是吗？</p>
+<p><strong>Dr.Candle：</strong>当然！你对名字的见解很像我的一个偶像，济公，他也这么说：“名字只是代号”。</p>
+<p><strong>SCP-MC-808：</strong>济公？</p>
+<p><strong>Dr.Candle：</strong>哦，是我们那边的传说人物哦，有时间我可以找一部电视剧来给你看看。</p>
+<p><strong>SCP-MC-808：</strong>……那个……我可以叫你女士吗？……女士？</p>
+<p><strong>Dr.Candle：</strong>当然可以，你想要说什么？</p>
+<p><strong>SCP-MC-808：</strong>女士，我想说，女士你，还有之前那位先生，你们是我记忆中头一回对我这么好的人，我很感谢你的食物和温柔，但是，你为什么要这么做呢？</p>
+<p><strong>Dr.Candle：</strong>为什么这么做？</p>
+<p><strong>SCP-MC-808：</strong>你瞧，我只是一个怪物，我不是人类，我伤害了很多人，这就是为什么我被关在牢房里，我犯了罪，就应该受到惩罚，你这么好的人，为什么要帮助像我这样有罪的生物呢？</p>
+<p>（Dr.Candle起身，摸了摸项目的头）</p>
+<p><strong>Dr.Candle：</strong>你不是罪人，安德，是那些改造你的人犯下的罪，是他们伤害了你，伤害了其他人——（Dr.Candle的声音以细微的程度颤抖）他们从我们身边夺去的，我们最后一定会找回来。</p>
+<p><strong>&lt;记录结束&gt;</strong></p>
+<p><strong>结语：</strong>[808比较温顺，但是在教会时的经历可能给他造成了很大的创伤，在了解并治愈他之后，我们有极大可能可以与他达成合作。如果可能，我希望继续参与针对808的研究，我认为他有很大的潜力。]</p>
+</div>
+<p><strong>附录3—事故记录：</strong></p>
+<div class="wiki-block">
+<p><strong>前言：</strong>[这次事故发生于（数据删除），在MTF-Steve-8全员外出执勤期间，黑暗教会的一支流窜武装分子对Site-MC-69发动了袭击，由于安保力量的缺失，该批敌对分子一度进攻至了地上一层大厅，这次事故中，SCP-MC-808积极配合了站点的防卫工作，特此注明。]</p>
+<p><strong>&lt;记录开始&gt;</strong></p>
+<p>15：14：23，从监视器可以观察到Dr.Candle陪同SCP-MC-808离开休息室，等待电梯准备前往地下。</p>
+<p>15：14：33，敌对分子穿过了地面安保设施的火力网，使用炸药闯进了大厅。</p>
+<p>15：14：12，敌对分子包围了尚在大厅工作的站点人员，其中包括SCP-MC-808与Dr.Candle。</p>
+<p>15：14：43，SCP-MC-808试图劝说敌对分子停止冲突，劝说无效，一名敌对分子持刀靠近。</p>
+<p>15：15：02，SCP-MC-808瞬移至敌对分子身后，夺刀，挟持该名敌对分子，试图威胁其他敌对分子投降，威胁无效。</p>
+<p>15：15：31，站点预备安保人员，到达大厅，与敌对分子交火。</p>
+<p>15：16：55，交火结束，敌对分子11人被控制，17人被击毙。其中SCP-MC-808控制5人，击毙1人。</p>
+<p><strong>&lt;记录结束&gt;</strong></p>
+<p><strong>结语：</strong>[鉴于此次事件中项目的积极表现，管理层正在考虑项目作为队员加入MTF-Steve-8的提案]</p>
+</div>
+<div class="wiki-block">
+<div class="wiki-aligned">
+<p>&lt;&lt; SCP-MC-807 | SCP-MC-808| SCP-MC-809 &gt;&gt;</p>
+</div>
+</div></section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>[[include :scp-wiki-cn:theme:foxtrot poland=a]]
+
+[[include :etinjat:typeface-cn
+
+|VonwaonBitmap-12px=true
+
+|VonwaonBitmap-16px=true
+
+]]
+
+[[module CSS]]
+
+:root:lang(cn) {
+
+ --header-title: &quot;S.C.P. Minecraft&quot;;
+
+ --header-subtitle: &quot;控制 收容 保护&quot;;
+
+ --logo-img:
+
+url(&#x27;https://scp-wiki-mc.wdfiles.com/local--files/theme%3Ablack-highlighter-theme/mclogo2.svg&#x27;);
+
+}
+
+[[/module]]
+
+
+
+[[module CSS]]
+
+@import url(&#x27;https://fonts.googleapis.com/css2?family=Noto+Serif+SC&amp;display=swap&#x27;);
+
+@import url(&#x27;https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap&#x27;);
+
+
+
+#page-content {
+
+    font-size:1em;
+
+}
+
+
+
+.a {
+
+    font-family: &#x27;Noto Serif SC&#x27;, sans-serif;
+
+    font-size: 1.2em;
+
+}
+
+
+
+.gui {
+
+    border: solid 16px;
+
+    -webkit-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/blockquote_bg.png&quot;);
+
+       -moz-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/blockquote_bg.png&quot;);
+
+         -o-border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/blockquote_bg.png&quot;);
+
+            border-image: url(&quot;http://ah-sandbox.wikidot.com/local--files/theme:better-minecraft-theme/blockquote_bg.png&quot;);
+
+    border-image-slice: 8 8 8 8 fill;
+
+    background-color: transparent;
+
+    padding:0 1em;
+
+    padding-bottom: 20px;
+
+    margin: 0 1em;
+
+}
+
+.gui p{
+
+    font-family: &quot;Minecraft&quot;,&#x27;Unifont&#x27;,&quot;VonwaonBitmap 12px&quot;;
+
+    color: black;
+
+}
+
+
+
+@media (min-width: 767px) {
+
+.io {
+
+    background-image: url(&#x27;https://s21.ax1x.com/2024/11/16/pA2X8Wq.png&#x27;);
+
+    margin: 0 2em;
+
+    padding: 0.1em 1em;
+
+    background-repeat: repeat;
+
+}
+
+}
+
+
+
+@media (max-width: 767px) {
+
+.io {
+
+    background-image: url(&#x27;https://s21.ax1x.com/2024/11/16/pA2XfTH.png&#x27;);
+
+    margin: 0 1em;
+
+    padding: 0.1em 1em;
+
+    background-repeat: repeat;
+
+}
+
+
+
+div.jotting {
+
+    margin: 1em 0em;
+
+}
+
+div.modal {
+
+    margin: 1em 1.5em;
+
+}
+
+}
+
+
+
+.io p{
+
+    font-family: &quot;Minecraft&quot;,&#x27;Unifont&#x27;, &quot;VonwaonBitmap 12px&quot;;
+
+    color: #ededed;
+
+}
+
+
+
+@font-face {
+
+    font-family: &#x27;Minecraft&#x27;;
+
+    src: url(&#x27;https://minecraft.fandom.com/media/hydra/fonts/minecraft.woff&#x27;) format(&#x27;woff&#x27;);
+
+}
+
+
+
+/*备选：https://unifoundry.com/pub/unifont/unifont-16.0.01/font-builds/unifont-16.0.01.otf */
+
+@font-face {
+
+    font-family: &#x27;unifont&#x27;;
+
+    src: url(&#x27;https://raw.githubusercontent.com/sTorYTeLler12138/Fonts/main/Unifont-mono.ttf&#x27;) format(&#x27;ttf&#x27;);
+
+}
+
+/* UNDER LICENSE GPL-2 , follow CC BY-SA 3.0 */
+
+
+
+#u-blink-bar p:last-child::after {
+
+    content: &quot;_&quot;;
+
+    animation: blink 1.5s infinite;
+
+    position: relative;
+
+    left: 1px;
+
+}
+
+ 
+
+@keyframes blink{
+
+    50% {
+
+        opacity: .0;
+
+    }
+
+}
+
+
+
+/* 主题色：#fc4545 */
+
+[[/module]]
+
+
+
+[[module css]]
+
+
+
+
+
+[[&gt;]]
+
+[[module Rate]]
+
+[[/&gt;]]
+
+
+
+
+
+[[include component:image-block name=http://scpsandboxcn.wikidot.com/local--files/blackholefds/IMG_20250327_084823.png|caption=由项目使用蜡笔绘画的自己与Dr.Candle|align=center|width=400px]]
+
+
+
+
+
+**项目编号：**SCP-MC-808
+
+
+
+**项目等级：**Euclid
+
+
+
+**特殊收容措施：**项目应被置于一间经过加高处理（至少4标准格高）的人形异常收容室内，收容室墙壁厚度应大于2标准格；在任何情况下，任何人员都不能直接与项目对视，因此，在项目需要与其他人员沟通时，必须佩戴可以遮盖其眼部的护具（如雕刻南瓜，眼罩，墨镜，夜视头盔等）；在得到许可，且至少有一名安保人员陪同的情况下，项目可以在Site-MC-69内自由行动。
+
+
+
+在得到许可的情况下，项目可以被MTF-Steve-8征用为特遣队员，期间项目的收容状况，行为后果由特遣队全权负责。
+
+
+
+**描述：**SCP-MC-808是一个人形异常实体，外观类似人类（其是否曾是人类仍然未知），具有近似成年人的智能水平。SCP-MC-808高2.51标准格，肤色为古铜色（类似于总部世界东南亚肤色），发色纯黑，瞳色紫，眼球疑似被替换为末影之眼。
+
+
+
+SCP-MC-808的异常性质表现为：能携带非生物实体进行传送，具体表现见下。
+
+[[div class=&quot;paper&quot;]]
+
+# 传送自身（距离在半径25标准格以内，传送终点剩余空间至少大于或等于两格，无法穿透两格或以上宽度的墙）；
+
+# 携带护具，背包内物品进行传送（如上）；
+
+# 在遭受飞行道具攻击时会被动地进行随机传送，并完全避免此次伤害。
+
+[[/div]]
+
+
+
+
+
+SCP-MC-808需要注意的其余异常性质：
+
+[[div class=&quot;paper&quot;]]
+
+# 不可接触纯水（包括水方块，雨滴；不包括汤类食物，药水，牛奶），一旦接触纯水，项目会感到刺痛，接触到水的肢体将会受到类似烫伤的伤害。
+
+# 不可与其对视（特指双方可以产生眼神交流的观察行为；不包含通过绘画，照片或视频，通过单向玻璃的观察），一旦与其对视，项目将会失去理智，并开始对与其对视者进行攻击，直到对方的双目被挖出，或对方离开其索敌范围（一般指项目目视范围，即半径25标准格以内，之间不存在障碍物的空间），或者项目被暴力制服。
+
+# 异常的攻击力：空手状况下，单次攻击造成的伤害为10.5；携带工具的情况下，攻击力在10.5的基础上按武器数值向上增加（携带钻石剑的情况下，攻击力为10.5+7=17.5，以此类推）；暴击的情况，施加异常效果的情况同；
+
+# 异常的感知能力：在眼部被蒙住的情况下，依旧可以感知周围的物体，生物的位置与形状。
+
+[[/div]]
+
+大部分情况下，项目会保持温顺，和平的态度，对社交与合作保持高度的热情；目前，项目对基金会保持长期忠诚。
+
+
+
+**附录1—收容过程概述：**
+
+项目被发现于一处黑暗教会窝点的牢房内。此前，MTF-Steve-8对该窝点进行了突袭，并在窝点牢房内发现大量受困人类，部分人形异常；另发现大量手术用具，奇术道具，残留人体组织；以上证据已作为教会罪证提交至监督委员会。
+
+
+
+项目由于其异常的外观与现实度，被认定为人形异常进行收容。项目在收容过程中一直保持配合，无特别情况发生。
+
+
+
+**附录2—采访记录：**
+
+[[div class=&quot;blockquote&quot;]]
+
+**受访者：**[SCP-MC-808]
+
+
+
+**采访者：**[Dr.Clovers]
+
+
+
+**前言：**[此次记录是自SCP-MC-808被收容后的第一次采访记录，由69站研究主管Dr.Clovers负责进行]
+
+
+
+**&lt;记录开始&gt;**
+
+
+
+（SCP-MC-808把头埋在双臂内，似乎是听到Dr.Clovers进入房间，SCP-MC-808的后脊明显绷紧）
+
+
+
+**Dr.Clovers：**你好？
+
+
+
+**SCP-MC-808：**（沉默）
+
+
+
+**Dr.Clovers：**我能请你把头抬起来吗？
+
+
+
+**SCP-MC-808：**不……不能抬头。
+
+
+
+**Dr.Clovers：**我能问一下是为什么吗？
+
+
+
+**SCP-MC-808：**那些教会里的人，他们强迫我和人对视，每次我发现别人在看我，我就——无法控制自己，每当我醒来时，我都会发现周围是别人的尸体……
+
+
+
+**Dr.Clovers：**你的意思是，一旦你与他人对视，你就会失控。
+
+
+
+**SCP-MC-808：**我不想伤害任何人，所以请不要……（抽泣）
+
+
+
+**Dr.Clovers：**我明白了，我们不会强迫你抬头的——你能介绍一下你自己吗？你叫什么名字？
+
+
+
+**SCP-MC-808：**我……我应该叫Ande。
+
+
+
+**Dr.Clovers：**安德……听起来就像末影人。
+
+
+
+**SCP-MC-808：**我想是的……我是个怪物，不是吗？
+
+
+
+**Dr.Clovers：**我想这一点我们还有待观察……你是什么时候被抓的，还有你被抓之前的住址，你还记得吗？我想我们能帮你找到你的父母。
+
+
+
+**SCP-MC-808：**（痛苦地）不……我想我不记得了，尽管我很想记起来，但是我的大脑里一片空白……我一点都不喜欢这样。
+
+
+
+**Dr.Clovers：**你还记得那些教徒是怎么对你们施加暴力的吗？
+
+
+
+**SCP-MC-808：**我记得……不会忘……但是，我并不想回忆它。
+
+
+
+**Dr.Clovers：**你说的话将会作为他们的罪证，让我们更好地惩治他们。（指着录音设备）
+
+
+
+**SCP-MC-808：**我明白了……他们……他们会把我们分成不同组，分别关押，不同组之间是隔离的，所以我只能说我们这组的情况。
+
+
+
+**SCP-MC-808：**我们这一组接受的是“绑定”……他们是这么叫的，他们把各种附过魔的物体移植到我们身上，从炸药，书本到下界之星——可怜的格罗姆，在绑定的瞬间他就死了，下界之星产生的爆炸差点把整个地牢掀翻——当然还有我的，是一双末影之眼。
+
+
+
+**Dr.Clovers：**绑定会疼吗？
+
+
+
+**SCP-MC-808：**会疼，当然会疼，超乎想象的疼，我想我的记忆就是那时候失去的——那时候我的整个身体都在痉挛，他们挖走了我的眼睛，然后又放上一双新的……
+
+
+
+**Dr.Clovers：**听上去可怕极了，但是看起来绑定是成功的。
+
+
+
+**SCP-MC-808：**我觉得还是在那时就死掉更好——除了我，伙伴们没有一个活下来的。
+
+
+
+**Dr.Clovers：**我很抱歉。
+
+
+
+**SCP-MC-808：**没事。
+
+
+
+**&lt;记录结束&gt;**
+
+
+
+**批注：**[本次采访视频语音记录已经送交管理层。]
+
+[[/div]]
+
+
+
+**附录3—采访记录：**
+
+[[div class=&quot;blockquote&quot;]]
+
+**受访者：**[SCP-MC-808]
+
+
+
+**采访者：**[Dr.Candle]
+
+
+
+**前言：**[此次记录是自SCP-MC-808被收容后的第二次采访记录，由69站驻站心理咨询师，心理学研究员Dr.Candle负责进行]
+
+
+
+**&lt;记录开始&gt;**
+
+
+
+（Dr.Candle带着一杯牛奶，一个蛋糕，一盘曲奇进入房间）
+
+
+
+**Dr.Candle：**你好？你还好吗？你有哪里不舒服吗？
+
+
+
+**SCP-MC-808：**不……没有（别过头去）
+
+
+
+**Dr.Candle：**放松，好吗？这里没有人会伤害你的，我们只是想了解你，如果你有哪里不舒服，就告诉我们，我们会找到办法的。
+
+
+
+（Dr.Candle把食物轻放在桌上，坐下）
+
+
+
+**Dr.Candle：**吃点东西吧？
+
+
+
+（沉默）
+
+
+
+（项目闭着眼抬起头，拿手指向桌上的食物）
+
+
+
+**SCP-MC-808：**这些，我都可以吃吗？
+
+
+
+**Dr.Candle：**（拿起一块蛋糕，推到项目面前）你不想吃这些的话，你把喜欢的食物和我说，我们会给你做。
+
+
+
+（项目再度沉默了近半分钟，最终咬下蛋糕的一角）
+
+
+
+（项目开始大快朵颐）
+
+
+
+（当项目准备喝牛奶的时候，项目先用手指伸进牛奶杯进行了试探，似乎在确认里面的液体是否是水，随后喝下）
+
+
+
+（大约用了一分钟，项目把所有食物吃完）
+
+
+
+**Dr.Candle：**我来介绍一下自己，我的名字叫红烛照，红色的红，蜡烛的烛，照明的照，你叫安德，是吗？
+
+
+
+**SCP-MC-808：**说实话，我并不确定，我记得我有父母，在我被那些人抓走之前，我的确记得他们会用某个名字来呼唤我，但是那个词我记不得了——“安德”只是同样被抓的那些伙伴给我取的名字。
+
+
+
+**Dr.Candle：**你喜欢这个名字吗？
+
+
+
+**SCP-MC-808：**我说不上来……不过，你瞧，名字本来只是一种代号，不是吗？你们叫我安德（Ender）就好了，我不会太介意的。
+
+
+
+**Dr.Candle：**（掩嘴笑）想不到你还挺哲学的，安德。
+
+
+
+**SCP-MC-808：**是……是吗？
+
+
+
+**Dr.Candle：**当然！你对名字的见解很像我的一个偶像，济公，他也这么说：“名字只是代号”。
+
+
+
+**SCP-MC-808：**济公？
+
+
+
+**Dr.Candle：**哦，是我们那边的传说人物哦，有时间我可以找一部电视剧来给你看看。
+
+
+
+**SCP-MC-808：**……那个……我可以叫你女士吗？……女士？
+
+
+
+**Dr.Candle：**当然可以，你想要说什么？
+
+
+
+**SCP-MC-808：**女士，我想说，女士你，还有之前那位先生，你们是我记忆中头一回对我这么好的人，我很感谢你的食物和温柔，但是，你为什么要这么做呢？
+
+
+
+**Dr.Candle：**为什么这么做？
+
+
+
+**SCP-MC-808：**你瞧，我只是一个怪物，我不是人类，我伤害了很多人，这就是为什么我被关在牢房里，我犯了罪，就应该受到惩罚，你这么好的人，为什么要帮助像我这样有罪的生物呢？
+
+
+
+（Dr.Candle起身，摸了摸项目的头）
+
+
+
+**Dr.Candle：**你不是罪人，安德，是那些改造你的人犯下的罪，是他们伤害了你，伤害了其他人——（Dr.Candle的声音以细微的程度颤抖）他们从我们身边夺去的，我们最后一定会找回来。
+
+
+
+**&lt;记录结束&gt;**
+
+
+
+**结语：**[808比较温顺，但是在教会时的经历可能给他造成了很大的创伤，在了解并治愈他之后，我们有极大可能可以与他达成合作。如果可能，我希望继续参与针对808的研究，我认为他有很大的潜力。]
+
+[[/div]]
+
+
+
+**附录3—事故记录：**
+
+[[div class=&quot;blockquote&quot;]]
+
+**前言：**[这次事故发生于（数据删除），在MTF-Steve-8全员外出执勤期间，黑暗教会的一支流窜武装分子对Site-MC-69发动了袭击，由于安保力量的缺失，该批敌对分子一度进攻至了地上一层大厅，这次事故中，SCP-MC-808积极配合了站点的防卫工作，特此注明。]
+
+
+
+**&lt;记录开始&gt;**
+
+15：14：23，从监视器可以观察到Dr.Candle陪同SCP-MC-808离开休息室，等待电梯准备前往地下。
+
+
+
+15：14：33，敌对分子穿过了地面安保设施的火力网，使用炸药闯进了大厅。
+
+
+
+15：14：12，敌对分子包围了尚在大厅工作的站点人员，其中包括SCP-MC-808与Dr.Candle。
+
+
+
+15：14：43，SCP-MC-808试图劝说敌对分子停止冲突，劝说无效，一名敌对分子持刀靠近。
+
+
+
+15：15：02，SCP-MC-808瞬移至敌对分子身后，夺刀，挟持该名敌对分子，试图威胁其他敌对分子投降，威胁无效。
+
+
+
+15：15：31，站点预备安保人员，到达大厅，与敌对分子交火。
+
+
+
+15：16：55，交火结束，敌对分子11人被控制，17人被击毙。其中SCP-MC-808控制5人，击毙1人。
+
+
+
+
+
+**&lt;记录结束&gt;**
+
+
+
+**结语：**[鉴于此次事件中项目的积极表现，管理层正在考虑项目作为队员加入MTF-Steve-8的提案]
+
+
+
+
+
+
+
+[[/div]]
+
+
+
+[[footnoteblock]]
+
+
+
+[[div class=&quot;footer-wikiwalk-nav&quot;]]
+
+[[=]]
+
+&lt;&lt; [[[SCP-MC-807]]] | [[[SCP-MC-808 ]]]| [[[SCP-MC-809]]] &gt;&gt;
+
+[[/=]]
+
+[[/div]]
+</pre></details></article></main><footer>只读快照：2026/08/31 07:53:10 · created by piglin · 内容版权仍归原作者与 SCP 基金会 Minecraft 分部。</footer></body></html>
