@@ -12,14 +12,22 @@ import html
 import json
 import re
 import shutil
+import subprocess
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
+from bs4 import BeautifulSoup, NavigableString
+
 ROOT = Path(__file__).resolve().parents[1]
 DATA, WIKI = ROOT / "data", ROOT / "wiki"
+# FTML is strict but expensive on old mega-pages. Keep full FTML for the bulk
+# of the snapshot and use the sanitized fallback for oversized pages so the
+# full static site can be rebuilt and published without pathological waits.
+FTML_MAX_SOURCE_CHARS = 8_000
 
 def read_shards(directory: Path, key: str) -> dict[str, Any]:
     result: dict[str, Any] = {}
@@ -97,7 +105,9 @@ def prepare_source(source: str, notices: Counter[str]) -> str:
     # standalone closing line. Compact calls are removed first so they cannot
     # be mistaken for the opening line of the following multiline component.
     source = re.sub(r"\[\[include\s+(.+?)\n\s*\]\]", include, source, flags=re.S | re.I)
-    return re.sub(r"\[\[(?:module\s+CSS|css)\]\].*?\[\[/(?:module\s+CSS|css)\]\]", "[[backup-notice style]]", source, flags=re.S | re.I)
+    source = re.sub(r"\[\[module\s+(?:css|listpages)\b[^\]]*\]\].*?\[\[/module\]\]", "", source, flags=re.S | re.I)
+    source = re.sub(r"\[\[module\s+(?:rate|listusers)\b[^\]]*\]\]|\[\[/module\]\]", "", source, flags=re.I)
+    return source
 
 def render_wikitext(source: str, pages: dict[str, Any]) -> tuple[str, Counter[str]]:
     notices: Counter[str] = Counter()
@@ -172,35 +182,144 @@ def render_wikitext(source: str, pages: dict[str, Any]) -> tuple[str, Counter[st
         kind = wrappers.pop(); output.append("</details>" if kind == "details" else "</section>" if kind == "tab" else "</div>")
     return "\n".join(output), notices
 
+def canonical_page_name(value: str, pages: dict[str, Any]) -> str | None:
+    candidate = value.strip().strip("/")
+    if candidate.lower() in {name.lower(): name for name in pages}:
+        return {name.lower(): name for name in pages}[candidate.lower()]
+    return None
+
+def sanitize_ftml_html(fragment: str, pages: dict[str, Any]) -> str:
+    """Retain only offline-safe FTML output and rewrite captured page links."""
+    soup = BeautifulSoup(fragment, "html.parser")
+    root = soup.find("wj-body") or soup
+    aliases = {name.casefold(): name for name in pages}
+    allowed = {"a", "blockquote", "br", "code", "details", "div", "em", "h1", "h2", "h3", "h4", "h5", "h6", "hr", "li", "ol", "p", "pre", "s", "section", "small", "span", "strong", "sub", "summary", "sup", "table", "tbody", "td", "th", "thead", "tr", "ul"}
+    for tag in list(root.find_all(["style", "script", "iframe", "img", "svg", "link", "meta", "template", "video", "audio", "object", "embed"])):
+        if tag.name == "img":
+            tag.decompose()
+        else:
+            tag.decompose()
+    for tag in list(root.find_all(True)):
+        name = tag.name.lower()
+        if name not in allowed:
+            tag.unwrap()
+            continue
+        classes = set(tag.get("class") or [])
+        mapped: list[str] = []
+        if "wj-collapsible-hide-text" in classes:
+            tag.decompose()
+            continue
+        if "wj-align-center" in classes:
+            mapped.append("wiki-aligned")
+        if "wj-collapsible" in classes:
+            mapped.append("wiki-collapsible")
+        if any(item.startswith("wj-tabview") for item in classes):
+            mapped.append("tabview")
+        if any(item.startswith("wj-tab") for item in classes):
+            mapped.append("wiki-tab")
+        mapped.extend(item for item in classes if item in {"small", "ruby", "rt", "normal-link", "wiki-user", "missing-resource"})
+        if mapped:
+            tag["class"] = mapped
+        elif tag.has_attr("class"):
+            del tag["class"]
+        for attr in list(tag.attrs):
+            if attr != "class" and not (tag.name == "a" and attr == "href"):
+                del tag[attr]
+        if tag.name != "a":
+            continue
+        href = str(tag.get("href") or "").strip()
+        candidate = None
+        if href.startswith(("http://", "https://")):
+            parsed = urlparse(href)
+            if parsed.netloc.casefold().endswith("wikidot.com"):
+                candidate = parsed.path.strip("/").split("/")[-1]
+        elif href.startswith("/"):
+            candidate = href.strip("/")
+        if candidate and candidate.casefold() in aliases:
+            tag["href"] = article_href(aliases[candidate.casefold()])
+        elif href.startswith(("http://", "https://")):
+            tag["href"] = href
+            tag["rel"] = "noreferrer"
+        else:
+            tag.unwrap()
+    for node in list(root.find_all(string=True)):
+        cleaned = re.sub(r"\[\[[^\]\n]*\]\]", "", str(node))
+        cleaned = re.sub(r"\[\[[^\]\n]*$", "", cleaned)
+        cleaned = re.sub(r"\[\[include[^\n]*", "", cleaned, flags=re.I)
+        cleaned = re.sub(r"##[^#\n]*##", "", cleaned)
+        cleaned = re.sub(r"%%[A-Za-z0-9_|%{}: .+-]+%%", "", cleaned)
+        if cleaned != node:
+            node.replace_with(NavigableString(cleaned))
+    for tag in reversed(root.find_all(True)):
+        if tag.name not in {"br", "hr"} and not tag.get_text(strip=True) and not tag.find(["br", "hr"]):
+            tag.decompose()
+    return "".join(str(child) for child in root.contents).strip()
+
+def render_ftml_batch(records: list[dict[str, Any]], pages: dict[str, Any]) -> dict[str, tuple[str, Counter[str]]]:
+    if not records:
+        return {}
+    command = ["node", str(ROOT / "tools" / "ftml_render_batch.mjs")]
+    # FTML is CPU-bound. This is a one-time frozen-snapshot build, so use the
+    # available CPU budget to parse independent pages concurrently.
+    buckets: list[list[dict[str, Any]]] = [[] for _ in range(min(16, len(records)))]
+    for index, record in enumerate(sorted(records, key=lambda item: len(item["source"]), reverse=True)):
+        buckets[index % len(buckets)].append(record)
+    def run_bucket(bucket: list[dict[str, Any]]) -> dict[str, Any]:
+        response = subprocess.run(command, input=json.dumps(bucket, ensure_ascii=False), text=True, encoding="utf-8", capture_output=True, cwd=ROOT, check=True)
+        return json.loads(response.stdout)
+    with ThreadPoolExecutor(max_workers=len(buckets)) as executor:
+        parts = list(executor.map(run_bucket, buckets))
+    payload = {name: item for part in parts for name, item in part.items()}
+    rendered: dict[str, tuple[str, Counter[str]]] = {}
+    for name, item in payload.items():
+        notices = Counter(item.get("removed") or {})
+        if item.get("errors"):
+            notices["parser_errors"] += int(item["errors"])
+        rendered[name] = (sanitize_ftml_html(item.get("html") or "", pages), notices)
+    return rendered
+
 def kind_label(kind: str) -> str:
     return {"original": "原创页面", "translation": "翻译页面", "fragment": "段落页面"}.get(kind, "其他页面")
 
 def page_author(page: dict[str, Any]) -> str:
     return (((page.get("history_author") or {}).get("author") or {}).get("name") or page.get("history_author_name") or "未捕捉到")
 
-def render_article(page: dict[str, Any], source: str, pages: dict[str, Any], generated: str) -> tuple[str, Counter[str]]:
-    body, notices = render_wikitext(source, pages)
+def render_article(page: dict[str, Any], source: str, pages: dict[str, Any], generated: str, body: str, notices: Counter[str]) -> str:
     title, name, voters = page.get("title") or page.get("page_name") or "未命名页面", page.get("page_name", ""), page.get("voters") or {}
     tags = "".join(f'<span class="tag">{html.escape(str(tag))}</span>' for tag in page.get("tags") or []) or '<span class="muted">无</span>'
     deleted = '<span class="status deleted">已删除存档</span>' if page.get("archived_deleted") else ""
-    warning_labels = ([f"{notices['includes']} 个包含组件"] if notices["includes"] else []) + ([f"{notices['attachments']} 个附件"] if notices["attachments"] else []) + (["专用样式"] if notices["styles"] else [])
-    warning = '<aside class="reader-warning">此页部分资源未归档：' + "、".join(warning_labels) + "。文本与源码仍已保留。</aside>" if warning_labels else ""
-    return f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{html.escape(title)} | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page={html.escape(name, quote=True)}">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">{kind_label(page.get('page_kind', 'other'))} {deleted}</p><h1>{html.escape(title)}</h1><p class="page-name">{html.escape(name)}</p><dl class="article-meta"><div><dt>创建者</dt><dd>{html.escape(page_author(page))}</dd></div><div><dt>评分</dt><dd class="rating">{page.get('rating_text') or 'n/a'} <small>+{voters.get('up', 0)} / -{voters.get('down', 0)}</small></dd></div><div><dt>发布时间</dt><dd>{html.escape(page.get('created_at_beijing') or 'n/a')}</dd></div><div><dt>最近编辑</dt><dd>{html.escape(page.get('last_edited_at_beijing') or 'n/a')}</dd></div></dl><div class="tags">{tags}</div></header>{warning}<section class="article-body">{body or '<p class="muted">该页未保存可渲染的源码。</p>'}</section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>{html.escape(source)}</pre></details></article></main><footer>只读快照：{html.escape(generated)} · created by piglin · 内容版权仍归原作者与 SCP 基金会 Minecraft 分部。</footer></body></html>''', notices
+    warning_labels = ([f"{notices['includes']} 个包含组件"] if notices["includes"] else []) + ([f"{notices['modules']} 个动态模块"] if notices["modules"] else []) + (["嵌入 HTML"] if notices["html"] else [])
+    warning = '<aside class="reader-warning">此页动态内容未在只读备份中运行：' + "、".join(warning_labels) + "。正文与原始源码仍已保留。</aside>" if warning_labels else ""
+    return f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{html.escape(title)} | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page={html.escape(name, quote=True)}">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">{kind_label(page.get('page_kind', 'other'))} {deleted}</p><h1>{html.escape(title)}</h1><p class="page-name">{html.escape(name)}</p><dl class="article-meta"><div><dt>创建者</dt><dd>{html.escape(page_author(page))}</dd></div><div><dt>评分</dt><dd class="rating">{page.get('rating_text') or 'n/a'} <small>+{voters.get('up', 0)} / -{voters.get('down', 0)}</small></dd></div><div><dt>发布时间</dt><dd>{html.escape(page.get('created_at_beijing') or 'n/a')}</dd></div><div><dt>最近编辑</dt><dd>{html.escape(page.get('last_edited_at_beijing') or 'n/a')}</dd></div></dl><div class="tags">{tags}</div></header>{warning}<section class="article-body">{body or '<p class="muted">该页未保存可渲染的源码。</p>'}</section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>{html.escape(source)}</pre></details></article></main><footer>只读快照：{html.escape(generated)} · created by piglin · 内容版权仍归原作者与 SCP 基金会 Minecraft 分部。</footer></body></html>'''
 
 def main() -> int:
-    parser = argparse.ArgumentParser(); parser.add_argument("--clean", action="store_true"); args = parser.parse_args()
+    parser = argparse.ArgumentParser(); parser.add_argument("--clean", action="store_true"); parser.add_argument("--only", action="append", default=[]); args = parser.parse_args()
     pages, sources = read_shards(DATA / "details", "pages"), read_shards(DATA / "sources", "sources")
     stats = json.load(gzip.open(DATA / "search-index.json.gz", "rt", encoding="utf-8")).get("stats", {})
     generated = stats.get("generated_at_beijing") or datetime.now(timezone.utc).strftime("%Y/%m/%d %H:%M:%S")
     if args.clean and WIKI.exists(): shutil.rmtree(WIKI)
     WIKI.mkdir(parents=True, exist_ok=True)
     total_notices, missing_sources = Counter[str](), []
-    for name, page in sorted(pages.items()):
+    selected = {name: page for name, page in pages.items() if not args.only or name in args.only}
+    records: list[dict[str, Any]] = []
+    fallback: dict[str, tuple[str, Counter[str]]] = {}
+    for name, page in selected.items():
         source = sources.get(name)
         if source is None: missing_sources.append(name); source = page.get("source_excerpt") or ""
-        rendered, notices = render_article(page, source, pages, generated); total_notices.update(notices)
+        if FTML_MAX_SOURCE_CHARS is not None and len(source) > FTML_MAX_SOURCE_CHARS:
+            body, notices = render_wikitext(source, pages)
+            fallback[name] = (sanitize_ftml_html(body, pages), notices)
+        else:
+            records.append({"name": name, "title": page.get("title") or name, "tags": page.get("tags") or [], "rating": page.get("rating") or 0, "source": source})
+    parsed = render_ftml_batch(records, pages)
+    parsed.update(fallback)
+    for name, page in sorted(selected.items()):
+        source = sources.get(name) or page.get("source_excerpt") or ""
+        body, notices = parsed[name]
+        total_notices.update(notices)
+        rendered = render_article(page, source, pages, generated, body, notices)
         (WIKI / f"{article_key(name)}.html").write_text(rendered, encoding="utf-8")
-    manifest = {"generated_at_beijing": generated, "page_count": len(pages), "source_count": len(sources), "missing_full_sources": missing_sources, "parser_notices": dict(sorted(total_notices.items())), "format": "read-only-wikidot-fallback-v1"}
+    manifest = {"generated_at_beijing": generated, "page_count": len(pages), "source_count": len(sources), "missing_full_sources": missing_sources, "parser_notices": dict(sorted(total_notices.items())), "format": "wikijump-ftml-read-only-v2"}
     (DATA / "read-only-manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(manifest, ensure_ascii=False)); return 0
 

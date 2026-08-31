@@ -1,41 +1,4 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>移除方块 | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page=remove-block-goal">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">原创页面 </p><h1>移除方块</h1><p class="page-name">remove-block-goal</p><dl class="article-meta"><div><dt>创建者</dt><dd>xuyifan_exe</dd></div><div><dt>评分</dt><dd class="rating">0 <small>+0 / -0</small></dd></div><div><dt>发布时间</dt><dd>2020/04/10 17:57:14</dd></div><div><dt>最近编辑</dt><dd>2020/04/20 19:26:25</dd></div></dl><div class="tags"><span class="tag">分部现实百科</span><span class="tag">原创</span></div></header><section class="article-body"><p class="wiki-list"><strong>继承：</strong>走向方块</p>
-<p class="wiki-list"><strong>类名：</strong>RemoveBlockGoal</p>
-<p class="wiki-list"><strong>数据</strong></p>
-<p class="wiki-list"><strong>Block 要移除的方块：</strong>即要破坏的方块（类型）</p>
-<p class="wiki-list"><strong>Mob 移除者：</strong>指代拥有这个目的任务的自主者生物</p>
-<p class="wiki-list"><strong>int 接触终点起所经的刻：</strong>自移除者接触要移除的方块的位置时所经过的时间，单位为刻。0表示尚未接触。</p>
-<p class="wiki-list"><strong>初始化</strong></p>
-<p class="wiki-list"><strong>将搜索范围设为24m</strong></p>
-<p class="wiki-list"><strong>是否开始</strong></p>
-<p class="wiki-list"><strong>不继承</strong></p>
-<p class="wiki-list"><strong>如果移除者所在的现实的游戏规则“mobGriefing”为false</strong></p>
-<p class="wiki-list"><strong>不开始</strong></p>
-<p class="wiki-list"><strong>否则如果距下次开始所剩的刻大于零</strong></p>
-<p class="wiki-list"><strong>将距下次开始所剩的刻减去1</strong></p>
-<p class="wiki-list"><strong>不开始</strong></p>
-<p class="wiki-list"><strong>否则</strong></p>
-<p class="wiki-list"><strong>尝试寻找方块</strong></p>
-<p class="wiki-list"><strong>若找到</strong></p>
-<p class="wiki-list"><strong>将距下次开始所剩的刻设为20</strong></p>
-<p class="wiki-list"><strong>开始</strong></p>
-<p class="wiki-list"><strong>否则</strong></p>
-<p class="wiki-list"><strong>从移除者上获取距下次开始所剩的刻，将之设为数据里的距下次开始所剩的刻</strong></p>
-<p class="wiki-list"><strong>不开始</strong></p>
-<p class="wiki-list"><strong>尝试寻找方块</strong></p>
-<p class="wiki-list"><strong>如果目标方块位置存在且对寻路者来说满足条件</strong></p>
-<p class="wiki-list"><strong>已找到</strong></p>
-<p class="wiki-list"><strong>否则</strong></p>
-<p class="wiki-list"><strong>寻找最近方块</strong></p>
-<p class="wiki-list"><strong>停止</strong></p>
-<p class="wiki-list"><strong>将移除者的坠落距离设为1m</strong></p>
-<p class="wiki-list"><strong>开始</strong></p>
-<p class="wiki-list"><strong>将接触终点起所经的刻设为0</strong></p>
-<p class="wiki-list"><strong>播放摧毁过程音效</strong></p>
-<p class="wiki-list"><strong>无动作</strong></p>
-<p class="wiki-list"><strong>播放破坏音效</strong></p>
-<p class="wiki-list"><strong>无动作</strong></p>
-<p class="wiki-list"><strong>每刻</strong></p>
-<p class="wiki-list">**</p></section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>* **继承：**走向方块
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>移除方块 | SCP基金会 Minecraft 分部只读备份</title><link rel="stylesheet" href="/assets/read-only.css"></head><body><header class="site-header"><a class="brand" href="/">SCP基金会 Minecraft 分部</a><span>只读备份</span><nav><a href="/pages.html?page=remove-block-goal">索引详情</a><a href="/pages.html">页面索引</a><a href="/forum.html">讨论区</a></nav></header><main class="reader-shell"><article class="reader-article"><header class="article-header"><p class="eyebrow">原创页面 </p><h1>移除方块</h1><p class="page-name">remove-block-goal</p><dl class="article-meta"><div><dt>创建者</dt><dd>xuyifan_exe</dd></div><div><dt>评分</dt><dd class="rating">0 <small>+0 / -0</small></dd></div><div><dt>发布时间</dt><dd>2020/04/10 17:57:14</dd></div><div><dt>最近编辑</dt><dd>2020/04/20 19:26:25</dd></div></dl><div class="tags"><span class="tag">分部现实百科</span><span class="tag">原创</span></div></header><section class="article-body"><ul><li><strong>继承：</strong>走向方块</li><li><strong>类名：</strong>RemoveBlockGoal</li><li><strong>数据</strong></li></ul><p> * <strong>Block 要移除的方块：</strong>即要破坏的方块（类型）</p><p> * <strong>Mob 移除者：</strong>指代拥有这个目的任务的自主者生物</p><p> * <strong>int 接触终点起所经的刻：</strong>自移除者接触要移除的方块的位置时所经过的时间，单位为刻。0表示尚未接触。</p><ul><li><strong>初始化</strong></li></ul><p> * <strong>将搜索范围设为24m</strong></p><ul><li><strong>是否开始</strong></li></ul><p> * <strong>不继承</strong></p><p> * <strong>如果移除者所在的现实的游戏规则“mobGriefing”为false</strong></p><p>  * <strong>不开始</strong></p><p> * <strong>否则如果距下次开始所剩的刻大于零</strong></p><p>  * <strong>将距下次开始所剩的刻减去1</strong></p><p>  * <strong>不开始</strong></p><p> * <strong>否则</strong></p><p> * <strong>尝试寻找方块</strong></p><p>  * <strong>若找到</strong></p><p>   * <strong>将距下次开始所剩的刻设为20</strong></p><p>   * <strong>开始</strong></p><p> * <strong>否则</strong></p><p> * <strong>从移除者上获取距下次开始所剩的刻，将之设为数据里的距下次开始所剩的刻</strong></p><p> * <strong>不开始</strong></p><ul><li><strong>尝试寻找方块</strong></li></ul><p> * <strong>如果目标方块位置存在且对寻路者来说满足条件</strong></p><p>  * <strong>已找到</strong></p><p> * <strong>否则</strong></p><p>  * <strong>寻找最近方块</strong></p><ul><li><strong>停止</strong></li></ul><p> * <strong>将移除者的坠落距离设为1m</strong></p><ul><li><strong>开始</strong></li></ul><p> * <strong>将接触终点起所经的刻设为0</strong></p><ul><li><strong>播放摧毁过程音效</strong></li></ul><p> * <strong>无动作</strong></p><ul><li><strong>播放破坏音效</strong></li></ul><p> * <strong>无动作</strong></p><ul><li><strong>每刻</strong></li></ul><p> * **<br/></p></section><details class="source"><summary>查看原始 Wikidot 源码</summary><pre>* **继承：**走向方块
 
 
 
