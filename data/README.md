@@ -4,7 +4,7 @@
 - Pages: 1383
 - Users: 359
 - Rated pages: 1371
-- Voters captured: 8245
+- Voters captured: 8246
 - History authors captured: 1371
 - Discussion threads linked: 1096
 - Comment previews captured: 3691
