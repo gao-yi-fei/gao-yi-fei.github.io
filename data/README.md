@@ -1,15 +1,15 @@
 # SCPper-lite data
 
-- Generated: 2026-10-31T12:37:32+00:00
+- Generated: 2026-10-31T21:41:34+00:00
 - Pages: 1394
 - Users: 366
 - Rated pages: 1382
-- Voters captured: 8367
+- Voters captured: 8368
 - History authors captured: 1381
-- Discussion threads linked: 1107
+- Discussion threads linked: 1106
 - Comment previews captured: 3725
-- Forum threads captured: 1480
-- Page discussion threads linked: 1107
+- Forum threads captured: 1479
+- Page discussion threads linked: 1106
 - Forum posts captured: 5480
 - Shards: 32
 
