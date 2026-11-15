@@ -3,7 +3,7 @@
 - Generated: 2026-11-15T06:40:05+00:00
 - Pages: 1399
 - Users: 371
-- Rated pages: 1387
+- Rated pages: 1386
 - Voters captured: 8407
 - History authors captured: 1386
 - Discussion threads linked: 1109
